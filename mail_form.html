@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<form method="post" action="mail/envoi_mail.php">
+						
+	<label for="objet"> Objet </label>  
+	<input type="text" name="objet" id="objet" placeholder="Objet" maxlength="50" required="required"/>
+	
+	<label for="contenu"> Contenu du message </label> 
+	<textarea name="contenu" cols="70" rows="30" placeholder="Contenu" required="required"></textarea>
+	<!--<input type="text" name="contenu" id="contenu" placeholder="Contenu" required="required"/>-->
+
+	<label for="dest"> A qui envoyer ? </label>
+	<label for="tous"> Tous </label>
+	<input type= "radio" name="dest" value="tous"/>
+	<label for="dest"> Admins </label>
+	<input type= "radio" name="dest" value="admins"/>
+	<label for="dest"> Inscrits </label>
+	<input type= "radio" name="dest" value="inscrits_jeu"/>
+	<label for="dest"> Choisir </label>
+	<input type= "radio" name="dest" value="choisir"/>
+	
+	<input id="valider" type="submit" value="Valider"/>               
+</form>

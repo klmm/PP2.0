@@ -1,6 +1,6 @@
 <?php
 
- 	require_once('../admin/titi.php');
+ 	require_once('../../admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 	

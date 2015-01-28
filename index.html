@@ -23,7 +23,12 @@
 	<link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
    
 	<link href="css/carousel.css" rel="stylesheet">
-	 <link href="css/style.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="css/default.css" /> <!-- caption hover effects -->
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<script src="js/modernizr.custom.js"></script>
+	
 	 
 	<link rel="stylesheet" href="bower_components/lumx/dist/css/lumx.css">
   <style type="text/css"></style></head>
@@ -32,7 +37,7 @@
 <body>
 
   
-	<header id="home" class="">
+	<header id="home" class="no-js">
    <div class="navbar-wrapper" id="header-top">
 	    <div class="container">
 			<h1><a href="#myCarousel">Parions Potes</a></h1>  
@@ -122,6 +127,34 @@
 			<div class="sectionSide">
 				<h2 class="section-heading">Jeux</h2>
 				<p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p> 
+			</div>
+			<div class="row">
+				<ul class="grid cs-style-2">
+					<li class="col-md-4">
+						<figure>
+							<img src="img/jeufoot.png" alt="Football">
+							<figcaption>
+								<a class="btn-block btn-lg" href="http://parions-potes.fr/Football">Jouer</a>
+							</figcaption>
+						</figure>
+					</li>
+					<li class="col-md-4">
+						<figure>
+							<img src="img/jeuski.png" alt="img04">
+							<figcaption>
+								<a class="btn-block btn-lg" href="http://parions-potes.fr/Ski">Jouer</a>
+							</figcaption>
+						</figure>
+					</li>
+					<li class="col-md-4">
+						<figure>
+							<img src="img/jeurugby.png" alt="img06">
+							<figcaption>
+								<a class="btn-block btn-lg" href="http://parions-potes.fr/6nations">Jouer</a>
+							</figcaption>
+						</figure>
+					</li>
+				</ul>
 			</div>
 			<div class="row">
 				<div class="col-md-4">
@@ -364,6 +397,8 @@
 <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/lumx/dist/js/lumx.js"></script> 
+
+<script src="js/toucheffects.js"></script>
 
 	<script type="text/javascript">
 	//var pagedSections = ["#products","#services","#customers","#about-us","#contact"];

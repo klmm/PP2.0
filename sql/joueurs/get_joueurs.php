@@ -1,6 +1,6 @@
 <?php	
-	function get_joueurs_tous()
-	{
+	
+	function get_joueurs_tous(){
 		// On établit la connexion avec la base de données
 		require_once('../../admin/titi.php');
 		$bdd = new Connexion();
@@ -21,15 +21,14 @@
 			$arr[$i][2] = $enregistrement->Nom;
 			$arr[$i][3] = $enregistrement->Prenom;
 			$arr[$i][4] = $enregistrement->Admin;
+			$arr[$i][5] = $enregistrement->IDJoueur;
 			$i++;
 		}
 		
 		return $arr;
 	}
 	
-	
-	function get_joueurs_admins()
-	{
+	function get_joueurs_admins(){
 		// On établit la connexion avec la base de données
 		require_once('../../admin/titi.php');
 		$bdd = new Connexion();
@@ -50,9 +49,11 @@
 			$arr[$i][2] = $enregistrement->Nom;
 			$arr[$i][3] = $enregistrement->Prenom;
 			$arr[$i][4] = $enregistrement->Admin;
+			$arr[$i][5] = $enregistrement->IDJoueur;
 			$i++;
 		}
 		
 		return $arr;
 	}
+	
 ?>

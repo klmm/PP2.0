@@ -1,6 +1,5 @@
 <?php
 
-	$joueurs = array();
 	$objet = $_POST["objet"];
 	$message = $_POST["contenu"];
 	$dest = $_POST["dest"];

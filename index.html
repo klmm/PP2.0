@@ -411,23 +411,22 @@
 				<p class="section-highlight">Quelques infos avant les pronos !</p>
 			</div>
 	
-			<form role="form" class="row contact-form" action="sendinscription.php" method="POST">
+			<form role="form" class="row contact-form" action="sql/joueurs/add_joueur.php" method="POST">
 				<div class="col-md-6">
-						<input type="text" placeholder="nom" name="name" class="form-control">
-						<input type="text" placeholder="prenom" name="surname" class="form-control">
+						<input type="text" placeholder="nom" name="nom" class="form-control">
+						<input type="text" placeholder="prenom" name="prenom" class="form-control">
 						<input type="text" placeholder="login" name="login" class="form-control" required="" data-validation-required-message="You must enter your login">
 				</div>
 				<div class="col-md-6">
 						<input type="email" placeholder="email" name="email" class="form-control" required="" data-validation-required-message="You must enter your email">
-						<input type="secret" placeholder="mot de passe" name="mdp" class="form-control" required="" data-validation-required-message="You must enter your password">
-						<input type="secret" placeholder="confirmation de mot de passe" name="mdp2" class="form-control" required="" data-validation-required-message="You must confirm your password">
+						<input type="password" placeholder="mot de passe" name="motdepasse" class="form-control" required="" data-validation-required-message="You must enter your password">
+						<input type="password" placeholder="confirmation de mot de passe" name="confmotdepasse" class="form-control" required="" data-validation-required-message="You must confirm your password">
 						
 				</div>
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<button type="submit" class="btn btn-block btn--l btn--blue btn--raised" style="padding:0;margin-top:20px;width:200px;text-align:left;" lx-ripple>
-						<span style="display:block;padding: 0 8px 0 8px;;/* margin-left:40px; */height:38px;line-height:38px;margin-right: 60px;float: right;">Envoyer</span>
-						<i class="mdi mdi--done" style="float:left;width:40px;height:38px;margin:0;padding: 0 0 0 8px;line-height:38px;font-size:2em;"></i>
+					<button type="submit" class="btn btn-block btn--l btn--blue btn--raised" style="padding:0;margin-top:20px;text-align:center;" lx-ripple>
+						<span style="display:block;padding: 0 8px 0 8px;height:38px;line-height:38px;">Envoyer</span>
 					</button>
 				</div>
 				<div class="col-md-4"></div>
@@ -496,7 +495,7 @@
 				<p class="section-highlight">Un souci, une question, une idée? N'hésitez pas à nous contacter !</p>
 			</div>
 	
-			<form role="form" class="row contact-form" action="sendcontact.php" method="POST">
+			<form role="form" class="row contact-form" action="" method="POST">
 				<div class="col-md-6">
 						<input type="text" placeholder="nom" name="name" class="form-control" required="" data-validation-required-message="You must enter your name">
 						<input type="email" placeholder="email" name="email" class="form-control" required="" data-validation-required-message="You must enter your email">
@@ -591,7 +590,8 @@
         },
         error: function(jqXHR, textStatus, errorThrown) 
         {
-            alert("error");     
+			alert(textStatus);alert(errorThrown);
+			alert("error");     
         }
     });
     e.preventDefault(); //STOP default action

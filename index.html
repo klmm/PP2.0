@@ -413,14 +413,14 @@
 	
 			<form role="form" class="row contact-form" action="sql/joueurs/add_joueur.php" method="POST">
 				<div class="col-md-6">
-						<input type="text" placeholder="nom" name="nom" class="form-control">
-						<input type="text" placeholder="prenom" name="prenom" class="form-control">
-						<input type="text" placeholder="login" name="login" class="form-control" required="" data-validation-required-message="You must enter your login">
+						<input type="text" placeholder="Nom" name="nom" class="form-control">
+						<input type="text" placeholder="Prénom" name="prenom" class="form-control">
+						<input type="text" placeholder="Login" name="login" class="form-control" required="" data-validation-required-message="Veuillez choisir un login">
 				</div>
 				<div class="col-md-6">
-						<input type="email" placeholder="email" name="email" class="form-control" required="" data-validation-required-message="You must enter your email">
-						<input type="password" placeholder="mot de passe" name="motdepasse" class="form-control" required="" data-validation-required-message="You must enter your password">
-						<input type="password" placeholder="confirmation de mot de passe" name="confmotdepasse" class="form-control" required="" data-validation-required-message="You must confirm your password">
+						<input type="email" placeholder="email" name="email" class="form-control" required="" data-validation-required-message="Veuillez indiquer votre adresse mail">
+						<input type="password" placeholder="Mot de passe" name="motdepasse" class="form-control" required="" data-validation-required-message="Veuillez choisir un mot de passe">
+						<input type="password" placeholder="Confirmation du mot de passe" name="confmotdepasse" class="form-control" required="" data-validation-required-message="Veuillez confirmer votre mot de passe">
 						
 				</div>
 				<div class="col-md-4"></div>
@@ -495,14 +495,14 @@
 				<p class="section-highlight">Un souci, une question, une idée? N'hésitez pas à nous contacter !</p>
 			</div>
 	
-			<form role="form" class="row contact-form" action="" method="POST">
+			<form role="form" class="row contact-form" action="mail/contact_mail.php" method="POST">
 				<div class="col-md-6">
-						<input type="text" placeholder="nom" name="name" class="form-control" required="" data-validation-required-message="You must enter your name">
-						<input type="email" placeholder="email" name="email" class="form-control" required="" data-validation-required-message="You must enter your email">
-						<input type="text" placeholder="sujet" name="subject" class="form-control">
+						<input type="text" placeholder="Nom" name="nom" class="form-control" required="" data-validation-required-message="You must enter your name">
+						<input type="email" placeholder="email (pour vous répondre)" name="mail" class="form-control" required="" data-validation-required-message="You must enter your email">
+						<input type="text" placeholder="Objet" name="objet" class="form-control">
 				</div>
 				<div class="col-md-6">
-						<textarea class="form-control" rows="7" name="message" placeholder="Type your message here"></textarea>
+						<textarea class="form-control" rows="7" name="contenu" placeholder="Type your message here"></textarea>
 						<button type="submit" class="btn btn--l btn--blue btn--raised" style="padding:0;margin-top:20px;width:200px;text-align:left;" lx-ripple>
 							<span style="display:block;padding: 0 8px 0 8px;;/* margin-left:40px; */height:38px;line-height:38px;margin-right: 60px;float: right;">Envoyer</span>
 							<i class="mdi mdi--done" style="float:left;width:40px;height:38px;margin:0;padding: 0 0 0 8px;line-height:38px;font-size:2em;"></i>

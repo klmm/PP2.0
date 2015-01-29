@@ -39,4 +39,5 @@
 	mail('contact@parions-potes.fr',$sujet,$message,$header);
 	//==========
 	
+	echo('Mail envoyé. Nous vous répondons dans les plus brefs délais.');
 ?>

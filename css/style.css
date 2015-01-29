@@ -18,7 +18,7 @@ header {
     left: 0;
 	z-index:10000;
 	width: 100%;
-	overflow: hidden;
+	//overflow: hidden;
     -webkit-transition: height 0.3s;
     -moz-transition: height 0.3s;
     transition: height 0.3s;
@@ -29,7 +29,7 @@ header {
 }
 header.small {
     height: 57px;
-	overflow:hidden;
+	//overflow:hidden;
 }
 
 .logosmall { /* logo dans la barre de menu repliée */
@@ -58,22 +58,7 @@ header.small {
 	transition: opacity 0.5s;
 	padding:15px 0;
 }
-.lumDocsPage .logoProduct{
-	background:transparent url(../img/lumdocs-h.png) no-repeat top left !important;
-	background-size:contain !important;
-}
-.lumPeoplePage .logoProduct{
-	background:transparent url(../img/lumpeople-h.png) no-repeat top left !important;
-	background-size:contain !important;
-}
-.lumPanelPage .logoProduct{
-	background:transparent url(../img/lumpanel-h.png) no-repeat top left !important;
-	background-size:contain !important;
-}
-.lumSitePage .logoProduct{
-	background:transparent url(../img/lumsite-h.png) no-repeat top left !important;
-	background-size:contain !important;
-}
+
 #header-bottom  .container,#header-top  .container,#header-product  .container{
 	padding:0;
 }
@@ -149,6 +134,7 @@ header.small #header-bottom {
 	background:#808285;
 	color:white;
 }
+
 #header-bottom  .nav>li#logosmall.active>a,
 #header-product  .nav>li#logosmall.active>a {
 background:transparent;
@@ -177,6 +163,16 @@ header.small #header-top h1 {
 .carousel .item { 
 	background:#FFFFFF;
 }
+
+#header-bottom input[type=text], input[type=password]{
+	padding: 4px 6px;
+	margin-bottom: 10px;
+}
+
+#menuLogin, #menuUser {
+background-color: black;
+}
+
 
 /*** secondary navigation *****/
 ul.nav-tabs {
@@ -224,12 +220,7 @@ font-size:24px;
 .nav-tabs li:first-child a {
 	padding-left:0;
 }
-.nav-tabs li a:hover,
-.nav-tabs li.lumdrive a:hover,
-.nav-tabs li.lumdocs a:hover,
-.nav-tabs li.lumpeople a:hover,
-.nav-tabs li.lumpanel a:hover,
-.nav-tabs li.lumsite a:hover
+.nav-tabs li a:hover
 {
 color:#231f20;
 background:#eff0f1;
@@ -326,19 +317,7 @@ font-size:20px;
 	padding:30px 0;
 	/*margin-bottom:60px;*/
 }
-.lumDocsPlusPage .section-try-it {
-	background:#4286f5;
-	}
-	.lumPeoplePage .section-try-it {
-	background:#f5b919;
-	}
-	.lumPanelPage .section-try-it {
-	background:#8bc53f;
-	}
-	.lumSitePage .section-try-it {
-	background:#983794;
-	}
-	
+
 
 .section-try-it h2 { color:#fff;}
 

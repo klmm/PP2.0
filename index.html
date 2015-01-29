@@ -11,6 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,8 +30,8 @@
 	<link rel="stylesheet" type="text/css" href="css/component.css" />
 	<script src="js/modernizr.custom.js"></script>
 	
-	 
-	<link rel="stylesheet" href="bower_components/lumx/dist/css/lumx.css">
+	
+	<!-- <link rel="stylesheet" href="bower_components/lumx/dist/css/lumx.css"> -->
   <style type="text/css"></style></head>
 <!-- NAVBAR
 ================================================== -->
@@ -41,15 +42,16 @@
 			<div class="container">
 				<h1><a href="#myCarousel">Parions Potes</a></h1>  
 				<ul class="social">
-									<!-- <li class="googleplus"><a href="">Google+</a></li> -->
-									<li class="twitter"><a href="#">Twitter</a></li>
-									<!-- <li class="linkedIn"><a href="#">LinkedIN</a></li> -->
-									<li class="facebook"><a href="#">facebook</a></li>
-									<!-- <li class="youtube"><a href="#">youtube</a></li> -->
+					<!-- <li class="googleplus"><a href="">Google+</a></li> -->
+					<li class="twitter"><a href="#">Twitter</a></li>
+					<!-- <li class="linkedIn"><a href="#">LinkedIN</a></li> -->
+					<li class="facebook"><a href="#">facebook</a></li>
+					<!-- <li class="youtube"><a href="#">youtube</a></li> -->
 				</ul>
+				
 			</div>	
 		</div>
-		 <div class="navbar-wrapper" id="header-bottom">
+		<div class="navbar-wrapper" id="header-bottom">
 			<div class="container">
 				<div class="navbar  navbar-static-top" role="navigation" id="mainNavigation">
 				  <div class="container">
@@ -60,10 +62,54 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
 					  </button> 
 					  <a class="navbar-brand logosmall" href="#myCarousel" id="logosmall" data-action="scrollTo"></a>
+					  <ul class="nav nav-pills" style="position:absolute;margin-left:90px;">
+								<li class="dropdown" id="menuLogin">
+									<a class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:white;background:transparent;">Login</a>
+									<ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
+										<form id="formLogin" class="form"> 
+											<label>Login</label>
+											<input name="username" id="username" type="text" placeholder="Username" title="Enter your username" required="">
+											<input name="password" id="password" type="password" placeholder="Password" title="Enter your password" required=""><br>
+											<button type="button" id="btnLogin" class="btn btn-block btn-primary">Login</button>
+										</form>
+									</ul>
+								</li>
+								<li class="dropdown" id="menuUser">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;background:transparent;">
+										<span class="glyphicon glyphicon-user"></span><span id="bUsername">  klmm69</span>
+									</a>
+									<ul class="dropdown-menu" style="min-width:202px;">
+										<form style="text-align: center; padding: 5px;">
+											<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
+										</form>
+						
+										<form id="changePassword" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+											<input name="password" id="inputpassword" type="password" placeholder="Mot de passe actuel" required=""> 
+											<input name="verify" id="inputVerify" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
+											<button type="submit" id="btnRegister" class="btn btn-success">Valider</button>
+										</form>
+										
+										<li>
+											<ul id="changeNotifs" style="padding: 17px;height: auto;">
+												<form class="form ">
+													<label class="checkbox-inline">
+														<input type="checkbox" id="inlineCheckbox1" value="option1">Recevoir les notifications par mail
+													</label>
+												</form>
+											</ul>
+										</li>
+										<li class="divider"> </li>
+										<li>
+											<form class="form ">
+												<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
+											</form>
+										</li>
+										
+									</ul>
+								</li>
+							</ul>
 					</div>
 					<div class="navbar-collapse collapse" id="navbar-main">
 					  <ul class="nav navbar-nav pull-right" style="">
@@ -75,13 +121,14 @@
 						<li class=""><a href="#contacts" data-action="scrollTo">Contacts</a></li>
 					  </ul>  
 					</div>
+					
 				  </div>
 				</div>
 			</div>
 		</div>
 	</header>
 
-
+	<!-- Actualités -->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000"> 
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -124,7 +171,7 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-	
+	<!-- Point info -->
 	<div class="section" style="background-color: cornflowerblue; margin-bottom:80px;">	
 		<div class="container marketing">	
 			<div class="sectionSide" style="padding-bottom: 15px; color:white;">
@@ -248,7 +295,7 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- Jeux -->
     <div class="container marketing">
 		<div class="section products" id="games" style="margin-bottom:120px;">
 			<div class="sectionSide">
@@ -402,7 +449,7 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- Inscription -->
 <div class="section-contact section" id="inscription" style="min-height: 214px; background: rgb(241, 241, 241);">
 		<div class="container marketing ">
 			
@@ -433,7 +480,7 @@
 			</form>
 		</div>
 	</div>	
-	
+	<!-- Presentation -->
 	<div class="container-services" id="presentation">
 		<div class="container marketing">
 			<div class="  about-us">
@@ -486,7 +533,7 @@
 
 		</div>
 	</div>
-
+	<!-- Contact -->
 	<div class="section-contact section" id="contacts" style="min-height: 214px; background: rgb(241, 241, 241);">
 		<div class="container marketing ">
 			
@@ -535,7 +582,7 @@
 		</div>
 	</div>
 
-	 <!-- FOOTER -->
+	<!-- FOOTER -->
 	<footer>
 		<div class="container ">
 			<p>© 2014 Parions Potes </p>
@@ -553,12 +600,12 @@
 <script src="bower_components/velocity/velocity.js"></script>
 <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/lumx/dist/js/lumx.js"></script> 
+<!-- <script src="bower_components/lumx/dist/js/lumx.js"></script>  -->
 
 <script src="js/toucheffects.js"></script>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 	//var pagedSections = ["#products","#services","#customers","#about-us","#contact"];
 	var pagedSections = ["#contact"];
 	var headerSize = 98;
@@ -572,37 +619,37 @@
 		// $('body').scrollspy("refresh");
 	}
     jQuery(document).ready(function ($) {
-	$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	
-	$("form").submit(function(e)
-{
-    var postData = $(this).serializeArray();
-    var formURL = $(this).attr("action");
-    $.ajax(
-    {
-        url : formURL,
-        type: "POST",
-        data : postData,
-        success:function(data, textStatus, jqXHR) 
-        {
-            alert(data);
-			$('form')[0].reset();
-        },
-        error: function(jqXHR, textStatus, errorThrown) 
-        {
-			alert(textStatus);alert(errorThrown);
-			alert("error");     
-        }
-    });
-    e.preventDefault(); //STOP default action
-    e.unbind(); //unbind. to stop multiple form submit.
-});
-	pageSection();
-	$(window).resize(function() {
-	pageSection();
-	 $('body').scrollspy("refresh");
-	});
-	//$.scrollTo( 0 );
+		$("form").submit(function(e)
+		{
+			var postData = $(this).serializeArray();
+			var formURL = $(this).attr("action");
+			$.ajax(
+			{
+				url : formURL,
+				type: "POST",
+				data : postData,
+				success:function(data, textStatus, jqXHR) 
+				{
+					alert(data);
+					$('form')[0].reset();
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					alert(textStatus);alert(errorThrown);
+					alert("error");     
+				}
+			});
+			e.preventDefault(); //STOP default action
+			e.unbind(); //unbind. to stop multiple form submit.
+		});
+		pageSection();
+		$(window).resize(function() {
+			pageSection();
+			 $('body').scrollspy("refresh");
+		});
+		//$.scrollTo( 0 );
 		$('body').scrollspy({ target: '#navbar-main',offset:250 })
         $('.nav-tabs').tab();
 		$('a[data-action="scrollTo"]').click(function(e) {
@@ -618,7 +665,7 @@
 			$('.navbar-collapse').removeClass('in');
 		});
 		
-	
+		$('[data-toggle=dropdown]').dropdown();
 	
 		
     });

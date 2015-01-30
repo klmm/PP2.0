@@ -2,7 +2,7 @@
 
 	function get_articles_tous(){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
@@ -33,7 +33,7 @@
 	
 	function get_articles_rubrique($id_rub){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
@@ -65,7 +65,7 @@
 	
 	function get_articles_categorie($categ){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
@@ -97,7 +97,7 @@
 
 	function get_articles_souscategorie($categ, $souscat){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
@@ -130,7 +130,7 @@
 	
 	function get_articles_unes(){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 

@@ -1,5 +1,9 @@
 <?php
-	include 'sql/joueurs/get_joueurs.php';
+	session_start();
+	echo $_SESSION['IDJoueur'];
+	echo $_SESSION['LoginJoueur'];
+	//print_r(array_values($_SERVER));
+	/*include 'sql/joueurs/get_joueurs.php';
 	include 'sql/articles/get_articles.php';
 	include 'sql/jeux/get_jeux.php';
 	
@@ -47,7 +51,7 @@
 	
 	echo '<br/><br/>Jeux à venir<br/>';
 	$res = get_jeux_avenir();
-	print_r(array_values($res));
+	print_r(array_values($res));*/
 	
 
 ?>

@@ -66,28 +66,30 @@
 					  <a class="navbar-brand logosmall" href="#myCarousel" id="logosmall" data-action="scrollTo"></a>
 					  <ul class="nav nav-pills" style="position:absolute;margin-left:90px;">
 								<li class="dropdown" id="menuLogin">
-									<a class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:white;background:transparent;">Login</a>
+									<a class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:white;background:transparent;">Se connecter</a>
 									<ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
-										<form id="formLogin" class="form"> 
-											<label>Login</label>
-											<input name="username" id="username" type="text" placeholder="Username" title="Enter your username" required="">
-											<input name="password" id="password" type="password" placeholder="Password" title="Enter your password" required=""><br>
-											<button type="button" id="btnLogin" class="btn btn-block btn-primary">Login</button>
+										<form role="form" id="formLogin" class="form" action="sql/joueurs/verif_login.php" method="POST">
+										<!--<form role="form" id="formLogin" action="sql/joueurs/verif_login.php" class="form" method="POST"> -->
+											<label>Se connecter</label>
+											<input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
+											<input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
+											<button type="submit" id="btnLogin" class="btn btn-block btn-primary">Se connecter</button>
 										</form>
 									</ul>
 								</li>
 								<li class="dropdown" id="menuUser">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;background:transparent;">
-										<span class="glyphicon glyphicon-user"></span><span id="bUsername">  klmm69</span>
+										<span class="glyphicon glyphicon-user"></span><span id="bUsername">  klmm69 </span>
 									</a>
 									<ul class="dropdown-menu" style="min-width:202px;">
 										<form style="text-align: center; padding: 5px;">
 											<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
 										</form>
 						
-										<form id="changePassword" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
-											<input name="password" id="inputpassword" type="password" placeholder="Mot de passe actuel" required=""> 
-											<input name="verify" id="inputVerify" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
+										<form id="changePassword" role="form" action="sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+											<input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
+											<input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
+											<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
 											<button type="submit" id="btnRegister" class="btn btn-success">Valider</button>
 										</form>
 										
@@ -102,8 +104,14 @@
 										</li>
 										<li class="divider"> </li>
 										<li>
-											<form class="form ">
+											<form class="form" action="sql/joueurs/deconnexion.php" method="POST">
 												<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
+											</form>
+										</li>
+										<li class="divider"> </li>
+										<li>
+											<form class="form" action="test_req.php" method="POST">
+												<button type="submit" id="test" class="btn btn-primary btn-block">Test session</button>	
 											</form>
 										</li>
 										
@@ -457,16 +465,15 @@
 				<h2 class="section-heading">Inscription</h2>
 				<p class="section-highlight">Quelques infos avant les pronos !</p>
 			</div>
-	
 			<form role="form" class="row contact-form" action="sql/joueurs/add_joueur.php" method="POST">
 				<div class="col-md-6">
 						<input type="text" placeholder="Nom" name="nom" class="form-control">
 						<input type="text" placeholder="Prénom" name="prenom" class="form-control">
-						<input type="text" placeholder="Login" name="login" class="form-control" required="" data-validation-required-message="Veuillez choisir un login">
+						<input type="text" placeholder="Login (entre 3 et 12 chiffres et lettres)" name="login" class="form-control" required="" data-validation-required-message="Veuillez choisir un login">
 				</div>
 				<div class="col-md-6">
 						<input type="email" placeholder="email" name="email" class="form-control" required="" data-validation-required-message="Veuillez indiquer votre adresse mail">
-						<input type="password" placeholder="Mot de passe" name="motdepasse" class="form-control" required="" data-validation-required-message="Veuillez choisir un mot de passe">
+						<input type="password" placeholder="Mot de passe (entre et 8 et 20 chiffres et lettres)" name="motdepasse" class="form-control" required="" data-validation-required-message="Veuillez choisir un mot de passe">
 						<input type="password" placeholder="Confirmation du mot de passe" name="confmotdepasse" class="form-control" required="" data-validation-required-message="Veuillez confirmer votre mot de passe">
 						
 				</div>
@@ -549,7 +556,7 @@
 						<input type="text" placeholder="Objet" name="objet" class="form-control">
 				</div>
 				<div class="col-md-6">
-						<textarea class="form-control" rows="7" name="contenu" placeholder="Type your message here"></textarea>
+						<textarea class="form-control" rows="7" name="contenu" placeholder="Votre message"></textarea>
 						<button type="submit" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;text-align:left;">
 							<span style="display:block;padding: 0 8px 0 8px;;/* margin-left:40px; */height:38px;line-height:38px;margin-right: 60px;float: right;">Envoyer</span>
 							<span class="glyphicon glyphicon-ok" style="float:left;width:40px;height:38px;margin:0;padding: 0 0 0 8px;line-height:38px;font-size:1.5em;"></span>

@@ -2,7 +2,7 @@
 
 	function get_jeux_tous(){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
@@ -30,7 +30,7 @@
 	
 	function get_jeux_finis(){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 		$date_actu = date('Y-m-d H:i:s');
@@ -60,7 +60,7 @@
 	
 	function get_jeux_avenir(){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 		$date_actu = date('Y-m-d H:i:s');
@@ -90,7 +90,7 @@
 	
 	function get_jeux_encours(){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 		$date_actu = date('Y-m-d H:i:s');

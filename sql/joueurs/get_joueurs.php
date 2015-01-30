@@ -2,7 +2,7 @@
 	
 	function get_joueurs_tous(){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
@@ -30,7 +30,7 @@
 	
 	function get_joueurs_admins(){
 		// On établit la connexion avec la base de données
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/PP2.0/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 

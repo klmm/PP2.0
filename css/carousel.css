@@ -156,6 +156,10 @@ xtext-transform: none;
 xtext-shadow:1px 1px 2px rgba(0,0,0,0.7);
 
 }
+
+#news-section {
+	margin-top:165px;
+}
 /* MARKETING CONTENT
 -------------------------------------------------- */
 
@@ -253,9 +257,7 @@ xtext-shadow:1px 1px 2px rgba(0,0,0,0.7);
     font-size: 50px;
   }
   
-  #news-section {
-	margin-top:165px;
-  }
+  
 }
 .carousel-control {
 color:#333;
@@ -264,6 +266,7 @@ color:#333;
   .featurette-heading {
     margin-top: 120px;
   }
+ 
 }
 
 @media screen and (min-width: 768px) {
@@ -304,6 +307,9 @@ color:#333;
 	#header-top {
 	display:none;
 	}
+	#news-section {
+	margin-top:0;
+}
 	body {
 	margin-top: 60px !important;
 	}
@@ -311,6 +317,12 @@ color:#333;
 	
 	#bConnect, #bUsername {
 		display:none;
+	}
+	.carousel p {
+		display:none;
+	}
+	.carousel h1 {
+		font-size:1.2em;
 	}
 }
 @media (max-width:320px) {

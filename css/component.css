@@ -168,9 +168,10 @@
 }
 
 .cs-style-3 figcaption a {
-	position: absolute;
+	/* position: absolute;
 	bottom: 20px;
-	right: 20px;
+	right: 20px; */
+	padding: 13px 10px;
 }
 
 /* Caption Style 4 */

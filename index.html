@@ -125,7 +125,7 @@
 					  <ul class="nav navbar-nav pull-right" style="">
 						<li class="active"><a href="#myCarousel" data-action="scrollTo">Actualités</a></li>
 						<li class=""><a href="#games" data-action="scrollTo">Jeux</a></li>
-						<li class=""><a href="#articles" data-action="scrollTo">Articles</a></li>
+						<!-- <li class=""><a href="#articles" data-action="scrollTo">Articles</a></li> -->
 						<li class=""><a href="#inscription" data-action="scrollTo">Inscription</a></li>
 						<li class=""><a href="#presentation" data-action="scrollTo">Présentation</a></li>
 						<li class=""><a href="#contacts" data-action="scrollTo">Contacts</a></li>
@@ -386,45 +386,29 @@
 			<div class="row" style="margin-bottom:10px;margin-top:10px;">
 				<div class="collapse-group">
 					<div class="collapse" id="archives" >
-						<div class="col-md-2"></div>
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card__left" style="height: 120px">
-									<img src="img/jeufifa2014.png">
-								</div>
-
-								<div class="card__side" style="left: 150px">
-									<div class="card__top">
-										<strong class="card-title">FIFA World Cup 2014</strong>
-									</div>
-
-									<div class="card__actions">
-										<button class="btn btn--l btn--grey btn--raised" lx-ripple>Jouer</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card__left" style="height: 120px">
-									<img src="img/jeutdf2014.png">
-								</div>
-
-								<div class="card__side" style="left: 150px">
-									<div class="card__top">
-										<strong class="card-title">Tour de France 2014</strong>
-									</div>
-
-									<div class="card__actions">
-										<button class="btn btn--l btn--grey btn--raised" lx-ripple>Jouer</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2"></div>
+						<ul class="grid cs-style-3">
+							<li class="col-md-2"></li>
+							<li class="col-md-4">
+								<figure>
+									<img src="img/jeufifa2014.png" alt="Fifa2014">
+									<figcaption>
+										<a class="btn-block btn-lg" href="http://parions-potes.fr/WC2014">Revoir</a>
+									</figcaption>
+								</figure>
+							</li>
+							<li class="col-md-4">
+								<figure>
+									<img src="img/jeutdf2014.png" alt="img04">
+									<figcaption>
+										<a class="btn-block btn-lg" href="http://parions-potes.fr/TDF2014">Revoir</a>
+									</figcaption>
+								</figure>
+							</li>
+							<li class="col-md-2"></li>
+						</ul>
 					</div>
 					<div class="col-md-12" style="margin-top:10px;">
-						<button class="btn btn-block btn--xl btn--black btn--raised" data-toggle="collapse" data-target="#archives" lx-ripple>Archives</button>	
+						<button class="btn btn-block btn-success btn-lg" data-toggle="collapse" data-target="#archives" lx-ripple>Archives</button>	
 					</div>
 				</div>
 			</div>
@@ -432,13 +416,13 @@
 	</div>
 	<!-- Inscription -->
 <div class="section-contact section" id="inscription" style="min-height: 214px; background: rgb(241, 241, 241);">
-		<div class="container marketing ">
+		<div id="inscription-container" class="container marketing ">
 			
 			<div class="sectionSide">
 				<h2 class="section-heading">Inscription</h2>
 				<p class="section-highlight">Quelques infos avant les pronos !</p>
 			</div>
-			<form role="form" class="row contact-form" action="sql/joueurs/add_joueur.php" method="POST">
+			<form id="inscription-form" role="form" class="row contact-form" action="sql/joueurs/add_joueur.php" method="POST">
 				<div class="col-md-6">
 						<input type="text" placeholder="Nom" name="nom" class="form-control">
 						<input type="text" placeholder="Prénom" name="prenom" class="form-control">
@@ -452,12 +436,17 @@
 				</div>
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<button type="submit" class="btn btn-block btn-primary" style="padding:0;margin-top:20px;text-align:center;">
+					<button type="submit" class="btn btn-block btn-primary" style="padding:0;margin-top:20px;margin-bottom:10px;text-align:center;">
 						<span style="display:block;padding: 0 8px 0 8px;height:38px;line-height:38px;">Envoyer</span>
 					</button>
+					
 				</div>
 				<div class="col-md-4"></div>
 			</form>
+			<!-- <div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<strong>Warning!</strong> Better check yourself, you're not looking too good.
+			</div> -->
 		</div>
 	</div>	
 	<!-- Presentation -->
@@ -516,26 +505,27 @@
 	<!-- Contact -->
 	<div class="section-contact section" id="contacts" style="min-height: 214px; background: rgb(241, 241, 241);">
 		<div class="container marketing ">
-			
-			<div class="sectionSide">
-				<h2 class="section-heading">Contact</h2>
-				<p class="section-highlight">Un souci, une question, une idée? N'hésitez pas à nous contacter !</p>
+			<div id="contact-container" class="row">
+				<div class="sectionSide">
+					<h2 class="section-heading">Contact</h2>
+					<p class="section-highlight">Un souci, une question, une idée? N'hésitez pas à nous contacter !</p>
+				</div>
+		
+				<form id="contact-form" role="form" class="row contact-form" action="mail/contact_mail.php" method="POST">
+					<div class="col-md-6">
+							<input type="text" placeholder="Nom" name="nom" class="form-control" required="" data-validation-required-message="You must enter your name">
+							<input type="email" placeholder="email (pour vous répondre)" name="mail" class="form-control" required="" data-validation-required-message="You must enter your email">
+							<input type="text" placeholder="Objet" name="objet" class="form-control">
+					</div>
+					<div class="col-md-6">
+							<textarea class="form-control" rows="7" name="contenu" placeholder="Votre message"></textarea>
+							<button type="submit" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;text-align:left;">
+								<span style="display:block;padding: 0 8px 0 8px;;/* margin-left:40px; */height:38px;line-height:38px;margin-right: 60px;float: right;">Envoyer</span>
+								<span class="glyphicon glyphicon-ok" style="float:left;width:40px;height:38px;margin:0;padding: 0 0 0 8px;line-height:38px;font-size:1.5em;"></span>
+							</button>
+					</div>
+				</form>
 			</div>
-	
-			<form role="form" class="row contact-form" action="mail/contact_mail.php" method="POST">
-				<div class="col-md-6">
-						<input type="text" placeholder="Nom" name="nom" class="form-control" required="" data-validation-required-message="You must enter your name">
-						<input type="email" placeholder="email (pour vous répondre)" name="mail" class="form-control" required="" data-validation-required-message="You must enter your email">
-						<input type="text" placeholder="Objet" name="objet" class="form-control">
-				</div>
-				<div class="col-md-6">
-						<textarea class="form-control" rows="7" name="contenu" placeholder="Votre message"></textarea>
-						<button type="submit" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;text-align:left;">
-							<span style="display:block;padding: 0 8px 0 8px;;/* margin-left:40px; */height:38px;line-height:38px;margin-right: 60px;float: right;">Envoyer</span>
-							<span class="glyphicon glyphicon-ok" style="float:left;width:40px;height:38px;margin:0;padding: 0 0 0 8px;line-height:38px;font-size:1.5em;"></span>
-						</button>
-				</div>
-			</form>
 			<div class="row" style="margin-top:40px;">
 				
 				<div class="col-md-6">
@@ -601,8 +591,9 @@
     jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	
-		$("form").submit(function(e)
+		$("#inscription-form").submit(function(e)
 		{
+			$('.alert').alert('close');
 			var postData = $(this).serializeArray();
 			var formURL = $(this).attr("action");
 			$.ajax(
@@ -612,18 +603,69 @@
 				data : postData,
 				success:function(data, textStatus, jqXHR) 
 				{
-					alert(data);
+					//alert(data);
+					var result = data.split(';');
+					if (result[0] == 'success'){
+						$( "#inscription-container" ).append( '<div class="alert alert-success alert-dismissible" role="alert">'+
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+						result[1]+'</div>' );
+					}else {
+						$( "#inscription-container" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+						'<strong>Attention!  </strong>'+result[0]+'</div>' );
+					}
 					$('form')[0].reset();
 				},
 				error: function(jqXHR, textStatus, errorThrown) 
 				{
-					alert(textStatus);alert(errorThrown);
-					alert("error");     
+					//alert(errorThrown);
+					$( "#inscription-container" ).append( '<div class="alert alert-danger alert-dismissible" role="alert">'+
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+						'<strong>Attention!  </strong>'+errorThrown+'</div>' );
+					     
 				}
 			});
 			e.preventDefault(); //STOP default action
-			e.unbind(); //unbind. to stop multiple form submit.
+		//	e.unbind(); //unbind. to stop multiple form submit.
 		});
+		$("#contact-form").submit(function(e)
+		{
+			$('.alert').alert('close');
+			var postData = $(this).serializeArray();
+			var formURL = $(this).attr("action");
+			$.ajax(
+			{
+				url : formURL,
+				type: "POST",
+				data : postData,
+				success:function(data, textStatus, jqXHR) 
+				{
+					//alert(data);
+					var result = data.split(';');
+					if (result[0] == 'success'){
+						$( "#contact-container" ).append( '<div class="alert alert-success alert-dismissible" role="alert">'+
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+						result[1]+'</div>' );
+					}else {
+						$( "#contact-container" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+						'<strong>Attention!  </strong>'+result[0]+'</div>' );
+					}
+					$('form')[0].reset();
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					//alert(errorThrown);
+					$( "#contact-container" ).append( '<div class="alert alert-danger alert-dismissible" role="alert">'+
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+						'<strong>Attention!  </strong>'+errorThrown+'</div>' );
+					     
+				}
+			});
+			e.preventDefault(); //STOP default action
+		//	e.unbind(); //unbind. to stop multiple form submit.
+		});
+		
 		pageSection();
 		$(window).resize(function() {
 			pageSection();

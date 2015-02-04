@@ -1,6 +1,6 @@
 <?php
 
- 	require_once(_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+ 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 	
@@ -92,7 +92,7 @@
 	$prep3->bindValue(5,$motdepasse,PDO::PARAM_STR);
 	$prep3->execute();
 	
-	echo ('Félicitations, vous êtes maintenant inscrit sur Parions Potes !
+	echo ('success;Félicitations, vous êtes maintenant inscrit sur Parions Potes !
 	Vous pouvez maintenant vous connecter en haut de la page afin de laisser vos commentaires et participer aux jeux !');
 		
 ?>

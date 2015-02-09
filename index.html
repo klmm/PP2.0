@@ -35,7 +35,7 @@
   <style type="text/css"></style></head>
 <!-- NAVBAR
 ================================================== -->
-<body>
+<body data-spy="scroll" data-target="#navbar-main" data-offset="100"> 
  
 	<header id="home" class="no-js">
 	   <div class="navbar-wrapper" id="header-top">
@@ -408,7 +408,7 @@
 						</ul>
 					</div>
 					<div class="col-md-12" style="margin-top:10px;">
-						<button class="btn btn-block btn-success btn-lg" data-toggle="collapse" data-target="#archives" lx-ripple>Archives</button>	
+						<button id="archive-toggle" class="btn btn-block btn-success btn-lg" data-toggle="collapse" data-target="#archives" lx-ripple>Archives</button>	
 					</div>
 				</div>
 			</div>
@@ -576,8 +576,8 @@
 
 
 <script type="text/javascript">
-	//var pagedSections = ["#products","#services","#customers","#about-us","#contact"];
-	var pagedSections = ["#contact"];
+	/*var pagedSections = ["#myCarousel","#games","#inscription","#presentation","#contact"];
+	//var pagedSections = ["#contact"];
 	var headerSize = 98;
 	
 	var pageSection = function() {	
@@ -587,7 +587,7 @@
 			$(value).css("min-height",viewportHeight-headerSize);
 		});	
 		// $('body').scrollspy("refresh");
-	}
+	}*/
     jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	
@@ -666,13 +666,19 @@
 		//	e.unbind(); //unbind. to stop multiple form submit.
 		});
 		
-		pageSection();
+		//$('body').scrollspy({ target: '#navbar-main',offset:250 }) /// lign qui 'spy' le scroll de la page et surligne les menusp
+		//pageSection();
 		$(window).resize(function() {
-			pageSection();
+			//pageSection();
 			 $('body').scrollspy("refresh");
 		});
+		$('#archive-toggle').click(function() {
+			$('[data-spy="scroll"]').each(function () {
+			  setTimeout(function(){ $(this).scrollspy('refresh');}, 1000);		  
+			});
+		});
 		//$.scrollTo( 0 );
-		$('body').scrollspy({ target: '#navbar-main',offset:250 })
+		
         $('.nav-tabs').tab();
 		$('a[data-action="scrollTo"]').click(function(e) {
 			e.preventDefault();
@@ -693,53 +699,53 @@
     });
 	var cbpAnimatedHeader = (function() {
  
-    var docElem = document.documentElement,
-        header = document.querySelector( 'header' ),
-        didScroll = false,
-        changeHeaderOn = 98;
-		
- 
-    function init() {
-        window.addEventListener( 'scroll', function( event ) {
-            if( !didScroll ) {
-                didScroll = true;
-                setTimeout( scrollPage, 250 );
-            }
-        }, false );
-    }
-	function stickyMenu(element,nextelement) {
-		
-	}
-    function scrollPage() {
-        var sy = scrollY();
-        if ( sy >= changeHeaderOn ) {
-            classie.add( header, 'small' );
-        }
-        else {
-            classie.remove( header, 'small' );
-        }
-        didScroll = false;
-		
-		var activeTarget = $("#navbar-main li.active a").attr("href");
-		//alert(activeTarget);
-		$(".activeSection").removeClass("activeSection");
-		if(sy > 650) {
-		$(".section").addClass("inactiveSection");
-		
-		$(activeTarget).addClass("activeSection");
-		} else {
-		$(".section").removeClass("inactiveSection");
+		var docElem = document.documentElement,
+			header = document.querySelector( 'header' ),
+			didScroll = false,
+			changeHeaderOn = 98;
+			
+	 
+		function init() {
+			window.addEventListener( 'scroll', function( event ) {
+				if( !didScroll ) {
+					didScroll = true;
+					setTimeout( scrollPage, 250 );
+				}
+			}, false );
 		}
-		
-    }
- 
-    function scrollY() {
-        return window.pageYOffset || docElem.scrollTop;
-    }
- 
-    init();
- 
-})();
+		function stickyMenu(element,nextelement) {
+			
+		}
+		function scrollPage() {
+			var sy = scrollY();
+			if ( sy >= changeHeaderOn ) {
+				classie.add( header, 'small' );
+			}
+			else {
+				classie.remove( header, 'small' );
+			}
+			didScroll = false;
+			
+			var activeTarget = $("#navbar-main li.active a").attr("href");
+			//alert(activeTarget);
+			$(".activeSection").removeClass("activeSection");
+			if(sy > 650) {
+			$(".section").addClass("inactiveSection");
+			
+			$(activeTarget).addClass("activeSection");
+			} else {
+			$(".section").removeClass("inactiveSection");
+			}
+			
+		}
+	 
+		function scrollY() {
+			return window.pageYOffset || docElem.scrollTop;
+		}
+	 
+		init();
+	 
+	})();
 
 
 	</script>  

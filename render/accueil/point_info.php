@@ -2,7 +2,9 @@
 	
 	$arr_jeux = get_jeux_avenir();
 	$nb_jeux_avenir = sizeof($arr_jeux);
-		
+	
+	print_r($arr_jeux);
+	
 	echo '
 	<div class="section" style="background-color: rgb(166, 109, 179); margin-bottom:80px;">	
 		<div class="container marketing">	
@@ -25,7 +27,7 @@
 						echo '
 						<li>
 							<figure>
-								<img src="' . $arr_jeux[$i][6] . '" alt="Pub">
+								<img src="' . $arr_jeux[$i][9] . '" alt="' . $arr_jeux[$i][9] . '">
 								<figcaption>
 									<h3>Du ' . date_format($arr_jeux[$i][1], 'd-m-Y') . ' au ' . date_format($arr_jeux[$i][2], 'd-m-Y') . ' soyez-prêts !</h3>
 									<a href="' . $arr_jeux[$i][5] . '" style="display:none;"></a>

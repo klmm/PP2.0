@@ -6,8 +6,6 @@
 	$arr_jeux_finis = get_jeux_finis();
 	$nb_jeux_finis = sizeof($arr_jeux_finis);
 	
-	echo $nb_jeux_encours . ' - ' . $nb_jeux_finis;
-	
 	if ($nb_jeux_encours > 0){
 	
 	echo "
@@ -24,7 +22,7 @@
 					echo "
 					<li class='col-md-4'>
 						<figure>
-							// <img src='" . $arr_jeux_encours[$i][5] . "' alt='" . $arr_jeux_encours[$i][5] . "'>
+							// <img src='" . $arr_jeux_encours[$i][9] . "' alt='" . $arr_jeux_encours[$i][9] . "'>
 							<figcaption>
 								<a class='btn-block btn-lg' href='" . $arr_jeux_encours[$i][5] . "'>Jouer</a>
 							</figcaption>
@@ -50,7 +48,7 @@
 							echo "
 							<li class='col-md-4'>
 								<figure>
-									<img src='" . $arr_jeux_finis[$i][5] . "' alt='" . $arr_jeux_finis[$i][5] . "'>
+									<img src='" . $arr_jeux_finis[$i][9] . "' alt='" . $arr_jeux_finis[$i][9] . "'>
 									<figcaption>
 										<a class='btn-block btn-lg' href='" . $arr_jeux_finis[$i][5] . "'>Revoir</a>
 									</figcaption>

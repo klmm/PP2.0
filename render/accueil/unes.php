@@ -25,11 +25,11 @@ for ($i = 1; $i < $nb_unes; $i++) {
 echo '			</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="item active" style="">
-						<img src="' . $arr_unes[0][1] . '" alt="First slide">
+						<img src="' . $arr_unes[0][11] . '" alt="' . $arr_unes[0][11] . '">
 						<div class="container">
 							<div class="carousel-caption"> 
-								<h1>'. $arr_unes[0][2] . '</h1>
-								<p>'. $arr_unes[0][3] . '</p>
+								<h1>'. $arr_unes[0][4] . '</h1>
+								<p>'. $arr_unes[0][2] . ' - ' . $arr_unes[0][3] . '</p>
 							</div>
 						</div>
 					</div>';
@@ -37,11 +37,11 @@ echo '			</ol>
 // Autres unes
 for ($i = 1; $i < $nb_unes; $i++) {
     echo '			<div class="item">
-						<img src="' . $arr_unes[$i][1] . '" alt="Slide ' . $i . '">
+						<img src="' . $arr_unes[$i][11] . '" alt="' . $arr_unes[$i][11] . '">
 						<div class="container">
 							<div class="carousel-caption">
-								<h1>'. $arr_unes[$i][2] . '</h1>
-								<p>'. $arr_unes[$i][3] . '</p>
+								<h1>'. $arr_unes[$i][4] . '</h1>
+								<p>'. $arr_unes[$i][2] . ' - ' . $arr_unes[$i][3] . '</p>
 							</div>
 						</div>
 					</div>';
@@ -72,10 +72,10 @@ echo '	<div class="row">
 for ($i = 0; $i <= ($nb_tous-1); $i= $i+2) {
 echo '
 					<a href="#" class="list-articles-item list-group-item ">
-						<span class="badge">' . $arr_tous[$i][1] . '</span>
-						<img src="' . $arr_tous[$i][1] . '" alt="aie"/>
-						<h4 class="list-group-item-heading">' . $arr_tous[$i][1] . '</h4>
-						<p class="list-group-item-text">' . $arr_tous[$i][1] . '</p>
+						<span class="badge">' . $arr_tous[$i][2] . '</span>
+						<img src="' . $arr_tous[$i][11] . '" alt="' . $arr_tous[$i][11] . '"/>
+						<h4 class="list-group-item-heading">' . $arr_tous[$i][4] . '</h4>
+						<p class="list-group-item-text">' . $arr_tous[$i][3] . '</p>
 					</a>';
 }
 
@@ -90,10 +90,10 @@ echo '
 for ($i = 1; $i <= ($nb_tous-1); $i= $i+2) {			
 echo '
 					<a href="#" class="list-articles-item list-group-item ">
-						<span class="badge">' . $arr_tous[$i][1] . '</span>
-						<img src="' . $arr_tous[$i][1] . '" alt="aie"/>
-						<h4 class="list-group-item-heading">' . $arr_tous[$i][1] . '</h4>
-						<p class="list-group-item-text">' . $arr_tous[$i][1] . '</p>
+						<span class="badge">' . $arr_tous[$i][2] . '</span>
+						<img src="' . $arr_tous[$i][11] . '" alt="' . $arr_tous[$i][11] . '"/>
+						<h4 class="list-group-item-heading">' . $arr_tous[$i][4] . '</h4>
+						<p class="list-group-item-text">' . $arr_tous[$i][3] . '</p>
 					</a>';
 }
 					

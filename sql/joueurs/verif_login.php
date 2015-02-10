@@ -26,6 +26,7 @@
 			session_start();
 			$_SESSION['IDJoueur'] = $enregistrement->IDJoueur;
 			$_SESSION['LoginJoueur'] = $login;
+			$_SESSION['MailJoueur'] = $enregistrement->Mail;
 			echo "Connexion OK";
 			return;
 		}

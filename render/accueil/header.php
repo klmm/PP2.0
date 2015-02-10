@@ -1,6 +1,5 @@
 ﻿<?php
 
-session_start();
 $loginjoueur = $_SESSION['LoginJoueur'];
 $idjoueur = $_SESSION['IDJoueur'];
 
@@ -20,7 +19,7 @@ echo '<title>Parions Potes</title>';
 
 
 // BOOTSTRAP
-echo '<!-- Bootstrap core CSS -->
+echo '
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	
 	<link href="css/font-awesome.min.css" rel="stylesheet">
@@ -39,7 +38,8 @@ echo '<!-- Bootstrap core CSS -->
 	
 	<link rel="stylesheet" type="text/css" href="css/default.css" /> <!-- caption hover effects -->
 	<link rel="stylesheet" type="text/css" href="css/component.css" />
-	<script src="js/modernizr.custom.js"></script>';
+	<script src="js/modernizr.custom.js"></script>
+	<style type="text/css"></style></head>';
 
 	
 // HEADER
@@ -78,14 +78,13 @@ echo '<body>
 					  <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">';
 					  
 // CONNEXION - ESPACE JOUEUR
-if ($loginjoueur != ""){
+if ($loginjoueur == ""){
 	echo '						<li class="dropdown" id="menuLogin">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:rgb(115, 50, 130);background:transparent;">
 										<span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
 									</a>
 									<ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
 										<form role="form" id="formLogin" class="form" action="sql/joueurs/verif_login.php" method="POST">
-										<!--<form role="form" id="formLogin" action="sql/joueurs/verif_login.php" class="form" method="POST"> -->
 											<label>Se connecter</label>
 											<input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
 											<input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
@@ -106,7 +105,7 @@ else
 											<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
 										</form>
 						
-										<form id="changePassword" role="form" action="sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+										<form id="changePassword" role="form" action="/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
 											<input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
 											<input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
 											<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
@@ -124,13 +123,13 @@ else
 										</li>
 										<li class="divider"> </li>
 										<li>
-											<form class="form" action="sql/joueurs/deconnexion.php" method="POST">
+											<form class="form" action="/sql/joueurs/deconnexion.php" method="POST">
 												<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
 											</form>
 										</li>
 										<li class="divider"> </li>
 										<li>
-											<form class="form" action="test_req.php" method="POST">
+											<form class="form" action="/tests/test_req.php" method="POST">
 												<button type="submit" id="test" class="btn btn-primary btn-block">Test session</button>	
 											</form>
 										</li>

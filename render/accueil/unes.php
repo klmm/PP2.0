@@ -1,15 +1,11 @@
 ﻿<?php
 
-include 'sql/articles/get_articles.php';
-
-
 // Récupération de tous les articles et des unes à afficher
 $arr_tous = get_articles_tous();
 $nb_tous = sizeof($arr_tous);
 
 $arr_unes = get_articles_unes();
 $nb_unes = sizeof($arr_unes);
-
 
 // Affichage des unes
 if ($nb_unes > 0){
@@ -19,9 +15,9 @@ echo '<div id="news-section" class="section" style="background-color: ghostwhite
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="margin-top:0;"> 
 				<ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>';
-
+}
 // Nombre de petits points (nombre de unes)					
-for ($i = 2; $i <= $nb_unes; $i++) {
+for ($i = 1; $i < $nb_unes; $i++) {
     echo '<li data-target="#myCarousel" data-slide-to="' . $i . '" class=""></li>';
 }
 
@@ -39,7 +35,7 @@ echo '			</ol>
 					</div>';
 
 // Autres unes
-for ($i = 1; $i <= ($nb_unes-1); $i++) {
+for ($i = 1; $i < $nb_unes; $i++) {
     echo '			<div class="item">
 						<img src="' . $arr_unes[$i][1] . '" alt="Slide ' . $i . '">
 						<div class="container">

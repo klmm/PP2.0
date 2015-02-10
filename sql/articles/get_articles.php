@@ -23,7 +23,7 @@
 			$arr[$i][4] = $enregistrement->Titre;
 			$arr[$i][5] = $enregistrement->IDRubrique;
 			$arr[$i][6] = $enregistrement->NumRubrique;
-			$arr[$i][7] = $enregistrement->Photo;
+			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
 			$i++;
 		}
@@ -55,7 +55,7 @@
 			$arr[$i][4] = $enregistrement->Titre;
 			$arr[$i][5] = $enregistrement->IDRubrique;
 			$arr[$i][6] = $enregistrement->NumRubrique;
-			$arr[$i][7] = $enregistrement->Photo;
+			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
 			$i++;
 		}
@@ -87,7 +87,7 @@
 			$arr[$i][4] = $enregistrement->Titre;
 			$arr[$i][5] = $enregistrement->IDRubrique;
 			$arr[$i][6] = $enregistrement->NumRubrique;
-			$arr[$i][7] = $enregistrement->Photo;
+			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
 			$i++;
 		}
@@ -120,7 +120,7 @@
 			$arr[$i][4] = $enregistrement->Titre;
 			$arr[$i][5] = $enregistrement->IDRubrique;
 			$arr[$i][6] = $enregistrement->NumRubrique;
-			$arr[$i][7] = $enregistrement->Photo;
+			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
 			$i++;
 		}
@@ -162,7 +162,7 @@
 				$arr[$i][4] = $enregistrement2->Titre;
 				$arr[$i][5] = $enregistrement2->IDRubrique;
 				$arr[$i][6] = $enregistrement2->NumRubrique;
-				$arr[$i][7] = $enregistrement2->Photo;
+				$arr[$i][7] = $enregistrement2->IDPhoto;
 				$arr[$i][8] = $enregistrement2->Auteur;
 				$i++;
 			}

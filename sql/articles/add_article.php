@@ -13,10 +13,11 @@
 	$numRub = $_POST['numRub'];
 	$photo = $_POST['photo'];
 	$contenu = $_POST['contenu'];
+	$auteur = $_POST['auteur'];
 	
 	
 	// Ajout de l'article à la base
-	$sql = "INSERT INTO Articles(DateHeurePub,Categorie,SousCategorie,Titre,IDRubrique,NumRubrique,Photo) VALUES(?,?,?,?,?,?,?)";
+	$sql = "INSERT INTO Articles(DateHeurePub,Categorie,SousCategorie,Titre,IDRubrique,NumRubrique,IDPhoto,Auteur) VALUES(?,?,?,?,?,?,?,?)";
 	
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$dhpub,PDO::PARAM_STR);
@@ -25,7 +26,8 @@
 	$prep->bindValue(4,$titre,PDO::PARAM_STR);
 	$prep->bindValue(5,$idRub,PDO::PARAM_INT);
 	$prep->bindValue(6,$numRub,PDO::PARAM_INT);
-	$prep->bindValue(7,$photo,PDO::PARAM_STR);
+	$prep->bindValue(7,$photo,PDO::PARAM_INT
+	$prep->bindValue(8,$auteur,PDO::PARAM_STR);
 	$prep->execute();
 	
 	$id_nouveau = $db->lastInsertId();

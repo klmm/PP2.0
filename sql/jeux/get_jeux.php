@@ -22,6 +22,7 @@
 			$arr[$i][3] = $enregistrement->Sport;
 			$arr[$i][4] = $enregistrement->Competition;
 			$arr[$i][5] = $enregistrement->URL;
+			$arr[$i][6] = $enregistrement->IDImage;
 			$i++;
 		}
 		
@@ -52,6 +53,7 @@
 			$arr[$i][3] = $enregistrement->Sport;
 			$arr[$i][4] = $enregistrement->Competition;
 			$arr[$i][5] = $enregistrement->URL;
+			$arr[$i][6] = $enregistrement->IDImage;
 			$i++;
 		}
 		
@@ -82,6 +84,7 @@
 			$arr[$i][3] = $enregistrement->Sport;
 			$arr[$i][4] = $enregistrement->Competition;
 			$arr[$i][5] = $enregistrement->URL;
+			$arr[$i][6] = $enregistrement->IDImage;
 			$i++;
 		}
 		
@@ -113,6 +116,7 @@
 			$arr[$i][3] = $enregistrement->Sport;
 			$arr[$i][4] = $enregistrement->Competition;
 			$arr[$i][5] = $enregistrement->URL;
+			$arr[$i][6] = $enregistrement->IDImage;
 			$i++;
 		}
 		

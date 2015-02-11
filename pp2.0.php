@@ -2,6 +2,7 @@
 	session_start();
 	include($_SERVER['DOCUMENT_ROOT'] . '/sql/articles/get_articles.php');
 	include $_SERVER['DOCUMENT_ROOT'] . '/sql/jeux/get_jeux.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/sql/images/get_images.php';
 
 	include $_SERVER['DOCUMENT_ROOT'] . '/render/accueil/header.php';
 	

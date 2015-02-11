@@ -23,8 +23,15 @@
 			$arr[$i][4] = $enregistrement->Titre;
 			$arr[$i][5] = $enregistrement->IDRubrique;
 			$arr[$i][6] = $enregistrement->NumRubrique;
+			$id_photo = $enregistrement->IDPhoto;
 			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
+			
+			$img = get_images_id($id_photo);
+			$arr[$i][9] = $img[1];
+			$arr[$i][10] = $img[2];
+			$arr[$i][11] = $img[3];
+			
 			$i++;
 		}
 		
@@ -55,8 +62,16 @@
 			$arr[$i][4] = $enregistrement->Titre;
 			$arr[$i][5] = $enregistrement->IDRubrique;
 			$arr[$i][6] = $enregistrement->NumRubrique;
+			$id_photo = $enregistrement->IDPhoto;
 			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
+			
+			
+			$img = get_images_id($id_photo);
+			$arr[$i][9] = $img[1];
+			$arr[$i][10] = $img[2];
+			$arr[$i][11] = $img[3];
+			
 			$i++;
 		}
 		
@@ -87,8 +102,16 @@
 			$arr[$i][4] = $enregistrement->Titre;
 			$arr[$i][5] = $enregistrement->IDRubrique;
 			$arr[$i][6] = $enregistrement->NumRubrique;
+			$id_photo = $enregistrement->IDPhoto;
 			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
+			
+			
+			$img = get_images_id($id_photo);
+			$arr[$i][9] = $img[1];
+			$arr[$i][10] = $img[2];
+			$arr[$i][11] = $img[3];
+			
 			$i++;
 		}
 		
@@ -120,8 +143,15 @@
 			$arr[$i][4] = $enregistrement->Titre;
 			$arr[$i][5] = $enregistrement->IDRubrique;
 			$arr[$i][6] = $enregistrement->NumRubrique;
+			$id_photo = $enregistrement->IDPhoto;
 			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
+			
+			$img = get_images_id($id_photo);
+			$arr[$i][9] = $img[1];
+			$arr[$i][10] = $img[2];
+			$arr[$i][11] = $img[3];
+			
 			$i++;
 		}
 		
@@ -162,8 +192,15 @@
 				$arr[$i][4] = $enregistrement2->Titre;
 				$arr[$i][5] = $enregistrement2->IDRubrique;
 				$arr[$i][6] = $enregistrement2->NumRubrique;
+				$id_photo = $enregistrement2->IDPhoto;
 				$arr[$i][7] = $enregistrement2->IDPhoto;
 				$arr[$i][8] = $enregistrement2->Auteur;
+				
+				$img = get_images_id($id_photo);
+				$arr[$i][9] = $img[1];
+				$arr[$i][10] = $img[2];
+				$arr[$i][11] = $img[3];
+		
 				$i++;
 			}
 		}

@@ -1,5 +1,5 @@
 <?php	
-
+	
 	function get_jeux_tous(){
 		// On établit la connexion avec la base de données
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
@@ -22,7 +22,14 @@
 			$arr[$i][3] = $enregistrement->Sport;
 			$arr[$i][4] = $enregistrement->Competition;
 			$arr[$i][5] = $enregistrement->URL;
+			$id_photo = $enregistrement->IDImage;
 			$arr[$i][6] = $enregistrement->IDImage;
+			
+			$img = get_images_id($id_photo);
+			$arr[$i][7] = $img[1];
+			$arr[$i][8] = $img[2];
+			$arr[$i][9] = $img[3];
+			
 			$i++;
 		}
 		
@@ -53,7 +60,13 @@
 			$arr[$i][3] = $enregistrement->Sport;
 			$arr[$i][4] = $enregistrement->Competition;
 			$arr[$i][5] = $enregistrement->URL;
+			$id_photo = $enregistrement->IDImage;
 			$arr[$i][6] = $enregistrement->IDImage;
+
+			$img = get_images_id($id_photo);
+			$arr[$i][7] = $img[1];
+			$arr[$i][8] = $img[2];
+			$arr[$i][9] = $img[3];
 			$i++;
 		}
 		
@@ -84,7 +97,13 @@
 			$arr[$i][3] = $enregistrement->Sport;
 			$arr[$i][4] = $enregistrement->Competition;
 			$arr[$i][5] = $enregistrement->URL;
+			$id_photo = $enregistrement->IDImage;
 			$arr[$i][6] = $enregistrement->IDImage;
+			
+			$img = get_images_id($id_photo);
+			$arr[$i][7] = $img[1];
+			$arr[$i][8] = $img[2];
+			$arr[$i][9] = $img[3];
 			$i++;
 		}
 		
@@ -116,7 +135,13 @@
 			$arr[$i][3] = $enregistrement->Sport;
 			$arr[$i][4] = $enregistrement->Competition;
 			$arr[$i][5] = $enregistrement->URL;
+			$id_photo = $enregistrement->IDImage;
 			$arr[$i][6] = $enregistrement->IDImage;
+			
+			$img = get_images_id($id_photo);
+			$arr[$i][7] = $img[1];
+			$arr[$i][8] = $img[2];
+			$arr[$i][9] = $img[3];
 			$i++;
 		}
 		

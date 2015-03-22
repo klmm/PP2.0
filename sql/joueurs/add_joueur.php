@@ -82,7 +82,7 @@
 	
 	
 	// Ajout à la base
-	$sql = "INSERT INTO Joueurs(Nom,Prenom,Mail,Login,Mdp,Admin) VALUES(?,?,?,?,?,0)";
+	$sql = "INSERT INTO Joueurs(Nom,Prenom,Mail,Login,Mdp,Admin,DateHeureInscription,DerniereVisite) VALUES(?,?,?,?,?,0,NOW(),NOW())";
 	
 	$prep3 = $db->prepare($sql);
 	$prep3->bindValue(1,$nom,PDO::PARAM_STR);

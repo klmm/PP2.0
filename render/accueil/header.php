@@ -1,7 +1,16 @@
 ﻿<?php
 
+include $_SERVER['DOCUMENT_ROOT'] . '/sql/joueurs/auto_login.php';
+
+session_start();
 $loginjoueur = $_SESSION['LoginJoueur'];
 $idjoueur = $_SESSION['IDJoueur'];
+
+if($loginjoueur == ""){
+	auto_login();
+	$loginjoueur = $_SESSION['LoginJoueur'];
+	$idjoueur = $_SESSION['IDJoueur'];
+}
 
 // DOCTYPE, META
 echo '<!DOCTYPE html>

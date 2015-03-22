@@ -20,7 +20,7 @@ echo '<footer>
 <!-- <script src="bower_components/lumx/dist/js/lumx.js"></script>  -->
 
 <script src="js/toucheffects.js"></script>
-<script src="js/script.js"></script>
+
 
 <script type="text/javascript">
 	/*var pagedSections = ["#myCarousel","#games","#inscription","#presentation","#contact"];
@@ -36,9 +36,6 @@ echo '<footer>
 		// $(\'body\').scrollspy("refresh");
 	}*/
     jQuery(document).ready(function ($) {
-<<<<<<< HEAD
-		Init();
-=======
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	
 		$("#inscription-form").submit(function(e)
@@ -144,7 +141,6 @@ echo '<footer>
 		});
 		
 		$(\'[data-toggle=dropdown]\').dropdown();
->>>>>>> origin/master
 	
 		
     });

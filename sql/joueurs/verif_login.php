@@ -24,10 +24,27 @@
 		
 		if ($vrai_mdp == $motdepasse){
 			session_start();
-			$_SESSION['IDJoueur'] = $enregistrement->IDJoueur;
+			$id = $enregistrement->IDJoueur;
+			$_SESSION['IDJoueur'] = $id;
 			$_SESSION['LoginJoueur'] = $login;
 			$_SESSION['MailJoueur'] = $enregistrement->Mail;
 			echo "Connexion OK";
+			
+			$auto_connect = true;
+			if($auto_connect) {
+				// IP du client
+				$ip = $_SERVER['REMOTE_ADDR'];
+				// Cryptage/Salage des éléments
+				$key = sha1('SEL1-df299'.$login.$id.'SEL2-ef144'.$ip);
+		 
+				// Création du cookie
+				setcookie('ParionsPotes', $key, time() + 3600 * 24 * 30, '/', 'www.parions-potes.fr', false, true);
+			}
+			
+			// MAJ dernière connexion
+			require_once($_SERVER['DOCUMENT_ROOT'] . '/sql/joueurs/update_joueurs.php');
+			update_derniere_visite();
+	
 			return;
 		}
 		else{

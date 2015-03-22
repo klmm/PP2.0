@@ -2,9 +2,7 @@
 	
 	$arr_jeux = get_jeux_avenir();
 	$nb_jeux_avenir = sizeof($arr_jeux);
-	
-	print_r($arr_jeux);
-	
+
 	echo '
 	<div class="section" style="background-color: rgb(166, 109, 179); margin-bottom:80px;">	
 		<div class="container marketing">	

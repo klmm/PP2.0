@@ -1,0 +1,95 @@
+/* BODY */
+#image { 
+    background: url(../img/Nibali.png) 50% 0 fixed; 
+    height: 100%;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+   // box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    padding: 100px 0;
+}
+#article { 
+    background: #FFF 50% 0 fixed; 
+    height: auto;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    padding: 50px 0;
+}
+#comment { 
+    background: url() 50% 0 fixed; 
+    height: auto;
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+   // box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    padding: 100px 0;
+	border-top: 20px grey;
+}
+
+
+/* Text */
+#article-text{ 
+  font-family: 'Georgia';
+  line-height: 2em;
+  font-size: 20px;
+  color: black;
+}
+
+#list-right{
+	 //box-shadow: 0 0 15px rgba(150,150,150,0.8);
+}
+
+#reuters {
+	margin-top:-20px;
+	color:white;
+	float: right;
+	font-size: 12px;
+	text-shadow: 1px 1px black;
+	padding: 10px;
+}
+
+/* liens articles */
+#list-right h2{
+	text-align:center;
+	font-size:22px;
+	color: rgb(115, 50, 130);
+}
+
+.list-articles-right {
+	height:100%;
+}
+
+.list-articles-item-right {
+	padding:10px;
+	z-index:10;
+	margin:0;
+	border:0;
+	//border-bottom: 1px solid #CCC;
+	//border-top: 1px solid #FFF;
+}
+
+.list-articles-item-right img{
+	width: 100%;
+	//float: left;
+	z-index:-10;
+	top: -20px;
+	position:relative;
+}
+.list-articles-item-right p{
+	display:none;
+	//font-size: 14px;
+	//text-align: right;	
+}
+
+.list-articles-item-right h4{
+	margin-top: -15px;	
+	font-size: 15px;
+}
+.badge {
+	border-radius:5px;
+	background-color:rgb(115, 50, 130);
+	font-size: 14px;
+}
+

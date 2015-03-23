@@ -24,7 +24,7 @@
    
 	<link href="css/carousel.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
-	<link href="css/pararticle.css" rel="stylesheet">
+	<link href="css/pagearticle.css" rel="stylesheet">
 	
 	<link rel="stylesheet" type="text/css" href="css/default.css" /> <!-- caption hover effects -->
 	<link rel="stylesheet" type="text/css" href="css/component.css" />
@@ -138,16 +138,21 @@
 	<!-- Section image -->
 	<section id="image" data-speed="6" data-type="background">
 		<div class="container">
-			Content goes here!
+			
 		</div>
 	</section>
 	
 	<!-- Section article -->
-	<section id="text" data-speed="4" data-type="background">
+	<section id="article" data-speed="4" data-type="background">
+		<div id="reuters" class="right">
+			<p>reuters</p>
+		</div>
 		<div class="container">
-			<div class="col-md-9">
-				<h1>Titre de l'article</h1>
-				<p>Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon !
+			<div class="col-md-8">
+				<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
+					<h1 class="section-heading">Premier Article !</h1>
+				</div>
+				<p id="article-text">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon !
 
 Après une mise en bouche avec le Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions Potes » sera présent sur toutes les épreuves féminines et  masculines de la coupe du monde FIS ainsi que les championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom !
 
@@ -159,8 +164,68 @@ Comme pour vos sportifs préférés, pour soulever le gros globe il vous faudra 
 
 Alors à vos skis !</p>
 			</div>
-			<div class="col-md-3">
-			
+			<div class="col-md-3 col-md-offset-1">
+				<div id="list-right">
+					<div class="sectionSide">
+						<h2 class="section-heading">Dans la même catégorie</h2>	
+					</div>
+					
+					<div class="list-group list-articles-right">
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+					</div>	
+					<div class="sectionSide" style="padding-top: 15px;">
+						<h2 class="section-heading">Les tops vues</h2>	
+					</div>
+					<div class="list-group list-articles-right">
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+					</div>	
+				</div>
 			</div>
 		</div>
 	</section>
@@ -168,7 +233,21 @@ Alors à vos skis !</p>
 	<!-- Section commentaires -->
 	<section id="comment" data-speed="2" data-type="background">
 		<div class="container">
-			This is the final section!
+			<div id="post-container" class="row">
+						
+				<form id="post-form" role="form" class="row contact-form" action="mail/contact_mail.php" method="POST">
+					<div class="col-md-10 col-md-offset-1">
+							<p class="show pull-left" style="padding: 10px 5px;">Réponds à </p>
+							<p class="show pull-left" style="padding: 10px 5px;">Toto</p>
+							<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
+								<span>Poster</span>
+							</button>
+					
+							<textarea class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>
+							
+					</div>
+				</form>
+			</div>
 		</div>
 	</section>
 	

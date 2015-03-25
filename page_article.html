@@ -233,20 +233,45 @@ Alors à vos skis !</p>
 	<!-- Section commentaires -->
 	<section id="comment" data-speed="2" data-type="background">
 		<div class="container">
-			<div id="post-container" class="row">
-						
+			<div class="row post-container">		
 				<form id="post-form" role="form" class="row contact-form" action="mail/contact_mail.php" method="POST">
 					<div class="col-md-10 col-md-offset-1">
-							<p class="show pull-left" style="padding: 10px 5px;">Réponds à </p>
-							<p class="show pull-left" style="padding: 10px 5px;">Toto</p>
-							<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
-								<span>Poster</span>
-							</button>
-					
-							<textarea class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>
-							
+						<p id="id com parent" class="hidden">Id message parent ou 0</p>
+						<p class="show pull-left" style="padding: 10px 5px;">Réponds à </p>
+						<p class="show pull-left" style="padding: 10px 5px;">Toto</p>
+						<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
+							<span>Poster</span>
+						</button>
+				
+						<textarea class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>					
 					</div>
 				</form>
+			</div>
+			
+			<div id="id com? pas tres secure..." class="row com-container">		
+					<div class="col-md-10 col-md-offset-1">
+						<p id="id com ptet plus secure" class="hidden">Id</p>
+						<p class="user pull-left">Toto</p>
+						<p class="time pull-right">Il y a 22 minutes</p>
+						<p class="comment">Alors qu’Anna Fenninger et Marcel Hirscher ont dominé la Coupe du Monde de Ski Alpin cette saison, c’est Toto qui remporte la compétition Parions Potes. 
+						Il devance de justesse Kevin grâce certainement à une meilleure assiduité (76 courses disputées contre 73). Loin derrière, arthurleq accroche le podium et 
+						laisse les accessits à antoine, molinie et pascalmijeon. La différence s’est certainement faite en Slalom Géant où Toto a écrasé la concurrence 
+						avec 6 victoires en 21 courses.</p>
+						<button class="btn btn-primary pull-left">
+							<span class="glyphicon glyphicon-share-alt" style="float:left;padding: 0 8px 0 8px;font-size:1em;"></span>
+							<span>Répondre</span>
+						</button>
+						
+						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="">
+							<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
+							<span>2</span>
+						</button>
+						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="">
+							<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
+							<span>12</span>
+						</button>
+									
+					</div>
 			</div>
 		</div>
 	</section>

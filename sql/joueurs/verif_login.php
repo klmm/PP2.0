@@ -28,7 +28,7 @@
 			$_SESSION['IDJoueur'] = $id;
 			$_SESSION['LoginJoueur'] = $login;
 			$_SESSION['MailJoueur'] = $enregistrement->Mail;
-			echo "Connexion OK";
+			echo "success";
 			
 			$auto_connect = true;
 			if($auto_connect) {

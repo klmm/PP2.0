@@ -16,14 +16,13 @@
 //--------------------------------------VARIABLES DE SESSION--------------------------------------//
 	session_start();
 	$loginjoueur = $_SESSION['LoginJoueur'];
-	$idjoueur = $_SESSION['IDJoueur'];
-	$mailjoueur = $_SESSION['MailJoueur'];
 	
 	if($loginjoueur == ""){
 		auto_login();
 		$loginjoueur = $_SESSION['LoginJoueur'];
-		$idjoueur = $_SESSION['IDJoueur'];
 	}
+	$idjoueur = $_SESSION['IDJoueur'];
+	$mailjoueur = $_SESSION['MailJoueur'];
 //------------------------------------------------------------------------------------------------//
 
 
@@ -75,7 +74,7 @@
 		<style type="text/css"></style></head>';
 
 	// LIENS TWITTER FACEBOOK
-	echo '<body>
+	echo '<body data-spy="scroll" data-target="#navbar-main" data-offset="100">
 	 
 		<header id="home" class="no-js">
 		   <div class="navbar-wrapper" id="header-top">
@@ -83,9 +82,9 @@
 					<h1><a href="#myCarousel">Parions Potes</a></h1>  
 					<ul class="social">
 						<!-- <li class="googleplus"><a href="">Google+</a></li> -->
-						<li class="twitter"><a href="#">Twitter</a></li>
+						<li class="twitter"><a href="https://twitter.com/ParionsPotes" target="_blank">Twitter</a></li>
 						<!-- <li class="linkedIn"><a href="#">LinkedIN</a></li> -->
-						<li class="facebook"><a href="#">facebook</a></li>
+						<li class="facebook"><a href="https://www.facebook.com/parionspotes" target="_blank">facebook</a></li>
 						<!-- <li class="youtube"><a href="#">youtube</a></li> -->
 					</ul>
 					
@@ -142,25 +141,11 @@
 												<button type="submit" id="btnRegister" class="btn btn-success">Valider</button>
 											</form>
 											
-											<li>
-												<ul id="changeNotifs" style="padding: 17px;height: auto;">
-													<form class="form ">
-														<label class="checkbox-inline">
-															<input type="checkbox" id="inlineCheckbox1" value="option1">Recevoir les notifications par mail
-														</label>
-													</form>
-												</ul>
-											</li>
 											<li class="divider"> </li>
+
 											<li>
 												<form class="form" action="/sql/joueurs/deconnexion.php" method="POST">
 													<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
-												</form>
-											</li>
-											<li class="divider"> </li>
-											<li>
-												<form class="form" action="/tests/test_req.php" method="POST">
-													<button type="submit" id="test" class="btn btn-primary btn-block">Test session</button>	
 												</form>
 											</li>
 											
@@ -169,7 +154,17 @@
 
 	}
 
-		
+	// COCHE MAIL
+	/*											<li>
+												<ul id="changeNotifs" style="padding: 17px;height: auto;">
+													<form class="form ">
+														<label class="checkbox-inline">
+															<input type="checkbox" id="inlineCheckbox1" value="option1">Recevoir les notifications par mail
+														</label>
+													</form>
+												</ul>
+											</li>
+											<li class="divider"> </li>*/	
 		
 	// MENU
 	echo '						</ul>
@@ -177,8 +172,7 @@
 						<div class="navbar-collapse collapse" id="navbar-main">
 						  <ul class="nav navbar-nav pull-right" style="">
 							<li class="active"><a href="#myCarousel" data-action="scrollTo">Actualités</a></li>
-							<li class=""><a href="#games" data-action="scrollTo">Jeux</a></li>
-							<!-- <li class=""><a href="#articles" data-action="scrollTo">Articles</a></li> -->';
+							<li class=""><a href="#games" data-action="scrollTo">Jeux</a></li>';
 							
 	if ($loginjoueur == ""){
 		echo '				<li class=""><a href="#inscription" data-action="scrollTo">Inscription</a></li>';
@@ -298,13 +292,13 @@
 
 	// Liste des articles
 	echo '	<div class="row">
-				<div class="col-md-6 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+				<div class="grid">
 					<div class="list-group list-articles">';
 					
 	// Colonne 1 sport - image - titre - catégorie
-	for ($i = 0; $i <= ($nb_tous-1); $i= $i+2) {
+	for ($i = 0; $i < 4; $i++) {
 	echo '
-						<a href="#" class="list-articles-item list-group-item ">
+						<a href="#" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
 							<span class="badge">' . $arr_tous[$i][2] . '</span>
 							<img src="' . $arr_tous[$i][11] . '" alt="' . $arr_tous[$i][11] . '"/>
 							<h4 class="list-group-item-heading">' . $arr_tous[$i][4] . '</h4>
@@ -312,28 +306,29 @@
 						</a>';
 	}
 
-	echo '
-					</div>
-				</div>
-				<div class="col-md-6 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-					<div class="list-group list-articles">';
-
-
-	// Colonne 2
-	for ($i = 1; $i <= ($nb_tous-1); $i= $i+2) {			
-	echo '
-						<a href="#" class="list-articles-item list-group-item ">
-							<span class="badge">' . $arr_tous[$i][2] . '</span>
-							<img src="' . $arr_tous[$i][11] . '" alt="' . $arr_tous[$i][11] . '"/>
-							<h4 class="list-group-item-heading">' . $arr_tous[$i][4] . '</h4>
-							<p class="list-group-item-text">' . $arr_tous[$i][3] . '</p>
-						</a>';
-	}
-						
 	echo '
 					</div>
 				</div>
 			</div>
+			<div class="row">
+			<nav><ul class="pagination">
+				<li>
+				  <a href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				  </a>
+				</li>';
+	
+	for ($i = 0; $i < ($nb_tous-1)/4; $i++) {
+		echo '<li><a href="#">' . ($i+1) . '</a></li>';
+	};
+
+	echo '			<li>
+				  <a href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				  </a>
+				</li>
+			</ul></nav>
+		</div>
 		</div>
 	</div>';
 //--------------------------------------FIN UNES--------------------------------------//
@@ -463,7 +458,7 @@
 						<figure>
 							// <img src='" . $arr_jeux_encours[$i][9] . "' alt='" . $arr_jeux_encours[$i][9] . "'>
 							<figcaption>
-								<a class='btn-block btn-lg' href='" . $arr_jeux_encours[$i][5] . "'>Jouer</a>
+								<a class='btn-block btn-lg' href='" . $arr_jeux_encours[$i][5] . "' target='_blank'>Jouer</a>
 							</figcaption>
 						</figure>
 					</li>";
@@ -489,7 +484,7 @@
 								<figure>
 									<img src='" . $arr_jeux_finis[$i][9] . "' alt='" . $arr_jeux_finis[$i][9] . "'>
 									<figcaption>
-										<a class='btn-block btn-lg' href='" . $arr_jeux_finis[$i][5] . "'>Revoir</a>
+										<a class='btn-block btn-lg' href='" . $arr_jeux_finis[$i][5] . "' target='_blank'>Revoir</a>
 									</figcaption>
 								</figure>
 							</li>";
@@ -858,6 +853,44 @@
 				e.preventDefault(); //STOP default action
 			//	e.unbind(); //unbind. to stop multiple form submit.
 			});
+			
+		// Formulaire d inscription
+		$("#inscription-form").submit(function(e)
+		{
+			$(".alert").alert("close");
+			var postData = $(this).serializeArray();
+			var formURL = $(this).attr("action");
+			$.ajax(
+			{
+				url : formURL,
+				type: "POST",
+				data : postData,
+				success:function(data, textStatus, jqXHR) 
+				{
+					var result = data.split(";");
+					if (result[0] == "success"){
+						$( "#inscription-container" ).append( "<div class="alert alert-success alert-dismissible" role="alert">"+
+						"<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>"+
+						result[1]+"</div>" );
+					}else {
+						$( "#inscription-container" ).append( "<div class="alert alert-info alert-dismissible" role="alert">"+
+						"<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>"+
+						"<strong>Attention!  </strong>"+result[0]+"</div>" );
+					}
+					$("form")[0].reset();
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					//alert(errorThrown);
+					$( "#inscription-container" ).append( "<div class="alert alert-danger alert-dismissible" role="alert">"+
+						"<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>"+
+						"<strong>Attention!  </strong>"+errorThrown+"</div>" );
+					     
+				}
+			});
+			e.preventDefault(); //STOP default action
+		});
+		
 			
 			//$(\'body\').scrollspy({ target: \'#navbar-main\',offset:250 }) /// lign qui \'spy\' le scroll de la page et surligne les menusp
 			//pageSection();

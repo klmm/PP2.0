@@ -25,29 +25,39 @@
 		return $arr;
 	}
 	
-	function get_images_id($id_image){
+// Prend en paramètre un tableau d'id d'images ==> Retourne un tableau d'images (avec les paramètres qui vont bien)
+	function get_images_id($tab_id_image){
+		//Nombre d'images
+		$nb_images = sizeof($tab_id_image);
+		if($nb_images == 0){
+			return null;
+		}
+	
 		// On établit la connexion avec la base de données
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On fait la requete sur la rubrique
+		//On prépare la requete sur la rubrique
 		$sql = "SELECT * FROM ArticlesImage WHERE IDArticleImage = ?";
 		$prep = $db->prepare($sql);
-		$prep->bindValue(1,$id_image,PDO::PARAM_INT);
-		$prep->execute();
-		$prep->setFetchMode(PDO::FETCH_OBJ);
+				
+		for ($i=0; $i<$nb_images; $i++){
+			$id_image = $tab_id_image[$i];
+			$prep->bindValue(1,$id_image,PDO::PARAM_INT);
+			$prep->execute();
+			$prep->setFetchMode(PDO::FETCH_OBJ);
+				
+			$enregistrement = $prep->fetch();
 			
-		$enregistrement = $prep->fetch();
-		
-		//On fait le test si un enrengistrement a été trouvé
-		if( $enregistrement ){
-			$img[0] = $enregistrement->IDArticleImage;
-			$img[1] = $enregistrement->Titre;
-			$img[2] = $enregistrement->Credits;
-			$img[3] = $enregistrement->Chemin;
+			//On fait le test si un enrengistrement a été trouvé
+			if( $enregistrement ){
+				$img[$i][0] = $enregistrement->IDArticleImage;
+				$img[$i][1] = $enregistrement->Titre;
+				$img[$i][2] = $enregistrement->Credits;
+				$img[$i][3] = $enregistrement->Chemin;
+			}
 		}
-		
 		return $img;
 	}
 	

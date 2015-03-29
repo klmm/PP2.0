@@ -6,6 +6,7 @@
 	include $_SERVER['DOCUMENT_ROOT'] . '/sql/images/get_images.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/sql/joueurs/auto_login.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/sql/commentaires/get_commentaires.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/sql/likes/get_likes.php';
 //-------------------------------------------------------------------------------------//
 
 
@@ -65,7 +66,7 @@
 
 	// Commentaires likés/dislikés par le joueur
 	if ($loginjoueur != ''){
-		$likes = get_commentaires_likes($id_article, $loginjoueur);
+		$likes = get_likes($id_article, $loginjoueur);
 	}
 //------------------------------------------------------------------------------------------------//
 
@@ -96,26 +97,17 @@
 
 	// BOOTSTRAP
 	echo '
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		
+		<link href="css/bootstrap.min.css" rel="stylesheet">		
 		<link href="css/font-awesome.min.css" rel="stylesheet">
-
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-		<!-- Custom styles for this template -->
 		<link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
 	   
 		<link href="css/carousel.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
+		<link href="css/pagearticle.css" rel="stylesheet">
 		
 		<link rel="stylesheet" type="text/css" href="css/default.css" /> <!-- caption hover effects -->
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<script src="js/modernizr.custom.js"></script>
-		<style type="text/css"></style></head>';
+		<script src="js/modernizr.custom.js"></script>';
 
 	// LIENS TWITTER FACEBOOK
 	echo '<body data-spy="scroll" data-target="#navbar-main" data-offset="100">
@@ -123,13 +115,10 @@
 		<header id="home" class="no-js">
 		   <div class="navbar-wrapper" id="header-top">
 				<div class="container">
-					<h1><a href="#myCarousel">Parions Potes</a></h1>  
+					<h1><a href="">Parions Potes</a></h1>  
 					<ul class="social">
-						<!-- <li class="googleplus"><a href="">Google+</a></li> -->
 						<li class="twitter"><a href="https://twitter.com/ParionsPotes" target="_blank">Twitter</a></li>
-						<!-- <li class="linkedIn"><a href="#">LinkedIN</a></li> -->
 						<li class="facebook"><a href="https://www.facebook.com/parionspotes" target="_blank">facebook</a></li>
-						<!-- <li class="youtube"><a href="#">youtube</a></li> -->
 					</ul>
 					
 				</div>	
@@ -147,7 +136,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						  </button> 
-						  <a class="navbar-brand logosmall" href="#myCarousel" id="logosmall" data-action="scrollTo"></a>
+						  <a class="navbar-brand logosmall" href="#" id="logosmall" data-action="scrollTo"></a>
 						  <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">';
 						  
 	// CONNEXION - ESPACE JOUEUR
@@ -246,7 +235,7 @@
 
 
 //---------------------------------------------IMAGE------------------------------------------------------//
-	echo '<section id="image" data-speed="6" data-type="background">
+	echo '	<section id="image" data-speed="2" data-type="background" style="background-image:url(' . $photo_chemin . ')">
 		<div class="container">
 			
 		</div>
@@ -271,7 +260,7 @@
 			<p>' . $photo_credits . '</p>
 		</div>
 		<div class="container">
-			<div class="col-md-8">
+			<div class="col-md-8 col-sm-8">
 				<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
 					<h1 class="section-heading">' . $titre . '</h1>
 				</div>
@@ -288,14 +277,14 @@ Comme pour vos sportifs préférés, pour soulever le gros globe il vous faudra 
 Alors à vos skis !</p>
 			</div>';
 	
-/*	
+	
 	echo '
-			<div class="col-md-3 col-md-offset-1">
+			<div class="col-md-3 col-md-offset-1  col-sm-4 hidden-xs">
 				<div id="list-right">';
 				
 	if ($nb_articles_categorie > 0){
 		echo '<div class="sectionSide">
-						<h2 class="section-heading">' . $articles_categorie[$i][2] . '</h2>	
+						<h2 class="section-heading">' . $articles_categorie[0][2] . '</h2>	
 			</div>';
 			
 		for ($i = 0; $i < $nb_articles_categorie; $i++){
@@ -309,10 +298,10 @@ Alors à vos skis !</p>
 					</div>';
 		}
 	}
-	
+		
 	if ($nb_articles_recents > 0){
 		echo '<div class="sectionSide">
-						<h2 class="section-heading">' . $articles_recents[$i][2] . '</h2>	
+						<h2 class="section-heading">A LA UNE</h2>	
 			</div>';
 			
 		for ($i = 0; $i < $nb_articles_recents; $i++){
@@ -321,7 +310,7 @@ Alors à vos skis !</p>
 							<span class="badge">' . $articles_recents[$i][3] . '</span>
 							<img src="' . $articles_recents[$i][11] . '" alt="' . $articles_recents[$i][11] . '"/>
 							<h4 class="list-group-item-heading">' . $articles_recents[$i][4] . '</h4>
-							<p class="list-group-item-text">Categorie</p>
+							<p class="list-group-item-text">' . $articles_recents[$i][2] . '</p>
 						</a>
 					</div>';
 		}
@@ -329,7 +318,7 @@ Alors à vos skis !</p>
 
 	echo'
 				</div>
-			</div>';*/
+			</div>';
 	echo '	</div>
 	</section>';
 //---------------------------------------------FIN ARTICLE------------------------------------------------------//
@@ -354,7 +343,6 @@ Alors à vos skis !</p>
 			<div class="row post-container">		
 				<form id="post-form" role="form" class="row contact-form" action="" method="POST">
 					<div class="col-md-10 col-md-offset-1">
-						<p id="id com parent" class="hidden">Id message parent ou 0</p>
 						<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
 							<span>Poster</span>
 						</button>
@@ -377,20 +365,20 @@ Alors à vos skis !</p>
 			$arr[$i][6] = $enregistrement->NombreDislikes;
 			
 	for ($i = 0; $i < $nb_comm; $i++){
-		echo '<div id="' . $commentaires[0] . '" class="row com-container">		
+		echo '<div id="' . $commentaires[$i][0] . '" class="row com-container">		
 					<div class="col-md-10 col-md-offset-1">
-						<p id="' . $commentaires[0] . 'b" class="hidden">Id</p>
-						<p class="user pull-left">' . $commentaires[2] . '</p>
-						<p class="time pull-right">' . $commentaires[4] . '</p>
-						<p class="comment">' . $commentaires[3] . '</p>
+						<p id="' . $commentaires[$i][0] . 'b" class="hidden">Id</p>
+						<p class="user pull-left">' . $commentaires[$i][2] . '</p>
+						<p class="time pull-right">' . $commentaires[$i][4] . '</p>
+						<p class="comment">' . $commentaires[$i][3] . '</p>
 						
 						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="">
 							<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-							<span>' . $commentaires[6] . '</span>
+							<span>' . $commentaires[$i][6] . '</span>
 						</button>
 						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="">
 							<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-							<span>' . $commentaires[5] . '</span>
+							<span>' . $commentaires[$i][5] . '</span>
 						</button>
 									
 					</div>
@@ -407,10 +395,9 @@ Alors à vos skis !</p>
 
 
 
-echo '<!-- FOOTER -->
-	<footer>
+echo '<footer>
 		<div class="container ">
-			<p>© 2014 Parions Potes </p>
+			<p>© 2015 Parions Potes </p>
 		</div>
 	</footer>
 

@@ -249,9 +249,9 @@
 			
 			$tab_img = get_images_id($tab_id_photo);
 		
-			$arr[9] = $tab_img[$j][1];	//titre
-			$arr[10] = $tab_img[$j][2]; //crédits
-			$arr[11] = $tab_img[$j][3];	//chemin
+			$arr[9] = $tab_img[0][1];	//titre
+			$arr[10] = $tab_img[0][2]; //crédits
+			$arr[11] = $tab_img[0][3];	//chemin
 		}
 		
 		return $arr;

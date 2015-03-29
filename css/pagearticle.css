@@ -1,12 +1,16 @@
 /* BODY */
 #image { 
-    background: url(../img/Nibali.png) 50% 0 fixed; 
+    background:  50% 0 fixed; 
     height: 100%;  
     margin: 0 auto; 
     width: 100%; 
     position: relative; 
    // box-shadow: 0 0 25px rgba(0,0,0,0.8);
-    padding: 100px 0;
+    padding: 300px 0;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 }
 #article { 
     background: #FFF 50% 0 fixed; 
@@ -16,7 +20,7 @@
     position: relative; 
     box-shadow: 0 0 50px rgba(0,0,0,0.8);
     padding: 50px 0;
-	border-bottom: 20px grey;
+	border-bottom: 20px solid #b1b2b3;
 }
 #comment { 
     background: #FFF 50% 0 fixed; 
@@ -43,7 +47,7 @@
 }
 
 #reuters {
-	margin-top:-20px;
+	margin-top:-100px;
 	color:white;
 	float: right;
 	font-size: 12px;

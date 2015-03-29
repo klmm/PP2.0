@@ -50,6 +50,8 @@ echo '
 	<script src="js/modernizr.custom.js"></script>
 	<style type="text/css"></style></head>';
 
+//SCRIPT JS
+echo '<script src="js/script.js"></script>';
 	
 // HEADER
 

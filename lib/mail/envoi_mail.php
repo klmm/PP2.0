@@ -3,7 +3,7 @@
 	$objet = $_POST["objet"];
 	$message = $_POST["contenu"];
 	$dest = $_POST["dest"];
-	require_once($_SERVER['DOCUMENT_ROOT'] . '/sql/joueurs/get_joueurs.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/get_joueurs.php');
 	
 	switch($dest){
 		case "tous":			

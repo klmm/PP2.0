@@ -1,10 +1,10 @@
 <?php
 
 //--------------------------------------FONCTIONS--------------------------------------//
-	include($_SERVER['DOCUMENT_ROOT'] . '/sql/articles/get_articles.php');
-	include $_SERVER['DOCUMENT_ROOT'] . '/sql/jeux/get_jeux.php';
-	include $_SERVER['DOCUMENT_ROOT'] . '/sql/images/get_images.php';
-	include $_SERVER['DOCUMENT_ROOT'] . '/sql/joueurs/auto_login.php';
+	include($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/articles/get_articles.php');
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/images/get_images.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/auto_login.php';
 //-------------------------------------------------------------------------------------//
 
 
@@ -137,7 +137,7 @@
 												<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
 											</form>
 							
-											<form id="changePassword" role="form" action="/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+											<form id="changePassword" role="form" action="/lib/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
 												<input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
 												<input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
 												<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
@@ -147,7 +147,7 @@
 											<li class="divider"> </li>
 
 											<li>
-												<form id="logout-form" class="form" action="/sql/joueurs/deconnexion.php" method="POST">
+												<form id="logout-form" class="form" action="/lib/sql/joueurs/deconnexion.php" method="POST">
 													<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
 												</form>
 											</li>

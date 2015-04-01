@@ -1,18 +1,17 @@
 <?php
 
+
+
+
 //--------------------------------------FONCTIONS--------------------------------------//
-	include($_SERVER['DOCUMENT_ROOT'] . '/sql/articles/get_articles.php');
-	include $_SERVER['DOCUMENT_ROOT'] . '/sql/jeux/get_jeux.php';
-	include $_SERVER['DOCUMENT_ROOT'] . '/sql/images/get_images.php';
-	include $_SERVER['DOCUMENT_ROOT'] . '/sql/joueurs/auto_login.php';
-	include $_SERVER['DOCUMENT_ROOT'] . '/sql/commentaires/get_commentaires.php';
-	include $_SERVER['DOCUMENT_ROOT'] . '/sql/likes/get_likes.php';
-	include $_SERVER['DOCUMENT_ROOT'] . '/fonctions/fonctions.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/articles/get_articles.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/images/get_images.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/auto_login.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/commentaires/get_commentaires.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/likes/get_likes.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/fonctions.php';
 //-------------------------------------------------------------------------------------//
-
-
-
-
 
 
 
@@ -147,7 +146,7 @@
 											<span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
 										</a>
 										<ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
-											<form role="form" id="formLogin" class="form" action="sql/joueurs/verif_login.php" method="POST">
+											<form role="form" id="formLogin" class="form" action="/lib/sql/joueurs/verif_login.php" method="POST">
 												<label>Se connecter</label>
 												<input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
 												<input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
@@ -168,7 +167,7 @@
 												<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
 											</form>
 							
-											<form id="changePassword" role="form" action="/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+											<form id="changePassword" role="form" action="/lib/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
 												<input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
 												<input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
 												<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
@@ -178,7 +177,7 @@
 											<li class="divider"> </li>
 
 											<li>
-												<form class="form" action="/sql/joueurs/deconnexion.php" method="POST">
+												<form class="form" action="/lib/sql/joueurs/deconnexion.php" method="POST">
 													<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
 												</form>
 											</li>
@@ -187,18 +186,6 @@
 									</li>';
 
 	}
-
-	// COCHE MAIL
-	/*											<li>
-												<ul id="changeNotifs" style="padding: 17px;height: auto;">
-													<form class="form ">
-														<label class="checkbox-inline">
-															<input type="checkbox" id="inlineCheckbox1" value="option1">Recevoir les notifications par mail
-														</label>
-													</form>
-												</ul>
-											</li>
-											<li class="divider"> </li>*/	
 		
 	// MENU
 	echo '						</ul>
@@ -246,14 +233,14 @@
 	
 	
 	
-/*	$titre = $infos_article[4];
+	$titre = $infos_article[4];
 	$auteur = $infos_article[8];
 	$photo_chemin = $infos_article[11];
 	$photo_credits = $infos_article[10];
 	$photo_titre = $infos_article[9];
 	$categorie = $infos_article[2];
 	$sous_categorie = $infos_article[3];
-	$date_pub = $infos_article[1];*/
+	$date_pub = $infos_article[1];
 
 //---------------------------------------------ARTICLE------------------------------------------------------//
 	echo '<section id="article" data-speed="4" data-type="background">
@@ -357,14 +344,6 @@ Alors à vos skis !</p>
 	else{
 		//message Connectez-vous pour participer à la conv
 	}
-	
-			$arr[$i][0] = $enregistrement->IDCommentaire;
-			$arr[$i][1] = $enregistrement->IDArticle;
-			$arr[$i][2] = $enregistrement->Joueur;
-			$arr[$i][3] = $enregistrement->Contenu;
-			$arr[$i][4] = $enregistrement->DateHeurePub;
-			$arr[$i][5] = $enregistrement->NombreLikes;
-			$arr[$i][6] = $enregistrement->NombreDislikes;
 			
 	for ($i = 0; $i < $nb_comm; $i++){
 		echo '<div id="' . $commentaires[$i][0] . '" class="row com-container">		
@@ -522,3 +501,5 @@ echo '<footer>
  
  
  </body></html>';
+ 
+ ?>

@@ -28,7 +28,7 @@ function auto_login(){
 			setcookie('ParionsPotes', $key, time() + 3600 * 24 * 30, '/', 'www.parions-potes.fr', false, true);
 			
 			// MAJ dernière connexion
-			require_once($_SERVER['DOCUMENT_ROOT'] . '/sql/joueurs/update_joueurs.php');
+			require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php');
 			update_derniere_visite();
 			return true;
 		}

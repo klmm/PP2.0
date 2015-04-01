@@ -1,11 +1,12 @@
 <?php
 
 	function get_images_tous(){
+	
 		// On établit la connexion avec la base de données
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
-
+		
 		//On fait la requete sur le login
 		$sql = "SELECT * FROM ArticlesImage";
 		$prep = $db->prepare($sql);
@@ -24,7 +25,7 @@
 		
 		return $arr;
 	}
-	
+
 // Prend en paramètre un tableau d'id d'images ==> Retourne un tableau d'images (avec les paramètres qui vont bien)
 	function get_images_id($tab_id_image){
 		//Nombre d'images
@@ -60,5 +61,5 @@
 		}
 		return $img;
 	}
-	
+
 ?>

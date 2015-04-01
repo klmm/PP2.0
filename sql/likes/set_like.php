@@ -1,8 +1,7 @@
 <?php
-	//session_start();
+	session_start();
 
-	//$joueur = $_SESSION['LoginJoueur'];
-	$joueur = 'Toto';
+	$joueur = $_SESSION['LoginJoueur'];
 	if ($joueur == ''){
 		echo 'Joueur inexistant';
 		return;

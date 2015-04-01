@@ -7,6 +7,7 @@
 	include $_SERVER['DOCUMENT_ROOT'] . '/sql/joueurs/auto_login.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/sql/commentaires/get_commentaires.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/sql/likes/get_likes.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/fonctions/fonctions.php';
 //-------------------------------------------------------------------------------------//
 
 
@@ -53,7 +54,7 @@
 	$date_pub = $infos_article[1];
 	
 	// Articles de la même rubrique
-	$articles_categorie = get_articles_categorie($categorie);
+	$articles_categorie = get_articles_categorie($categorie,5);
 	$nb_articles_categorie = sizeof($articles_categorie);
 	
 	// Articles à la une
@@ -66,7 +67,7 @@
 
 	// Commentaires likés/dislikés par le joueur
 	if ($loginjoueur != ''){
-		$likes = get_likes($id_article, $loginjoueur);
+		$likes = get_likes($id_article);
 	}
 //------------------------------------------------------------------------------------------------//
 
@@ -304,13 +305,13 @@ Alors à vos skis !</p>
 						<h2 class="section-heading">A LA UNE</h2>	
 			</div>';
 			
-		for ($i = 0; $i < $nb_articles_recents; $i++){
+		for ($j = 0; $j < $nb_articles_recents; $j++){
 			echo '<div class="list-group list-articles-right">
 						<a href="#" class="list-articles-item-right list-group-item col-md-12">
-							<span class="badge">' . $articles_recents[$i][3] . '</span>
-							<img src="' . $articles_recents[$i][11] . '" alt="' . $articles_recents[$i][11] . '"/>
-							<h4 class="list-group-item-heading">' . $articles_recents[$i][4] . '</h4>
-							<p class="list-group-item-text">' . $articles_recents[$i][2] . '</p>
+							<span class="badge">' . $articles_recents[$j][3] . '</span>
+							<img src="' . $articles_recents[$j][11] . '" alt="' . $articles_recents[$j][11] . '"/>
+							<h4 class="list-group-item-heading">' . $articles_recents[$j][4] . '</h4>
+							<p class="list-group-item-text">' . $articles_recents[$j][2] . '</p>
 						</a>
 					</div>';
 		}
@@ -343,11 +344,12 @@ Alors à vos skis !</p>
 			<div class="row post-container">		
 				<form id="post-form" role="form" class="row contact-form" action="" method="POST">
 					<div class="col-md-10 col-md-offset-1">
+						<p id="id_article" name="id_article" class="hidden">Id message parent ou 0</p>
 						<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
 							<span>Poster</span>
 						</button>
 				
-						<textarea class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>					
+						<textarea id="contenu" class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>					
 					</div>
 				</form>
 			</div>';
@@ -369,7 +371,7 @@ Alors à vos skis !</p>
 					<div class="col-md-10 col-md-offset-1">
 						<p id="' . $commentaires[$i][0] . 'b" class="hidden">Id</p>
 						<p class="user pull-left">' . $commentaires[$i][2] . '</p>
-						<p class="time pull-right">' . $commentaires[$i][4] . '</p>
+						<p class="time pull-right">' . date_to_duration($commentaires[$i][4]) . '</p>
 						<p class="comment">' . $commentaires[$i][3] . '</p>
 						
 						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="">

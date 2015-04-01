@@ -89,7 +89,7 @@
 		$db = $bdd->getDB();
 
 		//On fait la requete sur le login
-		$sql = "SELECT * FROM Articles WHERE Categorie = ? ORDER BY DateHeurePub DESC";
+		$sql = "SELECT * FROM Articles WHERE Categorie = ? ORDER BY DateHeurePub DESC LIMIT 5";
 		$prep = $db->prepare($sql);
 		$prep->bindValue(1,$categ,PDO::PARAM_STR);
 		$prep->execute();

@@ -147,7 +147,7 @@
 											<li class="divider"> </li>
 
 											<li>
-												<form class="form" action="/sql/joueurs/deconnexion.php" method="POST">
+												<form id="logout-form" class="form" action="/sql/joueurs/deconnexion.php" method="POST">
 													<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
 												</form>
 											</li>
@@ -259,7 +259,7 @@
 							<div class="container">
 								<div class="carousel-caption"> 
 									<h1>'. $arr_unes[0][4] . '</h1>
-									<p>'. $arr_unes[0][2] . ' - ' . $arr_unes[0][3] . '</p>
+									<p class="unes-sport">'. $arr_unes[0][2] . ' </p><p> - ' . $arr_unes[0][3] . '</p>
 								</div>
 							</div>
 						</div>';
@@ -271,7 +271,7 @@
 							<div class="container">
 								<div class="carousel-caption">
 									<h1>'. $arr_unes[$i][4] . '</h1>
-									<p>'. $arr_unes[$i][2] . ' - ' . $arr_unes[$i][3] . '</p>
+									<p class="unes-sport">'. $arr_unes[0][2] . ' </p><p> - ' . $arr_unes[$i][3] . '</p>
 								</div>
 							</div>
 						</div>';

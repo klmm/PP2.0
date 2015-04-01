@@ -127,7 +127,7 @@ function Init_Forms()
 						$( "#changePassword" ).append( '<div class="alert alert-success alert-dismissible" role="alert">'+
 						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 						result[1]+'</div>' );
-						//+deconnexion ?
+						setTimeout( '$("#logout").click();',2000 );
 					}else {
 						$( "#changePassword" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
 						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
@@ -140,6 +140,36 @@ function Init_Forms()
 					$( "#changePassword" ).append( '<div class="alert alert-danger alert-dismissible" role="alert">'+
 						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 						'<strong>Attention!  </strong>'+errorThrown+'</div>' );
+					     
+				}
+			});
+			e.preventDefault(); //STOP default action
+			
+		});
+		
+		$("#logout-form").submit(function(e)
+		{
+			$('.alert').alert('close');
+			var postData = $(this).serializeArray();
+			var formURL = $(this).attr("action");
+			$.ajax(
+			{
+				url : formURL,
+				type: "POST",
+				data : postData,
+				success:function(data, textStatus, jqXHR) 
+				{
+					var result = data.split(';');
+					if (result[0] == 'ok' || result[0] == 'nok'){
+						location.reload();
+					}else {
+						//on ne fait rien ?
+					}
+					$('form')[0].reset();
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					//on ne fait rien
 					     
 				}
 			});

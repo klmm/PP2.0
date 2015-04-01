@@ -69,8 +69,9 @@ margin-top:30px;
   top: 0;
   left: 0;
   min-width: 100%;
+  max-width:none;
   opacity : 0.8;
-  /* height: 540px; */
+  min-height: 100%;
 }
 .carousel-indicators li {
 //border-color:#333;
@@ -136,7 +137,7 @@ top:160px;text-align:left;
 .carousel-caption h1,.carousel-caption h2 {
 font-family: 'Quicksand', cursive;
 font-weight: 400;
-font-size: 1.5em;
+font-size: 2em;
 margin: 0px;
 margin-bottom:5px;
 letter-spacing: -2px;
@@ -154,6 +155,13 @@ font-size:1.3em;
 xtext-transform: uppercase;
 xtext-transform: none;
 xtext-shadow:1px 1px 2px rgba(0,0,0,0.7);
+
+}
+
+.carousel-caption .unes-sport {
+  float: left;
+  color: chartreuse;
+  font-weight: bold;
 
 }
 

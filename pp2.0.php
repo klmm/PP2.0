@@ -5,6 +5,7 @@
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/images/get_images.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/auto_login.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php';
 //-------------------------------------------------------------------------------------//
 
 
@@ -23,6 +24,10 @@
 	}
 	$idjoueur = $_SESSION['IDJoueur'];
 	$mailjoueur = $_SESSION['MailJoueur'];
+	
+	if($loginjoueur != ""){
+		update_derniere_visite();
+	}
 //------------------------------------------------------------------------------------------------//
 
 
@@ -259,7 +264,7 @@
 							<div class="container">
 								<div class="carousel-caption"> 
 									<h1>'. $arr_unes[0][4] . '</h1>
-									<p class="unes-sport">'. $arr_unes[0][2] . ' </p><p> - ' . $arr_unes[0][3] . '</p>
+									<p class="unes-sport">'. $arr_unes[0][2] . ' </p> <p>' . $arr_unes[0][3] . '</p>
 								</div>
 							</div>
 						</div>';
@@ -271,7 +276,7 @@
 							<div class="container">
 								<div class="carousel-caption">
 									<h1>'. $arr_unes[$i][4] . '</h1>
-									<p class="unes-sport">'. $arr_unes[0][2] . ' </p><p> - ' . $arr_unes[$i][3] . '</p>
+									<p class="unes-sport">'. $arr_unes[0][2] . ' </p> <p>' . $arr_unes[$i][3] . '</p>
 								</div>
 							</div>
 						</div>';

@@ -8,6 +8,7 @@
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/images/get_images.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/auto_login.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/commentaires/get_commentaires.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/likes/get_likes.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/fonctions.php';
@@ -25,6 +26,10 @@
 	}
 	$idjoueur = $_SESSION['IDJoueur'];
 	$mailjoueur = $_SESSION['MailJoueur'];
+	
+	if($loginjoueur != ""){
+		update_derniere_visite();
+	}
 //------------------------------------------------------------------------------------------------//
 
 

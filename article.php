@@ -29,6 +29,10 @@
 	
 	if($loginjoueur != ""){
 		update_derniere_visite();
+		$bConnected = true;
+	}
+	else{
+		$bConnected = false;
 	}
 //------------------------------------------------------------------------------------------------//
 
@@ -63,14 +67,14 @@
 	
 	// Articles à la une
 	$articles_recents = get_articles_unes();
-	$nb_articles_recents = sizeof(articles_recents);
+	$nb_articles_recents = sizeof($articles_recents);
 	
 	// Commentaires postés sur l'article
 	$commentaires = get_commentaires_article($id_article);
 	$nb_comm = sizeof($commentaires);
 
 	// Commentaires likés/dislikés par le joueur
-	if ($loginjoueur != ''){
+	if ($bConnected){
 		$likes = get_likes($id_article);
 	}
 //------------------------------------------------------------------------------------------------//
@@ -114,6 +118,9 @@
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>';
 
+	//SCRIPT JS
+	echo '<script src="js/script.js"></script>';
+	
 	// LIENS TWITTER FACEBOOK
 	echo '<body data-spy="scroll" data-target="#navbar-main" data-offset="100">
 	 
@@ -145,7 +152,7 @@
 						  <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">';
 						  
 	// CONNEXION - ESPACE JOUEUR
-	if ($loginjoueur == ""){
+	if ($bConnected == false){
 		echo '						<li class="dropdown" id="menuLogin">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:rgb(115, 50, 130);background:transparent;">
 											<span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
@@ -197,9 +204,10 @@
 							</div>
 						<div class="navbar-collapse collapse" id="navbar-main">
 						  <ul class="nav navbar-nav pull-right" style="">
-							<li class="active"><a href="#article" data-action="scrollTo">Article</a></li>
+							<li class="active"><a href="#image" data-action="scrollTo">Image</a></li>
+							<li class=""><a href="#article" data-action="scrollTo">Article</a></li>
 							<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires (' . $nb_comm . ')</a></li>
-							<li class=""><a href="http://www.parions-potes.fr/php2.0.php" data-action="scrollTo">Retour au site</a></li>
+							<li class=""><a href="http://www.parions-potes.fr/pp2.0.php">Retour au site</a></li>
 						  </ul>  
 						</div>
 						
@@ -252,22 +260,16 @@
 		<div id="credits" class="right">
 			<p>' . $photo_credits . '</p>
 		</div>
-		<div class="container">
+		<div class="container" id="article">
 			<div class="col-md-8 col-sm-8">
 				<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
 					<h1 class="section-heading">' . $titre . '</h1>
 				</div>
-				<p id="article-text"> Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon !
-
-Après une mise en bouche avec le Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions Potes » sera présent sur toutes les épreuves féminines et  masculines de la coupe du monde FIS ainsi que les championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom !
-
-N’oublions pas le biathlon que nous retrouverons dès la fin du mois. Espérons que notre franc-tireur favori Martin Fourcade se soit remis physiquement !
-
-Comme d’habitude, pas de perte de temps ! Faites vos paris rapidement sur des épreuves disponibles longtemps à l’avance. Battez vos amis et remportez les classements mensuels !
-
-Comme pour vos sportifs préférés, pour soulever le gros globe il vous faudra de la régularité, de la précision et une once de prise de risque !
-
-Alors à vos skis !</p>
+				<p id="article-text">';
+				
+	include $_SERVER['DOCUMENT_ROOT'] . '/articles/' . $id_article . '.htm';							
+				
+	echo '</p>
 			</div>';
 	
 	
@@ -328,15 +330,15 @@ Alors à vos skis !</p>
 	
 //---------------------------------------------COMMENTAIRES------------------------------------------------------//	
 	echo '<section id="comment" data-speed="2" data-type="background">
-		<div class="container">';
+		<div class="container" id="commentaires">';
 		
 		
-	if ($loginjoueur != ""){
+	if ($bConnected){
 		echo '
 			<div class="row post-container">		
-				<form id="post-form" role="form" class="row contact-form" action="" method="POST">
+				<form id="post-form" role="form" class="row contact-form" action="/lib/sql/commentaires/add_commentaire.php" method="POST">
 					<div class="col-md-10 col-md-offset-1">
-						<p id="id_article" name="id_article" class="hidden">Id message parent ou 0</p>
+						<input name="id_article" id="id_article" type="text" class="hidden" required="" value="' . $id_article . '">
 						<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
 							<span>Poster</span>
 						</button>
@@ -356,13 +358,13 @@ Alors à vos skis !</p>
 						<p id="' . $commentaires[$i][0] . 'b" class="hidden">Id</p>
 						<p class="user pull-left">' . $commentaires[$i][2] . '</p>
 						<p class="time pull-right">' . date_to_duration($commentaires[$i][4]) . '</p>
-						<p class="comment">' . $commentaires[$i][3] . '</p>
+						<p class="comment">' . html_entity_decode($commentaires[$i][3]) . '</p>
 						
-						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="">
+						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="/lib/sql/likes/add_like.php?like=1&id_article=' . $id_article . '&id_comm=' . $commentaires[$i][0] . '">
 							<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
 							<span>' . $commentaires[$i][6] . '</span>
 						</button>
-						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="">
+						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="/lib/sql/likes/add_like.php?like=0&id_article=' . $id_article . '&id_comm=' . $commentaires[$i][0] . '">
 							<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
 							<span>' . $commentaires[$i][5] . '</span>
 						</button>

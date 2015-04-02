@@ -27,6 +27,10 @@
 	
 	if($loginjoueur != ""){
 		update_derniere_visite();
+		$bConnected = true;
+	}
+	else{
+		$bConnected = false;
 	}
 //------------------------------------------------------------------------------------------------//
 
@@ -52,7 +56,7 @@
 		
 		
 	// TITLE
-	echo '<title>Parions Potes</title>';
+	echo '<title>Parions Potes : Pronostics gratuits sur les grands évènements de l\'année</title>';
 
 
 	// BOOTSTRAP
@@ -115,7 +119,7 @@
 						  <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">';
 						  
 	// CONNEXION - ESPACE JOUEUR
-	if ($loginjoueur == ""){
+	if ($bConnected == false){
 		echo '						<li class="dropdown" id="menuLogin">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:rgb(115, 50, 130);background:transparent;">
 											<span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
@@ -182,7 +186,7 @@
 							<li class="active"><a href="#myCarousel" data-action="scrollTo">Actualités</a></li>
 							<li class=""><a href="#games" data-action="scrollTo">Jeux</a></li>';
 							
-	if ($loginjoueur == ""){
+	if ($bConnected == false){
 		echo '				<li class=""><a href="#inscription" data-action="scrollTo">Inscription</a></li>';
 	}
 							
@@ -276,7 +280,7 @@
 							<div class="container">
 								<div class="carousel-caption">
 									<h1>'. $arr_unes[$i][4] . '</h1>
-									<p class="unes-sport">'. $arr_unes[0][2] . ' </p> <p>' . $arr_unes[$i][3] . '</p>
+									<p class="unes-sport">'. $arr_unes[$i][2] . ' </p> <p>' . $arr_unes[$i][3] . '</p>
 								</div>
 							</div>
 						</div>';
@@ -542,7 +546,7 @@
 
 
 //--------------------------------------INSCRIPTION--------------------------------------//
-	if ($loginjoueur == ""){
+	if ($bConnected == false){
 		echo "
 			<div class='section-contact section' id='inscription' style='min-height: 214px; background: rgb(241, 241, 241);'>
 				<div id='inscription-container' class='container marketing '>
@@ -675,7 +679,7 @@
 			
 					<form id='contact-form' role='form' class='row contact-form' action='mail/contact_mail.php' method='POST'>
 						<div class='col-md-6'>";
-						if ($loginjoueur == ""){
+						if ($bConnected == false){
 							echo "<input type='text' placeholder='Nom' name='nom' class='form-control' required='' data-validation-required-message='Nom obligatoire'>
 								<input type='email' placeholder='email (pour vous répondre)' name='mail' class='form-control' required='' data-validation-required-message='Mail obligatoire'>";
 						}

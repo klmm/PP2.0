@@ -46,10 +46,13 @@
 	$prep3 = $db->prepare($sql);
 	$prep3->bindValue(1,$newpass_h,PDO::PARAM_STR);
 	$prep3->bindValue(2,$idjoueur,PDO::PARAM_INT);
-	$prep3->execute();
+	$res = $prep3->execute();
 	
 	
-	
+	if ($res == false){
+		echo 'Erreur lors de la réinitialisation du mot de passe...';
+		return;
+	}
 	
 
 	// Envoi du mail

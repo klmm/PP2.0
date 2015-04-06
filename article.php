@@ -148,7 +148,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						  </button> 
-						  <a class="navbar-brand logosmall" href="#" id="logosmall" data-action="scrollTo"></a>
+						  <a class="navbar-brand logosmall" href="#image" id="logosmall" data-action="scrollTo"></a>
 						  <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">';
 						  
 	// CONNEXION - ESPACE JOUEUR

@@ -38,7 +38,7 @@ header.small {
 	position:absolute;
 	left:0;
 	top:10px;
-	background:transparent url(../img/logo-small.png) no-repeat top left !important;
+	background:transparent url(../img/logos/logo-small.png) no-repeat top left !important;
 	opacity:0;
 	-webkit-transition: opacity 0.5s;
 	-moz-transition: opacity 0.5s;
@@ -379,7 +379,7 @@ display:block;
 }
  */
  .facebook {
-	background:transparent url(../img/facebook_32.png) no-repeat top left;
+	background:transparent url(../img/static/facebook_32.png) no-repeat top left;
 }
 /* .youtube {
 	background:transparent url(../img/youtube.png) no-repeat top left;
@@ -388,7 +388,7 @@ display:block;
 	background:transparent url(../img/linkedin.png) no-repeat top left;
 } */
 .twitter {
-	background:transparent url(../img/twitter_32.png) no-repeat top left;
+	background:transparent url(../img/static/twitter_32.png) no-repeat top left;
 }
 header.small #header-top ul.social {
 display:none;

@@ -207,7 +207,7 @@
 							<li class="active"><a href="#image" data-action="scrollTo">Image</a></li>
 							<li class=""><a href="#article" data-action="scrollTo">Article</a></li>
 							<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires (' . $nb_comm . ')</a></li>
-							<li class=""><a href="http://www.parions-potes.fr/pp2.0.php">Retour au site</a></li>
+							<li class=""><a href="pp2.0.php">Retour au site</a></li>
 						  </ul>  
 						</div>
 						

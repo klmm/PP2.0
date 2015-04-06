@@ -240,8 +240,9 @@
 		
 //--------------------------------------UNES--------------------------------------//
 	// Récupération de tous les articles et des unes à afficher
-	$arr_tous = get_articles_tous();
-	$nb_tous = sizeof($arr_tous);
+	$NB_ARTICLES_LISTE = 4;
+	$arr_tous = get_articles_tranche($NB_ARTICLES_LISTE,0);
+	$nb_tous = get_nombre_total_articles();
 
 	$arr_unes = get_articles_unes();
 	$nb_unes = sizeof($arr_unes);
@@ -255,7 +256,7 @@
 					<ol class="carousel-indicators">
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>';
 	}
-	// Nombre de petits points (nombre de unes)					
+	// Nombre de petits points (nombre de unes)
 	for ($i = 1; $i < $nb_unes; $i++) {
 		echo '<li data-target="#myCarousel" data-slide-to="' . $i . '" class=""></li>';
 	}
@@ -308,9 +309,9 @@
 					<div class="list-group list-articles">';
 					
 	// Colonne 1 sport - image - titre - catégorie
-	for ($i = 0; $i < 4; $i++) {
+	for ($i = 0; $i < $NB_ARTICLES_LISTE; $i++) {
 	echo '
-						<a href="#" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+						<a href="article.php?id=' . $arr_tous[$i][0] . '" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
 							<span class="badge">' . $arr_tous[$i][2] . '</span>
 							<img src="' . $arr_tous[$i][11] . '" alt="' . $arr_tous[$i][11] . '"/>
 							<h4 class="list-group-item-heading">' . $arr_tous[$i][4] . '</h4>
@@ -330,7 +331,9 @@
 				  </a>
 				</li>';
 	
-	for ($i = 0; $i < ($nb_tous-1)/4; $i++) {
+	$nb_pag = floor(($nb_tous-1)/$NB_ARTICLES_LISTE) + 1;
+	
+	for ($i = 0; $i < $nb_pag ; $i++) {
 		echo '<li><a href="#">' . ($i+1) . '</a></li>';
 	};
 
@@ -620,7 +623,7 @@
 						</p>
 					</div>
 					<div class='row-illustration col-md-3 ' style='text-align:center'>
-						<img src='img/thokes.png' alt='thokes' style='width:150px;'>
+						<img src='img/static/thokes.png' alt='thokes' style='width:150px;'>
 					</div>
 				</div>
 
@@ -631,7 +634,7 @@
 
 				<div class='tab-pane section-content row' id='who-you-are'>
 					<div class='row-illustration col-md-3 ' style='text-align:center'>
-						<img src='img/thokes.png' alt='thokes' style='width:150px;'>
+						<img src='img/static/thokes.png' alt='thokes' style='width:150px;'>
 					</div>
 					<div class='row-content col-md-9 '>	
 						<h3>Pour vous,</h3>

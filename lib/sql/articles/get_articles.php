@@ -21,8 +21,6 @@
 			$arr[$i][2] = $enregistrement->Categorie;
 			$arr[$i][3] = $enregistrement->SousCategorie;
 			$arr[$i][4] = $enregistrement->Titre;
-			$arr[$i][5] = $enregistrement->IDRubrique;
-			$arr[$i][6] = $enregistrement->NumRubrique;
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
 			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
@@ -41,16 +39,28 @@
 		return $arr;
 	}
 	
-	function get_articles_rubrique($id_rub){
+	function get_nombre_total_articles(){
 		// On établit la connexion avec la base de données
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On fait la requete sur la rubrique
-		$sql = "SELECT * FROM Articles WHERE IDRubrique = ? ORDER BY NumRubrique ASC";
+		//On fait la requete sur le login
+		$sql = "SELECT COUNT(*) FROM Articles";
+		$nRows = $db->query($sql)->fetchColumn();
+		
+		return $nRows;
+	}
+	
+	function get_articles_tranche($nombre, $decalage){
+		// On établit la connexion avec la base de données
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+		$bdd = new Connexion();
+		$db = $bdd->getDB();
+
+		//On fait la requete sur le login
+		$sql = "SELECT * FROM Articles ORDER BY DateHeurePub DESC LIMIT " . $nombre . " OFFSET " . $decalage;
 		$prep = $db->prepare($sql);
-		$prep->bindValue(1,$id_rub,PDO::PARAM_STR);
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
@@ -63,12 +73,10 @@
 			$arr[$i][2] = $enregistrement->Categorie;
 			$arr[$i][3] = $enregistrement->SousCategorie;
 			$arr[$i][4] = $enregistrement->Titre;
-			$arr[$i][5] = $enregistrement->IDRubrique;
-			$arr[$i][6] = $enregistrement->NumRubrique;
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
 			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
-				
+
 			$i++;
 		}
 		
@@ -79,6 +87,7 @@
 			$arr[$j][10] = $tab_img[$j][2]; //crédits
 			$arr[$j][11] = $tab_img[$j][3];	//chemin
 		}
+		
 		return $arr;
 	}
 	
@@ -104,8 +113,6 @@
 			$arr[$i][2] = $enregistrement->Categorie;
 			$arr[$i][3] = $enregistrement->SousCategorie;
 			$arr[$i][4] = $enregistrement->Titre;
-			$arr[$i][5] = $enregistrement->IDRubrique;
-			$arr[$i][6] = $enregistrement->NumRubrique;
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
 			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
@@ -147,8 +154,6 @@
 			$arr[$i][2] = $enregistrement->Categorie;
 			$arr[$i][3] = $enregistrement->SousCategorie;
 			$arr[$i][4] = $enregistrement->Titre;
-			$arr[$i][5] = $enregistrement->IDRubrique;
-			$arr[$i][6] = $enregistrement->NumRubrique;
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
 			$arr[$i][7] = $enregistrement->IDPhoto;
 			$arr[$i][8] = $enregistrement->Auteur;
@@ -199,8 +204,6 @@
 				$arr[$i][2] = $enregistrement2->Categorie;
 				$arr[$i][3] = $enregistrement2->SousCategorie;
 				$arr[$i][4] = $enregistrement2->Titre;
-				$arr[$i][5] = $enregistrement2->IDRubrique;
-				$arr[$i][6] = $enregistrement2->NumRubrique;
 				$tab_id_photo[$i] = $enregistrement2->IDPhoto;
 				$arr[$i][7] = $enregistrement2->IDPhoto;
 				$arr[$i][8] = $enregistrement2->Auteur;
@@ -241,8 +244,6 @@
 			$arr[2] = $enregistrement->Categorie;
 			$arr[3] = $enregistrement->SousCategorie;
 			$arr[4] = $enregistrement->Titre;
-			$arr[5] = $enregistrement->IDRubrique;
-			$arr[6] = $enregistrement->NumRubrique;
 			$tab_id_photo[0] = $enregistrement->IDPhoto;
 			$arr[7] = $enregistrement->IDPhoto;
 			$arr[8] = $enregistrement->Auteur;

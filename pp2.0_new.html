@@ -30,7 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="css/component.css" />
 	<script src="js/modernizr.custom.js"></script>
 	<script src="js/script.js"></script>
-	
+	<script src="js/pagination.js"></script>
 	
 	<!-- <link rel="stylesheet" href="bower_components/lumx/dist/css/lumx.css"> -->
   <style type="text/css"></style></head>
@@ -149,7 +149,7 @@
 						<div class="container">
 							<div class="carousel-caption"> 
 								<h1>Contador et Froome : la tuile !</h1>
-								<p class="unes-sport">Cyclisme</p><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+								<span class="unes-sport">Cyclisme</span><span>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
 							</div>
 						</div>
 					</div>
@@ -158,9 +158,9 @@
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>Nibali : Mais bien sur !</h1>
-								<p class="unes-sport">Cyclisme</p><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								<span class="unes-sport">Cyclisme</span><span>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
 								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
 							</div>
 						</div>
 					</div>
@@ -169,7 +169,7 @@
 						<div class="container">
 							<div class="carousel-caption">
 								<h1>Cavendish tombe sur ses terres !</h1>
-								<p class="unes-sport">Cyclisme</p><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+								<span class="unes-sport">Cyclisme</span><span>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
 							</div>
 						</div>
 					</div>
@@ -185,60 +185,81 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="grid">
-					<div class="list-group list-articles">
-						<a href="#" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
-							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-						<a href="#" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
-							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-						<a href="#" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
-							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-						<a href="#" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
-							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-						<a href="#" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
-							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-						
-					</div>
+			<div class="sectionSide" >
+				<h2 class="section-heading">Articles</h2>
 			</div>
+			
+					<ul class="list-group list-articles col-md-12 col-sm-12 col-xs-12">
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+						<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2"><a href="#">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a></li>
+					</ul>
+			
 		</div>
 		<div class="row">
-			<nav><ul class="pagination">
-				<li>
-				  <a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				  </a>
-				</li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li>
-				  <a href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-				  </a>
-				</li>
-			</ul></nav>
+			
+			<nav id="pagination">
+				<ul class="pagination">
+				
+				</ul>
+			</nav>
 		</div>
 	</div>
 </div>
@@ -566,6 +587,9 @@
 <!-- <script src="bower_components/lumx/dist/js/lumx.js"></script>  -->
 
 <script src="js/toucheffects.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js"></script>
 
 
 <script type="text/javascript">
@@ -581,10 +605,12 @@
 		});	
 		// $('body').scrollspy("refresh");
 	}*/
+
     jQuery(document).ready(function ($) {
-		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+		//$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	
 		Init_Forms();
+		initPagination();
 		
 		//$('body').scrollspy({ target: '#navbar-main',offset:250 }) /// lign qui 'spy' le scroll de la page et surligne les menusp
 		//pageSection();
@@ -599,7 +625,7 @@
 		});
 		//$.scrollTo( 0 );
 		
-        $('.nav-tabs').tab();
+        //$('.nav-tabs').tab();
 		$('a[data-action="scrollTo"]').click(function(e) {
 			e.preventDefault();
 			scrollX = $('.header').height();
@@ -613,7 +639,7 @@
 			$('.navbar-collapse').removeClass('in');
 		});
 		
-		$('[data-toggle=dropdown]').dropdown();
+		//$('[data-toggle=dropdown]').dropdown();
 	
 		
     });

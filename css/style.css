@@ -265,7 +265,12 @@ font-size:20px;
 }
 .section-heading {
 	text-transform:uppercase;
+	font-size: 40px;
+	color: rgb(86, 84, 84);
+	font-weight: bold;
 }
+}
+
 .section {
 	clear:both;
 	padding-top:60px;
@@ -418,6 +423,10 @@ padding-right:15px;*/
 	//max-height:400px;
 	//overflow:auto;
 }
+
+.list-articles>li{
+	display: inline;
+}
 .list-articles-item {
 	padding:10px;
 	z-index:10;
@@ -442,8 +451,28 @@ padding-right:15px;*/
 }
 
 
-
-
+#pagination {
+	text-align: center;
+}
+.pagination>li>a{
+	background-color: grey;
+	color:white;
+	cursor: pointer;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+  z-index: 2;
+  color: #fff;
+  background-color: rgb(115, 50, 130);
+  border-color: rgb(115, 50, 130);
+  cursor: default;
+}
+ 
+ .pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus {
+  color: grey;
+  background-color: lightgrey;
+  border-color: #fff;
+  cursor: not-allowed;
+}
 
 @media (min-width: 992px) and  (max-width:1200px) {
 	.activeSection .sectionSide {

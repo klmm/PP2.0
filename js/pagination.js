@@ -2,7 +2,7 @@ function initPagination() {
 	var listElement = $('.list-articles');
 	var perPage = 4;
 	var numItems = listElement.children().size();
-	var numPages = Math.ceil(numItems/perPage);
+	var numPages = Math.floor((numItems-1)/perPage) + 1;
 	 
 	
 	$('.pagination').data("curr",0);

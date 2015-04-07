@@ -80,11 +80,10 @@
 		<link rel="stylesheet" type="text/css" href="css/default.css" /> <!-- caption hover effects -->
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>
+		<script src="js/pagination.js"></script>
+		<script src="js/script.js"></script>
 		<style type="text/css"></style></head>';
 		
-	//SCRIPT JS
-	echo '<script src="js/script.js"></script>';
-
 	// LIENS TWITTER FACEBOOK
 	echo '<body data-spy="scroll" data-target="#navbar-main" data-offset="100">
 	 
@@ -125,7 +124,7 @@
 											<span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
 										</a>
 										<ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
-											<form role="form" id="formLogin" class="form" action="sql/joueurs/verif_login.php" method="POST">
+											<form role="form" id="formLogin" class="form" action="lib/sql/joueurs/verif_login.php" method="POST">
 												<label>Se connecter</label>
 												<input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
 												<input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
@@ -146,7 +145,7 @@
 												<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
 											</form>
 							
-											<form id="changePassword" role="form" action="/lib/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+											<form id="changePassword" role="form" action="lib/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
 												<input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
 												<input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
 												<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
@@ -156,7 +155,7 @@
 											<li class="divider"> </li>
 
 											<li>
-												<form id="logout-form" class="form" action="/lib/sql/joueurs/deconnexion.php" method="POST">
+												<form id="logout-form" class="form" action="lib/sql/joueurs/deconnexion.php" method="POST">
 													<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
 												</form>
 											</li>
@@ -241,8 +240,8 @@
 //--------------------------------------UNES--------------------------------------//
 	// Récupération de tous les articles et des unes à afficher
 	$NB_ARTICLES_LISTE = 4;
-	$arr_tous = get_articles_tranche($NB_ARTICLES_LISTE,0);
-	$nb_tous = get_nombre_total_articles();
+	$arr_tous = get_articles_tous();
+	$nb_tous = sizeof($arr_tous);
 
 	$arr_unes = get_articles_unes();
 	$nb_unes = sizeof($arr_unes);
@@ -269,7 +268,7 @@
 							<div class="container">
 								<div class="carousel-caption"> 
 									<h1>'. $arr_unes[0][4] . '</h1>
-									<p class="unes-sport">'. $arr_unes[0][2] . ' </p> <p>' . $arr_unes[0][3] . '</p>
+									<span class="unes-sport">'. $arr_unes[0][2] . ' </span> <span>' . $arr_unes[0][3] . '</span>
 								</div>
 							</div>
 						</div>';
@@ -281,7 +280,7 @@
 							<div class="container">
 								<div class="carousel-caption">
 									<h1>'. $arr_unes[$i][4] . '</h1>
-									<p class="unes-sport">'. $arr_unes[$i][2] . ' </p> <p>' . $arr_unes[$i][3] . '</p>
+									<span class="unes-sport">'. $arr_unes[$i][2] . ' </span> <span>' . $arr_unes[$i][3] . '</span>
 								</div>
 							</div>
 						</div>';
@@ -305,47 +304,35 @@
 
 	// Liste des articles
 	echo '	<div class="row">
-				<div class="grid">
-					<div class="list-group list-articles">';
+				<div class="sectionSide" >
+					<h2 class="section-heading">Articles</h2>
+				</div>
+				<ul class="list-group list-articles col-md-12 col-sm-12 col-xs-12">';
 					
 	// Colonne 1 sport - image - titre - catégorie
-	for ($i = 0; $i < $NB_ARTICLES_LISTE; $i++) {
+	for ($i = 0; $i < $nb_tous; $i++) {
 	echo '
-						<a href="article.php?id=' . $arr_tous[$i][0] . '" class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+					<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+						<a href="article.php?id=' . $arr_tous[$i][0] . '">
 							<span class="badge">' . $arr_tous[$i][2] . '</span>
 							<img src="' . $arr_tous[$i][11] . '" alt="' . $arr_tous[$i][11] . '"/>
 							<h4 class="list-group-item-heading">' . $arr_tous[$i][4] . '</h4>
 							<p class="list-group-item-text">' . $arr_tous[$i][3] . '</p>
-						</a>';
+						</a>
+					</li>';
 	}
 
-	echo '
+	echo '</ul>
+			<div class="row">
+			
+			<nav id="pagination">
+				<ul class="pagination">
+				
+				</ul>
+			</nav>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-			<nav><ul class="pagination">
-				<li>
-				  <a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				  </a>
-				</li>';
-	
-	$nb_pag = floor(($nb_tous-1)/$NB_ARTICLES_LISTE) + 1;
-	
-	for ($i = 0; $i < $nb_pag ; $i++) {
-		echo '<li><a href="#">' . ($i+1) . '</a></li>';
-	};
-
-	echo '			<li>
-				  <a href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-				  </a>
-				</li>
-			</ul></nav>
-		</div>
-		</div>
-	</div>';
+			</div>';
 //--------------------------------------FIN UNES--------------------------------------//
 
 
@@ -558,7 +545,7 @@
 						<h2 class='section-heading'>Inscription</h2>
 						<p class='section-highlight'>Quelques infos avant les pronos !</p>
 					</div>
-					<form id='inscription-form' role='form' class='row contact-form' action='sql/joueurs/add_joueur.php' method='POST'>
+					<form id='inscription-form' role='form' class='row contact-form' action=lib/sql/joueurs/add_joueur.php' method='POST'>
 						<div class='col-md-6'>
 								<input type='text' placeholder='Nom' name='nom' class='form-control'>
 								<input type='text' placeholder='Prénom' name='prenom' class='form-control'>
@@ -775,7 +762,10 @@
 	<script src="bower_components/angular/angular.js"></script>
 	<!-- <script src="bower_components/lumx/dist/js/lumx.js"></script>  -->
 
-	<script src="js/toucheffects.js"></script>
+	<script src="js/toucheffects.js">
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js"></script>
+	<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js"></script>
 
 
 	<script type="text/javascript">
@@ -792,10 +782,10 @@
 			// $(\'body\').scrollspy("refresh");
 		}*/
 		jQuery(document).ready(function ($) {
-			$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+			//$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 		
 			Init_Forms();
-			
+			initPagination();
 		
 		
 			
@@ -812,7 +802,7 @@
 			});
 			//$.scrollTo( 0 );
 			
-			$(\'.nav-tabs\').tab();
+			//$(\'.nav-tabs\').tab();
 			$(\'a[data-action="scrollTo"]\').click(function(e) {
 				e.preventDefault();
 				scrollX = $(\'.header\').height();
@@ -826,7 +816,7 @@
 				$(\'.navbar-collapse\').removeClass(\'in\');
 			});
 			
-			$(\'[data-toggle=dropdown]\').dropdown();
+			//$(\'[data-toggle=dropdown]\').dropdown();
 		
 			
 		});

@@ -108,19 +108,16 @@
 	echo '
 		<link href="css/bootstrap.min.css" rel="stylesheet">		
 		<link href="css/font-awesome.min.css" rel="stylesheet">
-		<link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
-	   
+ 
 		<link href="css/carousel.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/pagearticle.css" rel="stylesheet">
-		
+		<link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="css/default.css" /> <!-- caption hover effects -->
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<script src="js/modernizr.custom.js"></script>';
+		<script src="js/modernizr.custom.js"></script>
+		<script src="js/script.js"></script>';
 
-	//SCRIPT JS
-	echo '<script src="js/script.js"></script>';
-	
 	// LIENS TWITTER FACEBOOK
 	echo '<body data-spy="scroll" data-target="#navbar-main" data-offset="100">
 	 
@@ -158,7 +155,7 @@
 											<span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
 										</a>
 										<ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
-											<form role="form" id="formLogin" class="form" action="/lib/sql/joueurs/verif_login.php" method="POST">
+											<form role="form" id="formLogin" class="form" action="lib/sql/joueurs/verif_login.php" method="POST">
 												<label>Se connecter</label>
 												<input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
 												<input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
@@ -179,7 +176,7 @@
 												<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
 											</form>
 							
-											<form id="changePassword" role="form" action="/lib/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+											<form id="changePassword" role="form" action="lib/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
 												<input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
 												<input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
 												<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
@@ -189,7 +186,7 @@
 											<li class="divider"> </li>
 
 											<li>
-												<form class="form" action="/lib/sql/joueurs/deconnexion.php" method="POST">
+												<form class="form" action="lib/sql/joueurs/deconnexion.php" method="POST">
 													<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
 												</form>
 											</li>
@@ -257,10 +254,10 @@
 
 //---------------------------------------------ARTICLE------------------------------------------------------//
 	echo '<section id="article" data-speed="4" data-type="background">
-		<div id="credits" class="right">
+		<div id="reuters" class="right">
 			<p>' . $photo_credits . '</p>
 		</div>
-		<div class="container" id="article">
+		<div class="container">
 			<div class="col-md-8 col-sm-8">
 				<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
 					<h1 class="section-heading">' . $titre . '</h1>
@@ -284,7 +281,7 @@
 			
 		for ($i = 0; $i < $nb_articles_categorie; $i++){
 			echo '<div class="list-group list-articles-right">
-						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+						<a href="article.php?id=' . $articles_categorie[$i][0] . '" class="list-articles-item-right list-group-item col-md-12">
 							<span class="badge">' . $articles_categorie[$i][3] . '</span>
 							<img src="' . $articles_categorie[$i][11] . '" alt="' . $articles_categorie[$i][11] . '"/>
 							<h4 class="list-group-item-heading">' . $articles_categorie[$i][4] . '</h4>
@@ -301,7 +298,7 @@
 			
 		for ($j = 0; $j < $nb_articles_recents; $j++){
 			echo '<div class="list-group list-articles-right">
-						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+						<a href="article.php?id=' . $articles_recents[$j][0] . '" class="list-articles-item-right list-group-item col-md-12">
 							<span class="badge">' . $articles_recents[$j][3] . '</span>
 							<img src="' . $articles_recents[$j][11] . '" alt="' . $articles_recents[$j][11] . '"/>
 							<h4 class="list-group-item-heading">' . $articles_recents[$j][4] . '</h4>
@@ -336,7 +333,7 @@
 	if ($bConnected){
 		echo '
 			<div class="row post-container">		
-				<form id="post-form" role="form" class="row contact-form" action="/lib/sql/commentaires/add_commentaire.php" method="POST">
+				<form id="post-form" role="form" class="row contact-form" action="lib/sql/commentaires/add_commentaire.php" method="POST">
 					<div class="col-md-10 col-md-offset-1">
 						<input name="id_article" id="id_article" type="text" class="hidden" required="" value="' . $id_article . '">
 						<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
@@ -360,11 +357,11 @@
 						<p class="time pull-right">' . date_to_duration($commentaires[$i][4]) . '</p>
 						<p class="comment">' . html_entity_decode($commentaires[$i][3]) . '</p>
 						
-						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="/lib/sql/likes/add_like.php?like=1&id_article=' . $id_article . '&id_comm=' . $commentaires[$i][0] . '">
+						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="lib/sql/likes/add_like.php?like=1&id_article=' . $id_article . '&id_comm=' . $commentaires[$i][0] . '">
 							<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
 							<span>' . $commentaires[$i][6] . '</span>
 						</button>
-						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="/lib/sql/likes/add_like.php?like=0&id_article=' . $id_article . '&id_comm=' . $commentaires[$i][0] . '">
+						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="lib/sql/likes/add_like.php?like=0&id_article=' . $id_article . '&id_comm=' . $commentaires[$i][0] . '">
 							<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
 							<span>' . $commentaires[$i][5] . '</span>
 						</button>
@@ -430,7 +427,9 @@ echo '<footer>
 		});
 		
 		$(\'[data-toggle=dropdown]\').dropdown();
-	
+		
+		Init_Forms();
+		
 		// cache the window object
 	   $window = $(window);
 	 

@@ -7,7 +7,7 @@
 	session_start();
 	$login = $_SESSION['LoginJoueur'];	
 	$contenu = $_POST['contenu'];	
-	$contenu = $taVariable = htmlentities(nl2br($contenu));
+	$contenu = htmlentities(nl2br($contenu));
 	$id_article = $_POST['id_article'];
 
 	$sql = "INSERT INTO ArticlesCommentaire(IDArticle,Joueur,Contenu,DateHeurePub,NombreLikes,NombreDislikes) VALUES(?,?,?,NOW(),0,0)";

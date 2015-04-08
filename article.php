@@ -26,6 +26,7 @@
 	}
 	$idjoueur = $_SESSION['IDJoueur'];
 	$mailjoueur = $_SESSION['MailJoueur'];
+	$admin = $_SESSION['Admin'];
 	
 	if($loginjoueur != ""){
 		update_derniere_visite();
@@ -45,11 +46,16 @@
 
 //--------------------------------------INFOS SUR L'ARTICLE--------------------------------------//
 	$id_article = $_GET['id'];
-
+	
+	if (!is_numeric($id_article)){
+		echo 'pas numérique';
+		return;
+	}
+	
 	// Infos sur l'article en lui-même
 	$infos_article = get_article_infos($id_article);
 	if ($infos_article[0] == 0){
-		// article non trouvé
+		echo 'article non trouvé';
 		return;
 	}
 	$titre = $infos_article[4];

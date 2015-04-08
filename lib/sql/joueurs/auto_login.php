@@ -24,6 +24,7 @@ function auto_login(){
 			$_SESSION['IDJoueur'] = $enregistrement->IDJoueur;
 			$_SESSION['LoginJoueur'] = $enregistrement->Login;
 			$_SESSION['MailJoueur'] = $enregistrement->Mail;
+			$_SESSION['Admin'] = $enregistrement->Admin;
 			
 			setcookie('ParionsPotes', $key, time() + 3600 * 24 * 30, '/', 'www.parions-potes.fr', false, true);
 			

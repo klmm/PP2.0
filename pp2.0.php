@@ -24,6 +24,7 @@
 	}
 	$idjoueur = $_SESSION['IDJoueur'];
 	$mailjoueur = $_SESSION['MailJoueur'];
+	$admin = $_SESSION['Admin'];
 	
 	if($loginjoueur != ""){
 		update_derniere_visite();
@@ -667,7 +668,7 @@
 						<p class='section-highlight'>Un souci, une question, une idée? N'hésitez pas à nous contacter !</p>
 					</div>
 			
-					<form id='contact-form' role='form' class='row contact-form' action='mail/contact_mail.php' method='POST'>
+					<form id='contact-form' role='form' class='row contact-form' action='mail/.php' method='POST'>
 						<div class='col-md-6'>";
 						if ($bConnected == false){
 							echo "<input type='text' placeholder='Nom' name='nom' class='form-control' required='' data-validation-required-message='Nom obligatoire'>

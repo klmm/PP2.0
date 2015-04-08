@@ -5,6 +5,8 @@
 	$contenu = $_POST["contenu"];
 	$sujet = $_POST["objet"];
 
+	$contenu = htmlentities(nl2br($contenu));
+	
 	$passage_ligne = "\r\n";
 	
 	//=====Création de la boundary
@@ -20,12 +22,16 @@
 	 
 	//=====Création du message.
 	$message = $passage_ligne."--".$boundary.$passage_ligne;
+	
+	
 	//=====Ajout du message au format texte.
 	$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
 	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
 	$message.= $passage_ligne.$contenu.$passage_ligne;
 	//==========
 	$message.= $passage_ligne."--".$boundary.$passage_ligne;
+	
+	
 	//=====Ajout du message au format HTML
 	$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
 	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;

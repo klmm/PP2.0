@@ -313,7 +313,7 @@
 	// Colonne 1 sport - image - titre - catégorie
 	for ($i = 0; $i < $nb_tous; $i++) {
 	echo '
-					<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+					<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-0">
 						<a href="article.php?id=' . $arr_tous[$i][0] . '">
 							<span class="badge">' . $arr_tous[$i][2] . '</span>
 							<img src="' . $arr_tous[$i][11] . '" alt="' . $arr_tous[$i][11] . '"/>

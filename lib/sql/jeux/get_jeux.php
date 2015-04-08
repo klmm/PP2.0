@@ -7,7 +7,7 @@
 		$db = $bdd->getDB();
 
 		//On fait la requete sur le login
-		$sql = "SELECT * FROM Jeu ORDER BY DateHeureDebut DESC";
+		$sql = "SELECT * FROM jeu ORDER BY date_debut DESC";
 		$prep = $db->prepare($sql);
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
@@ -16,14 +16,14 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDJeu;
-			$arr[$i][1] = $enregistrement->DateHeureDebut;
-			$arr[$i][2] = $enregistrement->DateHeureFin;
-			$arr[$i][3] = $enregistrement->Sport;
-			$arr[$i][4] = $enregistrement->Competition;
-			$arr[$i][5] = $enregistrement->URL;
-			$id_photo = $enregistrement->IDImage;
-			$arr[$i][6] = $enregistrement->IDImage;
+			$arr[$i][0] = $enregistrement->id_jeu;
+			$arr[$i][1] = $enregistrement->date_debut;
+			$arr[$i][2] = $enregistrement->date_fin;
+			$arr[$i][3] = $enregistrement->sport;
+			$arr[$i][4] = $enregistrement->competition;
+			$arr[$i][5] = $enregistrement->url;
+			$id_photo = $enregistrement->id_image;
+			$arr[$i][6] = $enregistrement->id_image;
 			
 			$img = get_images_id($id_photo);
 			$arr[$i][7] = $img[1];
@@ -44,7 +44,7 @@
 		$date_actu = date('Y-m-d H:i:s');
 
 		//On fait la requete sur le login
-		$sql = "SELECT * FROM Jeu WHERE DateHeureFin < ? ORDER BY DateHeureFin DESC";
+		$sql = "SELECT * FROM jeu WHERE date_fin < ? ORDER BY date_fin DESC";
 		$prep = $db->prepare($sql);
 		$prep->bindValue(1,$date_actu,PDO::PARAM_STR);
 		$prep->execute();
@@ -54,14 +54,14 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDJeu;
-			$arr[$i][1] = $enregistrement->DateHeureDebut;
-			$arr[$i][2] = $enregistrement->DateHeureFin;
-			$arr[$i][3] = $enregistrement->Sport;
-			$arr[$i][4] = $enregistrement->Competition;
-			$arr[$i][5] = $enregistrement->URL;
-			$id_photo = $enregistrement->IDImage;
-			$arr[$i][6] = $enregistrement->IDImage;
+			$arr[$i][0] = $enregistrement->id_jeu;
+			$arr[$i][1] = $enregistrement->date_debut;
+			$arr[$i][2] = $enregistrement->date_fin;
+			$arr[$i][3] = $enregistrement->sport;
+			$arr[$i][4] = $enregistrement->competition;
+			$arr[$i][5] = $enregistrement->url;
+			$id_photo = $enregistrement->id_image;
+			$arr[$i][6] = $enregistrement->id_image;
 
 			$img = get_images_id($id_photo);
 			$arr[$i][7] = $img[1];
@@ -81,7 +81,7 @@
 		$date_actu = date('Y-m-d H:i:s');
 
 		//On fait la requete sur le login
-		$sql = "SELECT * FROM Jeu WHERE DateHeureDebut > ? ORDER BY DateHeureDebut ASC";
+		$sql = "SELECT * FROM jeu WHERE date_debut > ? ORDER BY date_debut ASC";
 		$prep = $db->prepare($sql);
 		$prep->bindValue(1,$date_actu,PDO::PARAM_STR);
 		$prep->execute();
@@ -91,14 +91,14 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDJeu;
-			$arr[$i][1] = $enregistrement->DateHeureDebut;
-			$arr[$i][2] = $enregistrement->DateHeureFin;
-			$arr[$i][3] = $enregistrement->Sport;
-			$arr[$i][4] = $enregistrement->Competition;
-			$arr[$i][5] = $enregistrement->URL;
-			$id_photo = $enregistrement->IDImage;
-			$arr[$i][6] = $enregistrement->IDImage;
+			$arr[$i][0] = $enregistrement->id_jeu;
+			$arr[$i][1] = $enregistrement->date_debut;
+			$arr[$i][2] = $enregistrement->date_fin;
+			$arr[$i][3] = $enregistrement->sport;
+			$arr[$i][4] = $enregistrement->competition;
+			$arr[$i][5] = $enregistrement->url;
+			$id_photo = $enregistrement->id_image;
+			$arr[$i][6] = $enregistrement->id_image;
 			
 			$img = get_images_id($id_photo);
 			$arr[$i][7] = $img[1];
@@ -118,7 +118,7 @@
 		$date_actu = date('Y-m-d H:i:s');
 
 		//On fait la requete sur le login
-		$sql = "SELECT * FROM Jeu WHERE (DateHeureDebut < ? AND DateHeureFin > ?) ORDER BY DateHeureDebut DESC";
+		$sql = "SELECT * FROM jeu WHERE (date_debut < ? AND date_fin > ?) ORDER BY date_debut DESC";
 		$prep = $db->prepare($sql);
 		$prep->bindValue(1,$date_actu,PDO::PARAM_STR);
 		$prep->bindValue(2,$date_actu,PDO::PARAM_STR);
@@ -129,14 +129,14 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDJeu;
-			$arr[$i][1] = $enregistrement->DateHeureDebut;
-			$arr[$i][2] = $enregistrement->DateHeureFin;
-			$arr[$i][3] = $enregistrement->Sport;
-			$arr[$i][4] = $enregistrement->Competition;
-			$arr[$i][5] = $enregistrement->URL;
-			$id_photo = $enregistrement->IDImage;
-			$arr[$i][6] = $enregistrement->IDImage;
+			$arr[$i][0] = $enregistrement->id_jeu;
+			$arr[$i][1] = $enregistrement->date_debut;
+			$arr[$i][2] = $enregistrement->date_fin;
+			$arr[$i][3] = $enregistrement->sport;
+			$arr[$i][4] = $enregistrement->competition;
+			$arr[$i][5] = $enregistrement->url;
+			$id_photo = $enregistrement->id_image;
+			$arr[$i][6] = $enregistrement->id_image;
 			
 			$img = get_images_id($id_photo);
 			$arr[$i][7] = $img[1];

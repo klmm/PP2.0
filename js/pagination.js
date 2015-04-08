@@ -1,6 +1,6 @@
 function initPagination() {
 	var listElement = $('.list-articles');
-	var perPage = 4;
+	var perPage = 12;
 	var numItems = listElement.children().size();
 	var numPages = Math.ceil(numItems/perPage);
 	 

@@ -78,11 +78,11 @@
 		<link href="css/carousel.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		
-		<link rel="stylesheet" type="text/css" href="css/default.css" /> <!-- caption hover effects -->
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/game-component.css" />
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/pagination.js"></script>
 		<script src="js/script.js"></script>
+		<script src="js/modernizr.custom.js"></script>
 		<style type="text/css"></style></head>';
 		
 	// LIENS TWITTER FACEBOOK
@@ -372,67 +372,6 @@
 
 
 
-//--------------------------------------POINT INFO--------------------------------------//
-	$arr_jeux = get_jeux_avenir();
-	$nb_jeux_avenir = sizeof($arr_jeux);
-
-	echo '
-	<div class="section" style="background-color: rgb(166, 109, 179); margin-bottom:80px;">	
-		<div class="container marketing">	
-			<div class="sectionSide" style="padding-bottom: 15px; color:white;">
-				<h2 class="section-heading">Point info</h2>
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2" style="text-align: center;">
-					<div id="twitter" style="padding:40px;">
-						<a class="twitter-timeline" href="https://twitter.com/ParionsPotes" width="100%" height="400" data-widget-id="463784722661777409">Tweets de @ParionsPotes</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-					</div>
-				</div>';
-	if ($nb_jeux_avenir > 0){
-			echo '
-				<div class="col-md-6 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
-					<ul class="grid cs-style-1">';
-					
-					for ($i = 0; $i < $nb_jeux_avenir; $i++) {
-						echo '
-						<li>
-							<figure>
-								<img src="' . $arr_jeux[$i][9] . '" alt="' . $arr_jeux[$i][9] . '">
-								<figcaption>
-									<h3>Du ' . date_format($arr_jeux[$i][1], 'd-m-Y') . ' au ' . date_format($arr_jeux[$i][2], 'd-m-Y') . ' soyez-prêts !</h3>
-									<a href="' . $arr_jeux[$i][5] . '" style="display:none;"></a>
-								</figcaption>
-							</figure>
-						</li>';
-						
-					}
-					
-					echo '
-					</ul>
-				</div>';
-	}
-				
-	echo'
-			</div>
-		</div>
-	</div>';
-//--------------------------------------FIN POINT INFOS--------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -443,74 +382,88 @@
 	$arr_jeux_finis = get_jeux_finis();
 	$nb_jeux_finis = sizeof($arr_jeux_finis);
 	
+	$arr_jeux = get_jeux_avenir();
+	$nb_jeux_avenir = sizeof($arr_jeux);
+	//<div class="section products" id="games" style="margin-bottom:120px;">
+	//<div id="games-container" class="container marketing ">
+	
+	echo '<div class="section products" id="games" style="margin-bottom:120px;">
+			<div class="sectionSide">
+				<h2 class="section-heading">Jeux</h2>
+				<p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p> 
+			</div>
+			<div class="">
+				<ul class="" style="padding:0;">';
+	
+	if ($nb_jeux_avenir > 0){
+	
+		for ($i = 0; $i < $nb_jeux_avenir; $i++) {
+			echo "
+			<li class=''>
+				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux[$i][6] . ")'>
+					<div class='game-content'>
+						<div class='game-text col-md-9'>
+							<div class='jumbotron'>
+								<h2>" . $arr_jeux[$i][3] . " - " . $arr_jeux[$i][4] . "</h2>
+								<p>" . $arr_jeux[$i][7] . "</p>
+							</div>
+						</div>
+						<div class='game-button col-md-3'>
+							<a class='btn btn-primary btn-lg' href='" . $arr_jeux[$i][5] . "'>Jouer</a>
+						</div>
+					</div>
+				</section>
+			</li>";
+		}
+	}
+	
 	if ($nb_jeux_encours > 0){
 	
-	echo "
-    <div class='container marketing'>
-		<div class='section products' id='games' style='margin-bottom:120px;'>
-			<div class='sectionSide'>
-				<h2 class='section-heading'>Jeux</h2>
-				<p class='section-highlight'>Venez parier et vous amuser avec notre panel de sports.</p> 
-			</div>
-			<div class='row'>
-				<ul class='grid cs-style-2'>";
-				
-				for ($i = 0; $i < $nb_jeux_encours; $i++) {
-					echo "
-					<li class='col-md-4'>
-						<figure>
-							// <img src='" . $arr_jeux_encours[$i][9] . "' alt='" . $arr_jeux_encours[$i][9] . "'>
-							<figcaption>
-								<a class='btn-block btn-lg' href='" . $arr_jeux_encours[$i][5] . "' target='_blank'>Jouer</a>
-							</figcaption>
-						</figure>
-					</li>";
-				}
+		for ($i = 0; $i < $nb_jeux_encours; $i++) {
+			echo "
+			<li class=''>
+				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux_encours[$i][6] . ")'>
+					<div class='game-content'>
+						<div class='game-text col-md-9'>
+							<div class='jumbotron'>
+								<h2>" . $arr_jeux_encours[$i][3] . " - " . $arr_jeux_encours[$i][4] . "</h2>
+								<p>" . $arr_jeux_encours[$i][7] . "</p>
+							</div>
+						</div>
+						<div class='game-button col-md-3'>
+							<a class='btn btn-primary btn-lg' href='" . $arr_jeux_encours[$i][5] . "'>Jouer</a>
+						</div>
+					</div>
+				</section>
+			</li>";
+		}
+
+	if ($nb_jeux_finis > 0){
+	
+		for ($i = 0; $i < $nb_jeux_finis; $i++) {
+			echo "
+			<li class=''>
+				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux_finis[$i][6] . ")'>
+					<div class='game-content'>
+						<div class='game-text col-md-9'>
+							<div class='jumbotron'>
+								<h2>" . $arr_jeux_finis[$i][3] . " - " . $arr_jeux_finis[$i][4] . "</h2>
+								<p>" . $arr_jeux_finis[$i][7] . "</p>
+							</div>
+						</div>
+						<div class='game-button col-md-3'>
+							<a class='btn btn-primary btn-lg' href='" . $arr_jeux_finis[$i][5] . "'>Jouer</a>
+						</div>
+					</div>
+				</section>
+			</li>";
+		}
+	}
+	
 	echo "				
 				</ul>
-			</div>";
-			
-			
-			// Archives
-			if ($nb_jeux_finis > 0){
-			
-			echo"
-			<div class='row' style='margin-bottom:10px;margin-top:10px;'>
-				<div class='collapse-group'>
-					<div class='collapse' id='archives' >
-						<ul class='grid cs-style-3'>
-							<li class='col-md-2'></li>";
-							
-						for ($i = 0; $i < $nb_jeux_finis; $i++) {
-							echo "
-							<li class='col-md-4'>
-								<figure>
-									<img src='" . $arr_jeux_finis[$i][9] . "' alt='" . $arr_jeux_finis[$i][9] . "'>
-									<figcaption>
-										<a class='btn-block btn-lg' href='" . $arr_jeux_finis[$i][5] . "' target='_blank'>Revoir</a>
-									</figcaption>
-								</figure>
-							</li>";
-						}
-							
-							
-				
-				
-				echo "  	<li class='col-md-2'></li>
-						</ul>
-					</div>";
-					
-					echo "
-					<div class='col-md-12' style='margin-top:10px;'>
-						<button class='btn btn-block btn-success btn-lg' data-toggle='collapse' data-target='#archives' lx-ripple>Archives</button>	
-					</div>";
-			}
-					
-	echo "
-				</div>
 			</div>
-		</div>
-	</div>";
+		</div>";
 	}
 //--------------------------------------FIN JEUX--------------------------------------//
 
@@ -746,7 +699,7 @@
 //--------------------------------------FOOTER--------------------------------------//
 	echo '<footer>
 			<div class="container ">
-				<p>© 2015 Parions Potes </p>
+				<p>&copy 2015 Parions Potes </p>
 			</div>
 		</footer>
 
@@ -821,6 +774,27 @@
 		
 			
 		});
+		
+		// cache the window object
+	   $window = $(window);
+		
+		$(\'section[data-type="background"]\').each(function(){
+		 // declare the variable to affect the defined data-type
+		 var $scroll = $(this);
+						 
+		  $(window).scroll(function() {
+			// HTML5 proves useful for helping with creating JS functions!
+			// also, negative value because we\'re scrolling upwards                             
+			var yPos = -($window.scrollTop() / $scroll.data(\'speed\')); 
+			 
+			// background position
+			var coords = \'50% \'+ yPos + \'px\';
+	 
+			// move the background
+			$scroll.css({ backgroundPosition: coords });    
+		  }); // end window scroll
+	   });  // end section function
+	   
 		var cbpAnimatedHeader = (function() {
 	 
 			var docElem = document.documentElement,

@@ -119,8 +119,6 @@
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/pagearticle.css" rel="stylesheet">
 		<link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" type="text/css" href="css/default.css" /> <!-- caption hover effects -->
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/script.js"></script>';
 

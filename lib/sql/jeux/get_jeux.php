@@ -22,14 +22,9 @@
 			$arr[$i][3] = $enregistrement->sport;
 			$arr[$i][4] = $enregistrement->competition;
 			$arr[$i][5] = $enregistrement->url;
-			$id_photo = $enregistrement->id_image;
-			$arr[$i][6] = $enregistrement->id_image;
-			
-			$img = get_images_id($id_photo);
-			$arr[$i][7] = $img[1];
-			$arr[$i][8] = $img[2];
-			$arr[$i][9] = $img[3];
-			
+			$arr[$i][6] = $enregistrement->image;
+			$arr[$i][7] = $enregistrement->description;
+
 			$i++;
 		}
 		
@@ -60,13 +55,8 @@
 			$arr[$i][3] = $enregistrement->sport;
 			$arr[$i][4] = $enregistrement->competition;
 			$arr[$i][5] = $enregistrement->url;
-			$id_photo = $enregistrement->id_image;
-			$arr[$i][6] = $enregistrement->id_image;
-
-			$img = get_images_id($id_photo);
-			$arr[$i][7] = $img[1];
-			$arr[$i][8] = $img[2];
-			$arr[$i][9] = $img[3];
+			$arr[$i][6] = $enregistrement->image;
+			$arr[$i][7] = $enregistrement->description;
 			$i++;
 		}
 		
@@ -97,13 +87,8 @@
 			$arr[$i][3] = $enregistrement->sport;
 			$arr[$i][4] = $enregistrement->competition;
 			$arr[$i][5] = $enregistrement->url;
-			$id_photo = $enregistrement->id_image;
-			$arr[$i][6] = $enregistrement->id_image;
-			
-			$img = get_images_id($id_photo);
-			$arr[$i][7] = $img[1];
-			$arr[$i][8] = $img[2];
-			$arr[$i][9] = $img[3];
+			$arr[$i][6] = $enregistrement->image;
+			$arr[$i][7] = $enregistrement->description;
 			$i++;
 		}
 		
@@ -135,13 +120,8 @@
 			$arr[$i][3] = $enregistrement->sport;
 			$arr[$i][4] = $enregistrement->competition;
 			$arr[$i][5] = $enregistrement->url;
-			$id_photo = $enregistrement->id_image;
-			$arr[$i][6] = $enregistrement->id_image;
-			
-			$img = get_images_id($id_photo);
-			$arr[$i][7] = $img[1];
-			$arr[$i][8] = $img[2];
-			$arr[$i][9] = $img[3];
+			$arr[$i][6] = $enregistrement->image;
+			$arr[$i][7] = $enregistrement->description;
 			$i++;
 		}
 		

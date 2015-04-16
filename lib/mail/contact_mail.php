@@ -1,11 +1,10 @@
 <?php
-
 	$nom = $_POST["nom"];
 	$mail = $_POST["mail"];
 	$contenu = $_POST["contenu"];
 	$sujet = $_POST["objet"];
 
-	$contenu = htmlentities(nl2br($contenu));
+	$contenu_html = nl2br($contenu);
 	
 	$passage_ligne = "\r\n";
 	
@@ -35,7 +34,7 @@
 	//=====Ajout du message au format HTML
 	$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
 	$message.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
-	$message.= $passage_ligne.$contenu.$passage_ligne;
+	$message.= $passage_ligne.$contenu_html.$passage_ligne;
 	//==========
 	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;
 	$message.= $passage_ligne."--".$boundary."--".$passage_ligne;

@@ -57,6 +57,7 @@
 			$enregistrement2 = $prep2->fetch();
 			if($enregistrement2){
 				$arr[$i][13] = 1;
+				$arr[$i][14] = $enregistrement2->forme;
 			}
 			else{
 				$arr[$i][13] = 0;

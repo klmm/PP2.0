@@ -499,7 +499,7 @@
 						<h2 class='section-heading'>Inscription</h2>
 						<p class='section-highlight'>Quelques infos avant les pronos !</p>
 					</div>
-					<form id='inscription-form' role='form' class='row contact-form' action=lib/sql/joueurs/add_joueur.php' method='POST'>
+					<form id='inscription-form' role='form' class='row contact-form' action='/lib/sql/joueurs/add_joueur.php' method='POST'>
 						<div class='col-md-6'>
 								<input type='text' placeholder='Nom' name='nom' class='form-control'>
 								<input type='text' placeholder='Prénom' name='prenom' class='form-control'>
@@ -621,7 +621,7 @@
 						<p class='section-highlight'>Un souci, une question, une idée? N'hésitez pas à nous contacter !</p>
 					</div>
 			
-					<form id='contact-form' role='form' class='row contact-form' action='mail/.php' method='POST'>
+					<form id='contact-form' role='form' class='row contact-form' action='/lib/mail/contact_mail.php' method='POST'>
 						<div class='col-md-6'>";
 						if ($bConnected == false){
 							echo "<input type='text' placeholder='Nom' name='nom' class='form-control' required='' data-validation-required-message='Nom obligatoire'>

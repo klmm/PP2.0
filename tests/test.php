@@ -1,5 +1,13 @@
 <?php
-	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+
+	$filename = "/data/mail_inscription.txt";
+	$handle = fopen($filename, "r");
+	$contenu_txt = fread($handle, filesize($filename));
+	fclose($handle);
+
+	echo 'TXT : ' . $contenu_txt;
+	
+	/*require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 
@@ -36,5 +44,5 @@
 			$prep3->bindValue(2,$id_cycliste,PDO::PARAM_INT);
 			$prep3->execute();
 		}
-	}
+	}*/
 ?>

@@ -1,0 +1,23 @@
+<html>
+	
+	<h1>Mailing Parions Potes</h1>
+
+	<form method="post" action="/lib/mail/form_admin_mail.php">
+		<input type="radio" name="dest" value="tous" checked>Tous
+		<input type="radio" name="dest" value="jeu">Jeu
+		<input type="radio" name="dest" value="admin">Admins
+		<input type="radio" name="dest" value="oubli">Oubli paris
+		<br/>
+		<label for="id_jeu">ID Jeu</label>
+		<input type="text" id="id_jeu" name="id_jeu">
+		<label for="id_cal">ID Calendrier</label>
+		<input type="text" id="id_cal" name="id_cal">
+		<br/>
+		<label for="objet">Objet</label>
+		<input type="text" id="objet" name="objet">
+		<br/>
+		<textarea name='contenu' placeholder='Contenu'></textarea>
+		<br/>
+		<button type='submit'/>Envoyer
+	</form>
+</html>

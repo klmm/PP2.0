@@ -1,5 +1,7 @@
 <?php
-
+	
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/mail/envoi_mails.php';
+	
  	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
@@ -92,6 +94,14 @@
 	$prep3->bindValue(5,$motdepasse,PDO::PARAM_STR);
 	$prep3->execute();
 	
+	$objet = "Bienvenue sur Parions Potes !";
+	$contenu_txt = 'Merci pour ton inscription sur Parions Potes ! Viens vite sur parions-potes.fr !
+
+En ce moment, tu peux jouer à ...
+
+A très vite !';
+
+	envoi_mail($login, $mail, $objet, $contenu_txt);
 	echo ('success;Félicitations, vous êtes maintenant inscrit sur Parions Potes !
 	Vous pouvez maintenant vous connecter en haut de la page afin de laisser vos commentaires et participer aux jeux !');
 		

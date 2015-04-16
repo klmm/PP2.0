@@ -445,15 +445,30 @@ padding-right:15px;*/
 	font-size: 14px;
 	text-align: right;	
 }
+.list-articles-item h4{
+	color:black;
+}
+
 .badge {
 	border-radius:5px;
 	background-color:rgb(115, 50, 130);
 	font-size: 14px;
+	float:right;
 }
 
 .list-group-item-heading {
   min-height: 38px;
   text-align: center;
+}
+
+.list-group-item:hover, .list-group-item:focus {
+  cursor: pointer;
+  background-color: #f5f5f5;
+}
+.list-group-item a{
+  text-decoration: none;
+  position: relative;
+  display: block;
 }
 
 #pagination {

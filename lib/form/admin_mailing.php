@@ -10,7 +10,7 @@
 	
 // --------------- DESTINATAIRES
 	
-	/*switch($dest){
+	switch($dest){
 		case "tous":			
 			$joueurs = get_joueurs_tous();
 		break;
@@ -23,15 +23,13 @@
 			$joueurs = get_joueurs_inscrits($id_jeu);
 		break;
 		
-		case "oubli":
+		/*case "oubli":
 			$joueurs = get_joueurs_oubli_paris($id_jeu, $id_cal);
-		break;	
-	}*/
+		break;	*/
+	}
 	
-	$joueurs[0][0] = 'Toto_gmail';
-	$joueurs[0][1] = 'thomas.cerato@gmail.com';
-	$joueurs[1][0] = 'contact_PP';
-	$joueurs[1][1] = 'contact@parions-potes.fr';
+	print_r($joueurs);
+
 // -----------------------------------
-	envoi_mails($joueurs, $objet, $contenu);
+	//envoi_mails($joueurs, $objet, $contenu);
 ?>

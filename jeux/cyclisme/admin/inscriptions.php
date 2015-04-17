@@ -41,13 +41,13 @@
 		if ($id_equipe_new != $id_equipe_en_cours){
 			$arr_equipe_affichage = get_equipe_id($id_equipe_new);
 			$id_equipe_en_cours = $id_equipe_new;
-			echo $arr_equipe_affichage[3] . '<br/>';
+			echo '<h2>' . $arr_equipe_affichage[3] . '</h2><br/>';
 		}
 		if ($cyclistes_tous[$i][13] == 0){
-			echo '<input type="checkbox" name="cyclistes[]" value="' . $cyclistes_tous[$i][0] . '">' . $cyclistes_tous[$i][3] . ' ' . $cyclistes_tous[$i][2] . '<input type="text" name="forme' . $cyclistes_tous[$i][0] .'" value="80"><br/>';
+			echo '<input type="checkbox" name="cyclistes[]" value="' . $cyclistes_tous[$i][0] . '">' . $cyclistes_tous[$i][3] . ' ' . $cyclistes_tous[$i][2] . '  <input type="text" name="forme' . $cyclistes_tous[$i][0] .'" value="80" maxlength="3" size="3"><br/>';
 		}
 		else{
-			echo '<input type="checkbox" name="cyclistes[]" value="' . $cyclistes_tous[$i][0] . '" checked>' . $cyclistes_tous[$i][3] . ' ' . $cyclistes_tous[$i][2] . '<input type="text" name="forme' . $cyclistes_tous[$i][0] .'" value="' . $cyclistes_tous[$i][14] .'"><br/>';
+			echo '<input type="checkbox" name="cyclistes[]" value="' . $cyclistes_tous[$i][0] . '" checked>' . $cyclistes_tous[$i][3] . ' ' . $cyclistes_tous[$i][2] . '  <input type="text" name="forme' . $cyclistes_tous[$i][0] .'" value="' . $cyclistes_tous[$i][14] .'" maxlength="3" size="3"><br/>';
 		}
 	}
 

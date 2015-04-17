@@ -46,6 +46,7 @@
 			$arr[$i][10] = $enregistrement->note_clm;
 			$arr[$i][11] = $enregistrement->photo;
 			$arr[$i][12] = $enregistrement->id_pays;
+			$arr[$i][15] = $enregistrement->note_baroudeur;
 			
 			//Cycliste inscrit ?
 			$id_cycliste = $enregistrement->id_cyclisme_athlete;
@@ -106,6 +107,7 @@
 			$arr[$i][10] = $enregistrement->note_clm;
 			$arr[$i][11] = $enregistrement->photo;
 			$arr[$i][12] = $enregistrement->id_pays;
+			$arr[$i][15] = $enregistrement->note_baroudeur;
 			$i++;
 		}
 		

@@ -66,7 +66,7 @@
 	
 	
 	// Ajout à la base
-	$sql = "UPDATE Joueurs SET Mdp = ? WHERE Login = ?";
+	$sql = "UPDATE Joueurs SET Mdp=?, PassChanged=1 WHERE Login = ?";
 	
 	$prep3 = $db->prepare($sql);
 	$prep3->bindValue(1,$new_pass,PDO::PARAM_STR);

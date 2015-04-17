@@ -53,6 +53,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
+		
 		<link rel="shortcut icon" href="img/CarrNoir.png">';
 		
 		
@@ -62,27 +63,17 @@
 
 	// BOOTSTRAP
 	echo '
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		
+		<link href="css/bootstrap.min.css" rel="stylesheet">	
 		<link href="css/font-awesome.min.css" rel="stylesheet">
-
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-		<!-- Custom styles for this template -->
-		<link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
-	   
 		<link href="css/carousel.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		
+		<link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="css/game-component.css" />
+		
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/pagination.js"></script>
 		<script src="js/script.js"></script>
-		<script src="js/modernizr.custom.js"></script>
 		<style type="text/css"></style></head>';
 		
 	// LIENS TWITTER FACEBOOK
@@ -125,7 +116,7 @@
 											<span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
 										</a>
 										<ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
-											<form role="form" id="formLogin" class="form" action="lib/sql/joueurs/verif_login.php" method="POST">
+											<form role="form" id="formLogin" class="form" action="/lib/form/connect_joueur.php" method="POST">
 												<label>Se connecter</label>
 												<input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
 												<input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
@@ -146,7 +137,7 @@
 												<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
 											</form>
 							
-											<form id="changePassword" role="form" action="lib/sql/joueurs/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+											<form id="changePassword" role="form" action="/lib/form/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
 												<input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
 												<input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
 												<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
@@ -156,7 +147,7 @@
 											<li class="divider"> </li>
 
 											<li>
-												<form id="logout-form" class="form" action="lib/sql/joueurs/deconnexion.php" method="POST">
+												<form id="logout-form" class="form" action="/lib/form/deconnect_joueur.php" method="POST">
 													<button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
 												</form>
 											</li>
@@ -324,6 +315,7 @@
 	}
 
 	echo '</ul>
+		</div>
 			<div class="row">
 			
 			<nav id="pagination">
@@ -384,9 +376,7 @@
 	
 	$arr_jeux = get_jeux_avenir();
 	$nb_jeux_avenir = sizeof($arr_jeux);
-	//<div class="section products" id="games" style="margin-bottom:120px;">
-	//<div id="games-container" class="container marketing ">
-	
+
 	echo '<div class="section products" id="games" style="margin-bottom:120px;">
 			<div class="sectionSide">
 				<h2 class="section-heading">Jeux</h2>
@@ -499,17 +489,14 @@
 						<h2 class='section-heading'>Inscription</h2>
 						<p class='section-highlight'>Quelques infos avant les pronos !</p>
 					</div>
-					<form id='inscription-form' role='form' class='row contact-form' action='/lib/sql/joueurs/add_joueur.php' method='POST'>
+					<form id='inscription-form' role='form' class='row contact-form' action='/lib/form/inscription_joueur.php' method='POST'>
 						<div class='col-md-6'>
 								<input type='text' placeholder='Nom' name='nom' class='form-control'>
 								<input type='text' placeholder='Prénom' name='prenom' class='form-control'>
-								<input type='text' placeholder='Login (entre 3 et 12 chiffres et lettres)' name='login' class='form-control' required='' data-validation-required-message='Veuillez choisir un login'>
 						</div>
 						<div class='col-md-6'>
-								<input type='email' placeholder='email' name='email' class='form-control' required='' data-validation-required-message='Veuillez indiquer votre adresse mail'>
-								<input type='password' placeholder='Mot de passe (entre et 8 et 20 chiffres et lettres)' name='motdepasse' class='form-control' required='' data-validation-required-message='Veuillez choisir un mot de passe'>
-								<input type='password' placeholder='Confirmation du mot de passe' name='confmotdepasse' class='form-control' required='' data-validation-required-message='Veuillez confirmer votre mot de passe'>
-								
+								<input type='text' placeholder='Login (entre 3 et 12 chiffres et lettres)' name='login' class='form-control' required='' data-validation-required-message='Veuillez choisir un login'>
+								<input type='email' placeholder='email' name='email' class='form-control' required='' data-validation-required-message='Veuillez indiquer une adresse mail valide'>	
 						</div>
 						<div class='col-md-4'></div>
 						<div class='col-md-4'>
@@ -526,7 +513,8 @@
 //--------------------------------------FIN INSCRIPTION--------------------------------------//
 
 
-
+/*<input type='password' placeholder='Mot de passe (entre et 8 et 20 chiffres et lettres)' name='motdepasse' class='form-control' required='' data-validation-required-message='Veuillez choisir un mot de passe'>
+<input type='password' placeholder='Confirmation du mot de passe' name='confmotdepasse' class='form-control' required='' data-validation-required-message='Veuillez confirmer votre mot de passe'>*/
 
 
 
@@ -621,7 +609,7 @@
 						<p class='section-highlight'>Un souci, une question, une idée? N'hésitez pas à nous contacter !</p>
 					</div>
 			
-					<form id='contact-form' role='form' class='row contact-form' action='/lib/mail/contact_mail.php' method='POST'>
+					<form id='contact-form' role='form' class='row contact-form' action='/lib/form/contact_mail.php' method='POST'>
 						<div class='col-md-6'>";
 						if ($bConnected == false){
 							echo "<input type='text' placeholder='Nom' name='nom' class='form-control' required='' data-validation-required-message='Nom obligatoire'>
@@ -703,78 +691,70 @@
 			</div>
 		</footer>
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<!--script src="./assets/js/docs.min.js"></script-->
-		<script src="js/classie.js"></script>
-		<script src="js/jquery.scrollTo.min.js"></script>
-		<script src="js/jqBootstrapValidation.js"></script>
-		
-		<!-- <script src="bower_components/jquery/dist/jquery.js"></script>-->
+	<script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/jquery.scrollTo.min.js"></script>
+	<script src="js/jqBootstrapValidation.js"></script>
 	<script src="bower_components/velocity/velocity.js"></script>
 	<script src="bower_components/moment/min/moment-with-locales.min.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
-	<!-- <script src="bower_components/lumx/dist/js/lumx.js"></script>  -->
-
-	<script src="js/toucheffects.js">
+	<script src="js/toucheffects.js"></script>
+	<script src="js/toucheffects.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js"></script>
 	<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js"></script>
 
 
-	<script type="text/javascript">
-		/*var pagedSections = ["#myCarousel","#games","#inscription","#presentation","#contact"];
-		//var pagedSections = ["#contact"];
-		var headerSize = 98;
+<script type="text/javascript">
+	/*var pagedSections = ["#myCarousel","#games","#inscription","#presentation","#contact"];
+	//var pagedSections = ["#contact"];
+	var headerSize = 98;
+	
+	var pageSection = function() {	
+		var viewportHeight = $(window).height();
 		
-		var pageSection = function() {	
-			var viewportHeight = $(window).height();
-			
-			$.each(pagedSections,function(index,value) {
-				$(value).css("min-height",viewportHeight-headerSize);
-			});	
-			// $(\'body\').scrollspy("refresh");
-		}*/
-		jQuery(document).ready(function ($) {
-			//$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+		$.each(pagedSections,function(index,value) {
+			$(value).css("min-height",viewportHeight-headerSize);
+		});	
+		// $(\'body\').scrollspy("refresh");
+	}*/
+
+    jQuery(document).ready(function ($) {
+		//$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+	
+		Init_Forms();
+		initPagination();
 		
-			Init_Forms();
-			initPagination();
-		
-		
-			
-			//$(\'body\').scrollspy({ target: \'#navbar-main\',offset:250 }) /// lign qui \'spy\' le scroll de la page et surligne les menusp
+		//$(\'body\').scrollspy({ target: \'#navbar-main\',offset:250 }) /// lign qui \'spy\' le scroll de la page et surligne les menusp
+		//pageSection();
+		$(window).resize(function() {
 			//pageSection();
-			$(window).resize(function() {
-				//pageSection();
-				 $(\'body\').scrollspy("refresh");
+			 $(\'body\').scrollspy("refresh");
+		});
+		$(\'#archive-toggle\').click(function() {
+			$(\'[data-spy="scroll"]\').each(function () {
+			  setTimeout(function(){ $(this).scrollspy(\'refresh\');}, 1000);		  
 			});
-			$(\'#archive-toggle\').click(function() {
-				$(\'[data-spy="scroll"]\').each(function () {
-				  setTimeout(function(){ $(this).scrollspy(\'refresh\');}, 1000);		  
-				});
-			});
-			//$.scrollTo( 0 );
-			
-			//$(\'.nav-tabs\').tab();
-			$(\'a[data-action="scrollTo"]\').click(function(e) {
-				e.preventDefault();
-				scrollX = $(\'.header\').height();
-				$(\'.menu\').toggleClass(\'active\');
-				if(this.hash == "#myCarousel") {
-					$(\'body\').scrollTo(0,500,null);
-						$(".section").removeClass("inactiveSection");
-				} else {
-					$(\'body\').scrollTo(this.hash, 500, {offset: -scrollX});
-				}
-				$(\'.navbar-collapse\').removeClass(\'in\');
-			});
-			
-			//$(\'[data-toggle=dropdown]\').dropdown();
+		});
+		//$.scrollTo( 0 );
 		
-			
+        //$(\'.nav-tabs\').tab();
+		$(\'a[data-action="scrollTo"]\').click(function(e) {
+			e.preventDefault();
+			scrollX = $(\'.header\').height();
+			$(\'.menu\').toggleClass(\'active\');
+			if(this.hash == "#myCarousel") {
+				$(\'body\').scrollTo(0,500,null);
+					$(".section").removeClass("inactiveSection");
+			} else {
+				$(\'body\').scrollTo(this.hash, 500, {offset: -scrollX});
+			}
+			$(\'.navbar-collapse\').removeClass(\'in\');
 		});
 		
+		//$(\'[data-toggle=dropdown]\').dropdown();
+	
 		// cache the window object
 	   $window = $(window);
 		
@@ -794,59 +774,61 @@
 			$scroll.css({ backgroundPosition: coords });    
 		  }); // end window scroll
 	   });  // end section function
-	   
-		var cbpAnimatedHeader = (function() {
+		
+		
+    });
+	var cbpAnimatedHeader = (function() {
+ 
+		var docElem = document.documentElement,
+			header = document.querySelector( \'header\' ),
+			didScroll = false,
+			changeHeaderOn = 98;
+			
 	 
-			var docElem = document.documentElement,
-				header = document.querySelector( \'header\' ),
-				didScroll = false,
-				changeHeaderOn = 98;
-				
-		 
-			function init() {
-				window.addEventListener( \'scroll\', function( event ) {
-					if( !didScroll ) {
-						didScroll = true;
-						setTimeout( scrollPage, 250 );
-					}
-				}, false );
-			}
-			function stickyMenu(element,nextelement) {
-				
-			}
-			function scrollPage() {
-				var sy = scrollY();
-				if ( sy >= changeHeaderOn ) {
-					classie.add( header, \'small\' );
+		function init() {
+			window.addEventListener( \'scroll\', function( event ) {
+				if( !didScroll ) {
+					didScroll = true;
+					setTimeout( scrollPage, 250 );
 				}
-				else {
-					classie.remove( header, \'small\' );
-				}
-				didScroll = false;
-				
-				var activeTarget = $("#navbar-main li.active a").attr("href");
-				//alert(activeTarget);
-				$(".activeSection").removeClass("activeSection");
-				if(sy > 650) {
-				$(".section").addClass("inactiveSection");
-				
-				$(activeTarget).addClass("activeSection");
-				} else {
-				$(".section").removeClass("inactiveSection");
-				}
-				
+			}, false );
+		}
+		function stickyMenu(element,nextelement) {
+			
+		}
+		function scrollPage() {
+			var sy = scrollY();
+			if ( sy >= changeHeaderOn ) {
+				classie.add( header, \'small\' );
 			}
-		 
-			function scrollY() {
-				return window.pageYOffset || docElem.scrollTop;
+			else {
+				classie.remove( header, \'small\' );
 			}
-		 
-			init();
-		 
-		})();
+			didScroll = false;
+			
+			var activeTarget = $("#navbar-main li.active a").attr("href");
+			//alert(activeTarget);
+			$(".activeSection").removeClass("activeSection");
+			if(sy > 650) {
+			$(".section").addClass("inactiveSection");
+			
+			$(activeTarget).addClass("activeSection");
+			} else {
+			$(".section").removeClass("inactiveSection");
+			}
+			
+		}
+	 
+		function scrollY() {
+			return window.pageYOffset || docElem.scrollTop;
+		}
+	 
+		init();
+	 
+	})();
 
 
-		</script>  
+	</script> 
 	  
 
 	</body></html>';

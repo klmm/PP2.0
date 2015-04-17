@@ -1,11 +1,27 @@
 <?php
 
-	$filename = "/data/mail_inscription.txt";
-	$handle = fopen($filename, "r");
-	$contenu_txt = fread($handle, filesize($filename));
-	fclose($handle);
+	echo '1<br/>';
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/inscriptions/update_inscriptions.php');
+	echo '2<br/>';
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/get_joueurs.php');
+	echo '3<br/>';
+	add_inscription(4,'Toto');
+	add_inscription(4,'Kevin');
+	add_inscription(4,'Tututu');
+	echo '4<br/>';
+	$arr = get_joueurs_inscrits(4);
+	echo '5<br/>';
+	echo 'Joueurs inscrits :<br/>';
+	print_r($arr);
 
+	/*$filename = "/jeux/cyclisme/2015/tour-de-france/classements/test.txt";
+	$handle = fopen($filename, "r+");
+	$contenu_txt = fread($handle, filesize($filename));
+	$ligne = fgets($filename);
+	fclose($handle);
+	
 	echo 'TXT : ' . $contenu_txt;
+	echo '<br/>LIGNE : ' . $ligne;*/
 	
 	/*require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();

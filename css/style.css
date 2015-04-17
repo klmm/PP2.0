@@ -271,7 +271,6 @@ font-size:20px;
 	font-weight: bold;
 	text-align: center;
 }
-}
 
 .section {
 	clear:both;
@@ -659,7 +658,7 @@ a.readmore i {
 	font-size:2em;
 }
 a.addToGoogleApps {
-padding:0;margin-top:20px;width:150px;height:40px;background-image:url(../img/addtogoogleapps2.png); no-repeat top left;
+padding:0;margin-top:20px;width:150px;height:40px;background-image:url(../img/addtogoogleapps2.png); no-repeat top-left;
 }
 a:hover {
 
@@ -873,7 +872,7 @@ width:75%;
     float: none;
 	margin:0;
   }
-  .sidebar-nav .navbar ul:not {
+  .sidebar-nav .navbar ul:not{
     display: block;
   }
   .sidebar-nav .navbar li {

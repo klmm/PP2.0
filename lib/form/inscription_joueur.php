@@ -7,8 +7,8 @@
 	$db = $bdd->getDB();
 	
 	$login = $_POST['login'];
-	$motdepasse = $_POST['motdepasse'];
-	$confmotdepasse = $_POST['confmotdepasse'];
+	//$motdepasse = $_POST['motdepasse'];
+	//$confmotdepasse = $_POST['confmotdepasse'];
 	$mail = $_POST['email'];
 	$nom = $_POST['nom'];
 	$prenom = $_POST['prenom'];
@@ -21,7 +21,7 @@
 		return;
 	}
 	
-	// Taille du mot de passse entre 8 et 20 caractères
+	/*// Taille du mot de passse entre 8 et 20 caractères
 	$taille = strlen($motdepasse);
 	if ($taille < 7 or $taille > 20){
 		echo 'Le mot de passe doit contenir entre 8 et 20 caractères.';
@@ -33,6 +33,13 @@
 		echo 'Les mots de passe sont différents !';
 		return;
 	}
+	// Mdp constitué de lettres et de chiffres
+	$new_string = ereg_replace("[^A-Za-z0-9]", "", $motdepasse);
+	if ( $new_string != $motdepasse){
+		echo 'Le mot de passe ne doit contenir que des lettres et des chiffres !';
+		return;
+	}
+	*/
 	
 	
 	// Login constitué de lettres et de chiffres
@@ -41,14 +48,7 @@
 		echo 'Le login ne doit contenir que des lettres et des chiffres !';
 		return;
 	}
-	
-	// Mdp constitué de lettres et de chiffres
-	$new_string = ereg_replace("[^A-Za-z0-9]", "", $motdepasse);
-	if ( $new_string != $motdepasse){
-		echo 'Le mot de passe ne doit contenir que des lettres et des chiffres !';
-		return;
-	}
-	
+
 	// Login unique
 	$sql = "SELECT * FROM Joueurs WHERE Login=?";
 	
@@ -62,7 +62,6 @@
 		echo 'Ce login est déjà utilisé par un autre joueur...';
 		return;
 	}
-	
 	
 	// Mail unique
 	$sql = "SELECT * FROM Joueurs WHERE Mail=?";
@@ -78,13 +77,20 @@
 		return;
 	}
 	
+	// Génération d'un mot de passe aléatoire de 8 à 12 caractères
+	$characters = '2345679abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+	$length = rand(8,12);
+    $newpass = '';
+    for ($i = 0; $i < $length; $i++) {
+        $newpass .= $characters[rand(0, $charactersLength - 1)];
+    }
+	
+	// Modification du mot de passe dans la base
+	$motdepasse = hash('sha512', $newpass . $login);
 
-	// Hash du mot de passe + login
-	$motdepasse = hash('sha512', $motdepasse . $login);
-	
-	
 	// Ajout à la base
-	$sql = "INSERT INTO Joueurs(Nom,Prenom,Mail,Login,Mdp,Admin,DateHeureInscription,DerniereVisite) VALUES(?,?,?,?,?,0,NOW(),NOW())";
+	$sql = "INSERT INTO Joueurs(Nom,Prenom,Mail,Login,Mdp,Admin,DateHeureInscription,DerniereVisite,PassChanged) VALUES(?,?,?,?,?,0,NOW(),NOW(),0)";
 	
 	$prep3 = $db->prepare($sql);
 	$prep3->bindValue(1,$nom,PDO::PARAM_STR);
@@ -99,10 +105,14 @@
 
 En ce moment, tu peux jouer à ...
 
+Ton mot de passe : ' . $newpass . '
+
+Pense bien à le changer après t\'être connecté la première fois.
+
 A très vite !';
 
 	envoi_mail($login, $mail, $objet, $contenu_txt);
 	echo ('success;Félicitations, vous êtes maintenant inscrit sur Parions Potes !
-	Vous pouvez maintenant vous connecter en haut de la page afin de laisser vos commentaires et participer aux jeux !');
+	Un mail vient de vous être envoyé à l\'adresse ' . $mail . ' avec votre mot de passe. Pensez bien à le changer après votre première connexion.');
 		
 ?>

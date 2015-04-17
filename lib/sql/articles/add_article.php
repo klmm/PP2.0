@@ -26,7 +26,7 @@
 	$prep->bindValue(4,$titre,PDO::PARAM_STR);
 	$prep->bindValue(5,$idRub,PDO::PARAM_INT);
 	$prep->bindValue(6,$numRub,PDO::PARAM_INT);
-	$prep->bindValue(7,$photo,PDO::PARAM_INT
+	$prep->bindValue(7,$photo,PDO::PARAM_INT);
 	$prep->bindValue(8,$auteur,PDO::PARAM_STR);
 	$prep->execute();
 	

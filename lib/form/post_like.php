@@ -3,7 +3,7 @@
 
 	$joueur = $_SESSION['LoginJoueur'];
 	if ($joueur == ''){
-		echo 'Joueur inexistant';
+		echo 'Joueur non-connecté';
 		return;
 	}
 	

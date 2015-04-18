@@ -110,6 +110,40 @@ function Init_Forms()
 			
 		});
 		
+		$("#lostPassword").submit(function(e)
+		{
+			$('.alert').alert('close');
+			var postData = $(this).serializeArray();
+			var formURL = $(this).attr("action");
+			$.ajax(
+			{
+				url : formURL,
+				type: "POST",
+				data : postData,
+				success:function(data, textStatus, jqXHR) 
+				{
+					var result = data.split(';');
+					if (result[0] == 'success'){
+						location.reload();
+					}else {
+						$( "#lostPassword" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+						'<strong>Attention!  </strong>'+result[0]+'</div>' );
+					}
+					$('form')[0].reset();
+				},
+				error: function(jqXHR, textStatus, errorThrown) 
+				{
+					$( "#lostPassword" ).append( '<div class="alert alert-danger alert-dismissible" role="alert">'+
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+						'<strong>Attention!  </strong>'+errorThrown+'</div>' );
+					     
+				}
+			});
+			e.preventDefault(); //STOP default action
+			
+		});
+		
 		$("#changePassword").submit(function(e)
 		{
 			$('.alert').alert('close');

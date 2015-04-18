@@ -64,14 +64,14 @@ margin-top:30px;
   height: 240px;
   background-color: #777;
 }
-.carousel-inner > .item > img {
+.carousel-inner > .item > a > img {
   position: absolute;
   top: 0;
   left: 0;
   min-width: 100%;
-  max-width:none;
   opacity : 0.8;
   min-height: 100%;
+  max-height:none;
 }
 .carousel-indicators li {
 //border-color:#333;
@@ -135,15 +135,15 @@ top:160px;text-align:left;
 	top:80px;
 	}
 .carousel-caption h1,.carousel-caption h2 {
-font-family: 'Quicksand', cursive;
+//font-family: 'Quicksand', cursive;
 font-weight: 400;
 font-size: 2em;
 margin: 0px;
 margin-bottom:5px;
-letter-spacing: -2px;
+//letter-spacing: -2px;
 text-align:left;
 
-xtext-transform: uppercase;
+text-transform: uppercase;
 
 }
 .carousel-caption h1 strong,.carousel-caption h2 strong{
@@ -152,17 +152,22 @@ xfont-style:italic;
 color:#ed3f32;
 font-weight:400;
 font-size:1.3em;
-xtext-transform: uppercase;
+text-transform: uppercase;
 xtext-transform: none;
 xtext-shadow:1px 1px 2px rgba(0,0,0,0.7);
 
 }
 
 .carousel-caption .unes-sport {
-  float: left;
-  color: chartreuse;
   font-weight: bold;
+  font-size: 20px;
+  text-align: right;
+}
 
+.carousel-caption .unes-intro {
+  text-align: justify;
+  max-height: 39px;
+  overflow: hidden;
 }
 
 #news-section {

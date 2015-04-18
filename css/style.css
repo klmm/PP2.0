@@ -450,7 +450,7 @@ padding-right:15px;*/
 
 .badge {
 	border-radius:5px;
-	background-color:rgb(115, 50, 130);
+	//background-color:rgb(115, 50, 130);
 	font-size: 14px;
 	float:right;
 }
@@ -501,6 +501,40 @@ padding-right:15px;*/
     -o-transition: width 0.35s ease;
     transition: width 0.35s ease;
 }
+
+/* ______________________________ couleurs sports___________________________________*/
+.bcr-foot{
+    background-color: #96ff00;
+}
+.cr-foot{
+    color: #96ff00;
+}
+.bcr-rugby{
+    background-color: #ff004e;
+}
+.cr-rugby{
+    color: #ff004e;
+}
+.bcr-cyclisme{
+    background-color: #f0da00;
+}
+.cr-cyclisme{
+    color: #f0da00;
+}
+.bcr-ski{
+    background-color: #0095f0;
+}
+.cr-ski{
+    color: #0095f0;
+}
+.bcr-biathlon{
+    background-color: #ef3afb;
+}
+.cr-biathlon{
+    color: #ef3afb;
+}
+
+
 
 /* __________________________________________media________________________________________________*/
 @media (min-width: 992px) and  (max-width:1200px) {

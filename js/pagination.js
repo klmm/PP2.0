@@ -22,7 +22,7 @@ function initPagination() {
 	}
 
 	listElement.children().css('display', 'none');
-	listElement.children().slice(0, perPage).css('display', 'block');
+	listElement.children().slice(0, perPage).css('display', 'inline-flex');
 
 	$('.pagination li a').click(function(){
 		

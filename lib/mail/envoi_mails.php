@@ -3,8 +3,8 @@
 	function envoi_mails($joueurs, $sujet, $contenu)
 	{
 		foreach ($joueurs as $joueur) {
-			$login_joueur = $joueur[0];
-			$mail_joueur = $joueur[1];
+			$login_joueur = $joueur['login'];
+			$mail_joueur = $joueur['mail'];
 			
 			envoi_mail($login_joueur, $mail_joueur, $sujet, $contenu);
 		}
@@ -28,28 +28,28 @@
 			return;
 		}
 		
-		// Création de la boundary
+		// Crï¿½ation de la boundary
 		$boundary = "-----=".md5(rand());
 		
 		// Texte
 		$entete_txt = "Salut " . $login . ",";
-		$signature_txt = "Sportivement," . $passage_ligne . $passage_ligne . "L'équipe Parions Potes" . $passage_ligne . "www.parions-potes.fr";
+		$signature_txt = "Sportivement," . $passage_ligne . $passage_ligne . "L'ï¿½quipe Parions Potes" . $passage_ligne . "www.parions-potes.fr";
 			
 		// Html
 		$entete_html = "<html><p style= 'font: serif'>Salut " . $login . ",<br/><br/>";
-		$signature_html = "<br/><br/>Sportivement,<br/><br/>L'équipe Parions Potes<br/>www.parions-potes.fr</p></html>";
+		$signature_html = "<br/><br/>Sportivement,<br/><br/>L'ï¿½quipe Parions Potes<br/>www.parions-potes.fr</p></html>";
 		
-		// Ecriture du message avec en-tête, signature
+		// Ecriture du message avec en-tï¿½te, signature
 		$message_final_txt = $entete_txt . $passage_ligne . $passage_ligne . $contenu_txt . $passage_ligne . $passage_ligne . $signature_txt;
 		$message_final_html = $entete_html . $contenu_html . $signature_html;
 	
-		// Création du header de l'e-mail.
+		// Crï¿½ation du header de l'e-mail.
 		$header = "From: \"Parions Potes\"<parionsp@20gp.ovh.net>".$passage_ligne;
 		$header.= "Reply-to: \"Parions Potes\" <contact@parions-potes.fr>".$passage_ligne;
 		$header.= "MIME-Version: 1.0".$passage_ligne;
 		$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 		 
-		// Création du message.
+		// Crï¿½ation du message.
 		$message = $passage_ligne."--".$boundary.$passage_ligne;
 		
 		// Ajout du message au format texte.

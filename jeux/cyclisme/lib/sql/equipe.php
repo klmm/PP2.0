@@ -1,12 +1,12 @@
 <?php
 
 	function get_equipes_non_inscrites($id_jeu, $id_cal){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On prépare la requête pour aller chercher les articles
+		//On prï¿½pare la requï¿½te pour aller chercher les articles
 		$sql = "SELECT *
 				FROM cyclisme_equipe
 				WHERE NOT EXISTS (
@@ -24,13 +24,13 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->id_cyclisme_equipe;
-			$arr[$i][1] = $enregistrement->niveau;
-			$arr[$i][2] = $enregistrement->nom_complet;
-			$arr[$i][3] = $enregistrement->nom_courant;
-			$arr[$i][4] = $enregistrement->nom_court;
-			$arr[$i][5] = $enregistrement->photo;
-			$arr[$i][7] = $enregistrement->saison;
+			$arr[$i]['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
+			$arr[$i]['niveau'] = $enregistrement->niveau;
+			$arr[$i]['nom_complet'] = $enregistrement->nom_complet;
+			$arr[$i]['nom_courant'] = $enregistrement->nom_courant;
+			$arr[$i]['nom_court'] = $enregistrement->nom_court;
+			$arr[$i]['photo'] = $enregistrement->photo;
+			$arr[$i]['saison'] = $enregistrement->saison;
 			$i++;
 		}
 		
@@ -38,12 +38,12 @@
 	}
 	
 	function get_equipes_inscrites($id_jeu, $id_cal){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On prépare la requête pour aller chercher les articles
+		//On prï¿½pare la requï¿½te pour aller chercher les articles
 		$sql = "SELECT *
 				FROM cyclisme_equipe
 				WHERE EXISTS (
@@ -61,13 +61,13 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->id_cyclisme_equipe;
-			$arr[$i][1] = $enregistrement->niveau;
-			$arr[$i][2] = $enregistrement->nom_complet;
-			$arr[$i][3] = $enregistrement->nom_courant;
-			$arr[$i][4] = $enregistrement->nom_court;
-			$arr[$i][5] = $enregistrement->photo;
-			$arr[$i][7] = $enregistrement->saison;
+			$arr[$i]['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
+			$arr[$i]['niveau'] = $enregistrement->niveau;
+			$arr[$i]['nom_complet'] = $enregistrement->nom_complet;
+			$arr[$i]['nom_courant'] = $enregistrement->nom_courant;
+			$arr[$i]['nom_court'] = $enregistrement->nom_court;
+			$arr[$i]['photo'] = $enregistrement->photo;
+			$arr[$i]['saison'] = $enregistrement->saison;
 			$i++;
 		}
 		
@@ -75,12 +75,12 @@
 	}
 	
 	function get_equipe_id($id_equipe){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On prépare la requête pour aller chercher les articles
+		//On prï¿½pare la requï¿½te pour aller chercher les articles
 		$sql = "SELECT *
 				FROM cyclisme_equipe
 				WHERE id_cyclisme_equipe = ?";
@@ -92,13 +92,13 @@
 		//On met les articles dans le tableau
 		$enregistrement = $prep->fetch();
 
-		$arr[0] = $enregistrement->id_cyclisme_equipe;
-		$arr[1] = $enregistrement->niveau;
-		$arr[2] = $enregistrement->nom_complet;
-		$arr[3] = $enregistrement->nom_courant;
-		$arr[4] = $enregistrement->nom_court;
-		$arr[5] = $enregistrement->photo;
-		$arr[7] = $enregistrement->saison;
+		$arr['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
+                $arr['niveau'] = $enregistrement->niveau;
+                $arr['nom_complet'] = $enregistrement->nom_complet;
+                $arr['nom_courant'] = $enregistrement->nom_courant;
+                $arr['nom_court'] = $enregistrement->nom_court;
+                $arr['photo'] = $enregistrement->photo;
+                $arr['saison'] = $enregistrement->saison;
 		$i++;
 		
 		return $arr;

@@ -1,7 +1,7 @@
 <?php
 
 	function get_articles_tous(){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -12,18 +12,18 @@
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
-		//On fait le test si un enrengistrement a été trouvé
+		//On fait le test si un enrengistrement a ï¿½tï¿½ trouvï¿½
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDArticle;
-			$arr[$i][1] = $enregistrement->DateHeurePub;
-			$arr[$i][2] = $enregistrement->Categorie;
-			$arr[$i][3] = $enregistrement->SousCategorie;
-			$arr[$i][4] = $enregistrement->Titre;
+			$arr[$i]['id_article'] = $enregistrement->IDArticle;
+			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['categorie'] = $enregistrement->Categorie;
+			$arr[$i]['souscategorie'] = $enregistrement->SousCategorie;
+			$arr[$i]['titre'] = $enregistrement->Titre;
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
-			$arr[$i][7] = $enregistrement->IDPhoto;
-			$arr[$i][8] = $enregistrement->Auteur;
+			$arr[$i]['photo_id'] = $enregistrement->IDPhoto;
+			$arr[$i]['auteur'] = $enregistrement->Auteur;
 
 			$i++;
 		}
@@ -31,16 +31,16 @@
 		$tab_img = get_images_id($tab_id_photo);
 		
 		for($j=0; $j<$i; $j++){
-			$arr[$j][9] = $tab_img[$j][1];	//titre
-			$arr[$j][10] = $tab_img[$j][2]; //crédits
-			$arr[$j][11] = $tab_img[$j][3];	//chemin
+			$arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
+			$arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //credits
+			$arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
 		}
 		
 		return $arr;
 	}
 	
 	function get_nombre_total_articles(){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -53,7 +53,7 @@
 	}
 	
 	function get_articles_tranche($nombre, $decalage){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -64,18 +64,18 @@
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
-		//On fait le test si un enrengistrement a été trouvé
+		//On fait le test si un enrengistrement a ï¿½tï¿½ trouvï¿½
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDArticle;
-			$arr[$i][1] = $enregistrement->DateHeurePub;
-			$arr[$i][2] = $enregistrement->Categorie;
-			$arr[$i][3] = $enregistrement->SousCategorie;
-			$arr[$i][4] = $enregistrement->Titre;
+			$arr[$i]['id_article'] = $enregistrement->IDArticle;
+			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['categorie'] = $enregistrement->Categorie;
+			$arr[$i]['souscategorie'] = $enregistrement->SousCategorie;
+			$arr[$i]['titre'] = $enregistrement->Titre;
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
-			$arr[$i][7] = $enregistrement->IDPhoto;
-			$arr[$i][8] = $enregistrement->Auteur;
+			$arr[$i]['photo_id'] = $enregistrement->IDPhoto;
+			$arr[$i]['auteur'] = $enregistrement->Auteur;
 
 			$i++;
 		}
@@ -83,16 +83,16 @@
 		$tab_img = get_images_id($tab_id_photo);
 		
 		for($j=0; $j<$i; $j++){
-			$arr[$j][9] = $tab_img[$j][1];	//titre
-			$arr[$j][10] = $tab_img[$j][2]; //crédits
-			$arr[$j][11] = $tab_img[$j][3];	//chemin
+			$arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
+			$arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //credits
+			$arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
 		}
 		
 		return $arr;
 	}
 	
 	function get_articles_categorie($categ){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -104,18 +104,18 @@
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
-		//On fait le test si un enrengistrement a été trouvé
+		//On fait le test si un enrengistrement a ï¿½tï¿½ trouvï¿½
 		$i = 0;
-		while( $enregistrement = $prep->fetch())
+		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDArticle;
-			$arr[$i][1] = $enregistrement->DateHeurePub;
-			$arr[$i][2] = $enregistrement->Categorie;
-			$arr[$i][3] = $enregistrement->SousCategorie;
-			$arr[$i][4] = $enregistrement->Titre;
+			$arr[$i]['id_article'] = $enregistrement->IDArticle;
+			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['categorie'] = $enregistrement->Categorie;
+			$arr[$i]['souscategorie'] = $enregistrement->SousCategorie;
+			$arr[$i]['titre'] = $enregistrement->Titre;
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
-			$arr[$i][7] = $enregistrement->IDPhoto;
-			$arr[$i][8] = $enregistrement->Auteur;
+			$arr[$i]['photo_id'] = $enregistrement->IDPhoto;
+			$arr[$i]['auteur'] = $enregistrement->Auteur;
 
 			$i++;
 		}
@@ -123,16 +123,16 @@
 		$tab_img = get_images_id($tab_id_photo);
 		
 		for($j=0; $j<$i; $j++){
-			$arr[$j][9] = $tab_img[$j][1];	//titre
-			$arr[$j][10] = $tab_img[$j][2]; //crédits
-			$arr[$j][11] = $tab_img[$j][3];	//chemin
+			$arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
+			$arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //credits
+			$arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
 		}
 		
 		return $arr;
 	}
 
 	function get_articles_souscategorie($categ, $souscat){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -145,46 +145,46 @@
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
-		//On fait le test si un enrengistrement a été trouvé
+		//On fait le test si un enrengistrement a ï¿½tï¿½ trouvï¿½
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDArticle;
-			$arr[$i][1] = $enregistrement->DateHeurePub;
-			$arr[$i][2] = $enregistrement->Categorie;
-			$arr[$i][3] = $enregistrement->SousCategorie;
-			$arr[$i][4] = $enregistrement->Titre;
+			$arr[$i]['id_article'] = $enregistrement->IDArticle;
+			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['categorie'] = $enregistrement->Categorie;
+			$arr[$i]['souscategorie'] = $enregistrement->SousCategorie;
+			$arr[$i]['titre'] = $enregistrement->Titre;
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
-			$arr[$i][7] = $enregistrement->IDPhoto;
-			$arr[$i][8] = $enregistrement->Auteur;
-			
+			$arr[$i]['photo_id'] = $enregistrement->IDPhoto;
+			$arr[$i]['auteur'] = $enregistrement->Auteur;
+
 			$i++;
 		}
-					
+		
 		$tab_img = get_images_id($tab_id_photo);
 		
 		for($j=0; $j<$i; $j++){
-			$arr[$j][9] = $tab_img[$j][1];	//titre
-			$arr[$j][10] = $tab_img[$j][2]; //crédits
-			$arr[$j][11] = $tab_img[$j][3];	//chemin
+			$arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
+			$arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //credits
+			$arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
 		}
 		
 		return $arr;
 	}
 	
 	function get_articles_unes(){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On récupère les ID des articles
+		//On rï¿½cupï¿½re les ID des articles
 		$sql = "SELECT * FROM ArticlesUnes ORDER BY IDArticleUne ASC";
 		$prep = $db->prepare($sql);
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 		
-		//On prépare la requête pour aller chercher les articles
+		//On prï¿½pare la requï¿½te pour aller chercher les articles
 		$sql = "SELECT * FROM Articles WHERE IDArticle = ?";
 		$prep2 = $db->prepare($sql);
 		$prep2->setFetchMode(PDO::FETCH_OBJ);
@@ -199,37 +199,37 @@
 			
 			if ($enregistrement2 = $prep2->fetch()){
 				
-				$arr[$i][0] = $enregistrement2->IDArticle;
-				$arr[$i][1] = $enregistrement2->DateHeurePub;
-				$arr[$i][2] = $enregistrement2->Categorie;
-				$arr[$i][3] = $enregistrement2->SousCategorie;
-				$arr[$i][4] = $enregistrement2->Titre;
-				$tab_id_photo[$i] = $enregistrement2->IDPhoto;
-				$arr[$i][7] = $enregistrement2->IDPhoto;
-				$arr[$i][8] = $enregistrement2->Auteur;
+                            $arr[$i]['id_article'] = $enregistrement2->IDArticle;
+                            $arr[$i]['dateheurepub'] = $enregistrement2->DateHeurePub;
+                            $arr[$i]['categorie'] = $enregistrement2->Categorie;
+                            $arr[$i]['souscategorie'] = $enregistrement2->SousCategorie;
+                            $arr[$i]['titre'] = $enregistrement2->Titre;
+                            $tab_id_photo[$i] = $enregistrement2->IDPhoto;
+                            $arr[$i]['photo_id'] = $enregistrement2->IDPhoto;
+                            $arr[$i]['auteur'] = $enregistrement2->Auteur;
 
-				$i++;
+                            $i++;
 			}
 		}
 		
 		$tab_img = get_images_id($tab_id_photo);
 		
 		for($j=0; $j<$i; $j++){
-			$arr[$j][9] = $tab_img[$j][1];	//titre
-			$arr[$j][10] = $tab_img[$j][2]; //crédits
-			$arr[$j][11] = $tab_img[$j][3];	//chemin
+                    $arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
+                    $arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //crï¿½dits
+                    $arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
 		}
 		
 		return $arr;
 	}
 	
 	function get_article_infos($id){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On prépare la requête pour aller chercher les articles
+		//On prï¿½pare la requï¿½te pour aller chercher les articles
 		$sql = "SELECT * FROM Articles WHERE IDArticle = ?";
 		$prep = $db->prepare($sql);
 		$prep->setFetchMode(PDO::FETCH_OBJ);
@@ -239,20 +239,20 @@
 		//On met les articles dans le tableau
 		if( $enregistrement = $prep->fetch() )
 		{
-			$arr[0] = $enregistrement->IDArticle;
-			$arr[1] = $enregistrement->DateHeurePub;
-			$arr[2] = $enregistrement->Categorie;
-			$arr[3] = $enregistrement->SousCategorie;
-			$arr[4] = $enregistrement->Titre;
+			$arr['id_article'] = $enregistrement->IDArticle;
+			$arr['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr['categorie'] = $enregistrement->Categorie;
+			$arr['souscategorie'] = $enregistrement->SousCategorie;
+			$arr['titre'] = $enregistrement->Titre;
 			$tab_id_photo[0] = $enregistrement->IDPhoto;
-			$arr[7] = $enregistrement->IDPhoto;
-			$arr[8] = $enregistrement->Auteur;
+			$arr['photo_id'] = $enregistrement->IDPhoto;
+			$arr['auteur'] = $enregistrement->Auteur;
 			
 			$tab_img = get_images_id($tab_id_photo);
 		
-			$arr[9] = $tab_img[0][1];	//titre
-			$arr[10] = $tab_img[0][2]; //crédits
-			$arr[11] = $tab_img[0][3];	//chemin
+			$arr['photo_titre'] = $tab_img[0]['titre'];	//titre
+			$arr['photo_credits'] = $tab_img[0]['credits']; //crï¿½dits
+			$arr['photo_chemin'] = $tab_img[0]['chemin'];	//chemin
 		}
 		
 		return $arr;

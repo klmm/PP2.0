@@ -54,18 +54,18 @@
 	
 	// Infos sur l'article en lui-même
 	$infos_article = get_article_infos($id_article);
-	if ($infos_article[0] == 0){
+	if ($infos_article['id_article'] == 0){
 		echo 'article non trouvé';
 		return;
 	}
-	$titre = $infos_article[4];
-	$auteur = $infos_article[8];
-	$photo_chemin = $infos_article[11];
-	$photo_credits = $infos_article[10];
-	$photo_titre = $infos_article[9];
-	$categorie = $infos_article[2];
-	$sous_categorie = $infos_article[3];
-	$date_pub = $infos_article[1];
+	$titre = $infos_article['titre'];
+	$auteur = $infos_article['auteur'];
+	$photo_chemin = $infos_article['photo_chemin'];
+	$photo_credits = $infos_article['photo_credits'];
+	$photo_titre = $infos_article['photo_titre'];
+	$categorie = $infos_article['categorie'];
+	$sous_categorie = $infos_article['souscategorie'];
+	$date_pub = $infos_article['dateheurepub'];
 	
 	// Articles de la même rubrique
 	$articles_categorie = get_articles_categorie($categorie,5);
@@ -244,17 +244,7 @@
 	</section>';
 //---------------------------------------------FIN IMAGE------------------------------------------------------//
 
-	
-	
-	
-	$titre = $infos_article[4];
-	$auteur = $infos_article[8];
-	$photo_chemin = $infos_article[11];
-	$photo_credits = $infos_article[10];
-	$photo_titre = $infos_article[9];
-	$categorie = $infos_article[2];
-	$sous_categorie = $infos_article[3];
-	$date_pub = $infos_article[1];
+
 
 //---------------------------------------------ARTICLE------------------------------------------------------//
 	echo '<section id="article" data-speed="4" data-type="background">
@@ -280,16 +270,16 @@
 				
 	if ($nb_articles_categorie > 0){
 		echo '<div class="sectionSide">
-						<h2 class="section-heading">' . $articles_categorie[0][2] . '</h2>	
+						<h2 class="section-heading">' . $articles_categorie[0]['categorie'] . '</h2>	
 			</div>';
 			
 		for ($i = 0; $i < $nb_articles_categorie; $i++){
 			echo '<div class="list-group list-articles-right">
-						<a href="article.php?id=' . $articles_categorie[$i][0] . '" class="list-articles-item-right list-group-item col-md-12">
-							<span class="badge">' . $articles_categorie[$i][3] . '</span>
-							<img src="' . $articles_categorie[$i][11] . '" alt="' . $articles_categorie[$i][11] . '"/>
-							<h4 class="list-group-item-heading">' . $articles_categorie[$i][4] . '</h4>
-							<p class="list-group-item-text">Categorie</p>
+						<a href="article.php?id=' . $articles_categorie[$i]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">' . $articles_categorie[$i]['categorie'] . '</span>
+							<img src="' . $articles_categorie[$i]['photo_chemin'] . '" alt="' . $articles_categorie[$i]['photo_chemin'] . '"/>
+							<h4 class="list-group-item-heading">' . $articles_categorie[$i]['souscategorie'] . '</h4>
+							<p class="list-group-item-text">' . $articles_categorie[$i]['titre'] . '</p>
 						</a>
 					</div>';
 		}
@@ -302,11 +292,11 @@
 			
 		for ($j = 0; $j < $nb_articles_recents; $j++){
 			echo '<div class="list-group list-articles-right">
-						<a href="article.php?id=' . $articles_recents[$j][0] . '" class="list-articles-item-right list-group-item col-md-12">
-							<span class="badge">' . $articles_recents[$j][3] . '</span>
-							<img src="' . $articles_recents[$j][11] . '" alt="' . $articles_recents[$j][11] . '"/>
-							<h4 class="list-group-item-heading">' . $articles_recents[$j][4] . '</h4>
-							<p class="list-group-item-text">' . $articles_recents[$j][2] . '</p>
+						<a href="article.php?id=' . $articles_recents[$j]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">' . $articles_recents[$j]['categorie'] . '</span>
+							<img src="' . $articles_recents[$j]['photo_chemin'] . '" alt="' . $articles_recents[$j]['photo_chemin'] . '"/>
+							<h4 class="list-group-item-heading">' . $articles_recents[$j]['souscategorie'] . '</h4>
+							<p class="list-group-item-text">' . $articles_recents[$j]['titre'] . '</p>
 						</a>
 					</div>';
 		}
@@ -354,20 +344,20 @@
 	}
 			
 	for ($i = 0; $i < $nb_comm; $i++){
-		echo '<div id="' . $commentaires[$i][0] . '" class="row com-container">		
+		echo '<div id="' . $commentaires[$i]['id_commentaire'] . '" class="row com-container">		
 					<div class="col-md-10 col-md-offset-1">
-						<p id="' . $commentaires[$i][0] . 'b" class="hidden">Id</p>
-						<p class="user pull-left">' . $commentaires[$i][2] . '</p>
-						<p class="time pull-right">' . date_to_duration($commentaires[$i][4]) . '</p>
-						<p class="comment">' . html_entity_decode($commentaires[$i][3]) . '</p>
+						<p id="' . $commentaires[$i]['id_commentaire'] . 'b" class="hidden">Id</p>
+						<p class="user pull-left">' . $commentaires[$i]['joueur'] . '</p>
+						<p class="time pull-right">' . date_to_duration($commentaires[$i]['dateheurepub']) . '</p>
+						<p class="comment">' . html_entity_decode($commentaires[$i]['contenu']) . '</p>
 						
-						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="/lib/form/post_like.php?like=1&id_article=' . $id_article . '&id_comm=' . $commentaires[$i][0] . '">
+						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="/lib/form/post_like.php?like=1&id_article=' . $id_article . '&id_comm=' . $commentaires[$i]['id_commentaire'] . '">
 							<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-							<span>' . $commentaires[$i][6] . '</span>
+							<span>' . $commentaires[$i]['nblikes'] . '</span>
 						</button>
-						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="lib/sql/likes/add_like.php?like=0&id_article=' . $id_article . '&id_comm=' . $commentaires[$i][0] . '">
+						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="lib/sql/likes/add_like.php?like=0&id_article=' . $id_article . '&id_comm=' . $commentaires[$i]['id_commentaire'] . '">
 							<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-							<span>' . $commentaires[$i][5] . '</span>
+							<span>' . $commentaires[$i]['nbdislikes'] . '</span>
 						</button>
 									
 					</div>

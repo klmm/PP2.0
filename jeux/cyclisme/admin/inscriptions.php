@@ -30,24 +30,24 @@
 	echo '<table style="width:100%">
 		  <tr>
 			<td valign="top">';
-	echo '<form method="post" action="/jeux/cyclisme/lib/sql/update_inscriptions_cyclistes.php">';
+	echo '<form method="post" action="/jeux/cyclisme/lib/form/update_inscriptions_cyclistes.php">';
 	echo '<input type="text" name="id_jeu" value="' . $id_jeu . '" hidden><br/>';
 	echo '<input type="text" name="id_cal" value="' . $id_cal . '" hidden><br/>';
 	
 	$id_equipe_en_cours = 0;
 	
 	for ($i = 0; $i < $nb_cyclistes_tous; $i++) {
-		$id_equipe_new = $cyclistes_tous[$i][1];
+		$id_equipe_new = $cyclistes_tous[$i]['id_cyclisme_equipe'];
 		if ($id_equipe_new != $id_equipe_en_cours){
 			$arr_equipe_affichage = get_equipe_id($id_equipe_new);
 			$id_equipe_en_cours = $id_equipe_new;
-			echo '<h2>' . $arr_equipe_affichage[3] . '</h2><br/>';
+			echo '<h2>' . $arr_equipe_affichage['nom_courant'] . '</h2><br/>';
 		}
-		if ($cyclistes_tous[$i][13] == 0){
-			echo '<input type="checkbox" name="cyclistes[]" value="' . $cyclistes_tous[$i][0] . '">' . $cyclistes_tous[$i][3] . ' ' . $cyclistes_tous[$i][2] . '  <input type="text" name="forme' . $cyclistes_tous[$i][0] .'" value="80" maxlength="3" size="3"><br/>';
+		if ($cyclistes_tous[$i]['inscrit'] == 0){
+			echo '<input type="checkbox" name="cyclistes[]" value="' . $cyclistes_tous[$i]['id_cyclisme_athlete'] . '">' . $cyclistes_tous[$i]['prenom'] . ' ' . $cyclistes_tous[$i]['nom'] . '  <input type="text" name="forme' . $cyclistes_tous[$i]['id_cyclisme_athlete'] .'" value="80" maxlength="3" size="3"><br/>';
 		}
 		else{
-			echo '<input type="checkbox" name="cyclistes[]" value="' . $cyclistes_tous[$i][0] . '" checked>' . $cyclistes_tous[$i][3] . ' ' . $cyclistes_tous[$i][2] . '  <input type="text" name="forme' . $cyclistes_tous[$i][0] .'" value="' . $cyclistes_tous[$i][14] .'" maxlength="3" size="3"><br/>';
+			echo '<input type="checkbox" name="cyclistes[]" value="' . $cyclistes_tous[$i]['id_cyclisme_athlete'] . '" checked>' . $cyclistes_tous[$i]['prenom'] . ' ' . $cyclistes_tous[$i]['nom'] . '  <input type="text" name="forme' . $cyclistes_tous[$i]['id_cyclisme_athlete'] .'" value="' . $cyclistes_tous[$i]['forme'] .'" maxlength="3" size="3"><br/>';
 		}
 	}
 
@@ -61,17 +61,17 @@
 	
 	
 	echo '<h1>Equipes</h1>';
-	echo '<form method="post" action="/jeux/cyclisme/lib/sql/update_inscriptions_equipes.php">';
+	echo '<form method="post" action="/jeux/cyclisme/lib/form/update_inscriptions_equipes.php">';
 	echo '<input type="text" name="id_jeu" value="' . $id_jeu . '" hidden><br/>';
 	echo '<input type="text" name="id_cal" value="' . $id_cal . '" hidden><br/>';
 	
 	
 	for ($i = 0; $i < $nb3; $i++) {
-		echo '<input type="checkbox" name="equipes[]" value="' . $arr3[$i][0] . '" checked>' . $arr3[$i][2] . '<br/>';
+		echo '<input type="checkbox" name="equipes[]" value="' . $arr3[$i]['id_cyclisme_equipe'] . '" checked>' . $arr3[$i]['nom_courant'] . '<br/>';
 	}
 	
 	for ($i = 0; $i < $nb4; $i++) {
-		echo '<input type="checkbox" name="equipes[]" value="' . $arr4[$i][0] . '">' . $arr4[$i][2] . '<br/>';
+		echo '<input type="checkbox" name="equipes[]" value="' . $arr4[$i]['id_cyclisme_equipe'] . '">' . $arr4[$i]['nom_courant'] . '<br/>';
 	}
 	
 	echo '<input type="submit" value="OK">';

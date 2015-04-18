@@ -1,7 +1,7 @@
 <?php	
 	
 	function get_jeux_tous(){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -12,18 +12,18 @@
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
-		//On fait le test si un enrengistrement a été trouvé
+		//On fait le test si un enrengistrement a ï¿½tï¿½ trouvï¿½
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->id_jeu;
-			$arr[$i][1] = $enregistrement->date_debut;
-			$arr[$i][2] = $enregistrement->date_fin;
-			$arr[$i][3] = $enregistrement->sport;
-			$arr[$i][4] = $enregistrement->competition;
-			$arr[$i][5] = $enregistrement->url;
-			$arr[$i][6] = $enregistrement->image;
-			$arr[$i][7] = $enregistrement->description;
+			$arr[$i]['id_jeu'] = $enregistrement->id_jeu;
+			$arr[$i]['date_debut'] = $enregistrement->date_debut;
+			$arr[$i]['date_fin'] = $enregistrement->date_fin;
+			$arr[$i]['sport'] = $enregistrement->sport;
+			$arr[$i]['competition'] = $enregistrement->competition;
+			$arr[$i]['url'] = $enregistrement->url;
+			$arr[$i]['image'] = $enregistrement->image;
+			$arr[$i]['description'] = $enregistrement->description;
 
 			$i++;
 		}
@@ -32,7 +32,7 @@
 	}
 	
 	function get_jeux_finis(){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -45,18 +45,18 @@
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
-		//On fait le test si un enrengistrement a été trouvé
+		//On fait le test si un enrengistrement a ï¿½tï¿½ trouvï¿½
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->id_jeu;
-			$arr[$i][1] = $enregistrement->date_debut;
-			$arr[$i][2] = $enregistrement->date_fin;
-			$arr[$i][3] = $enregistrement->sport;
-			$arr[$i][4] = $enregistrement->competition;
-			$arr[$i][5] = $enregistrement->url;
-			$arr[$i][6] = $enregistrement->image;
-			$arr[$i][7] = $enregistrement->description;
+			$arr[$i]['id_jeu'] = $enregistrement->id_jeu;
+			$arr[$i]['date_debut'] = $enregistrement->date_debut;
+			$arr[$i]['date_fin'] = $enregistrement->date_fin;
+			$arr[$i]['sport'] = $enregistrement->sport;
+			$arr[$i]['competition'] = $enregistrement->competition;
+			$arr[$i]['url'] = $enregistrement->url;
+			$arr[$i]['image'] = $enregistrement->image;
+			$arr[$i]['description'] = $enregistrement->description;
 			$i++;
 		}
 		
@@ -64,7 +64,7 @@
 	}
 	
 	function get_jeux_avenir(){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -77,18 +77,18 @@
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
-		//On fait le test si un enrengistrement a été trouvé
+		//On fait le test si un enrengistrement a ï¿½tï¿½ trouvï¿½
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->id_jeu;
-			$arr[$i][1] = $enregistrement->date_debut;
-			$arr[$i][2] = $enregistrement->date_fin;
-			$arr[$i][3] = $enregistrement->sport;
-			$arr[$i][4] = $enregistrement->competition;
-			$arr[$i][5] = $enregistrement->url;
-			$arr[$i][6] = $enregistrement->image;
-			$arr[$i][7] = $enregistrement->description;
+			$arr[$i]['id_jeu'] = $enregistrement->id_jeu;
+			$arr[$i]['date_debut'] = $enregistrement->date_debut;
+			$arr[$i]['date_fin'] = $enregistrement->date_fin;
+			$arr[$i]['sport'] = $enregistrement->sport;
+			$arr[$i]['competition'] = $enregistrement->competition;
+			$arr[$i]['url'] = $enregistrement->url;
+			$arr[$i]['image'] = $enregistrement->image;
+			$arr[$i]['description'] = $enregistrement->description;
 			$i++;
 		}
 		
@@ -96,7 +96,7 @@
 	}
 	
 	function get_jeux_encours(){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
@@ -110,18 +110,18 @@
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 
-		//On fait le test si un enrengistrement a été trouvé
+		//On fait le test si un enrengistrement a ï¿½tï¿½ trouvï¿½
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->id_jeu;
-			$arr[$i][1] = $enregistrement->date_debut;
-			$arr[$i][2] = $enregistrement->date_fin;
-			$arr[$i][3] = $enregistrement->sport;
-			$arr[$i][4] = $enregistrement->competition;
-			$arr[$i][5] = $enregistrement->url;
-			$arr[$i][6] = $enregistrement->image;
-			$arr[$i][7] = $enregistrement->description;
+			$arr[$i]['id_jeu'] = $enregistrement->id_jeu;
+			$arr[$i]['date_debut'] = $enregistrement->date_debut;
+			$arr[$i]['date_fin'] = $enregistrement->date_fin;
+			$arr[$i]['sport'] = $enregistrement->sport;
+			$arr[$i]['competition'] = $enregistrement->competition;
+			$arr[$i]['url'] = $enregistrement->url;
+			$arr[$i]['image'] = $enregistrement->image;
+			$arr[$i]['description'] = $enregistrement->description;
 			$i++;
 		}
 		

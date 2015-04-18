@@ -256,11 +256,11 @@
 	echo '			</ol>
 					<div class="carousel-inner" role="listbox">
 						<div class="item active" style="">
-							<img src="' . $arr_unes[0][11] . '" alt="' . $arr_unes[0][11] . '">
+							<img src="' . $arr_unes[0]['photo_chemin'] . '" alt="' . $arr_unes[0]['photo_chemin'] . '">
 							<div class="container">
 								<div class="carousel-caption"> 
-									<h1>'. $arr_unes[0][4] . '</h1>
-									<span class="unes-sport">'. $arr_unes[0][2] . ' </span> <span>' . $arr_unes[0][3] . '</span>
+									<h1>'. $arr_unes[0]['titre'] . '</h1>
+									<span class="unes-sport">'. $arr_unes[0]['categorie'] . ' </span> <span>' . $arr_unes[0]['souscategorie'] . '</span>
 								</div>
 							</div>
 						</div>';
@@ -268,11 +268,11 @@
 	// Autres unes
 	for ($i = 1; $i < $nb_unes; $i++) {
 		echo '			<div class="item">
-							<img src="' . $arr_unes[$i][11] . '" alt="' . $arr_unes[$i][11] . '">
+							<img src="' . $arr_unes[$i]['photo_chemin'] . '" alt="' . $arr_unes[$i]['photo_chemin'] . '">
 							<div class="container">
 								<div class="carousel-caption">
-									<h1>'. $arr_unes[$i][4] . '</h1>
-									<span class="unes-sport">'. $arr_unes[$i][2] . ' </span> <span>' . $arr_unes[$i][3] . '</span>
+									<h1>'. $arr_unes[$i]['titre'] . '</h1>
+									<span class="unes-sport">'. $arr_unes[$i]['categorie'] . ' </span> <span>' . $arr_unes[$i]['souscategorie'] . '</span>
 								</div>
 							</div>
 						</div>';
@@ -305,11 +305,11 @@
 	for ($i = 0; $i < $nb_tous; $i++) {
 	echo '
 					<li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-0">
-						<a href="article.php?id=' . $arr_tous[$i][0] . '">
-							<span class="badge">' . $arr_tous[$i][2] . '</span>
-							<img src="' . $arr_tous[$i][11] . '" alt="' . $arr_tous[$i][11] . '"/>
-							<h4 class="list-group-item-heading">' . $arr_tous[$i][4] . '</h4>
-							<p class="list-group-item-text">' . $arr_tous[$i][3] . '</p>
+						<a href="article.php?id=' . $arr_tous[$i]['id_article'] . '">
+							<span class="badge">' . $arr_tous[$i]['categorie'] . '</span>
+							<img src="' . $arr_tous[$i]['photo_chemin'] . '" alt="' . $arr_tous[$i]['photo_chemin'] . '"/>
+							<h4 class="list-group-item-heading">' . $arr_tous[$i]['souscategorie'] . '</h4>
+							<p class="list-group-item-text">' . $arr_tous[$i]['titre'] . '</p>
 						</a>
 					</li>';
 	}
@@ -390,16 +390,16 @@
 		for ($i = 0; $i < $nb_jeux_avenir; $i++) {
 			echo "
 			<li class=''>
-				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux[$i][6] . ")'>
+				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux[$i]['image'] . ")'>
 					<div class='game-content'>
 						<div class='game-text col-md-9'>
 							<div class='jumbotron'>
-								<h2>" . $arr_jeux[$i][3] . " - " . $arr_jeux[$i][4] . "</h2>
-								<p>" . $arr_jeux[$i][7] . "</p>
+								<h2>" . $arr_jeux[$i]['sport'] . " - " . $arr_jeux[$i]['competition'] . "</h2>
+								<p>" . $arr_jeux[$i]['description'] . "</p>
 							</div>
 						</div>
 						<div class='game-button col-md-3'>
-							<a class='btn btn-primary btn-lg' href='" . $arr_jeux[$i][5] . "'>Jouer</a>
+							<a class='btn btn-primary btn-lg' href='" . $arr_jeux[$i]['url'] . "'>Jouer</a>
 						</div>
 					</div>
 				</section>
@@ -412,16 +412,16 @@
 		for ($i = 0; $i < $nb_jeux_encours; $i++) {
 			echo "
 			<li class=''>
-				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux_encours[$i][6] . ")'>
+				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux_encours[$i]['image'] . ")'>
 					<div class='game-content'>
 						<div class='game-text col-md-9'>
 							<div class='jumbotron'>
-								<h2>" . $arr_jeux_encours[$i][3] . " - " . $arr_jeux_encours[$i][4] . "</h2>
-								<p>" . $arr_jeux_encours[$i][7] . "</p>
+								<h2>" . $arr_jeux_encours[$i]['sport'] . " - " . $arr_jeux_encours[$i]['competition'] . "</h2>
+								<p>" . $arr_jeux_encours[$i]['description'] . "</p>
 							</div>
 						</div>
 						<div class='game-button col-md-3'>
-							<a class='btn btn-primary btn-lg' href='" . $arr_jeux_encours[$i][5] . "'>Jouer</a>
+							<a class='btn btn-primary btn-lg' href='" . $arr_jeux_encours[$i]['url'] . "'>Jouer</a>
 						</div>
 					</div>
 				</section>
@@ -433,16 +433,16 @@
 		for ($i = 0; $i < $nb_jeux_finis; $i++) {
 			echo "
 			<li class=''>
-				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux_finis[$i][6] . ")'>
+				<section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux_finis[$i]['image'] . ")'>
 					<div class='game-content'>
 						<div class='game-text col-md-9'>
 							<div class='jumbotron'>
-								<h2>" . $arr_jeux_finis[$i][3] . " - " . $arr_jeux_finis[$i][4] . "</h2>
-								<p>" . $arr_jeux_finis[$i][7] . "</p>
+								<h2>" . $arr_jeux_finis[$i]['sport'] . " - " . $arr_jeux_finis[$i]['competition'] . "</h2>
+								<p>" . $arr_jeux_finis[$i]['description'] . "</p>
 							</div>
 						</div>
 						<div class='game-button col-md-3'>
-							<a class='btn btn-primary btn-lg' href='" . $arr_jeux_finis[$i][5] . "'>Jouer</a>
+							<a class='btn btn-primary btn-lg' href='" . $arr_jeux_finis[$i]['url'] . "'>Jouer</a>
 						</div>
 					</div>
 				</section>

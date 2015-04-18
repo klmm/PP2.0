@@ -79,12 +79,12 @@
 	
 	// Génération d'un mot de passe aléatoire de 8 à 12 caractères
 	$characters = '2345679abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
+        $charactersLength = strlen($characters);
 	$length = rand(8,12);
-    $newpass = '';
-    for ($i = 0; $i < $length; $i++) {
-        $newpass .= $characters[rand(0, $charactersLength - 1)];
-    }
+        $newpass = '';
+        for ($i = 0; $i < $length; $i++) {
+            $newpass .= $characters[rand(0, $charactersLength - 1)];
+        }
 	
 	// Modification du mot de passe dans la base
 	$motdepasse = hash('sha512', $newpass . $login);

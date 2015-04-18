@@ -1,12 +1,12 @@
 <?php
 
 	function get_commentaires_article($id){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On prépare la requête pour aller chercher les articles
+		//On prï¿½pare la requï¿½te pour aller chercher les articles
 		$sql = "SELECT * FROM ArticlesCommentaire WHERE IDArticle = ? ORDER BY DateHeurePub DESC";
 		$prep = $db->prepare($sql);
 		$prep->setFetchMode(PDO::FETCH_OBJ);
@@ -17,13 +17,13 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDCommentaire;
-			$arr[$i][1] = $enregistrement->IDArticle;
-			$arr[$i][2] = $enregistrement->Joueur;
-			$arr[$i][3] = $enregistrement->Contenu;
-			$arr[$i][4] = $enregistrement->DateHeurePub;
-			$arr[$i][5] = $enregistrement->NombreLikes;
-			$arr[$i][6] = $enregistrement->NombreDislikes;
+			$arr[$i]['id_commentaire'] = $enregistrement->IDCommentaire;
+			$arr[$i]['id_article'] = $enregistrement->IDArticle;
+			$arr[$i]['joueur'] = $enregistrement->Joueur;
+			$arr[$i]['contenu'] = $enregistrement->Contenu;
+			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['nblikes'] = $enregistrement->NombreLikes;
+			$arr[$i]['nbdislikes'] = $enregistrement->NombreDislikes;
 			$i++;
 		}
 		

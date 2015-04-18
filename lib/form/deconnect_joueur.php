@@ -9,7 +9,5 @@
 		echo 'ok';
 	} else {
 		echo 'nok';
-	}
-
-	
+	}	
 ?>

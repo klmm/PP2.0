@@ -1,11 +1,11 @@
 <?php
 	function get_likes($id, $joueur){
-		// On établit la connexion avec la base de données
+		// On ï¿½tablit la connexion avec la base de donnï¿½es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
-		//On prépare la requête pour aller chercher les articles
+		//On prï¿½pare la requï¿½te pour aller chercher les articles
 		$sql = "SELECT * FROM ArticlesLike WHERE IDArticle = ? AND Joueur = ?";
 		$prep = $db->prepare($sql);
 		$prep->setFetchMode(PDO::FETCH_OBJ);
@@ -17,8 +17,8 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i][0] = $enregistrement->IDComm;
-			$arr[$i][1] = $enregistrement->bLike;
+			$arr[$i]['id_comm'] = $enregistrement->IDComm;
+			$arr[$i]['bLike'] = $enregistrement->bLike;
 			$i++;
 		}
 		

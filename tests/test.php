@@ -1,6 +1,52 @@
 <?php
+        $characters = 'ACDEFGHJKLMNPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        
+        $j = 0;
+        for($i=0;$i<10;$i++){
+            $newpass = '';
+            for ($j = 0; $j < 5; $j++) {
+                $newpass .= $characters[rand(0, $charactersLength - 1)];
+            }
 
-	echo '1<br/>';
+            $nb_al = rand(0,4);
+
+            $arr[$i]['nombre'] = $nb_al;
+            $arr[$i]['chaine'] = $newpass;
+        }
+        
+        echo 'Tableau :<br/>';
+        print_r($arr);
+        /*echo '<br/><br/>';
+        echo $arr[2]['nombre'];*/
+
+        $sort = array();
+        foreach($arr as $k => $v) {
+            $sort['nombre'][$k] = $v['nombre'];
+            $sort['chaine'][$k] = $v['chaine'];
+        }
+ 
+        /*array_multisort($sort['nombre'], SORT_ASC, $arr);
+        
+        echo '<br/><br/>Tableau trié nombre :<br/>';
+        print_r($arr);
+        
+        array_multisort($sort['chaine'], SORT_ASC, $arr);
+        
+        echo '<br/><br/>Tableau trié chaine :<br/>';
+        print_r($arr);
+        
+        array_multisort($sort['nombre'], SORT_DESC, $sort['chaine'], SORT_ASC, $arr);
+        
+        echo '<br/><br/>Tableau trié nombre puis chaine :<br/>';
+        print_r($arr);*/
+        
+        array_multisort($sort['chaine'], SORT_DESC, $sort['nombre'], SORT_ASC, $arr);
+        
+        echo '<br/><br/>Tableau trié chaine puis nombre :<br/>';
+        print_r($arr);
+
+	/*echo '1<br/>';
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/inscriptions/update_inscriptions.php');
 	echo '2<br/>';
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/get_joueurs.php');
@@ -12,7 +58,7 @@
 	$arr = get_joueurs_inscrits(4);
 	echo '5<br/>';
 	echo 'Joueurs inscrits :<br/>';
-	print_r($arr);
+	print_r($arr);*/
 
 	/*$filename = "/jeux/cyclisme/2015/tour-de-france/classements/test.txt";
 	$handle = fopen($filename, "r+");

@@ -303,9 +303,9 @@
 				<h2 class="section-heading">Jeux</h2>
 				<p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p> 
 			</div>
-			<div class="">
-				<ul class="" style="padding:0;">
-					<li class="">
+			<div class="actualGames">
+				<ul class="gamesList" style="padding:0;">
+					<li class="game-item">
 						<section class="game-box" data-speed="6" data-type="background" style="background-image:url(img/jeux/jeufoot.png)">
 							<div class="game-content">
 								<div class="game-text col-md-9 col-sm-9 hidden-xs">
@@ -322,7 +322,7 @@
 						</section>
 						
 					</li>
-					<li class="">
+					<li class="game-item">
 						<section class="game-box" data-speed="6" data-type="background" style="background-image:url(img/jeux/jeurugby.png)">
 							<div class="game-content">
 								<div class="game-text col-md-9 col-sm-9 hidden-xs">
@@ -338,7 +338,7 @@
 							</div>
 						</section>
 					</li>
-					<li class="">
+					<li class="game-item">
 						<section class="game-box" data-speed="6" data-type="background" style="background-image:url(img/jeux/jeuski.png)">
 							<div class="game-content">
 								<div class="game-text col-md-9 col-sm-9 hidden-xs">
@@ -357,32 +357,48 @@
 				</ul>
 			</div>
 			
-			<div class="" style="margin-bottom:10px;margin-top:10px;">
+			<div class="archiveGames" style="margin-bottom:10px;margin-top:10px;">
 				<div class="collapse-group">
 					<div class="collapse" id="archives" >
-						<ul class="grid cs-style-3">
-							<li class="col-md-2"></li>
-							<li class="col-md-4">
-								<figure>
-									<img src="img/jeufifa2014.png" alt="Fifa2014">
-									<figcaption>
-										<a class="btn-block btn-lg" href="http://parions-potes.fr/WC2014">Revoir</a>
-									</figcaption>
-								</figure>
+						<div class="sectionSide">
+							<h2 class="section-heading">Archives</h2>
+							<p class="section-highlight">Revivez en ketchup vos plus grands moments de sports.</p> 
+						</div>
+						<ul class="gamesList" style="padding:0;">
+							<li class="game-item">
+								<section class="game-box" data-speed="6" data-type="background" style="background-image:url(img/jeux/jeufifa2014.png)">
+									<div class="game-content">
+										<div class="game-text col-md-9 col-sm-9 hidden-xs">
+											<div class="jumbotron bcr-foot">
+												<h2>Fifa 2014</h2>
+												<p>Cela fait des années que ça dure mais bon sang on veut savoir ! Qui des PES ou de FIFA est le meilleur !</p>
+											</div>
+										</div>
+										<div class="game-button col-md-3 col-sm-3 col-xs-12">
+											<a class="btn btn-primary btn-lg bcr-foot" href="http://parions-potes.fr/WC2014">Voir</a>
+										</div>
+									</div>
+								</section>
 							</li>
-							<li class="col-md-4">
-								<figure>
-									<img src="img/jeutdf2014.png" alt="img04">
-									<figcaption>
-										<a class="btn-block btn-lg" href="http://parions-potes.fr/TDF2014">Revoir</a>
-									</figcaption>
-								</figure>
+							<li class="game-item">
+								<section class="game-box" data-speed="6" data-type="background" style="background-image:url(img/jeux/jeutdf2014.png)">
+									<div class="game-content">
+										<div class="game-text col-md-9 col-sm-9 hidden-xs">
+											<div class="jumbotron bcr-cyclisme">
+												<h2>TDF 2014</h2>
+												<p>Comme on dit : les absents ont toujours tort ! A l'instar de Froome ou Contador tu n'avais qu'à jouer pour monter sur le podium !</p>
+											</div>
+										</div>
+										<div class="game-button col-md-3 col-sm-3 col-xs-12">
+											<a class="btn btn-primary btn-lg bcr-cyclisme" href="http://parions-potes.fr/TDF2014">Voir</a>
+										</div>
+									</div>
+								</section>
 							</li>
-							<li class="col-md-2"></li>
 						</ul>
 					</div>
 					<div class="col-md-12" style="margin-top:10px;">
-						<button id="archive-toggle" class="btn btn-block btn-success btn-lg" data-toggle="collapse" data-target="#archives" lx-ripple>Archives</button>	
+						<button id="archive-toggle" class="btn btn-block btn-success btn-lg" data-toggle="collapse" data-target="#archives">Archives</button>	
 					</div>
 				</div>
 			</div>
@@ -631,6 +647,13 @@
 			});  
 		});
 		
+		$(function(){
+		   $("#archive-toggle").click(function () {
+			  $(this).text(function(i, text){
+				  return text === "Archives" ? "Réduire" : "Archives";
+			  })
+		   });
+		})
 		
     });
 	var cbpAnimatedHeader = (function() {

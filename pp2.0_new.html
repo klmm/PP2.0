@@ -306,50 +306,50 @@
 			<div class="">
 				<ul class="" style="padding:0;">
 					<li class="">
-						<section class="game-box" data-speed="4" data-type="background" style="background-image:url(img/jeux/jeufoot.png)">
+						<section class="game-box" data-speed="6" data-type="background" style="background-image:url(img/jeux/jeufoot.png)">
 							<div class="game-content">
-								<div class="game-text col-md-9">
-									<div class="jumbotron">
+								<div class="game-text col-md-9 col-sm-9 hidden-xs">
+									<div class="jumbotron bcr-foot">
 										<h2>European Football</h2>
 										<p>Viens parier sur les différentes ligues et coupes européennes. 
 										Quelques matches sélectionnés pour leur indécisions te suffiront-ils pour remporter le classement?</p>
 									</div>
 								</div>
-								<div class="game-button col-md-3">
-									<a class="btn btn-primary btn-lg" href="http://parions-potes.fr/Football">Jouer</a>
+								<div class="game-button col-md-3 col-sm-3 col-xs-12">
+									<a class="btn btn-primary btn-lg bcr-foot" href="http://parions-potes.fr/Football">Jouer</a>
 								</div>
 							</div>
 						</section>
 						
 					</li>
 					<li class="">
-						<section class="game-box" data-speed="4" data-type="background" style="background-image:url(img/jeux/jeurugby.png)">
+						<section class="game-box" data-speed="6" data-type="background" style="background-image:url(img/jeux/jeurugby.png)">
 							<div class="game-content">
-								<div class="game-text col-md-9">
-									<div class="jumbotron">
+								<div class="game-text col-md-9 col-sm-9 hidden-xs">
+									<div class="jumbotron bcr-rugby">
 										<h2>VI Nations</h2>
 										<p>Non cette année la cuillère de bois n'est pas pour toi !
 										Viens te méler à nous pour ce jeu exceptionnel ! De combats à couteaux tirés en luttes acharnées, joue avec tes potos pour transformer l'essai!</p>
 									</div>
 								</div>
-								<div class="game-button col-md-3">
-									<a class="btn btn-primary btn-lg" href="http://parions-potes.fr/6nations">Jouer</a>
+								<div class="game-button col-md-3 col-sm-3 col-xs-12">
+									<a class="btn btn-primary btn-lg bcr-rugby" href="http://parions-potes.fr/6nations">Jouer</a>
 								</div>
 							</div>
 						</section>
 					</li>
 					<li class="">
-						<section class="game-box" data-speed="4" data-type="background" style="background-image:url(img/jeux/jeuski.png)">
+						<section class="game-box" data-speed="6" data-type="background" style="background-image:url(img/jeux/jeuski.png)">
 							<div class="game-content">
-								<div class="game-text col-md-9">
-									<div class="jumbotron">
+								<div class="game-text col-md-9 col-sm-9 hidden-xs">
+									<div class="jumbotron bcr-ski">
 										<h2>Ski Alpin</h2>
 										<p>L'adrénaline d'une descente ou la tension d'un pas de tir ? On peut choisir !
 										Testez-vous sur les épreuves masculines et féminines de ces disciplines haletantes.</p>
 									</div>
 								</div>
-								<div class="game-button col-md-3">
-									<a class="btn btn-primary btn-lg" href="http://parions-potes.fr/Ski">Jouer</a>
+								<div class="game-button col-md-3 col-sm-3 col-xs-12">
+									<a class="btn btn-primary btn-lg bcr-ski" href="http://parions-potes.fr/Ski">Jouer</a>
 								</div>
 							</div>
 						</section>
@@ -627,8 +627,8 @@
 		$container.imagesLoaded( function () {
 			$container.masonry({
 				columnWidth: '.list-articles-item',
-				itemSelector: '.list-articles-item'
-			});   
+				itemSelector: '.item-visible'
+			});  
 		});
 		
 		

@@ -431,6 +431,7 @@ padding-right:15px;*/
 	padding:10px;
 	z-index:10;
 	border:0;
+	margin-bottom: 0px;
 }
 
 .list-articles-item img{
@@ -456,7 +457,7 @@ padding-right:15px;*/
 }
 
 .list-group-item-heading {
-  min-height: 38px;
+ // min-height: 38px;
   text-align: center;
 }
 
@@ -579,7 +580,7 @@ margin-right: 0;
 .list-group-item-heading {
 	    font-size: 15px;
 		margin-top: -5px;
-		min-height: 32px;
+		//min-height: 32px;
 		text-align: center;
 	}
 }
@@ -812,7 +813,7 @@ margin-top:30px;
 	.list-group-item-heading {
 	    font-size: 11px;
 		margin-top: -10px;
-		min-height: 24px;
+		//min-height: 24px;
 		text-align: center;
 	}
 }
@@ -827,7 +828,7 @@ display:none;
 .list-group-item-heading {
 	    font-size: 8px;
 		margin-top: -10px;
-		min-height: 18px;
+		//min-height: 18px;
 		text-align: center;
 	}
 }

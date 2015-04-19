@@ -37,7 +37,7 @@
 
 .game-text .jumbotron{ 
   padding: 20px;
-  background-color: rgb(115, 50, 130);
+  //background-color: rgb(115, 50, 130);
   top: 50%;
   transform: translateY(-50%);
   position: absolute;
@@ -64,12 +64,13 @@
 }
 
 .game-button a{ 
-background-color: rgb(115, 50, 130);
+  //background-color: rgb(115, 50, 130);
   padding: 20px;
   padding-left: 40px;
   padding-right: 40px;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   position: absolute;
   border: none;
 }

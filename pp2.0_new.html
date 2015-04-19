@@ -603,7 +603,7 @@
 		});
 		//$.scrollTo( 0 );
 		
-        $('.nav-tabs').tab();
+        //$('.nav-tabs').tab();
 		$('a[data-action="scrollTo"]').click(function(e) {
 			e.preventDefault();
 			scrollX = $('.header').height();
@@ -672,9 +672,7 @@
 				}
 			}, false );
 		}
-		function stickyMenu(element,nextelement) {
-			
-		}
+		
 		function scrollPage() {
 			var sy = scrollY();
 			if ( sy >= changeHeaderOn ) {

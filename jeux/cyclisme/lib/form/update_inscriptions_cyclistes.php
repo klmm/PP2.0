@@ -35,8 +35,6 @@
                     $prep2->bindValue(4,$forme,PDO::PARAM_INT);
 
                     $res = $prep2->execute();
-				
-				//echo $res . ' : ' . $cycliste . ' - ' . $id_jeu . ' - ' . $id_cal . '<br/>';
 		}
 	}
 	

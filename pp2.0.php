@@ -54,30 +54,32 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <link rel="shortcut icon" href="img/CarrNoir.png">';
+        <link rel="shortcut icon" href="/img/CarrNoir.png">';
 		
 		
     // TITLE
-    echo '<title>Parions Potes : Pronostics gratuits sur les grands évènements de l\'année</title>';
+    echo '
+        <title>Parions Potes : Pronostics gratuits sur les grands évènements de l\'année</title>';
 
 
     // BOOTSTRAP
     echo '
-        <link href="css/bootstrap.min.css" rel="stylesheet">	
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/carousel.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">	
+        <link href="/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/carousel.css" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet">
 
         <link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="css/game-component.css" />
 
-        <script src="js/modernizr.custom.js"></script>
-        <script src="js/pagination.js"></script>
-        <script src="js/script.js"></script>
+        <script src="/js/modernizr.custom.js"></script>
+        <script src="/js/pagination.js"></script>
+        <script src="/js/script.js"></script>
         <style type="text/css"></style></head>';
 		
 // LIENS TWITTER FACEBOOK
-    echo '<body data-spy="scroll" data-target="#navbar-main" data-offset="100">
+    echo '
+    <body data-spy="scroll" data-target="#navbar-main" data-offset="100">
         <header id="home" class="no-js">
             <div class="navbar-wrapper" id="header-top">
                 <div class="container">
@@ -225,9 +227,9 @@
     $nb_unes = sizeof($arr_unes);
 
     // Affichage des unes
-    echo '  <div id="news-section" class="section" style="background-color: ghostwhite;">	
+    echo '  <div id="news-section" class="section" style="background-color: white;">	
                 <div class="container marketing">
-                    <div class="row">
+                    <div class="row hidden-xs hidden-sm">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="margin-top:0;"> 
                             <ol class="carousel-indicators">
                                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>';
@@ -312,6 +314,17 @@
                             </ul>
                         </nav>
                     </div>
+                    <div class="filtweet  hidden-md hidden-sm hidden-lg col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2" style="text-align: center;">
+			
+			<div class="sectionSide">
+                            <h2 class="section-heading">Fil twitter</h2>
+			</div>
+			
+			<div id="twitter"  >
+                            <a class="twitter-timeline" href="https://twitter.com/ParionsPotes" width="100%" height="400" data-widget-id="463784722661777409">Tweets de @ParionsPotes</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			</div>
+                    </div>
                 </div>
             </div>';
 //--------------------------------------FIN UNES--------------------------------------//
@@ -369,14 +382,15 @@
                 <div class="sectionSide">
                     <h2 class="section-heading">Jeux</h2>
                     <p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p> 
-                </div>
-                <div class="">
-                    <ul class="" style="padding:0;">';
+                </div>';
 
     if ($nb_jeux_avenir > 0){
+        echo " 
+                <div class='actualGames'>
+                    <ul class='gamesList' style='padding:0;'>";
         for ($i = 0; $i < $nb_jeux_avenir; $i++) {
             echo "
-                        <li class=''>
+                        <li class='game-item'>
                             <section class='game-box' data-speed='6' data-type='background' style='background-image:url(" . $arr_jeux[$i]['image'] . ")'>
                                 <div class='game-content'>
                                     <div class='game-text col-md-9 hidden-xs'>
@@ -392,54 +406,77 @@
                             </section>
                         </li>";
         }
+        echo " 
+                    </ul>
+                </div>";
     }
 
     if ($nb_jeux_encours > 0){
+        echo " 
+                <div class='actualGames'>
+                    <ul class='gamesList' style='padding:0;'>";
         for ($i = 0; $i < $nb_jeux_encours; $i++) {
             echo "
-                        <li class=''>
-                            <section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux_encours[$i]['image'] . ")'>
+                        <li class='game-item'>
+                            <section class='game-box' data-speed='6' data-type='background' style='background-image:url(" . $arr_jeux_encours[$i]['image'] . ")'>
                                 <div class='game-content'>
-                                    <div class='game-text col-md-9'>
-                                        <div class='jumbotron'>
+                                    <div class='game-text col-md-9 col-sm-9 hidden-xs'>
+                                        <div class='jumbotron bcr-foot'>
                                             <h2>" . $arr_jeux_encours[$i]['sport'] . " - " . $arr_jeux_encours[$i]['competition'] . "</h2>
                                             <p>" . $arr_jeux_encours[$i]['description'] . "</p>
                                         </div>
                                     </div>
-                                    <div class='game-button col-md-3'>
+                                    <div class='game-button col-md-3 col-sm-3 col-xs-12'>
                                         <a class='btn btn-primary btn-lg bcr-foot' href='" . $arr_jeux_encours[$i]['url'] . "'>Jouer</a>
                                     </div>
                                 </div>
                             </section>
                         </li>";
-            }
+        }
+        echo " 
+                    </ul>
+                </div>";
+    }
+        
 
     if ($nb_jeux_finis > 0){
+        echo " 
+                <div class='archiveGames style='margin-bottom:10px;margin-top:10px;'>
+                    <div class='collapse-group'>
+			<div class='collapse' id='archives' >
+                            <div class='sectionSide'>
+                                <h2 class='section-heading'>Archives</h2>
+                                <p class='section-highlight'>Revivez en ketchup vos plus grands moments de sports.</p> 
+                            </div>
+                            <ul class='gamesList' style='padding:0;'>";
         for ($i = 0; $i < $nb_jeux_finis; $i++) {
             echo "
-                        <li class=''>
-                            <section class='game-box' data-speed='4' data-type='background' style='background-image:url(" . $arr_jeux_finis[$i]['image'] . ")'>
-                                <div class='game-content'>
-                                    <div class='game-text col-md-9'>
-                                        <div class='jumbotron'>
-                                            <h2>" . $arr_jeux_finis[$i]['sport'] . " - " . $arr_jeux_finis[$i]['competition'] . "</h2>
-                                            <p>" . $arr_jeux_finis[$i]['description'] . "</p>
+                                <li class='game-item'>
+                                    <section class='game-box' data-speed='6' data-type='background' style='background-image:url(" . $arr_jeux_finis[$i]['image'] . ")'>
+                                        <div class='game-content'>
+                                            <div class='game-text col-md-9 col-sm-9 hidden-xs'>
+                                                <div class='jumbotron bcr-foot'>
+                                                    <h2>" . $arr_jeux_finis[$i]['sport'] . " - " . $arr_jeux_finis[$i]['competition'] . "</h2>
+                                                    <p>" . $arr_jeux_finis[$i]['description'] . "</p>
+                                                </div>
+                                            </div>
+                                            <div class='game-button col-md-3 col-sm-3 col-xs-12'>
+                                                <a class='btn btn-primary btn-lg bcr-foot' href='" . $arr_jeux_finis[$i]['url'] . "'>Revoir</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class='game-button col-md-3'>
-                                        <a class='btn btn-primary btn-lg bcr-foot' href='" . $arr_jeux_finis[$i]['url'] . "'>Jouer</a>
-                                    </div>
-                                </div>
-                            </section>
-                        </li>";
-            }
+                                    </section>
+                                </li>";
+        }
     }
 
-    echo "				
-                    </ul>
+    echo "                  </ul>
+                        </div>
+                        <div class='col-md-12' style='margin-top:10px;'>
+                            <button id='archive-toggle' class='btn btn-block btn-success btn-lg' data-toggle='collapse' data-target='#archives'>Archives</button>
+                        </div>
+                    </div>
                 </div>
             </div>";
-    }
 //--------------------------------------FIN JEUX--------------------------------------//
 
 
@@ -688,20 +725,7 @@
 
 
 <script type="text/javascript">
-	/*var pagedSections = ["#myCarousel","#games","#inscription","#presentation","#contact"];
-	//var pagedSections = ["#contact"];
-	var headerSize = 98;
-	
-	var pageSection = function() {	
-		var viewportHeight = $(window).height();
-		
-		$.each(pagedSections,function(index,value) {
-			$(value).css("min-height",viewportHeight-headerSize);
-		});	
-		// $(\'body\').scrollspy("refresh");
-	}*/
-
-    jQuery(document).ready(function ($) {
+	jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	
 		Init_Forms();
@@ -720,7 +744,7 @@
 		});
 		//$.scrollTo( 0 );
 		
-        $(\'.nav-tabs\').tab();
+        //$(\'.nav-tabs\').tab();
 		$(\'a[data-action="scrollTo"]\').click(function(e) {
 			e.preventDefault();
 			scrollX = $(\'.header\').height();
@@ -756,17 +780,23 @@
 		  }); // end window scroll
 	   });  // end section function
 		
+		var $container = $(\'.list-articles\');
+		$container.imagesLoaded( function () {
+			$container.masonry({
+				columnWidth: \'.list-articles-item\',
+				itemSelector: \'.item-visible\'
+			});  
+		});
+		
+		$(function(){
+		   $("#archive-toggle").click(function () {
+			  $(this).text(function(i, text){
+				  return text === "Archives" ? "Réduire" : "Archives";
+			  })
+		   });
+		})
 		
     });
-    
-    var $container = $(\'.list-articles\');
-        $container.imagesLoaded( function () {
-                $container.masonry({
-                        columnWidth: \'.list-articles-item\',
-                        itemSelector: \'.item-visible\'
-                });   
-        });
-                
 	var cbpAnimatedHeader = (function() {
  
 		var docElem = document.documentElement,
@@ -783,9 +813,7 @@
 				}
 			}, false );
 		}
-		function stickyMenu(element,nextelement) {
-			
-		}
+		
 		function scrollPage() {
 			var sy = scrollY();
 			if ( sy >= changeHeaderOn ) {

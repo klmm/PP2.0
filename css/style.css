@@ -65,6 +65,10 @@ p {
 	margin-left: 10px;
 }
 
+.container-services {
+	padding:60px 0;
+	margin-bottom:0;
+}
 /* ______________________________ couleurs sports___________________________________*/
 .bcr-foot{
     background-color: #96ff00;
@@ -96,6 +100,46 @@ p {
 .cr-biathlon{
     color: #ef3afb;
 }
+
+/*** social links ****/
+ul.social li {
+	list-style:none;
+	margin:5px;
+	padding:0;
+	width:50px;
+	height:50px;
+	display:inline;
+	//float:left;
+}
+ul.social {
+list-style:none;
+padding:0;
+//margin-right:20px;
+}
+ul.social li a {
+	
+}
+
+ul.social li img {
+	width:50px;
+	height:50px;
+}
+/* .googleplus {
+	background:transparent url(../img/googleplus.png) no-repeat top left;
+}
+
+.facebook {
+	background:transparent url(../img/static/facebook_32.png) no-repeat top left;
+}
+.youtube {
+	background:transparent url(../img/youtube.png) no-repeat top left;
+}
+.linkedIn {
+	background:transparent url(../img/linkedin.png) no-repeat top left;
+} 
+.twitter {
+	background:transparent url(../img/static/twitter_32.png) no-repeat top left;
+}*/
 
 /* ______________________________ header ___________________________________*/
 header {
@@ -220,43 +264,7 @@ header.small #header-top h1 {
 	margin-bottom: 10px;
 }
 
-/*** social links ****/
-ul.social li {
-list-style:none;
-margin:5px;
-padding:0;
-width:35px;
-	height:35px;
-	display:block;
-	float:left;
-}
-ul.social {
-list-style:none;
-padding:0;
-margin-right:20px;
-}
-ul.social li a {
-text-indent:-99999px;
-width:35px;
-	height:35px;
-display:block;	
-}
-/* .googleplus {
-	background:transparent url(../img/googleplus.png) no-repeat top left;
-}
- */
- .facebook {
-	background:transparent url(../img/static/facebook_32.png) no-repeat top left;
-}
-/* .youtube {
-	background:transparent url(../img/youtube.png) no-repeat top left;
-}
-.linkedIn {
-	background:transparent url(../img/linkedin.png) no-repeat top left;
-} */
-.twitter {
-	background:transparent url(../img/static/twitter_32.png) no-repeat top left;
-}
+
 header.small #header-top ul.social {
 display:none;
 }
@@ -294,6 +302,7 @@ background: #FFF;
 /* ______________________________ articles ___________________________________*/
 #news-section {
 	margin-top:165px;
+	margin-bottom: 50px;
 }
 
 
@@ -374,6 +383,10 @@ background: #FFF;
 /* ______________________________ jeux ___________________________________*/
 
 /* ______________________________ inscription ___________________________________*/
+#inscription {
+	background:#b1b2b3;
+	color: white;
+}
 
 /* ______________________________ about us ___________________________________*/
 
@@ -384,14 +397,18 @@ background: #FFF;
 
 /* ______________________________ contact ___________________________________*/
 
-.section-contact,.container-services {
-	background:#F9F9F9;
+.section-contact {
+	background:#747576;
 	padding:60px 0;
 	margin-bottom:0;
+	color: white;
 }
-
+.section-contact .section-heading {
+	color: white;
+}
 .section-contact .section-highlight {
-color:#ee4033;
+	//color:#ee4033;
+	color: #E8836A;
 }
 
 .contact-form {
@@ -404,8 +421,14 @@ margin-bottom:20px;
 .form-control {
 height:40px;
 }
+
+.contact-address{
+	text-align: center;
+}
 p.address {
-font-size:18px;
+	text-align: center;
+	font-size:22px;
+	font-weight : bold;
 }
 
 /* ______________________________ footer ___________________________________*/
@@ -418,7 +441,9 @@ color:white;
 footer .container {
 padding:20px 0;
 }
-
+footer  p {
+	text-align: center;
+}
 
 /* __________________________________________media________________________________________________*/
 @media (min-width: 992px) and  (max-width:1200px) {

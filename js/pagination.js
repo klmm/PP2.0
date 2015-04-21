@@ -18,7 +18,7 @@ function initPagination() {
 	$('.pagination li:nth-child(2)').addClass('active');
 	$('.pagination li:first').addClass('disabled');
 	$('.pagination li:first a').addClass('disabled');
-	if(numItems < perPage){
+	if(numItems <= perPage){
 		$('.pagination li:last').addClass('disabled');
 		$('.pagination li:last a').addClass('disabled');
 	}

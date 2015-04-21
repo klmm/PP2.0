@@ -12,7 +12,7 @@ function auto_login(){
 		// IP du client
 		$ip = $_SERVER['REMOTE_ADDR'];
 		
-		$sql = "SELECT * FROM Joueurs WHERE SHA1(CONCAT('SEL1-df299', `Login`, `IDJoueur`, 'SEL2-ef144','". $ip. "'))='" . $key. "'";
+		$sql = "SELECT * FROM Joueurs WHERE SHA1(CONCAT('SEL1-df299', `Login`, `IDJoueur`, 'SEL2-ef144'))='" . $key. "'";
 		$prep = $db->prepare($sql);
 		$prep->execute();
 		$prep->setFetchMode(PDO::FETCH_OBJ);

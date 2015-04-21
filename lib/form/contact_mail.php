@@ -8,18 +8,18 @@
 	
 	$passage_ligne = "\r\n";
 	
-	//=====Création de la boundary
+	//=====Crï¿½ation de la boundary
 	$boundary = "-----=".md5(rand());
 	//==========
 	
-	//=====Création du header de l'e-mail.
+	//=====Crï¿½ation du header de l'e-mail.
 	$header = 'From: "Parions Potes"<parionsp@20gp.ovh.net>'.$passage_ligne;
 	$header.= 'Reply-to: "'. $nom . '" <' . $mail . '>'.$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 	//==========
 	 
-	//=====Création du message.
+	//=====Crï¿½ation du message.
 	$message = $passage_ligne."--".$boundary.$passage_ligne;
 	
 	
@@ -44,5 +44,5 @@
 	mail('contact@parions-potes.fr',$sujet,$message,$header);
 	//==========
 	
-	echo('success;Mail envoyé. Nous vous répondons dans les plus brefs délais.');
+	echo('success;Mail envoyÃ©. Nous vous rÃ©pondons dans les plus brefs dÃ©lais.');
 ?>

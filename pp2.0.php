@@ -252,7 +252,11 @@
         else{
             echo '              <div class="item">';
         }
-
+        
+        $filename = "/homez.800/parionsp/www/articles/" . $arr_unes[$i]['id_article'] . ".htm";
+	$handle = fopen($filename, "r+");
+	$debut_article = fread($handle, 300) . '...';
+	fclose($handle);
 
         echo '
                                     <a href="article.php?id=' . $arr_unes[$i]['id_article'] . '">
@@ -261,7 +265,7 @@
                                             <div class="carousel-caption">
                                                 <h1 class="col-md-9">'. $arr_unes[$i]['titre'] . '</h1>
                                                 <span class="unes-sport col-md-3 cr-biathlon">'. $arr_unes[$i]['categorie'] . ' - ' . $arr_unes[$i]['souscategorie'] . '</span>
-                                                <span class="unes-intro col-md-12">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</span>
+                                                <span class="unes-intro col-md-12">' . $debut_article . '</span>
                                             </div>
                                         </div>
                                     </a>

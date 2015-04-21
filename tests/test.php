@@ -1,5 +1,5 @@
 <?php
-        $characters = 'ACDEFGHJKLMNPQRSTUVWXYZ';
+       /* $characters = 'ACDEFGHJKLMNPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         
         $j = 0;
@@ -17,16 +17,14 @@
         
         echo 'Tableau :<br/>';
         print_r($arr);
-        /*echo '<br/><br/>';
-        echo $arr[2]['nombre'];*/
-
+      
         $sort = array();
         foreach($arr as $k => $v) {
             $sort['nombre'][$k] = $v['nombre'];
             $sort['chaine'][$k] = $v['chaine'];
         }
  
-        /*array_multisort($sort['nombre'], SORT_ASC, $arr);
+        array_multisort($sort['nombre'], SORT_ASC, $arr);
         
         echo '<br/><br/>Tableau trié nombre :<br/>';
         print_r($arr);
@@ -39,12 +37,12 @@
         array_multisort($sort['nombre'], SORT_DESC, $sort['chaine'], SORT_ASC, $arr);
         
         echo '<br/><br/>Tableau trié nombre puis chaine :<br/>';
-        print_r($arr);*/
+        print_r($arr);
         
         array_multisort($sort['chaine'], SORT_DESC, $sort['nombre'], SORT_ASC, $arr);
         
         echo '<br/><br/>Tableau trié chaine puis nombre :<br/>';
-        print_r($arr);
+        print_r($arr);*/
 
 	/*echo '1<br/>';
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/inscriptions/update_inscriptions.php');
@@ -60,14 +58,9 @@
 	echo 'Joueurs inscrits :<br/>';
 	print_r($arr);*/
 
-	/*$filename = "/jeux/cyclisme/2015/tour-de-france/classements/test.txt";
-	$handle = fopen($filename, "r+");
-	$contenu_txt = fread($handle, filesize($filename));
-	$ligne = fgets($filename);
-	fclose($handle);
 	
-	echo 'TXT : ' . $contenu_txt;
-	echo '<br/>LIGNE : ' . $ligne;*/
+	
+	echo 'TXT : <br/>' . $contenu_txt;
 	
 	/*require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
@@ -107,4 +100,6 @@
 			$prep3->execute();
 		}
 	}*/
+        
+        echo '</html>';
 ?>

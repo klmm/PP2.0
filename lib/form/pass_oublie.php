@@ -7,7 +7,7 @@
 	
 	
 	
-	// Mail renseigné dans la base ?
+	// Mail renseignï¿½ dans la base ?
 	$sql = "SELECT * FROM Joueurs WHERE Mail=?";
 	
 	$prep = $db->prepare($sql);
@@ -17,7 +17,7 @@
 	$enregistrement = $prep->fetch();
 		
 	if (!$enregistrement ){
-		echo 'Ce mail n\'a jamais été utilisé pour une inscription sur Parions Potes...';
+		echo 'Ce mail n\'a jamais Ã©tÃ© utilisÃ© pour une inscription sur Parions Potes...';
 		return;
 	}
 	$login = $enregistrement->Login;
@@ -26,7 +26,7 @@
 	
 	
 	
-	// Génération d'un mot de passe aléatoire de 8 caractères
+	// Gï¿½nï¿½ration d'un mot de passe alï¿½atoire de 8 caractï¿½res
 	$characters = '2345679abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
 	$length = rand(8,12);
@@ -50,7 +50,7 @@
 	
 	
 	if ($res == false){
-		echo 'Erreur lors de la réinitialisation du mot de passe...';
+		echo 'Erreur lors de la rÃ©initialisation du mot de passe...';
 		return;
 	}
 	
@@ -60,22 +60,22 @@
 
 	$passage_ligne = "\r\n";
 	$contenu = "Bonjour " . $login . "," . $passage_ligne . $passage_ligne . "Votre nouveau de passe est " . $newpass . $passage_ligne . $passage_ligne;
-	$contenu .= "Connectez-vous avec ce mot de passe sur www.parions-potes.fr, puis changez immédiatement votre mot de passe." . $passage_ligne . $passage_ligne;
+	$contenu .= "Connectez-vous avec ce mot de passe sur www.parions-potes.fr, puis changez immï¿½diatement votre mot de passe." . $passage_ligne . $passage_ligne;
 	$contenu .= "Sportivement," . $passage_ligne . $passage_ligne;
-	$contenu .= "L'équipe Parions Potes". $passage_ligne . "www.parions-potes.fr";
+	$contenu .= "L'ï¿½quipe Parions Potes". $passage_ligne . "www.parions-potes.fr";
 	
-	//=====Création de la boundary
+	//=====Crï¿½ation de la boundary
 	$boundary = "-----=".md5(rand());
 	//==========
 	
-	//=====Création du header de l'e-mail.
+	//=====Crï¿½ation du header de l'e-mail.
 	$header = 'From: "Parions Potes"<parionsp@20gp.ovh.net>'.$passage_ligne;
 	$header.= 'Reply-to: "Parions Potes" <contact@parions-potes.fr>'.$passage_ligne;
 	$header.= "MIME-Version: 1.0".$passage_ligne;
 	$header.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
 	//==========
 	 
-	//=====Création du message.
+	//=====Crï¿½ation du message.
 	$message = $passage_ligne."--".$boundary.$passage_ligne;
 	//=====Ajout du message au format texte.
 	$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
@@ -97,5 +97,5 @@
 	mail($mail,$sujet,$message,$header);
 	//==========
 	
-	echo('success;Un mail vient de vous être envoyé avec un nouveau de mot de passe réinitialisé.');
+	echo('success;Un mail vient de vous Ãªtre envoyÃ© avec un nouveau de mot de passe rÃ©initialisÃ©.');
 ?>

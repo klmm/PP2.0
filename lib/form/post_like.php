@@ -3,7 +3,7 @@
 
 	$joueur = $_SESSION['LoginJoueur'];
 	if ($joueur == ''){
-		echo 'Joueur non-connecté';
+		echo 'Joueur non-connectÃ©';
 		return;
 	}
 	
@@ -16,7 +16,7 @@
 	$db = $bdd->getDB();
 
 	
-	// Like déjà existant ?
+	// Like dï¿½jï¿½ existant ?
 	$sql = "SELECT * FROM ArticlesLike WHERE IDComm = ? AND Joueur = ?";
 	$prep = $db->prepare($sql);
 	$prep->setFetchMode(PDO::FETCH_OBJ);
@@ -26,7 +26,7 @@
 	
 	if( $enregistrement = $prep->fetch() )
 	{
-		echo 'Ce like existe déjà...';
+		echo 'Ce like existe dÃ©jÃ ...';
 		return;
 	}
 
@@ -48,7 +48,7 @@
 		return;
 	}
 	
-	// Incrémentation du nombre de like/dislike du commentaires
+	// Incrï¿½mentation du nombre de like/dislike du commentaires
 	if ($bLike){
 		$sql = "UPDATE ArticlesCommentaire SET NombreLikes = NombreLikes + 1 WHERE IDCommentaire = ?";
 		$prep3 = $db->prepare($sql);

@@ -10,9 +10,31 @@
 
 
 
+//--------------------------------------CONSTANTES--------------------------------------//
+$bcr = array(
+    'Football'      => 'bcr-foot',
+    'Ski alpin'     => 'bcr-ski',
+    'Rugby'         => 'bcr-rugby',
+    'Biathlon'      => 'bcr-biathlon',
+    'Cyclisme'      => 'bcr-cyclisme'
+);
 
+$cr = array(
+    'Football'      => 'cr-foot',
+    'Ski alpin'     => 'cr-ski',
+    'Rugby'         => 'cr-rugby',
+    'Biathlon'      => 'cr-biathlon',
+    'Cyclisme'      => 'cr-cyclisme'
+);
 
+//--------------------------------------------------------------------------------------//
 
+    
+    
+    
+    
+    
+    
 
 //--------------------------------------VARIABLES DE SESSION--------------------------------------//
     session_start();
@@ -84,9 +106,17 @@
             <div class="navbar-wrapper" id="header-top">
                 <div class="container">
                     <h1><a href="#myCarousel">Parions Potes</a></h1>  
-                    <ul class="social">
-                        <li class="twitter"><a href="https://twitter.com/ParionsPotes" target="_blank">Twitter</a></li>
-                        <li class="facebook"><a href="https://www.facebook.com/parionspotes" target="_blank">facebook</a></li>
+                    <ul class="social" style="float:right; margin-right: 20px;">
+                        <li class="twitter">
+                            <a href="https://twitter.com/ParionsPotes" target="_blank">
+                                <img src="/img/static/icons_set/no_border/twitter.png" alt="Twitter"></img>
+                            </a>
+                        </li>
+                        <li class="facebook">
+                            <a href="https://www.facebook.com/parionspotes" target="_blank">
+                                <img src="/img/static/icons_set/no_border/facebook.png" alt="Facebook"></img>
+                            </a>
+                        </li>
                     </ul>
                 </div>	
             </div>
@@ -253,19 +283,24 @@
             echo '              <div class="item">';
         }
         
-        $filename = "/homez.800/parionsp/www/articles/" . $arr_unes[$i]['id_article'] . ".htm";
+        $filename = $_SERVER['DOCUMENT_ROOT'] . "/articles/" . $arr_unes[$i]['id_article'] . ".htm";
 	$handle = fopen($filename, "r+");
 	$debut_article = fread($handle, 300) . '...';
 	fclose($handle);
-
+        
+        $categorie_article = $arr_unes[$i]['categorie'];
         echo '
                                     <a href="article.php?id=' . $arr_unes[$i]['id_article'] . '">
                                         <img src="' . $arr_unes[$i]['photo_chemin'] . '" class="img-responsive" alt="' . $arr_unes[$i]['photo_chemin'] . '">
                                         <div class="container">
                                             <div class="carousel-caption">
-                                                <h1 class="col-md-9">'. $arr_unes[$i]['titre'] . '</h1>
-                                                <span class="unes-sport col-md-3 cr-biathlon">'. $arr_unes[$i]['categorie'] . ' - ' . $arr_unes[$i]['souscategorie'] . '</span>
-                                                <span class="unes-intro col-md-12">' . $debut_article . '</span>
+                                                <div class="col-md-9">
+                                                    <h1>'. $arr_unes[$i]['titre'] . '</h1>
+                                                    <p class="unes-intro">' . $debut_article . '</p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p class="unes-sport ' . $cr[$categorie_article] . '">'. $categorie_article . '<br/>' . $arr_unes[$i]['souscategorie'] . '</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -297,13 +332,15 @@
 
     // Colonne 1 sport - image - titre - catégorie
     for ($i = 0; $i < $nb_tous; $i++) {
+        
+        $categorie = $arr_tous[$i]['categorie'];
         echo '
                             <li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-0">
                                 <a href="article.php?id=' . $arr_tous[$i]['id_article'] . '">
-                                    <span class="badge bcr-rugby">' . $arr_tous[$i]['categorie'] . '</span>
+                                    <span class="badge ' . $bcr[$categorie] . '">' . $categorie . '</span>
                                     <img src="' . $arr_tous[$i]['photo_chemin'] . '" alt="' . $arr_tous[$i]['photo_chemin'] . '"/>
-                                    <h4 class="list-group-item-heading">' . $arr_tous[$i]['souscategorie'] . '</h4>
-                                    <p class="list-group-item-text">' . $arr_tous[$i]['titre'] . '</p>
+                                    <h4 class="list-group-item-heading">' . $arr_tous[$i]['titre'] . '</h4>
+                                    <p class="list-group-item-text">' . $arr_tous[$i]['souscategorie'] . '</p>
                                 </a>
                             </li>';
     }
@@ -393,18 +430,19 @@
                 <div class='actualGames'>
                     <ul class='gamesList' style='padding:0;'>";
         for ($i = 0; $i < $nb_jeux_avenir; $i++) {
+            $jeu_sport = $arr_jeux[$i]['sport'];
             echo "
                         <li class='game-item'>
                             <section class='game-box' data-speed='6' data-type='background' style='background-image:url(" . $arr_jeux[$i]['image'] . ")'>
                                 <div class='game-content'>
                                     <div class='game-text col-md-9 hidden-xs'>
-                                        <div class='jumbotron bcr-foot'>
-                                            <h2>" . $arr_jeux[$i]['sport'] . " - " . $arr_jeux[$i]['competition'] . "</h2>
+                                        <div class='jumbotron " . $bcr[$jeu_sport]. "'>
+                                            <h2>" . $jeu_sport . " - " . $arr_jeux[$i]['competition'] . "</h2>
                                             <p>" . $arr_jeux[$i]['description'] . "</p>
                                         </div>
                                     </div>
                                     <div class='game-button col-md-3 col-sm-3 col-xs-12'>
-                                            <a class='btn btn-primary btn-lg bcr-foot' href='" . $arr_jeux[$i]['url'] . "'>Jouer</a>
+                                            <a class='btn btn-primary btn-lg " . $bcr[$jeu_sport]. "' href='" . $arr_jeux[$i]['url'] . "'>Jouer</a>
                                     </div>
                                 </div>
                             </section>
@@ -420,18 +458,19 @@
                 <div class='actualGames'>
                     <ul class='gamesList' style='padding:0;'>";
         for ($i = 0; $i < $nb_jeux_encours; $i++) {
+            $jeu_sport = $arr_jeux_encours[$i]['sport'];
             echo "
                         <li class='game-item'>
                             <section class='game-box' data-speed='6' data-type='background' style='background-image:url(" . $arr_jeux_encours[$i]['image'] . ")'>
                                 <div class='game-content'>
                                     <div class='game-text col-md-9 col-sm-9 hidden-xs'>
-                                        <div class='jumbotron bcr-foot'>
+                                        <div class='jumbotron " . $bcr[$jeu_sport]. "'>
                                             <h2>" . $arr_jeux_encours[$i]['sport'] . " - " . $arr_jeux_encours[$i]['competition'] . "</h2>
                                             <p>" . $arr_jeux_encours[$i]['description'] . "</p>
                                         </div>
                                     </div>
                                     <div class='game-button col-md-3 col-sm-3 col-xs-12'>
-                                        <a class='btn btn-primary btn-lg bcr-foot' href='" . $arr_jeux_encours[$i]['url'] . "'>Jouer</a>
+                                        <a class='btn btn-primary btn-lg " . $bcr[$jeu_sport]. "' href='" . $arr_jeux_encours[$i]['url'] . "'>Jouer</a>
                                     </div>
                                 </div>
                             </section>
@@ -454,18 +493,19 @@
                             </div>
                             <ul class='gamesList' style='padding:0;'>";
         for ($i = 0; $i < $nb_jeux_finis; $i++) {
+            $jeu_sport = $arr_jeux_finis[$i]['sport'];
             echo "
                                 <li class='game-item'>
                                     <section class='game-box' data-speed='6' data-type='background' style='background-image:url(" . $arr_jeux_finis[$i]['image'] . ")'>
                                         <div class='game-content'>
                                             <div class='game-text col-md-9 col-sm-9 hidden-xs'>
-                                                <div class='jumbotron bcr-foot'>
+                                                <div class='jumbotron " . $bcr[$jeu_sport]. "'>
                                                     <h2>" . $arr_jeux_finis[$i]['sport'] . " - " . $arr_jeux_finis[$i]['competition'] . "</h2>
                                                     <p>" . $arr_jeux_finis[$i]['description'] . "</p>
                                                 </div>
                                             </div>
                                             <div class='game-button col-md-3 col-sm-3 col-xs-12'>
-                                                <a class='btn btn-primary btn-lg bcr-foot' href='" . $arr_jeux_finis[$i]['url'] . "'>Revoir</a>
+                                                <a class='btn btn-primary btn-lg " . $bcr[$jeu_sport]. "' href='" . $arr_jeux_finis[$i]['url'] . "'>Revoir</a>
                                             </div>
                                         </div>
                                     </section>
@@ -508,7 +548,7 @@
 //--------------------------------------INSCRIPTION--------------------------------------//
     if ($bConnected == false){
         echo "
-        <div class='section-contact section' id='inscription' style='min-height: 214px; background: rgb(241, 241, 241);'>
+        <div class='section-contact section' id='inscription' style='min-height: 214px;'>
             <div id='inscription-container' class='container marketing '>
                 <div class='sectionSide'>
                     <h2 class='section-heading'>Inscription</h2>
@@ -621,7 +661,7 @@
 
 
 //--------------------------------------CONTACT--------------------------------------//
-    echo "  <div class='section-contact section' id='contacts' style='min-height: 214px; background: rgb(241, 241, 241);'>
+    echo "  <div class='section-contact section' id='contacts' style='min-height: 214px;'>
                 <div class='container marketing '>
                     <div id='contact-container' class='row'>
                         <div class='sectionSide'>
@@ -647,7 +687,7 @@
                             </div>
                             <div class='col-md-6'>
                                 <textarea class='form-control' rows='7' name='contenu' placeholder='Votre message'></textarea>
-                                <button type='submit' class='btn btn-primary' style='padding:0;margin-top:20px;width:200px;text-align:left;'>
+                                <button type='submit' class='btn btn-primary' style='padding:0;margin-top:20px;width:200px;float:right;'>
                                     <span style='display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;'>Envoyer</span>
                                     <span class='glyphicon glyphicon-ok' style='float:left;width:40px;height:38px;margin:0;padding: 0 0 0 8px;line-height:38px;font-size:1.5em;'></span>
                                 </button>
@@ -656,24 +696,20 @@
                     </div>
                     
                     <div class='row' style='margin-top:40px;'>
-                        <div class='col-md-6'>
-                            <p class='address'>
-                                77, rue du Bret<br>
-                                38090 Villefontaine<br>
-                                France<br>
-                                <br>
-                                112, rue Dedieu<br>
-                                69100 Villeurbanne<br>
-                                France<br>
-                                <br>
-                                email : contact@parions-potes.fr<br>
-                                <br>
-                            </p>
+                        <div class='contact-address col-md-12'>
+                            <p class='address'>contact@parions-potes.fr</p>
                             <ul class='social'>
-                                <li class='googleplus'><a href='https://plus.google.com/+LumApps'>Google+</a></li>
-                                <li class='youtube'><a href='http://www.youtube.com/channel/UC5eRwsgghxoAhdKvHWDeZzw'>youtube</a></li>
+                                <li class='twitter'>
+                                    <a href='https://twitter.com/ParionsPotes' target='_blank'>
+                                        <img src='img/static/icons_set/no_border/twitter.png' alt='Twitter'></img>
+                                    </a>
+                                </li>
+                                <li class='facebook'>
+                                    <a href='https://www.facebook.com/parionspotes' target='_blank'>
+                                        <img src='img/static/icons_set/no_border/facebook.png' alt='Facebook'></img>
+                                    </a>
+                                </li>
                             </ul>
-                            <p></p>
                         </div>
                     </div>
                 </div>

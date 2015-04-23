@@ -1,4 +1,24 @@
 <?php
+
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+    $bdd = new Connexion();
+    $db = $bdd->getDB();
+    
+    $icone = '/img/drapeaux/32x21/';
+    $petit = '/img/drapeaux/48x32/';
+    $moyen = '/img/drapeaux/64x43/';
+    $grand = '/img/drapeaux/128x85/';
+
+    $sql = "UPDATE Pays SET drapeau_icone=' . $icone . ', drapeau_petit=?, drapeau_moyen=?, drapeau_grand=?";
+    $prep = $db->prepare($sql);
+    $prep->setFetchMode(PDO::FETCH_OBJ);
+    $prep->bindValue(1,$icone,PDO::PARAM_STR);
+    $prep->bindValue(2,$petit,PDO::PARAM_STR);
+    $prep->bindValue(3,$moyen,PDO::PARAM_STR);
+    $prep->bindValue(4,$grand,PDO::PARAM_STR);
+
+    $prep->execute();
+     
        /* $characters = 'ACDEFGHJKLMNPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         
@@ -60,7 +80,7 @@
 
 	
 	
-	echo 'TXT : <br/>' . $contenu_txt;
+	//echo 'TXT : <br/>' . $contenu_txt;
 	
 	/*require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
@@ -101,5 +121,5 @@
 		}
 	}*/
         
-        echo '</html>';
+       // echo '</html>';
 ?>

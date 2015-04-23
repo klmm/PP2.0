@@ -34,6 +34,7 @@
 			$arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
 			$arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //credits
 			$arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
+                        $arr[$j]['photo_chemin_deg'] = $tab_img[$j]['chemin_degrade'];
 		}
 		
 		return $arr;
@@ -86,6 +87,7 @@
 			$arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
 			$arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //credits
 			$arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
+                        $arr[$j]['photo_chemin_deg'] = $tab_img[$j]['chemin_degrade'];
 		}
 		
 		return $arr;
@@ -126,6 +128,7 @@
 			$arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
 			$arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //credits
 			$arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
+                        $arr[$j]['photo_chemin_deg'] = $tab_img[$j]['chemin_degrade'];
 		}
 		
 		return $arr;
@@ -167,6 +170,7 @@
 			$arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
 			$arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //credits
 			$arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
+                        $arr[$j]['photo_chemin_deg'] = $tab_img[$j]['chemin_degrade'];
 		}
 		
 		return $arr;
@@ -218,6 +222,7 @@
                     $arr[$j]['photo_titre'] = $tab_img[$j]['titre'];	//titre
                     $arr[$j]['photo_credits'] = $tab_img[$j]['credits']; //cr�dits
                     $arr[$j]['photo_chemin'] = $tab_img[$j]['chemin'];	//chemin
+                    $arr[$j]['photo_chemin_deg'] = $tab_img[$j]['chemin_degrade'];
 		}
 		
 		return $arr;
@@ -253,6 +258,7 @@
 			$arr['photo_titre'] = $tab_img[0]['titre'];	//titre
 			$arr['photo_credits'] = $tab_img[0]['credits']; //cr�dits
 			$arr['photo_chemin'] = $tab_img[0]['chemin'];	//chemin
+                        $arr['photo_chemin_deg'] = $tab_img[$j]['chemin_degrade'];
 		}
 		
 		return $arr;

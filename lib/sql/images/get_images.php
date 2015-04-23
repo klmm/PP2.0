@@ -20,6 +20,7 @@
 			$arr[$i]['titre'] = $enregistrement->Titre;
 			$arr[$i]['credits'] = $enregistrement->Credits;
 			$arr[$i]['chemin'] = $enregistrement->Chemin;
+                        $arr[$i]['chemin_degrade'] = $enregistrement->chemin_degrade;
 			$i++;
 		}
 		
@@ -57,6 +58,7 @@
                         $arr[$i]['titre'] = $enregistrement->Titre;
                         $arr[$i]['credits'] = $enregistrement->Credits;
                         $arr[$i]['chemin'] = $enregistrement->Chemin;
+                        $arr[$i]['chemin_degrade'] = $enregistrement->chemin_degrade;
                     }
 		}
 		return $arr;

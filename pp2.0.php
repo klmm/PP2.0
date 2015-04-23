@@ -338,7 +338,7 @@ $cr = array(
                             <li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-0">
                                 <a href="article.php?id=' . $arr_tous[$i]['id_article'] . '">
                                     <span class="badge ' . $bcr[$categorie] . '">' . $categorie . '</span>
-                                    <img src="' . $arr_tous[$i]['photo_chemin'] . '" alt="' . $arr_tous[$i]['photo_chemin'] . '"/>
+                                    <img src="' . $arr_tous[$i]['photo_chemin_deg'] . '" alt="oo ' . $arr_tous[$i]['photo_chemin_deg'] . '"/>
                                     <h4 class="list-group-item-heading">' . $arr_tous[$i]['titre'] . '</h4>
                                     <p class="list-group-item-text">' . $arr_tous[$i]['souscategorie'] . '</p>
                                 </a>
@@ -442,7 +442,7 @@ $cr = array(
                                         </div>
                                     </div>
                                     <div class='game-button col-md-3 col-sm-3 col-xs-12'>
-                                            <a class='btn btn-primary btn-lg " . $bcr[$jeu_sport]. "' href='" . $arr_jeux[$i]['url'] . "'>Jouer</a>
+                                            <a class='btn btn-primary btn-lg " . $bcr[$jeu_sport]. "' href='" . $arr_jeux[$i]['url'] . "' disabled>Bientôt...</a>
                                     </div>
                                 </div>
                             </section>

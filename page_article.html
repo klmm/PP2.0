@@ -25,8 +25,10 @@
 	<link href="css/carousel.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/pagearticle.css" rel="stylesheet">
+	<link href="css/social-buttons.css" rel="stylesheet">
 	
 	<script src="js/modernizr.custom.js"></script>
+	
 
 </head>
 
@@ -117,14 +119,12 @@
 							</ul>
 					</div>
 					<div class="navbar-collapse collapse" id="navbar-main">
-					  <ul class="nav navbar-nav pull-right" style="">
-						<li class="active"><a href="#myCarousel" data-action="scrollTo">Actualités</a></li>
-						<li class=""><a href="#games" data-action="scrollTo">Jeux</a></li>
-						<!-- <li class=""><a href="#articles" data-action="scrollTo">Articles</a></li> -->
-						<li class=""><a href="#inscription" data-action="scrollTo">Inscription</a></li>
-						<li class=""><a href="#presentation" data-action="scrollTo">Présentation</a></li>
-						<li class=""><a href="#contacts" data-action="scrollTo">Contacts</a></li>
-					  </ul>  
+						<ul class="nav navbar-nav pull-right" style="">
+							<!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
+							<li class=""><a href="#article" data-action="scrollTo">Article</a></li>
+							<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires (' . $nb_comm . ')</a></li>
+							<li class=""><a href="pp2.0.php">Retour au site</a></li>
+						</ul> 
 					</div>
 					
 				  </div>
@@ -150,17 +150,54 @@
 				<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
 					<h1 class="section-heading">Premier Article !</h1>
 				</div>
-				<p id="article-text">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon !
+				<!-- Debut article html -->
+				
+				
+				<p class="article-text bold">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football...</p>
+				<p class="article-text">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon !
 
-Après une mise en bouche avec le Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions Potes » sera présent sur toutes les épreuves féminines et  masculines de la coupe du monde FIS ainsi que les championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom !
+				Après une mise en bouche avec le Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions Potes » sera présent sur toutes les épreuves féminines et  masculines de la coupe du monde FIS ainsi que les championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom !
 
-N’oublions pas le biathlon que nous retrouverons dès la fin du mois. Espérons que notre franc-tireur favori Martin Fourcade se soit remis physiquement !
+				N’oublions pas le biathlon que nous retrouverons dès la fin du mois. Espérons que notre franc-tireur favori Martin Fourcade se soit remis physiquement !</p>
 
-Comme d’habitude, pas de perte de temps ! Faites vos paris rapidement sur des épreuves disponibles longtemps à l’avance. Battez vos amis et remportez les classements mensuels !
+				<blockquote class="twitter-tweet tw-align-center" lang="fr"><p>Pas de seconde manche pour Pintu... Weekend noir pour les français pour le moment... <a href="https://twitter.com/hashtag/Levi?src=hash">#Levi</a></p>&mdash; Parions Potes (@ParionsPotes) <a href="https://twitter.com/ParionsPotes/status/533912668546293760">16 Novembre 2014</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				<p class="article-text bold">Titre partie</p>
+				<p class="article-text">Comme d’habitude, pas de perte de temps ! Faites vos paris rapidement sur des épreuves disponibles longtemps à l’avance. Battez vos amis et remportez les classements mensuels !
 
-Comme pour vos sportifs préférés, pour soulever le gros globe il vous faudra de la régularité, de la précision et une once de prise de risque !
+				Comme pour vos sportifs préférés, pour soulever le gros globe il vous faudra de la régularité, de la précision et une once de prise de risque !
 
-Alors à vos skis !</p>
+				Alors à vos skis !</p>
+				<div class="row insert-image">
+					<img src="img/articles/football/msn_deg.jpg"/>
+					<p>Crédit photo</p>
+				</div>
+				
+				<p class="article-text">Comme d’habitude, pas de perte de temps ! Faites vos paris rapidement sur des épreuves disponibles longtemps à l’avance. Battez vos amis et remportez les classements mensuels !
+
+				Comme pour vos sportifs préférés, pour soulever le gros globe il vous faudra de la régularité, de la précision et une once de prise de risque !
+
+				Alors à vos skis !</p>
+				<p class="col-md-6 article-text author">Thokes</p>
+				<p class="col-md-6 article-text date">Le 21/03/2015</p>
+				
+				
+				<!-- Fin article html -->
+				
+				
+				<div class="social-sharing is-large" data-permalink="http://parions-potes.fr/article.php?id=5">
+					<a target="_blank" href="http://www.facebook.com/sharer.php?u=http://parions-potes.fr/article.php?id=5" class="share-facebook">
+					  <span class="icon icon-facebook"></span>
+					  <span class="share-title">Share</span>
+					  <span class="share-count">0</span>
+					</a>
+					
+					<a target="_blank" href="http://twitter.com/share?url=http://parions-potes.fr/article.php?id=5&text=je%20te%20laisse%20regarder%20pour%20le%20texte%20daccroche%20" class="share-twitter">
+					  <span class="icon icon-twitter"></span>
+					  <span class="share-title">Tweet</span>
+					  <span class="share-count">0</span>
+					</a>
+				</div>
 			</div>
 			<div class="col-md-3 col-md-offset-1 col-sm-4 hidden-xs">
 				<div id="list-right">
@@ -294,7 +331,7 @@ Alors à vos skis !</p>
 <script src="bower_components/angular/angular.js"></script>
 <!-- <script src="bower_components/lumx/dist/js/lumx.js"></script>  -->
 
-<script src="js/toucheffects.js"></script>
+<script src="js/social-buttons.js"></script>
  
  <script>
     jQuery(document).ready(function ($) {
@@ -333,7 +370,7 @@ Alors à vos skis !</p>
 		  $(window).scroll(function() {
 			// HTML5 proves useful for helping with creating JS functions!
 			// also, negative value because we're scrolling upwards                             
-			var yPos = -($window.scrollTop() / $scroll.data('speed')); 
+			var yPos = -($window.scrollTop() / $scroll.data('speed')) +100; 
 			 
 			// background position
 			var coords = '50% '+ yPos + 'px';

@@ -1,6 +1,6 @@
 /* BODY */
 #image { 
-    background:  50% 0 fixed; 
+    background:  50% 100px fixed; 
     height: 100%;  
     margin: 0 auto; 
     width: 100%; 
@@ -35,12 +35,42 @@
 
 
 /* Text */
-#article-text{ 
+.article-text{ 
   font-family: 'Georgia';
   line-height: 2em;
   font-size: 20px;
   color: black;
 }
+
+.bold{ 
+  font-weight: bold; 
+}
+
+.author{ 
+  font-weight: bold; 
+  text-align: left;
+}
+
+.date{  
+  text-align: right;
+  font-style: italic;
+}
+
+.insert-image img{  
+	width: 100%;
+}
+
+.insert-image p{  
+  float: right;
+  font-size: 13px;
+  color: grey;
+}
+
+.social-sharing{  
+	margin-top: 100px;
+	text-align: center;
+}
+
 
 #list-right{
 	 //box-shadow: 0 0 15px rgba(150,150,150,0.8);

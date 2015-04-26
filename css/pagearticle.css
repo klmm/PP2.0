@@ -152,3 +152,17 @@
 	width: 50%;
 	text-align:right;
 }
+
+.disabled.btn-like {
+	color: #5cb85c;
+	background-color: #fff;
+	border: none;
+}
+
+.disabled.btn-dislike {
+	color: #d9534f;
+	background-color: #fff;
+	border: none;
+}
+
+

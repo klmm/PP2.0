@@ -268,8 +268,11 @@
 	<!-- Section commentaires -->
 	<section id="comment" data-speed="2" data-type="background">
 		<div class="container">
+			<div class="sectionSide">
+				<h2 class="section-heading">Commentaires</h2>
+			</div>
 			<div class="row post-container">		
-				<form id="post-form" role="form" class="row contact-form" action="mail/contact_mail.php" method="POST">
+				<form id="post-form" role="form" class="row contact-form" action="lib/form/post_comentaire.php" method="POST">
 					<div class="col-md-10 col-md-offset-1">
 						<p id="id com parent" class="hidden">Id message parent ou 0</p>
 						<p class="show pull-left" style="padding: 10px 5px;">Réponds à </p>
@@ -284,8 +287,9 @@
 			</div>
 			
 			<div id="id com? pas tres secure..." class="row com-container">		
-					<div class="col-md-10 col-md-offset-1">
-						<p id="id com ptet plus secure" class="hidden">Id</p>
+					<div class="like-form col-md-10 col-md-offset-1">
+						
+						<p id="id-com" value="142" class="hidden">142</p>
 						<p class="user pull-left">Toto</p>
 						<p class="time pull-right">Il y a 22 minutes</p>
 						<p class="comment">Alors qu’Anna Fenninger et Marcel Hirscher ont dominé la Coupe du Monde de Ski Alpin cette saison, c’est Toto qui remporte la compétition Parions Potes. 
@@ -297,16 +301,17 @@
 							<span>Répondre</span>
 						</button>
 						
-						<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="">
+						<button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">
 							<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-							<span>2</span>
+							<span class="count">2</span>
 						</button>
-						<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="">
+						<button class="btn-like btn btn-success pull-right" style="margin-left:10px;" onclick="">
 							<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-							<span>12</span>
+							<span class="count">12</span>
 						</button>
 									
 					</div>
+				
 			</div>
 		</div>
 	</section>
@@ -324,7 +329,7 @@
 	<script src="js/classie.js"></script>
 	<script src="js/jquery.scrollTo.min.js"></script>
 	<script src="js/jqBootstrapValidation.js"></script>
-	
+	<script src="js/script.js"></script>
 	<!-- <script src="bower_components/jquery/dist/jquery.js"></script>-->
 <script src="bower_components/velocity/velocity.js"></script>
 <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
@@ -337,6 +342,7 @@
     jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	
+		Init_Forms();
 		
 		$(window).resize(function() {
 			

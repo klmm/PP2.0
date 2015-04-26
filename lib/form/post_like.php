@@ -3,20 +3,20 @@
 
 	$joueur = $_SESSION['LoginJoueur'];
 	if ($joueur == ''){
-		echo 'Joueur non-connecté';
-		return;
+	    echo 'Joueur non-connecté';
+	    return;
 	}
 	
-	$id_article = $_GET['id_article'];
-	$id_comm = $_GET['id_comm'];
-	$bLike = $_GET['like'];
+	$id_article = $_POST['id_article'];
+	$id_comm = $_POST['id_comm'];
+	$bLike = $_POST['type'];
 
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 
 	
-	// Like d�j� existant ?
+	// Like déjà existant ?
 	$sql = "SELECT * FROM ArticlesLike WHERE IDComm = ? AND Joueur = ?";
 	$prep = $db->prepare($sql);
 	$prep->setFetchMode(PDO::FETCH_OBJ);
@@ -26,8 +26,8 @@
 	
 	if( $enregistrement = $prep->fetch() )
 	{
-		echo 'Ce like existe déjà...';
-		return;
+	    echo 'Ce like existe déjà...';
+	    return;
 	}
 
 	
@@ -44,12 +44,12 @@
 	
 	if( $res == false )
 	{
-		echo 'Erreur...';
-		return;
+	    echo 'Erreur...';
+	    return;
 	}
 	
-	// Incr�mentation du nombre de like/dislike du commentaires
-	if ($bLike){
+	// Incrémentation du nombre de like/dislike du commentaires
+	if ($bLike == true){
 		$sql = "UPDATE ArticlesCommentaire SET NombreLikes = NombreLikes + 1 WHERE IDCommentaire = ?";
 		$prep3 = $db->prepare($sql);
 		$prep3->setFetchMode(PDO::FETCH_OBJ);
@@ -66,10 +66,9 @@
 	
 	if( $res == false )
 	{
-		echo 'Erreur incr...';
-		return;
+	    echo 'Erreur incr...';
+	    return;
 	}
 	
 	echo 'success';
-	
 ?>

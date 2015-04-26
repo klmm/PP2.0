@@ -249,30 +249,31 @@ function Init_Forms()
 	$(".btn-like").click(function(e)
 	{
 		e.preventDefault(); //STOP default action
-		var id = $(this).parent().find("#id-com").attr("value");
-		var postData = "id-com=" + id + "&type=true";
+		var id_com = $(this).parent().find("#id-com").attr("value");
+		var id_art = $(this).parent().find("#id-art").attr("value");
+		var postData = "id_comm=" + id_com + "&type=1&id_article=" + id_art;
 		$.ajax(
 		{
-			url : "lib/form/post_like.php",
+			url : "/lib/form/post_like.php",
 			type: "POST",
 			data : postData,
 			success:function(data, textStatus, jqXHR) 
 			{
-				if (result == 'success'){
+				if (data == 'success'){
 					
 					$(this).addClass("disabled");
-					$(this).blur();
+					$(this).blur();					
 					var c = $(this).find(".count").html().valueOf();
 					c++;
 					$(this).find(".count").text(c);
 					
 				}
+				
 				//$('form')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
-				//on ne fait rien
-					 
+			    // rien
 			}
 		});
 	
@@ -281,27 +282,28 @@ function Init_Forms()
 	$(".btn-dislike").click(function(e)
 	{
 		e.preventDefault(); //STOP default action
-		var id = $(this).parent().find("#id-com").attr("value");
-		var postData = "id-com=" + id + "&type=false";
+		var id_com = $(this).parent().find("#id-com").attr("value");
+		var id_art = $(this).parent().find("#id-art").attr("value");
+		var postData = "id_comm=" + id_com + "&type=0&id_article=" + id_art;
 		$.ajax(
 		{
-			url : "lib/form/post_like.php",
+			url : "/lib/form/post_like.php",
 			type: "POST",
 			data : postData,
 			success:function(data, textStatus, jqXHR) 
 			{
-				if (result == 'success'){
-					$(this).addClass("disabled");
-					$(this).blur();
-					var c = $(this).find(".count").html().valueOf();
-					c++;
-					$(this).find(".count").text(c);	
+				if (data == 'success'){
+				    $(this).addClass("disabled");
+				    $(this).blur();
+				    var c = $(this).find(".count").html().valueOf();
+				    c++;
+				    $(this).find(".count").text(c);	
 				}
 				//$('form')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
-				//on ne fait rien
+			    // rien
 					 
 			}
 		});
@@ -313,7 +315,7 @@ function Init_Forms()
 function getAllComs() {
 
 	//var postData = $(this).serializeArray();
-	var formURL = "lib/form/get_comentaires.php";
+	var formURL = "/lib/ajax/refresh_commentaires.php";
 	$.ajax(
 	{
 		url : formURL,

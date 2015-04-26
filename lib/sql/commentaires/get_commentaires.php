@@ -20,8 +20,9 @@
 			$arr[$i]['id_commentaire'] = $enregistrement->IDCommentaire;
 			$arr[$i]['id_article'] = $enregistrement->IDArticle;
 			$arr[$i]['joueur'] = $enregistrement->Joueur;
-			$arr[$i]['contenu'] = $enregistrement->Contenu;
+			$arr[$i]['contenu'] = html_entity_decode($enregistrement->Contenu);
 			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['dateheurepub_conv'] = date_to_duration($enregistrement->DateHeurePub);
 			$arr[$i]['nblikes'] = $enregistrement->NombreLikes;
 			$arr[$i]['nbdislikes'] = $enregistrement->NombreDislikes;
 			$i++;

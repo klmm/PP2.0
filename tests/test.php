@@ -1,6 +1,36 @@
 <?php
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+// On �tablit la connexion avec la base de donn�es
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+		$bdd = new Connexion();
+		$db = $bdd->getDB();
+
+		$id = 5;
+		//On pr�pare la requ�te pour aller chercher les articles
+		$sql = "SELECT * FROM ArticlesCommentaire WHERE IDArticle = ? ORDER BY DateHeurePub DESC";
+		$prep = $db->prepare($sql);
+		$prep->setFetchMode(PDO::FETCH_OBJ);
+		$prep->bindValue(1,$id,PDO::PARAM_INT);
+		$prep->execute();
+		
+		//On met les articles dans le tableau
+		$i = 0;
+		while( $enregistrement = $prep->fetch() )
+		{
+			$arr[$i]['id_commentaire'] = $enregistrement->IDCommentaire;
+			$arr[$i]['id_article'] = $enregistrement->IDArticle;
+			$arr[$i]['joueur'] = $enregistrement->Joueur;
+			$arr[$i]['contenu'] = $enregistrement->Contenu;
+			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['nblikes'] = $enregistrement->NombreLikes;
+			$arr[$i]['nbdislikes'] = $enregistrement->NombreDislikes;
+			$i++;
+		}
+		
+		echo json_encode($arr);
+
+
+   /* require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
     $bdd = new Connexion();
     $db = $bdd->getDB();
     
@@ -17,7 +47,7 @@
     $prep->bindValue(3,$moyen,PDO::PARAM_STR);
     $prep->bindValue(4,$grand,PDO::PARAM_STR);
 
-    $prep->execute();
+    $prep->execute();*/
      
        /* $characters = 'ACDEFGHJKLMNPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

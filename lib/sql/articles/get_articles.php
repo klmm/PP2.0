@@ -258,7 +258,7 @@
 			$arr['photo_titre'] = $tab_img[0]['titre'];	//titre
 			$arr['photo_credits'] = $tab_img[0]['credits']; //cr�dits
 			$arr['photo_chemin'] = $tab_img[0]['chemin'];	//chemin
-                        $arr['photo_chemin_deg'] = $tab_img[$j]['chemin_degrade'];
+                        $arr['photo_chemin_deg'] = $tab_img[0]['chemin_degrade'];
 		}
 		
 		return $arr;

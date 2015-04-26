@@ -61,6 +61,7 @@
     $titre = $infos_article['titre'];
     $auteur = $infos_article['auteur'];
     $photo_chemin = $infos_article['photo_chemin'];
+    $photo_chemin_deg = $infos_article['photo_chemin_deg'];
     $photo_credits = $infos_article['photo_credits'];
     $photo_titre = $infos_article['photo_titre'];
     $categorie = $infos_article['categorie'];
@@ -81,7 +82,10 @@
 
     // Commentaires likés/dislikés par le joueur
     if ($bConnected){
-        $likes = get_likes($id_article);
+        $likes = get_likes($id_article, $loginjoueur);
+    }
+    else{
+	$likes =  null;
     }
 //------------------------------------------------------------------------------------------------//
 
@@ -119,6 +123,7 @@
         <link href="/css/carousel.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
         <link href="/css/pagearticle.css" rel="stylesheet">
+	<link href="/css/social-buttons.css" rel="stylesheet">
         <script src="/js/modernizr.custom.js"></script></head>';
 
     // LIENS TWITTER FACEBOOK
@@ -127,11 +132,19 @@
             <header id="home" class="no-js">
                <div class="navbar-wrapper" id="header-top">
                     <div class="container">
-                        <h1><a href="">Parions Potes</a></h1>  
-                        <ul class="social">
-                            <li class="twitter"><a href="https://twitter.com/ParionsPotes" target="_blank">Twitter</a></li>
-                            <li class="facebook"><a href="https://www.facebook.com/parionspotes" target="_blank">facebook</a></li>
-                        </ul>
+                        <h1><a href="#image">Parions Potes</a></h1>  
+                        <ul class="social" style="float:right; margin-right: 20px;">
+                        <li class="twitter">
+                            <a href="https://twitter.com/ParionsPotes" target="_blank">
+                                <img src="/img/static/icons_set/no_border/twitter.png" alt="Twitter"></img>
+                            </a>
+                        </li>
+                        <li class="facebook">
+                            <a href="https://www.facebook.com/parionspotes" target="_blank">
+                                <img src="/img/static/icons_set/no_border/facebook.png" alt="Facebook"></img>
+                            </a>
+                        </li>
+                    </ul>
                     </div>	
                 </div>
                 <div class="navbar-wrapper" id="header-bottom">
@@ -162,6 +175,10 @@
                                                     <input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
                                                     <button type="submit" id="btnLogin" class="btn btn-block btn-primary">Se connecter</button>
                                                 </form>
+						<li class="divider"> </li>
+						<form id="lostPassword" role="form" action="/lib/form/pass_oublie.php" method="POST" class="form" style="text-align: center; padding: 5px; cursor:pointer;">
+						    <a type="submit" id="btnRegister">Mot de passe oublié ?</a>
+						</form>
                                             </ul>
                                         </li>';
     }
@@ -172,7 +189,7 @@
                                                 <span class="glyphicon glyphicon-user"></span><span id="bUsername">  ' . $loginjoueur . ' </span>
                                             </a>
                                             <ul class="dropdown-menu" style="min-width:202px;">
-                                                <form style="text-align: center; padding: 5px;">
+                                                <form style="text-align: center; padding: 5px; cursor:pointer;">
                                                     <a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
                                                 </form>
 
@@ -251,32 +268,51 @@
                         <div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
                             <h1 class="section-heading">' . $titre . '</h1>
                         </div>
-                        <p id="article-text">';
+                        <p class="article-text">';
 
     include $_SERVER['DOCUMENT_ROOT'] . '/articles/' . $id_article . '.htm';							
 
     echo '          
                         </p>
+			<p class="col-md-6 article-text author">' . $auteur . '</p>
+			<p class="col-md-6 article-text date">' . date_to_duration($date_pub) . '</p>
+			<div class="social-sharing is-large" data-permalink="http://parions-potes.fr/article.php?id=5">
+			    <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://parions-potes.fr/article.php?id=' . $id_article . '" class="share-facebook">
+				<span class="icon icon-facebook"></span>
+				<span class="share-title">Share</span>
+				<span class="share-count">0</span>
+			    </a>
+
+			    <a target="_blank" href="http://twitter.com/share?url=http://parions-potes.fr/article.php?id=' . $id_article . '" class="share-twitter">
+				<span class="icon icon-twitter"></span>
+				<span class="share-title">Tweet</span>
+				<span class="share-count">0</span>
+			    </a>
+			</div>
                     </div>
-                    <div class="col-md-3 col-md-offset-1  col-sm-4 hidden-xs">
-                        <div id="list-right">';
+		    
+		    <div class="col-md-3 col-md-offset-1  col-sm-4 hidden-xs">
+			<div id="list-right">';
 				
-    if ($nb_articles_categorie > 0){
+    if ($nb_articles_categorie > 1){
+	
         echo '
                             <div class="sectionSide">
 				<h2 class="section-heading">' . $articles_categorie[0]['categorie'] . '</h2>	
                             </div>';
 			
         for ($i = 0; $i < $nb_articles_categorie; $i++){
-            echo '
-                            <div class="list-group list-articles-right">
-                                <a href="article.php?id=' . $articles_categorie[$i]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
-                                    <span class="badge">' . $articles_categorie[$i]['categorie'] . '</span>
-                                    <img src="' . $articles_categorie[$i]['photo_chemin'] . '" alt="' . $articles_categorie[$i]['photo_chemin'] . '"/>
-                                    <h4 class="list-group-item-heading">' . $articles_categorie[$i]['titre'] . '</h4>
-                                    <p class="list-group-item-text">' . $articles_categorie[$i]['titre'] . '</p>
-                                </a>
-                            </div>';
+            if ($articles_categorie[$i]['id_article'] != $id_article){
+		echo '
+			    <div class="list-group list-articles-right">
+				<a href="article.php?id=' . $articles_categorie[$i]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
+				    <span class="badge">' . $articles_categorie[$i]['categorie'] . '</span>
+				    <img src="' . $articles_categorie[$i]['photo_chemin'] . '" alt="' . $articles_categorie[$i]['photo_chemin'] . '"/>
+				    <h4 class="list-group-item-heading">' . $articles_categorie[$i]['titre'] . '</h4>
+				    <p class="list-group-item-text">' . $articles_categorie[$i]['titre'] . '</p>
+				</a>
+			    </div>';
+	    }
         }
     }
 		
@@ -324,6 +360,11 @@
 		
     if ($bConnected){
         echo '
+		    <div class="sectionSide">
+			<h2 class="section-heading">Commentaires</h2>
+			<p class="section-highlight">Venez donner votre point de vue !</p>			
+		    </div>
+		    
                     <div class="row post-container">		
                         <form id="post-form" role="form" class="row contact-form" action="/lib/form/post_commentaire.php" method="POST">
                             <div class="col-md-10 col-md-offset-1">
@@ -338,25 +379,44 @@
                     </div>';
     }
     else{
-            //message Connectez-vous pour participer à la conv
+        echo '	    <div class="sectionSide">
+			<h2 class="section-heading">Commentaires</h2>
+			<p class="section-highlight">Connectez-vous pour participer au débat !</p>			
+		    </div>';
     }
-			
+ 
     for ($i = 0; $i < $nb_comm; $i++){
+	$id_comm = $commentaires[$i]['id_commentaire'];
         echo '
-                    <div id="' . $commentaires[$i]['id_commentaire'] . '" class="row com-container">		
-                        <div class="col-md-10 col-md-offset-1">
-                            <p id="' . $commentaires[$i]['id_commentaire'] . 'b" class="hidden">Id</p>
+                    <div id="' . $id_comm . '" class="row com-container">		
+                        <div class="like-form col-md-10 col-md-offset-1">
+                            <p id="id-com" value="' . $id_comm . '" class="hidden">' . $id_comm . '</p>
+			    <p id="id-art" value="' . $id_article . '" class="hidden">' . $id_article . '</p>
                             <p class="user pull-left">' . $commentaires[$i]['joueur'] . '</p>
-                            <p class="time pull-right">' . date_to_duration($commentaires[$i]['dateheurepub']) . '</p>
-                            <p class="comment">' . html_entity_decode($commentaires[$i]['contenu']) . '</p>
+                            <p class="time pull-right">' . $commentaires[$i]['dateheurepub_conv'] . '</p>
+                            <p class="comment">' . $commentaires[$i]['contenu'] . '</p>';
+	
+	if ($likes[$id_comm] == 1){
+	    echo '	    <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;" disabled>';
+	}
+	else{
+	    echo '	    <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">';
+	}
+	
+	echo '			<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
+                                <span class="count">' . $commentaires[$i]['nbdislikes'] . '</span>
+                            </button>';
+	
+	if ($likes[$id_comm] == 2){
+	    echo '	    <button class="btn-like btn btn-success pull-right" style="margin-left:10px;" disabled>';
+	}
+	else{
+	    echo '	    <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">';
+	}
 
-                            <button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="/lib/form/post_like.php?like=1&id_article=' . $id_article . '&id_comm=' . $commentaires[$i]['id_commentaire'] . '">
-                                <span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-                                <span>' . $commentaires[$i]['nblikes'] . '</span>
-                            </button>
-                            <button class="btn btn-success pull-right" style="margin-left:10px;" onclick="lib/sql/likes/add_like.php?like=0&id_article=' . $id_article . '&id_comm=' . $commentaires[$i]['id_commentaire'] . '">
-                                <span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-                                <span>' . $commentaires[$i]['nbdislikes'] . '</span>
+        echo'
+				<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
+                                <span class="count">' . $commentaires[$i]['nblikes'] . '</span>
                             </button>
                         </div>
                     </div>';
@@ -378,20 +438,24 @@
             </div>
 	</footer>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-	<script src="js/classie.js"></script>
-	<script src="js/jquery.scrollTo.min.js"></script>
-	<script src="js/jqBootstrapValidation.js"></script>	
-        <script src="bower_components/velocity/velocity.js"></script>
-        <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="js/toucheffects.js"></script>
- 
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+	<script src="/js/classie.js"></script>
+	<script src="/js/jquery.scrollTo.min.js"></script>
+	<script src="/js/jqBootstrapValidation.js"></script>	
+	<script src="/js/script.js"></script>
+        <script src="/bower_components/velocity/velocity.js"></script>
+        <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <!-- <script src="/js/toucheffects.js"></script> -->
+	<script src="/js/social-buttons.js"></script>
+	
+	
         <script>
             jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-	
+		
+		Init_Forms();
 		
 		$(window).resize(function() {		
                     $(\'body\').scrollspy("refresh");
@@ -424,7 +488,7 @@
 		  $(window).scroll(function() {
 			// HTML5 proves useful for helping with creating JS functions!
 			// also, negative value because we\'re scrolling upwards                             
-			var yPos = -($window.scrollTop() / $scroll.data(\'speed\')); 
+			var yPos = -($window.scrollTop() / $scroll.data(\'speed\')) + 100; 
 			 
 			// background position
 			var coords = \'50% \'+ yPos + \'px\';

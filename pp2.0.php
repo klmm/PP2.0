@@ -1,5 +1,11 @@
 <?php
 
+    function initOutputFilter() {
+	ob_start('ob_gzhandler');
+	register_shutdown_function('ob_end_flush');
+    }
+    initOutputFilter();
+
 //--------------------------------------FONCTIONS--------------------------------------//
     include($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/articles/get_articles.php');
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
@@ -86,18 +92,14 @@ $cr = array(
 
     // BOOTSTRAP
     echo '
-        <link href="/css/bootstrap.min.css" rel="stylesheet">	
-        <link href="/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/carousel.css" rel="stylesheet">
-        <link href="/css/style.css" rel="stylesheet">
-
-        <link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="css/game-component.css" />
-
-        <script src="/js/modernizr.custom.js"></script>
-        <script src="/js/pagination.js"></script>
-        <script src="/js/script.js"></script>
-        <style type="text/css"></style></head>';
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/css/carousel.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">	
+	<link rel="stylesheet" type="text/css" href="/css/game-component.css" />
+		
+	<link href="http://fonts.googleapis.com/css?family=Quicksand:300,400,700|Nova+Square|Open+Sans" rel="stylesheet" type="text/css">	    
+	<style type="text/css"></style></head>';
 		
 // LIENS TWITTER FACEBOOK
     echo '
@@ -291,7 +293,7 @@ $cr = array(
         $categorie_article = $arr_unes[$i]['categorie'];
         echo '
                                     <a href="article.php?id=' . $arr_unes[$i]['id_article'] . '">
-                                        <img src="' . $arr_unes[$i]['photo_chemin'] . '" class="img-responsive" alt="' . $arr_unes[$i]['photo_chemin'] . '">
+                                        <img src="' . $arr_unes[$i]['photo_chemin_deg'] . '" class="img-responsive" alt="' . $arr_unes[$i]['photo_chemin_deg'] . '">
                                         <div class="container">
                                             <div class="carousel-caption">
                                                 <div class="col-md-9">
@@ -511,16 +513,18 @@ $cr = array(
                                     </section>
                                 </li>";
         }
-    }
-
-    echo "                  </ul>
+	
+	echo '              </ul>
                         </div>
-                        <div class='col-md-12' style='margin-top:10px;'>
-                            <button id='archive-toggle' class='btn btn-block btn-success btn-lg' data-toggle='collapse' data-target='#archives'>Archives</button>
+                        <div class="col-md-12" style="margin-top:10px;">
+                            <button id="archive-toggle" class="btn btn-block btn-success btn-lg" data-toggle="collapse" data-target="#archives">Archives</button>
                         </div>
                     </div>
-                </div>
-            </div>";
+                </div>';
+    }
+
+    echo '
+            </div>';
 //--------------------------------------FIN JEUX--------------------------------------//
 
 
@@ -747,25 +751,45 @@ $cr = array(
                 </div>
             </footer>
 
-            <script src="js/jquery.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/classie.js"></script>
-            <script src="js/jquery.scrollTo.min.js"></script>
-            <script src="js/jqBootstrapValidation.js"></script>
-            <script src="bower_components/velocity/velocity.js"></script>
-            <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
-            <script src="bower_components/angular/angular.js"></script>
-            <script src="js/toucheffects.js"></script>
-            <script src="js/toucheffects.js"></script>
-            <script src="js/masonry.pkgd.min.js"></script>
-            <script src="js/imagesloaded.pkgd.min.js"></script>
-            <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
-            <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js"></script>
-            <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js"></script>
+	    <!-- <script src="/js/modernizr.custom.js"></script> -->
+	    <script src="/js/script.js"></script>
+	    <script src="/js/pagination.js"></script>
 
+	    <script src="/js/jquery.min.js"></script>
+	    <script src="/js/bootstrap.min.js"></script>
+	    <!--script src="./assets/js/docs.min.js"></script-->
+	    <script src="/js/classie.js"></script>
+	    <script src="/js/jquery.scrollTo.min.js"></script>
+	    <script src="/js/jqBootstrapValidation.js"></script>
 
-<script type="text/javascript">
-	jQuery(document).ready(function ($) {
+	    <!-- <script src="/bower_components/jquery/dist/jquery.js"></script>-->
+	    <!-- <script src="/bower_components/velocity/velocity.js"></script>
+	    <script src="/bower_components/moment/min/moment-with-locales.min.js"></script> -->
+	    <!-- <script src="/bower_components/angular/angular.js"></script> -->
+
+	    <!-- <script src="/js/toucheffects.js"></script> -->
+	    <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+	    <script src="/js/jquery.effects.core.min.js"></script>
+	    <script src="/js/jquery.effects.slide.min.js"></script>
+
+	    <script src="/js/masonry.pkgd.min.js"></script>
+	    <script src="/js/imagesloaded.pkgd.min.js"></script>
+
+	    <script type="text/javascript">
+	/*var pagedSections = ["#myCarousel","#games","#inscription","#presentation","#contact"];
+	//var pagedSections = ["#contact"];
+	var headerSize = 98;
+	
+	var pageSection = function() {	
+		var viewportHeight = $(window).height();
+		
+		$.each(pagedSections,function(index,value) {
+			$(value).css("min-height",viewportHeight-headerSize);
+		});	
+		// $(\'body\').scrollspy("refresh");
+	}*/
+
+    jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	
 		Init_Forms();
@@ -886,7 +910,7 @@ $cr = array(
 	})();
 
 
-	</script> 
+	</script>  
 	  
 
 	</body></html>';

@@ -163,7 +163,7 @@ header.small {
 }
 
 .logosmall { /* logo dans la barre de menu repliée */
-	width:163px;
+	width:50px;
 	height:39px;
 	position:absolute;
 	left:0;
@@ -297,6 +297,21 @@ background: #FFF;
 .navbar-wrapper .navbar {
   padding-right: 15px;
   padding-left: 15px;
+}
+
+ul.nav.nav-pills{
+	position:absolute;
+	margin-left:90px;
+	width:50%;
+}
+
+#changePassword .alert{
+	max-width: 174px;
+	overflow: hidden;
+}
+#lostPassword .alert{
+	max-width: 175px;
+	overflow: hidden;
 }
 
 /* ______________________________ articles ___________________________________*/
@@ -494,13 +509,17 @@ footer  p {
 @media (max-width:992px) and (min-width:768px) {
 	#header-bottom  .nav>li>a {
 		font-size:16px;
-		padding: 10px 15px;
+		padding: 12px 15px;
+	}
+	
+	.logosmall {
+		top: 7px;
 	}
 }
 
 @media (max-width:970px) {
 	#bConnect, #bUsername {
-		display:none;
+		//display:none;
 	}
 	
 	.logosmall {
@@ -595,6 +614,13 @@ footer  p {
 		width:100%;
 		padding:5px;
 	}	
+	ul.nav.nav-pills{
+		margin-left:60px;
+	}
+
+	#header-bottom .nav>li>a{
+		font-size:14px;
+	}
 }
 
 @media (max-width: 320px) {
@@ -604,5 +630,8 @@ footer  p {
 		margin-top: -10px;
 		//min-height: 18px;
 		text-align: center;
+	}
+	#header-bottom .nav>li>a{
+		font-size:12px;
 	}
 }

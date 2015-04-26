@@ -84,3 +84,9 @@
   position: absolute;
   border: none;
 }
+
+@media (max-width: 768px) {
+	.game-box{ 
+		background:  50% 50% scroll;  
+	 }
+}

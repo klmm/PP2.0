@@ -6,7 +6,7 @@
     width: 100%; 
     position: relative; 
    // box-shadow: 0 0 25px rgba(0,0,0,0.8);
-    padding: 300px 0;
+    padding: 250px 0;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -139,6 +139,7 @@
 
 .com-container p {
 	color:black;
+	padding : 10px;
 }
 
 .com-container span {
@@ -151,6 +152,11 @@
 .com-container .time {
 	width: 50%;
 	text-align:right;
+}
+
+.com-container .comment {
+	background: rgb(222, 230, 243);
+	border-radius: 5px;;
 }
 
 .disabled.btn-like {

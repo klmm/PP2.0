@@ -389,7 +389,7 @@ $cr = array(
                     <div class="row post-container">		
                         <form id="post-form" role="form" class="row contact-form" action="/lib/form/post_commentaire.php" method="POST">
                             <div class="col-md-10 col-md-offset-1">
-                                <input name="id_article" id="id_article" type="text" class="hidden" required="" value="' . $id_article . '">
+                                <input name="id_article" id="id_article" type="text" class="hidden" required="" value="' . $id_article . '"/>
                                 <button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
                                     <span>Poster</span>
                                 </button>
@@ -405,11 +405,12 @@ $cr = array(
 			<p class="section-highlight">Connectez-vous pour participer au débat !</p>			
 		    </div>';
     }
- 
-    for ($i = 0; $i < $nb_comm; $i++){
+	
+	echo '<div class="row com-container">';
+    /*
+	for ($i = 0; $i < $nb_comm; $i++){
 	$id_comm = $commentaires[$i]['id_commentaire'];
-        echo '
-                    <div id="' . $id_comm . '" class="row com-container">		
+        echo '		
                         <div class="like-form col-md-10 col-md-offset-1">
                             <p id="id-com" value="' . $id_comm . '" class="hidden">' . $id_comm . '</p>
 			    <p id="id-art" value="' . $id_article . '" class="hidden">' . $id_article . '</p>
@@ -439,12 +440,13 @@ $cr = array(
 				<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
                                 <span class="count">' . $commentaires[$i]['nblikes'] . '</span>
                             </button>
-                        </div>
-                    </div>';
+                        </div>';
+                   
     }
 	
+	*/
     echo '
-		</div>
+		 </div></div>
             </section>';
 //---------------------------------------------FIN COMMENTAIRES------------------------------------------------------//	
 
@@ -477,6 +479,7 @@ $cr = array(
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 		
 		Init_Forms();
+		getAllComs($("#id_article").val());
 		
 		$(window).resize(function() {		
                     $(\'body\').scrollspy("refresh");

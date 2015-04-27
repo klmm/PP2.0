@@ -1,11 +1,13 @@
 <?php
 
 	function get_commentaires_article($id){
+		
 		// On �tablit la connexion avec la base de donn�es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/fonctions.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
-
+		
 		//On pr�pare la requ�te pour aller chercher les articles
 		$sql = "SELECT * FROM ArticlesCommentaire WHERE IDArticle = ? ORDER BY DateHeurePub DESC";
 		$prep = $db->prepare($sql);
@@ -26,6 +28,7 @@
 			$arr[$i]['nblikes'] = $enregistrement->NombreLikes;
 			$arr[$i]['nbdislikes'] = $enregistrement->NombreDislikes;
 			$i++;
+			
 		}
 		
 		return $arr;

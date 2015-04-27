@@ -216,6 +216,7 @@ function Init_Forms()
 		$('.alert').alert('close');
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
+		var id_art = $(this).find("#id_article").attr("value");
 		$.ajax(
 		{
 			url : formURL,
@@ -226,7 +227,7 @@ function Init_Forms()
 				var result = data.split(';');
 				if (result[0] == 'success'){
 					//chargement des coms
-					getAllComs();
+					getAllComs(id_art);
 				}else {
 					$( "#post-container" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
@@ -249,6 +250,7 @@ function Init_Forms()
 	$(".btn-like").click(function(e)
 	{
 		e.preventDefault(); //STOP default action
+		var $this = $(this);
 		var id_com = $(this).parent().find("#id-com").attr("value");
 		var id_art = $(this).parent().find("#id-art").attr("value");
 		var postData = "id_comm=" + id_com + "&type=1&id_article=" + id_art;
@@ -261,11 +263,11 @@ function Init_Forms()
 			{
 				if (data == 'success'){
 					
-					$(this).addClass("disabled");
-					$(this).blur();					
-					var c = $(this).find(".count").html().valueOf();
+					$this.addClass("disabled");
+					$this.blur();					
+					var c = $this.find(".count").html().valueOf();
 					c++;
-					$(this).find(".count").text(c);
+					$this.find(".count").text(c);
 					
 				}
 				
@@ -282,6 +284,7 @@ function Init_Forms()
 	$(".btn-dislike").click(function(e)
 	{
 		e.preventDefault(); //STOP default action
+		var $this = $(this);
 		var id_com = $(this).parent().find("#id-com").attr("value");
 		var id_art = $(this).parent().find("#id-art").attr("value");
 		var postData = "id_comm=" + id_com + "&type=0&id_article=" + id_art;
@@ -293,11 +296,11 @@ function Init_Forms()
 			success:function(data, textStatus, jqXHR) 
 			{
 				if (data == 'success'){
-				    $(this).addClass("disabled");
-				    $(this).blur();
-				    var c = $(this).find(".count").html().valueOf();
-				    c++;
-				    $(this).find(".count").text(c);	
+				    $this.addClass("disabled");
+					$this.blur();					
+					var c = $this.find(".count").html().valueOf();
+					c++;
+					$this.find(".count").text(c);
 				}
 				//$('form')[0].reset();
 			},
@@ -312,24 +315,32 @@ function Init_Forms()
 	});
 }
 
-function getAllComs() {
+function getAllComs($idart) {
 
-	//var postData = $(this).serializeArray();
-	var formURL = "/lib/ajax/refresh_commentaires.php";
+	var formURL = "/lib/form/render_coms_section.php";
+	var postData = "id_article=" + $idart;
 	$.ajax(
 	{
 		url : formURL,
 		type: "POST",
+		data : postData,
 		success:function(data, textStatus, jqXHR) 
 		{
-			//alert(result);
+			var result = $.parseJSON(data);
+			var coms = result.commentaires;
+			var likes = result.likes;
+			var disable;
+			if(coms == null){
+				return;
+			}
 			$( ".com-container" ).empty();
-			for (var i = 0; i < result.length; i++) {
-				var object = result[i];
-					
-				$( "#com-container" ).append( '<div id="' + object['id_commentaire'] + '" class="row com-container">' +		
-				   '<div class="col-md-10 col-md-offset-1">' +
-						'<p id="' + object['id_commentaire'] + 'b" class="hidden">Id</p>' +
+			for (var i = 0; i < coms.length; i++) {
+				var object = coms[i];
+				//if(likes[object['id_commentaire']] == 1)	
+				$( ".com-container" ).append(  '<div class="like-form col-md-10 col-md-offset-1">' +		
+				   
+						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden">Id</p>' +
+						'<p id="id-art" value="' + $idart + '" class="hidden">Id</p>' +
 						'<p class="user pull-left">' + object['joueur'] + '</p>' +
 						'<p class="time pull-right">' + object['dateheurepub'] + '</p>' +
 						'<p class="comment">' + object['contenu'] + '</p>' +
@@ -342,7 +353,6 @@ function getAllComs() {
 							'<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
 							'<span>' + object['nbdislikes'] + '</span>' +
 						'</button>' +
-					'</div>' +
 				'</div>' );
 
 			}
@@ -352,7 +362,7 @@ function getAllComs() {
 			//do nothing
 		}
 	});
-	e.preventDefault(); //STOP default action	
+	
 	
 	
 }

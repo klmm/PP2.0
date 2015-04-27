@@ -1,15 +1,16 @@
 <?php
 
     require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+	
     $bdd = new Connexion();
     $db = $bdd->getDB();
 
     session_start();
-    $login = $_SESSION['LoginJoueur'];	
+    $login = $_SESSION['LoginJoueur'];
     $contenu = $_POST['contenu'];	
     $contenu = htmlentities(nl2br($contenu));
     $id_article = $_POST['id_article'];
-
+	
     if ($login == ''){
 	echo 'Joueur non connecté';
 	return;
@@ -29,19 +30,9 @@
 	return;
     }
 
+	
 
+   
 
-    // Envoi de tous les commentaires + ce que le joueur like pour AJAX
-    $res1 = get_commentaires_article($id_article);
-    $res2 = get_likes($id_article, $login);
-
-    $res = array(
-	'result' => 'success',
-	'commentaires' => $res1,
-	'likes' => $res2    // !!!! 1:dislike, 2:like
-    );
-
-    echo json_encode($res);
-
-    //echo 'success;sep;' . $contenu . ';sep;' . $login . ';sep;';
+    echo 'success;sep;' . $contenu . ';sep;' . $login . ';sep;';
 ?>

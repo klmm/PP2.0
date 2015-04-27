@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 //--------------------------------------FONCTIONS--------------------------------------//
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/articles/get_articles.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
@@ -14,6 +11,25 @@
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/fonctions.php';
 //-------------------------------------------------------------------------------------//
 
+    
+//--------------------------------------CONSTANTES--------------------------------------//
+$bcr = array(
+    'Football'      => 'bcr-foot',
+    'Ski alpin'     => 'bcr-ski',
+    'Rugby'         => 'bcr-rugby',
+    'Biathlon'      => 'bcr-biathlon',
+    'Cyclisme'      => 'bcr-cyclisme'
+);
+
+$cr = array(
+    'Football'      => 'cr-foot',
+    'Ski alpin'     => 'cr-ski',
+    'Rugby'         => 'cr-rugby',
+    'Biathlon'      => 'cr-biathlon',
+    'Cyclisme'      => 'cr-cyclisme'
+);
+
+//--------------------------------------------------------------------------------------//
 
 
 //--------------------------------------VARIABLES DE SESSION--------------------------------------//
@@ -160,7 +176,7 @@
                                         <span class="icon-bar"></span>
                                     </button> 
                                     <a class="navbar-brand logosmall" href="#image" id="logosmall" data-action="scrollTo"></a>
-                                    <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">';
+                                    <ul class="nav nav-pills">';
 
     // CONNEXION - ESPACE JOUEUR
     if ($bConnected == false){
@@ -168,7 +184,7 @@
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:rgb(115, 50, 130);background:transparent;">
                                                 <span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
                                             </a>
-                                            <ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
+                                            <ul class="dropdown-menu" style="padding:13px;margin: 2px -10px 0;">
                                                 <form role="form" id="formLogin" class="form" action="/lib/form/connect_joueur.php" method="POST">
                                                     <label>Se connecter</label>
                                                     <input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
@@ -176,8 +192,12 @@
                                                     <button type="submit" id="btnLogin" class="btn btn-block btn-primary">Se connecter</button>
                                                 </form>
 						<li class="divider"> </li>
-						<form id="lostPassword" role="form" action="/lib/form/pass_oublie.php" method="POST" class="form" style="text-align: center; padding: 5px; cursor:pointer;">
-						    <a type="submit" id="btnRegister">Mot de passe oublié ?</a>
+						<form style="text-align: center; padding: 5px; cursor:pointer;">
+						    <a data-toggle="collapse" data-target="#lostPassword">Mot de passe oublié ?</a>
+						</form>
+						<form id="lostPassword" role="form" action="lib/mail/pass_oublie_mail.php" method="POST" class="form collapse" style="height: auto;text-align: center;">
+						    <input name="mail" id="mailChangePwd" type="text" placeholder="Mail" title="Mail" required="">                                  
+						    <button type="submit" id="valChangePwd" class="btn btn-success">Valider</button>
 						</form>
                                             </ul>
                                         </li>';
@@ -304,14 +324,14 @@
         for ($i = 0; $i < $nb_articles_categorie; $i++){
             if ($articles_categorie[$i]['id_article'] != $id_article){
 		echo '
-			    <div class="list-group list-articles-right">
-				<a href="article.php?id=' . $articles_categorie[$i]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
-				    <span class="badge">' . $articles_categorie[$i]['categorie'] . '</span>
-				    <img src="' . $articles_categorie[$i]['photo_chemin'] . '" alt="' . $articles_categorie[$i]['photo_chemin'] . '"/>
-				    <h4 class="list-group-item-heading">' . $articles_categorie[$i]['titre'] . '</h4>
-				    <p class="list-group-item-text">' . $articles_categorie[$i]['titre'] . '</p>
-				</a>
-			    </div>';
+			    <div class="list-group list-articles-right clearfix">
+			    <a href="article.php?id=' . $articles_categorie[$i]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
+				<span class="badge ' . $bcr[$categorie] . '">' . $categorie . '</span>
+				<img src="' . $articles_categorie[$i]['photo_chemin'] . '" alt="' . $articles_categorie[$i]['photo_chemin'] . '"/>
+				<h4 class="list-group-item-heading">' . $articles_categorie[$i]['titre'] . '</h4>
+				<p class="list-group-item-text">' . $articles_categorie[$i]['titre'] . '</p>
+			    </a>
+			</div>';
 	    }
         }
     }
@@ -323,10 +343,11 @@
                             </div>';
 
         for ($j = 0; $j < $nb_articles_recents; $j++){
-                echo '
-                            <div class="list-group list-articles-right">
+	    $categorie_une = $articles_recents[$j]['categorie'];
+	    echo '
+                            <div class="list-group list-articles-right clearfix">
                                 <a href="article.php?id=' . $articles_recents[$j]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
-                                    <span class="badge">' . $articles_recents[$j]['categorie'] . '</span>
+                                    <span class="badge ' . $bcr[$categorie_une] . '">' . $categorie_une . '</span>
                                     <img src="' . $articles_recents[$j]['photo_chemin'] . '" alt="' . $articles_recents[$j]['photo_chemin'] . '"/>
                                     <h4 class="list-group-item-heading">' . $articles_recents[$j]['titre'] . '</h4>
                                     <p class="list-group-item-text">' . $articles_recents[$j]['titre'] . '</p>

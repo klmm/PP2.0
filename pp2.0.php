@@ -1,11 +1,5 @@
 <?php
 
-    function initOutputFilter() {
-	ob_start('ob_gzhandler');
-	register_shutdown_function('ob_end_flush');
-    }
-    initOutputFilter();
-
 //--------------------------------------FONCTIONS--------------------------------------//
     include($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/articles/get_articles.php');
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
@@ -138,56 +132,58 @@ $cr = array(
                                 <a class="navbar-brand logosmall" href="#myCarousel" id="logosmall" data-action="scrollTo"></a>
                                 <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">';
 
-	// CONNEXION - ESPACE JOUEUR
-	if ($bConnected == false){
-            echo                   '<li class="dropdown" id="menuLogin">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:rgb(115, 50, 130);background:transparent;">
-                                            <span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
-                                        </a>
-                                        <ul class="dropdown-menu" style="padding:17px;margin: 2px -10px 0;">
-                                            <form role="form" id="formLogin" class="form" action="/lib/form/connect_joueur.php" method="POST">
-                                                <label>Se connecter</label>
-                                                <input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
-                                                <input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
-                                                <button type="submit" id="btnLogin" class="btn btn-block btn-primary">Se connecter</button>
-                                            </form>
-                                            <li class="divider"> </li>
-                                            <form id="lostPassword" role="form" action="/lib/form/pass_oublie.php" method="POST" class="form" style="text-align: center; padding: 5px; cursor:pointer;">
-                                                <a type="submit" id="btnRegister">Mot de passe oublié ?</a>
-                                            </form>
-                                        </ul>
-                                    </li>';
+    // CONNEXION - ESPACE JOUEUR
+    if ($bConnected == false){
+	echo '                      <li class="dropdown" id="menuLogin">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navLogin" style="color:rgb(115, 50, 130);background:transparent;">
+					    <span class="glyphicon glyphicon-user"></span><span id="bConnect">  Se connecter </span>
+					</a>
+					<ul class="dropdown-menu" style="padding:13px;margin: 2px -10px 0;">
+					    <form role="form" id="formLogin" class="form" action="/lib/form/connect_joueur.php" method="POST">
+						<label>Se connecter</label>
+						<input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
+						<input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
+						<button type="submit" id="btnLogin" class="btn btn-block btn-primary">Se connecter</button>
+					    </form>
+					    <li class="divider"> </li>
+					    <form style="text-align: center; padding: 5px; cursor:pointer;">
+						<a data-toggle="collapse" data-target="#lostPassword">Mot de passe oublié ?</a>
+					    </form>
+					    <form id="lostPassword" role="form" action="lib/mail/pass_oublie_mail.php" method="POST" class="form collapse" style="height: auto;text-align: center;">
+						<input name="mail" id="mailChangePwd" type="text" placeholder="Mail" title="Mail" required="">                                  
+						<button type="submit" id="valChangePwd" class="btn btn-success">Valider</button>
+					    </form>
+					</ul>
+				    </li>';
+    }
+    else
+    {
+	echo '                      <li class="dropdown" id="menuUser">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:rgb(115, 50, 130);background:transparent;">
+					    <span class="glyphicon glyphicon-user"></span><span id="bUsername">  ' . $loginjoueur . ' </span>
+					</a>
+					<ul class="dropdown-menu" style="min-width:202px;">
+					    <form style="text-align: center; padding: 5px; cursor:pointer;">
+						<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
+					    </form>
 
-	}
-	else
-	{
-            echo                   '<li class="dropdown" id="menuUser">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:rgb(115, 50, 130);background:transparent;">
-                                            <span class="glyphicon glyphicon-user"></span><span id="bUsername">  ' . $loginjoueur . ' </span>
-                                        </a>
-                                        <ul class="dropdown-menu" style="min-width:202px;">
-                                            <form style="text-align: center; padding: 5px; cursor:pointer;">
-                                                <a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
-                                            </form>
+					    <form id="changePassword" role="form" action="/lib/form/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
+						<input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
+						<input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
+						<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
+						<button type="submit" id="btnRegister" class="btn btn-success">Valider</button>
+					    </form>
 
-                                            <form id="changePassword" role="form" action="/lib/form/change_pass.php" method="POST" class="form collapse" style="padding: 17px;height: auto;text-align: center;background: gainsboro;">
-                                                <input name="oldpassword" id="oldpassword" type="password" placeholder="Mot de passe actuel" required=""> 
-                                                <input name="newpassword" id="newpassword" type="password" placeholder="Nouveau mot de passe" required=""><br>                                  
-                                                <input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
-                                                <button type="submit" id="btnRegister" class="btn btn-success">Valider</button>
-                                            </form>
+					    <li class="divider"> </li>
 
-                                            <li class="divider"></li>
-
-                                            <li>
-                                                <form id="logout-form" class="form" action="/lib/form/deconnect_joueur.php" method="POST">
-                                                    <button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </li>';
-
-	}
+					    <li>
+						<form class="form" action="/lib/form/deconnect_joueur.php" method="POST">
+						    <button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
+						</form>
+					    </li>
+					</ul>
+				    </li>';
+}
 		
 	// MENU
 	echo '			</ul>
@@ -618,7 +614,7 @@ $cr = array(
                             </p>
                         </div>
                         <div class='row-illustration col-md-3 ' style='text-align:center'>
-                            <img src='img/static/thokes.png' alt='thokes' style='width:150px;'>
+                            <img src='img/static/thokes.jpg' alt='thokes' style='width:150px;'>
                         </div>
                     </div>
 
@@ -629,7 +625,7 @@ $cr = array(
 
                     <div class='tab-pane section-content row' id='who-you-are'>
                         <div class='row-illustration col-md-3 ' style='text-align:center'>
-                            <img src='img/static/thokes.png' alt='thokes' style='width:150px;'>
+                            <img src='img/static/thokes.jpg' alt='thokes' style='width:150px;'>
                         </div>
                         <div class='row-content col-md-9 '>	
                             <h3>Pour vous,</h3>
@@ -832,15 +828,17 @@ $cr = array(
 		 var $scroll = $(this);
 						 
 		  $(window).scroll(function() {
-			// HTML5 proves useful for helping with creating JS functions!
-			// also, negative value because we\'re scrolling upwards                             
-			var yPos = -($window.scrollTop() / $scroll.data(\'speed\')); 
-			 
-			// background position
-			var coords = \'50% \'+ yPos + \'px\';
-	 
-			// move the background
-			$scroll.css({ backgroundPosition: coords });    
+			if($(window).width() > 768){
+			    // HTML5 proves useful for helping with creating JS functions!
+			    // also, negative value because we\'re scrolling upwards                             
+			    var yPos = -($window.scrollTop() / $scroll.data(\'speed\')); 
+
+			    // background position
+			    var coords = \'50% \'+ yPos + \'px\';
+
+			    // move the background
+			    $scroll.css({ backgroundPosition: coords });
+			}   
 		  }); // end window scroll
 	   });  // end section function
 		

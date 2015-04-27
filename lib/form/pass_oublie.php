@@ -1,6 +1,6 @@
 <?php
 
-	$mail = $_POST["mail"];
+	$mail = $_POST["mailChangePwd"];
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
@@ -28,12 +28,12 @@
 	
 	// G�n�ration d'un mot de passe al�atoire de 8 caract�res
 	$characters = '2345679abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
+	$charactersLength = strlen($characters);
 	$length = rand(8,12);
-    $newpass = '';
-    for ($i = 0; $i < $length; $i++) {
-        $newpass .= $characters[rand(0, $charactersLength - 1)];
-    }
+	$newpass = '';
+	for ($i = 0; $i < $length; $i++) {
+	    $newpass .= $characters[rand(0, $charactersLength - 1)];
+	}
 	
 	
 	
@@ -60,9 +60,9 @@
 
 	$passage_ligne = "\r\n";
 	$contenu = "Bonjour " . $login . "," . $passage_ligne . $passage_ligne . "Votre nouveau de passe est " . $newpass . $passage_ligne . $passage_ligne;
-	$contenu .= "Connectez-vous avec ce mot de passe sur www.parions-potes.fr, puis changez imm�diatement votre mot de passe." . $passage_ligne . $passage_ligne;
+	$contenu .= "Connectez-vous avec ce mot de passe sur www.parions-potes.fr, puis changez immédiatement votre mot de passe." . $passage_ligne . $passage_ligne;
 	$contenu .= "Sportivement," . $passage_ligne . $passage_ligne;
-	$contenu .= "L'�quipe Parions Potes". $passage_ligne . "www.parions-potes.fr";
+	$contenu .= "L'équipe Parions Potes". $passage_ligne . "www.parions-potes.fr";
 	
 	//=====Cr�ation de la boundary
 	$boundary = "-----=".md5(rand());

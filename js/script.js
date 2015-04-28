@@ -329,14 +329,27 @@ function getAllComs($idart) {
 			var result = $.parseJSON(data);
 			var coms = result.commentaires;
 			var likes = result.likes;
-			var disable;
+			var likedisable, dislikedisable;
 			if(coms == null){
 				return;
 			}
 			$( ".com-container" ).empty();
 			for (var i = 0; i < coms.length; i++) {
 				var object = coms[i];
-				//if(likes[object['id_commentaire']] == 1)	
+				//if(likes[object['id_commentaire']] == 1)
+				if(likes.hasOwnProperty(object['id_commentaire']))	{
+					if(likes[object['id_commentaire']] == 1){
+						likedisable = "disabled";
+						dislikedisable = "disabled";
+					} else {
+						likedisable = "disabled";
+						dislikedisable = "disabled";
+					}
+					
+				} else {
+					likedisable = "";
+					dislikedisable = "";
+				}			
 				$( ".com-container" ).append(  '<div class="like-form col-md-10 col-md-offset-1">' +		
 				   
 						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden">Id</p>' +
@@ -345,11 +358,11 @@ function getAllComs($idart) {
 						'<p class="time pull-right">' + object['dateheurepub'] + '</p>' +
 						'<p class="comment">' + object['contenu'] + '</p>' +
 
-						'<button class="btn btn-danger pull-right" style="margin-left:10px;" onclick="/lib/form/post_like.php?like=1&id_article=' + object['id_article'] + '&id_comm=' + object['id_commentaire'] + '">' +
+						'<button class="btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;" onclick="/lib/form/post_like.php?like=1&id_article=' + object['id_article'] + '&id_comm=' + object['id_commentaire'] + '">' +
 							'<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
 							'<span>' + object['nblikes'] + '</span>' +
 						'</button>' +
-						'<button class="btn btn-success pull-right" style="margin-left:10px;" onclick="lib/sql/likes/add_like.php?like=0&id_article=' + object['id_article'] + '&id_comm=' + object['id_commentaire'] + '">' +
+						'<button class="btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;" onclick="lib/sql/likes/add_like.php?like=0&id_article=' + object['id_article'] + '&id_comm=' + object['id_commentaire'] + '">' +
 							'<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
 							'<span>' + object['nbdislikes'] + '</span>' +
 						'</button>' +

@@ -149,7 +149,7 @@ $cr = array(
 					    <form style="text-align: center; padding: 5px; cursor:pointer;">
 						<a data-toggle="collapse" data-target="#lostPassword">Mot de passe oublié ?</a>
 					    </form>
-					    <form id="lostPassword" role="form" action="lib/mail/pass_oublie_mail.php" method="POST" class="form collapse" style="height: auto;text-align: center;">
+					    <form id="lostPassword" role="form" action="/lib/form/pass_oublie.php" method="POST" class="form collapse" style="height: auto;text-align: center;">
 						<input name="mail" id="mailChangePwd" type="text" placeholder="Mail" title="Mail" required="">                                  
 						<button type="submit" id="valChangePwd" class="btn btn-success">Valider</button>
 					    </form>

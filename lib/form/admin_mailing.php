@@ -31,5 +31,6 @@
 	print_r($joueurs);
 
 // -----------------------------------
-	//envoi_mails($joueurs, $objet, $contenu);
+    envoi_mails($joueurs, $objet, $contenu);
+    echo 'ok';
 ?>

@@ -124,7 +124,9 @@ function Init_Forms()
 			{
 				var result = data.split(';');
 				if (result[0] == 'success'){
-					location.reload();
+					$( "#lostPassword" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
+					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+					'<strong>Attention!  </strong>'+result[1]+'</div>' );
 				}else {
 					$( "#lostPassword" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+

@@ -1,13 +1,12 @@
 <?php
 
-	function envoi_mails($joueurs, $sujet, $contenu)
-	{
-		foreach ($joueurs as $joueur) {
-			$login_joueur = $joueur['login'];
-			$mail_joueur = $joueur['mail'];
-			
-			envoi_mail($login_joueur, $mail_joueur, $sujet, $contenu);
-		}
+	function envoi_mails($joueurs, $sujet, $contenu){
+	    foreach ($joueurs as $joueur) {
+		$login_joueur = $joueur['login'];
+		$mail_joueur = $joueur['mail'];
+
+		envoi_mail($login_joueur, $mail_joueur, $sujet, $contenu);
+	    }
 	}
 	
 	function envoi_mail($login, $mail, $objet, $contenu_txt){
@@ -17,11 +16,11 @@
 		//echo $login . $mail . $sujet . $message_txt;
 		if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
 		{
-			$passage_ligne = "\r\n";
+		    $passage_ligne = "\r\n";
 		}
 		else
 		{
-			$passage_ligne = "\n";
+		    $passage_ligne = "\n";
 		}
 		
 		if ($mail == "-"){
@@ -33,7 +32,7 @@
 		
 		// Texte
 		$entete_txt = "Salut " . $login . ",";
-		$signature_txt = "Sportivement," . $passage_ligne . $passage_ligne . "L'�quipe Parions Potes" . $passage_ligne . "www.parions-potes.fr";
+		$signature_txt = "Sportivement," . $passage_ligne . $passage_ligne . "L'équipe Parions Potes" . $passage_ligne . "www.parions-potes.fr";
 			
 		// Html
 		$entete_html = "<html><p style= 'font: serif'>Salut " . $login . ",<br/><br/>";

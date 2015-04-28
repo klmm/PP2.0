@@ -17,8 +17,8 @@
 	// Taille du login entre 3 et 12 caractères
 	$taille = strlen($login);
 	if ($taille < 3 or $taille > 12){
-		echo 'Le login doit contenir entre 3 et 12 caractères.';
-		return;
+	    echo 'Le login doit contenir entre 3 et 12 caractères.';
+	    return;
 	}
 	
 	/*// Taille du mot de passse entre 8 et 20 caractères

@@ -177,7 +177,7 @@ $cr = array(
 					    <li class="divider"> </li>
 
 					    <li>
-						<form class="form" action="/lib/form/deconnect_joueur.php" method="POST">
+						<form id="logout-form" class="form" action="/lib/form/deconnect_joueur.php" method="POST">
 						    <button type="submit" id="logout" class="btn btn-primary btn-block">Déconnexion</button>	
 						</form>
 					    </li>

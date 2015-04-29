@@ -32,11 +32,11 @@
 		
 		// Texte
 		$entete_txt = "Salut " . $login . ",";
-		$signature_txt = "Sportivement," . $passage_ligne . $passage_ligne . "L'équipe Parions Potes" . $passage_ligne . "www.parions-potes.fr";
+		$signature_txt = "Sportivement," . $passage_ligne . $passage_ligne . "L'Equipe Parions Potes" . $passage_ligne . "www.parions-potes.fr";
 			
 		// Html
-		$entete_html = "<html><p style= 'font: serif'>Salut " . $login . ",<br/><br/>";
-		$signature_html = "<br/><br/>Sportivement,<br/><br/>L'équipe Parions Potes<br/>www.parions-potes.fr</p></html>";
+		$entete_html = '<html lang="en"><head><meta charset="utf-8"></head><p style= "font: serif">Salut ' . $login . ',<br/><br/>';
+		$signature_html = "<br/><br/>Sportivement,<br/><br/>L'Equipe Parions Potes<br/>www.parions-potes.fr</p></html>";
 		
 		// Ecriture du message avec en-t�te, signature
 		$message_final_txt = $entete_txt . $passage_ligne . $passage_ligne . $contenu_txt . $passage_ligne . $passage_ligne . $signature_txt;

@@ -36,7 +36,7 @@
 			
 		// Html
 		$entete_html = "<html><p style= 'font: serif'>Salut " . $login . ",<br/><br/>";
-		$signature_html = "<br/><br/>Sportivement,<br/><br/>L'�quipe Parions Potes<br/>www.parions-potes.fr</p></html>";
+		$signature_html = "<br/><br/>Sportivement,<br/><br/>L'équipe Parions Potes<br/>www.parions-potes.fr</p></html>";
 		
 		// Ecriture du message avec en-t�te, signature
 		$message_final_txt = $entete_txt . $passage_ligne . $passage_ligne . $contenu_txt . $passage_ligne . $passage_ligne . $signature_txt;

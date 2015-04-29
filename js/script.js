@@ -126,7 +126,7 @@ function Init_Forms()
 				if (result[0] == 'success'){
 					$( "#lostPassword" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-					'<strong>Attention!  </strong>'+result[1]+'</div>' );
+					result[1]+'</div>' );
 				}else {
 					$( "#lostPassword" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
@@ -357,16 +357,17 @@ function getAllComs($idart) {
 						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden">Id</p>' +
 						'<p id="id-art" value="' + $idart + '" class="hidden">Id</p>' +
 						'<p class="user pull-left">' + object['joueur'] + '</p>' +
-						'<p class="time pull-right">' + object['dateheurepub'] + '</p>' +
+						'<p class="time pull-right hidden-xs hidden-sm">' + object['dateheurepub_conv'] + '</p>' +
+						'<p class="time pull-right hidden-md hidden-lg">' + object['dateheurepub_court'] + '</p>' +
 						'<p class="comment">' + object['contenu'] + '</p>' +
 
-						'<button class="btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;" onclick="/lib/form/post_like.php?like=1&id_article=' + object['id_article'] + '&id_comm=' + object['id_commentaire'] + '">' +
+						'<button class="btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;">' +
 							'<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
-							'<span>' + object['nblikes'] + '</span>' +
-						'</button>' +
-						'<button class="btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;" onclick="lib/sql/likes/add_like.php?like=0&id_article=' + object['id_article'] + '&id_comm=' + object['id_commentaire'] + '">' +
-							'<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
 							'<span>' + object['nbdislikes'] + '</span>' +
+						'</button>' +
+						'<button class="btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;">' +
+							'<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
+							'<span>' + object['nblikes'] + '</span>' +
 						'</button>' +
 				'</div>' );
 

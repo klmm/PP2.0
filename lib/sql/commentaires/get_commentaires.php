@@ -25,6 +25,7 @@
 			$arr[$i]['contenu'] = html_entity_decode($enregistrement->Contenu);
 			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
 			$arr[$i]['dateheurepub_conv'] = date_to_duration($enregistrement->DateHeurePub);
+			$arr[$i]['dateheurepub_court'] = date_to_duration_court($enregistrement->DateHeurePub);
 			$arr[$i]['nblikes'] = $enregistrement->NombreLikes;
 			$arr[$i]['nbdislikes'] = $enregistrement->NombreDislikes;
 			$i++;

@@ -1,6 +1,6 @@
 <?php
 
-    include($_SERVER['DOCUMENT_ROOT'] . '/mail/envoi_mails.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/lib/mail/envoi_mails.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
     
     $mail = $_POST["mail"];
@@ -57,7 +57,7 @@
 	    Connectez-vous avec ce mot de passe sur www.parions-potes.fr, puis changez immédiatement votre mot de passe.';
     
     
-    //envoi_mail($login, $mail, $sujet, $contenu);
+    envoi_mail($login, $mail, $sujet, $contenu);
 	    
     echo('success;Un mail vient de vous être envoyé avec un nouveau de mot de passe.');
 ?>

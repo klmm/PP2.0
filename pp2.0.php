@@ -353,7 +353,7 @@ $cr = array(
                             </ul>
                         </nav>
                     </div>
-                    <div class="filtweet  hidden-md hidden-sm hidden-lg col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2" style="text-align: center;">
+                    <div class="filtweet hidden-md hidden-sm hidden-lg col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2" style="text-align: center;">
 			
 			<div class="sectionSide">
                             <h2 class="section-heading">Fil twitter</h2>
@@ -683,10 +683,10 @@ $cr = array(
 								
 								
     echo "
-                                <input type='text' placeholder='Objet' name='objet' class='form-control'>
+                                <input type='text' placeholder='Objet' name='objet' class='form-control' required='' data-validation-required-message='Objet obligatoire'>
                             </div>
                             <div class='col-md-6'>
-                                <textarea class='form-control' rows='7' name='contenu' placeholder='Votre message'></textarea>
+                                <textarea class='form-control' rows='7' name='contenu' placeholder='Votre message'  required='' data-validation-required-message='Message obligatoire'></textarea>
                                 <button type='submit' class='btn btn-primary' style='padding:0;margin-top:20px;width:200px;float:right;'>
                                     <span style='display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;'>Envoyer</span>
                                     <span class='glyphicon glyphicon-ok' style='float:left;width:40px;height:38px;margin:0;padding: 0 0 0 8px;line-height:38px;font-size:1.5em;'></span>

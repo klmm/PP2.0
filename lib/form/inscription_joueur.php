@@ -103,13 +103,9 @@
 	$objet = "Bienvenue sur Parions Potes !";
 	$contenu_txt = 'Merci pour ton inscription sur Parions Potes ! Viens vite sur parions-potes.fr !
 
-En ce moment, tu peux jouer à ...
-
 Ton mot de passe : ' . $newpass . '
 
-Pense bien à le changer après t\'être connecté la première fois.
-
-A très vite !';
+Pense bien à le changer après t\'être connecté la première fois.';
 
 	envoi_mail($login, $mail, $objet, $contenu_txt);
 	echo ('success;Félicitations, vous êtes maintenant inscrit sur Parions Potes !

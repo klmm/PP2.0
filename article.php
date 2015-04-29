@@ -406,7 +406,7 @@ $cr = array(
 		    </div>';
     }
 	
-	echo '<div class="row com-container">';
+	echo '	    <div class="row com-container">';
     /*
 	for ($i = 0; $i < $nb_comm; $i++){
 	$id_comm = $commentaires[$i]['id_commentaire'];
@@ -446,7 +446,8 @@ $cr = array(
 	
 	*/
     echo '
-		 </div></div>
+		    </div>
+		</div>
             </section>';
 //---------------------------------------------FIN COMMENTAIRES------------------------------------------------------//	
 

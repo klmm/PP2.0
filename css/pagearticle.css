@@ -140,6 +140,7 @@
 .com-container p {
 	color:black;
 	padding : 10px;
+	margin: 0;
 }
 
 .com-container span {
@@ -147,28 +148,30 @@
 }
 .com-container .user {
 	font-weight: bold;
-	width: 50%;
+	//width: 50%;
 }
 .com-container .time {
-	width: 50%;
+	//width: 50%;
 	text-align:right;
 }
 
-.com-container .comment {
+.comment-box{
 	background: rgb(222, 230, 243);
-	border-radius: 5px;;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	margin-top: 10px;
 }
 
 .disabled.btn-like {
 	color: #5cb85c;
 	background-color: #fff;
-	border: none;
+	border-color: #fff;
 }
 
 .disabled.btn-dislike {
 	color: #d9534f;
 	background-color: #fff;
-	border: none;
+	border-color: #fff;
 }
 
 .like-form {

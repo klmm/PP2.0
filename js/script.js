@@ -249,12 +249,14 @@ function Init_Forms()
 		
 	});
 	
-	$(".btn-like").click(function(e)
+	$(document).on('click', '.btn-like', function(e)
+	//$(".btn-like").click(function(e)
 	{
-		e.preventDefault(); //STOP default action
+		
 		var $this = $(this);
 		var id_com = $(this).parent().find("#id-com").attr("value");
 		var id_art = $(this).parent().find("#id-art").attr("value");
+		var $antithis = $(this).parent().find(".btn-dislike");
 		var postData = "id_comm=" + id_com + "&type=1&id_article=" + id_art;
 		$.ajax(
 		{
@@ -266,7 +268,8 @@ function Init_Forms()
 				if (data == 'success'){
 					
 					$this.addClass("disabled");
-					$this.blur();					
+					$this.blur();				
+					$antithis.addClass("disabled");
 					var c = $this.find(".count").html().valueOf();
 					c++;
 					$this.find(".count").text(c);
@@ -280,15 +283,15 @@ function Init_Forms()
 			    // rien
 			}
 		});
-	
-	});
-	
-	$(".btn-dislike").click(function(e)
-	{
 		e.preventDefault(); //STOP default action
+	});
+	$(document).on('click', '.btn-dislike', function(e)
+	//$(".btn-dislike").click(function(e)
+	{
 		var $this = $(this);
 		var id_com = $(this).parent().find("#id-com").attr("value");
 		var id_art = $(this).parent().find("#id-art").attr("value");
+		var $antithis = $(this).parent().find(".btn-like");
 		var postData = "id_comm=" + id_com + "&type=0&id_article=" + id_art;
 		$.ajax(
 		{
@@ -299,7 +302,8 @@ function Init_Forms()
 			{
 				if (data == 'success'){
 				    $this.addClass("disabled");
-					$this.blur();					
+					$this.blur();				
+					$antithis.addClass("disabled");
 					var c = $this.find(".count").html().valueOf();
 					c++;
 					$this.find(".count").text(c);
@@ -312,7 +316,7 @@ function Init_Forms()
 					 
 			}
 		});
-		
+		e.preventDefault(); //STOP default action
 		
 	});
 }
@@ -356,19 +360,19 @@ function getAllComs($idart) {
 				   
 						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden">Id</p>' +
 						'<p id="id-art" value="' + $idart + '" class="hidden">Id</p>' +
-						'<p class="user pull-left">' + object['joueur'] + '</p>' +
-						'<p class="time pull-right hidden-xs hidden-sm">' + object['dateheurepub_conv'] + '</p>' +
-						'<p class="time pull-right hidden-md hidden-lg">' + object['dateheurepub_court'] + '</p>' +
-						'<p class="comment">' + object['contenu'] + '</p>' +
+						'<div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">' + object['joueur'] + '</p>' +
+						'<p class="time col-md-8 col-sm-8 col-xs-8">' + object['dateheurepub_conv'] + '</p>' +
+						'<p class="time pull-right hidden">' + object['dateheurepub_court'] + '</p>' +
+						'<p class="comment col-md-12 col-sm-12 col-xs-12">' + object['contenu'] + '</p></div>' +
 
-						'<button class="btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;">' +
+						'<div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;">' +
 							'<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
-							'<span>' + object['nbdislikes'] + '</span>' +
+							'<span class="count">' + object['nbdislikes'] + '</span>' +
 						'</button>' +
-						'<button class="btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;">' +
+						'<button class="btn-like btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;">' +
 							'<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
-							'<span>' + object['nblikes'] + '</span>' +
-						'</button>' +
+							'<span class="count">' + object['nblikes'] + '</span>' +
+						'</button></div>' +
 				'</div>' );
 
 			}

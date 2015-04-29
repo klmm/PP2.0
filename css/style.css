@@ -621,6 +621,9 @@ footer  p {
 	#header-bottom .nav>li>a{
 		font-size:14px;
 	}
+	.section-heading {
+		font-size: 30px;
+	}
 }
 
 @media (max-width: 320px) {
@@ -633,5 +636,8 @@ footer  p {
 	}
 	#header-bottom .nav>li>a{
 		font-size:12px;
+	}
+	.section-heading {
+		font-size: 28px;
 	}
 }

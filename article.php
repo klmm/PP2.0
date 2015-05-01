@@ -193,6 +193,9 @@ $cr = array(
                                                 </form>
 						<li class="divider"> </li>
 						<form style="text-align: center; padding: 5px; cursor:pointer;">
+						    <a href="/pp2.0.php#inscription">S\'inscrire</a>
+						</form>
+						<form style="text-align: center; padding: 5px; cursor:pointer;">
 						    <a data-toggle="collapse" data-target="#lostPassword">Mot de passe oublié ?</a>
 						</form>
 						<form id="lostPassword" role="form" action="/lib/form/pass_oublie.php" method="POST" class="form collapse" style="height: auto;text-align: center;">

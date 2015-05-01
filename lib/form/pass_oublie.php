@@ -27,7 +27,7 @@
     // Génération d'un mot de passe al�atoire de 8 caract�res
     $characters = '2345679abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
-    $length = rand(8,12);
+    $length = rand(6,8);
     $newpass = '';
     for ($i = 0; $i < $length; $i++) {
 	$newpass .= $characters[rand(0, $charactersLength - 1)];
@@ -54,7 +54,7 @@
     $sujet = "Parions Potes - Nouveau mot de passe";
     $contenu = 'Votre nouveau de passe est ' . $newpass . '
 	
-	    Connectez-vous avec ce mot de passe sur www.parions-potes.fr, puis changez immédiatement votre mot de passe.';
+	    Connectez-vous avec ce mot de passe, puis changez-le immédiatement.';
     
     
     envoi_mail($login, $mail, $sujet, $contenu);

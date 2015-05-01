@@ -43,9 +43,9 @@
 	
 	
 	// Login constitué de lettres et de chiffres
-	$new_string = ereg_replace("[^A-Za-z0-9]", "", $login);
+	$new_string = ereg_replace("[^A-Za-z0-9_-]", "", $login);
 	if ( $new_string != $login){
-		echo 'Le login ne doit contenir que des lettres et des chiffres !';
+		echo 'Le login doit uniquement contenir : des lettres, des chiffres et les caractères "-" et "_" !';
 		return;
 	}
 
@@ -80,7 +80,7 @@
 	// Génération d'un mot de passe aléatoire de 8 à 12 caractères
 	$characters = '2345679abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
-	$length = rand(8,12);
+	$length = rand(6,8);
         $newpass = '';
         for ($i = 0; $i < $length; $i++) {
             $newpass .= $characters[rand(0, $charactersLength - 1)];

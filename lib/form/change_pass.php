@@ -11,10 +11,10 @@
 	$new_pass = $_POST['newpassword'];
 	$new_pass2 = $_POST['newpassword2'];
 
-	// Taille du mot de passse entre 8 et 20 caractères
+	// Taille du mot de passse entre 6 et 20 caractères
 	$taille = strlen($new_pass);
-	if ($taille < 7 or $taille > 20){
-		echo 'Le mot de passe doit contenir entre 8 et 20 caractères.';
+	if ($taille < 5 or $taille > 20){
+		echo 'Le mot de passe doit contenir entre 6 et 20 caractères.';
 		return;
 	}
 	
@@ -27,7 +27,7 @@
 	// Mdp constitué de lettres et de chiffres
 	$new_string = ereg_replace("[^A-Za-z0-9]", "", $new_pass);
 	if ( $new_string != $new_pass){
-		echo 'Le mot de passe ne doit contenir que des lettres et des chiffres !';
+		echo 'Le mot de passe doit uniquement contenir : des lettres et des chiffres !';
 		return;
 	}
 	

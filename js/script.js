@@ -254,8 +254,8 @@ function Init_Forms()
 	{
 		
 		var $this = $(this);
-		var id_com = $(this).parent().find("#id-com").attr("value");
-		var id_art = $(this).parent().find("#id-art").attr("value");
+		var id_com = $(this).parent().parent().find("#id-com").attr("value");
+		var id_art = $(this).parent().parent().find("#id-art").attr("value");
 		var $antithis = $(this).parent().find(".btn-dislike");
 		var postData = "id_comm=" + id_com + "&type=1&id_article=" + id_art;
 		$.ajax(
@@ -266,14 +266,16 @@ function Init_Forms()
 			success:function(data, textStatus, jqXHR) 
 			{
 				if (data == 'success'){
+				    $this.addClass("disabled");
+				    $this.blur();				
+				    $antithis.addClass("disabled");
+				    var c = $this.find(".count").html().valueOf();
+				    c++;
+				    $this.find(".count").text(c);
 					
-					$this.addClass("disabled");
-					$this.blur();				
-					$antithis.addClass("disabled");
-					var c = $this.find(".count").html().valueOf();
-					c++;
-					$this.find(".count").text(c);
-					
+				}
+				else{
+				    
 				}
 				
 				//$('form')[0].reset();
@@ -289,8 +291,8 @@ function Init_Forms()
 	//$(".btn-dislike").click(function(e)
 	{
 		var $this = $(this);
-		var id_com = $(this).parent().find("#id-com").attr("value");
-		var id_art = $(this).parent().find("#id-art").attr("value");
+		var id_com = $(this).parent().parent().find("#id-com").attr("value");
+		var id_art = $(this).parent().parent().find("#id-art").attr("value");
 		var $antithis = $(this).parent().find(".btn-like");
 		var postData = "id_comm=" + id_com + "&type=0&id_article=" + id_art;
 		$.ajax(
@@ -321,10 +323,10 @@ function Init_Forms()
 	});
 }
 
-function getAllComs($idart) {
+function getAllComs(idart) {
 
 	var formURL = "/lib/form/render_coms_section.php";
-	var postData = "id_article=" + $idart;
+	var postData = "id_article=" + idart;
 	$.ajax(
 	{
 		url : formURL,
@@ -337,7 +339,8 @@ function getAllComs($idart) {
 			var likes = result.likes;
 			var likedisable, dislikedisable;
 			if(coms == null){
-				return;
+			    $( ".com-container" ).append(  'AUCUN COMMENTAIRE');
+			    return;
 			}
 			$( ".com-container" ).empty();
 			for (var i = 0; i < coms.length; i++) {
@@ -359,20 +362,23 @@ function getAllComs($idart) {
 				$( ".com-container" ).append(  '<div class="like-form col-md-10 col-md-offset-1">' +		
 				   
 						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden">Id</p>' +
-						'<p id="id-art" value="' + $idart + '" class="hidden">Id</p>' +
+						'<p id="id-art" value="' + idart + '" class="hidden">Id</p>' +
 						'<div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">' + object['joueur'] + '</p>' +
-						'<p class="time col-md-8 col-sm-8 col-xs-8">' + object['dateheurepub_conv'] + '</p>' +
-						'<p class="time pull-right hidden">' + object['dateheurepub_court'] + '</p>' +
-						'<p class="comment col-md-12 col-sm-12 col-xs-12">' + object['contenu'] + '</p></div>' +
+						    '<p class="time col-md-8 col-sm-8 col-xs-8">' + object['dateheurepub_conv'] + '</p>' +
+						    '<p class="time pull-right hidden">' + object['dateheurepub_court'] + '</p>' +
+						    '<p class="comment col-md-12 col-sm-12 col-xs-12">' + object['contenu'] + '</p>'+
+						'</div>' +
 
-						'<div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;">' +
+						'<div class="like-box clearfix">' +
+						    '<button class="btn-dislike btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;">' +
 							'<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
 							'<span class="count">' + object['nbdislikes'] + '</span>' +
-						'</button>' +
-						'<button class="btn-like btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;">' +
+						    '</button>' +
+						    '<button class="btn-like btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;">' +
 							'<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
 							'<span class="count">' + object['nblikes'] + '</span>' +
-						'</button></div>' +
+						    '</button>' + 
+						'</div>' +
 				'</div>' );
 
 			}

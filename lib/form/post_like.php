@@ -3,7 +3,7 @@
 
 	$joueur = $_SESSION['LoginJoueur'];
 	if ($joueur == ''){
-	    echo 'Joueur non-connecté';
+	    echo 'Connectez-vous !';
 	    return;
 	}
 	
@@ -26,7 +26,7 @@
 	
 	if( $enregistrement = $prep->fetch() )
 	{
-	    echo 'Ce like existe déjà...';
+	    echo 'Vous aviez déjà aimé ce commentaire...';
 	    return;
 	}
 

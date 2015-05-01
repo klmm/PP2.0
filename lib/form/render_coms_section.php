@@ -6,18 +6,17 @@
     session_start();
     $login = $_SESSION['LoginJoueur'];
     $id_article = $_POST['id_article'];
-	
-    if ($login != ''){
-	$res2 = get_likes($id_article, $login);
-    }
-    else
-    {
-	$res2 = null;
-    }
-	
-     // Envoi de tous les commentaires + ce que le joueur like pour AJAX
+    
     $res1 = get_commentaires_article($id_article);
     
+    if($login==''){
+	$res2[0]['id_commentaire'] = 0;
+    }
+    else{
+	$res2 = get_likes($id_article, $login);
+    }
+    
+
     $res = array(
 	'result' => 'success',
 	'commentaires' => $res1,

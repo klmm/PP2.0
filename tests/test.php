@@ -1,46 +1,21 @@
 <?php
 
-// On �tablit la connexion avec la base de donn�es
-		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
-		$bdd = new Connexion();
-		$db = $bdd->getDB();
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+	
+    $bdd = new Connexion();
+    $db = $bdd->getDB();
+    
+    $sql = "UPDATE cyclisme_athlete SET note_baroudeur=(note_paves+note_vallons)/2 WHERE id_cyclisme_athlete=1";
 
-		//On pr�pare la requ�te pour aller chercher les articles
-		$sql = "SELECT * FROM pays ORDER BY Nom ASC";
-		$prep = $db->prepare($sql);
-		$prep->setFetchMode(PDO::FETCH_OBJ);
-		$prep->bindValue(1,$id,PDO::PARAM_INT);
-		$prep->execute();
-		
-		/*$sql2 = "UPDATE pays SET drapeau_petit=?, drapeau_moyen=?, drapeau_grand=? WHERE Id_Pays=?";
-		$prep2 = $db->prepare($sql2);
-		$prep2->setFetchMode(PDO::FETCH_OBJ);
-		
-		$RACINE_PETIT = "/img/drapeaux/48x32/";
-		$RACINE_MOYEN = "/img/drapeaux/64x43/";
-		$RACINE_GRAND = "/img/drapeaux/128x85/";*/
-		
-		//On met les articles dans le tableau
-		$i = 0;
-		while( $enregistrement = $prep->fetch() )
-		{
-		    $sep = explode("/", $enregistrement->drapeau_icone);
-		    $nom_img = $sep[4];
-		    
-		    $id = $enregistrement->Id_Pays;
-		    $img_petit = $RACINE_PETIT . $nom_img;
-		    $img_moyen = $RACINE_MOYEN . $nom_img;
-		    $img_grand = $RACINE_GRAND . $nom_img;
-		    
-		    echo '<img src="' . $enregistrement->drapeau_petit . '"/>';
-		    
-		    /*$prep2->bindValue(1,$img_petit,PDO::PARAM_STR);
-		    $prep2->bindValue(2,$img_moyen,PDO::PARAM_STR);
-		    $prep2->bindValue(3,$img_grand,PDO::PARAM_STR);
-		    $prep2->bindValue(4,$id,PDO::PARAM_INT);
-		    
-		    $prep2->execute();*/
-		}
+    for ($i = 0 ; $i < 150 ; $i++){
+	$prep = $db->prepare($sql);
+	$prep->bindValue(1,$id_article,PDO::PARAM_INT);
+	$prep->bindValue(2,$login,PDO::PARAM_STR);
+	$prep->bindValue(3,$contenu,PDO::PARAM_STR);
+	$res_req = $prep->execute();
+    }
+    //echo $login . ' - ' . $contenu . ' - ' . $id_article . ' - ';
+    
 		
 
 

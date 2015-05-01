@@ -325,13 +325,13 @@ $cr = array(
             if ($articles_categorie[$i]['id_article'] != $id_article){
 		echo '
 			    <div class="list-group list-articles-right clearfix">
-			    <a href="article.php?id=' . $articles_categorie[$i]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
-				<span class="badge ' . $bcr[$categorie] . '">' . $categorie . '</span>
-				<img src="' . $articles_categorie[$i]['photo_chemin'] . '" alt="' . $articles_categorie[$i]['photo_chemin'] . '"/>
-				<h4 class="list-group-item-heading">' . $articles_categorie[$i]['titre'] . '</h4>
-				<p class="list-group-item-text">' . $articles_categorie[$i]['titre'] . '</p>
-			    </a>
-			</div>';
+				<a href="article.php?id=' . $articles_categorie[$i]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
+				    <span class="badge ' . $bcr[$categorie] . '">' . $categorie . '</span>
+				    <img src="' . $articles_categorie[$i]['photo_chemin_deg'] . '" alt="' . $articles_categorie[$i]['photo_chemin_deg'] . '"/>
+				    <h4 class="list-group-item-heading">' . $articles_categorie[$i]['titre'] . '</h4>
+				    <p class="list-group-item-text">' . $articles_categorie[$i]['titre'] . '</p>
+				</a>
+			    </div>';
 	    }
         }
     }
@@ -348,7 +348,7 @@ $cr = array(
                             <div class="list-group list-articles-right clearfix">
                                 <a href="article.php?id=' . $articles_recents[$j]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
                                     <span class="badge ' . $bcr[$categorie_une] . '">' . $categorie_une . '</span>
-                                    <img src="' . $articles_recents[$j]['photo_chemin'] . '" alt="' . $articles_recents[$j]['photo_chemin'] . '"/>
+                                    <img src="' . $articles_recents[$j]['photo_chemin_deg'] . '" alt="' . $articles_recents[$j]['photo_chemin_deg'] . '"/>
                                     <h4 class="list-group-item-heading">' . $articles_recents[$j]['titre'] . '</h4>
                                     <p class="list-group-item-text">' . $articles_recents[$j]['titre'] . '</p>
                                 </a>
@@ -402,7 +402,8 @@ $cr = array(
     else{
         echo '	    <div class="sectionSide">
 			<h2 class="section-heading">Commentaires</h2>
-			<p class="section-highlight">Connectez-vous pour participer au débat !</p>			
+			<p class="section-highlight">Connectez-vous pour participer au débat !</p>
+			<input name="id_article" id="id_article" type="text" class="hidden" required="" value="' . $id_article . '"/>
 		    </div>';
     }
 	

@@ -9,13 +9,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <link rel="shortcut icon" href="/img/CarrNoir.png" />
+        <link rel="shortcut icon" href="../../img/CarrNoir.png" />
         <title>Tour de France 2015</title>
-        <link href="/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="/css/carousel.css" rel="stylesheet" />
-        <link href="/css/style.css" rel="stylesheet" />
-        
+        <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../../css/font-awesome.min.css" rel="stylesheet" />
+        <link href="../../css/carousel.css" rel="stylesheet" />
+        <link href="../../css/style.css" rel="stylesheet" />
+        <link href="css/tdf2015.css" rel="stylesheet" />
+		
         <style type="text/css"></style>
     </head>
     <body data-spy="scroll" data-target="#navbar-main" data-offset="100">
@@ -84,13 +85,13 @@
                         <div class="navbar-collapse collapse" id="navbar-main">
                             <ul class="nav navbar-nav pull-right" style="">
                                 <li class="active">
-                                    <a href="#myCarousel" data-action="scrollTo">Présentation</a>
+                                    <a href="#news" data-action="scrollTo">Présentation</a>
                                 </li>
                                 <li class="">
-                                    <a href="#games" data-action="scrollTo">Classements</a>
+                                    <a href="#classements" data-action="scrollTo">Classements</a>
                                 </li>
                                 <li class="">
-                                    <a href="#inscription" data-action="scrollTo">Calendrier</a>
+                                    <a href="#resultats" data-action="scrollTo">Calendrier</a>
                                 </li>
                    
                             </ul>
@@ -100,206 +101,228 @@
             </div>
         </div>
     </header>
-    <div id="news-section" class="section" style="background-color: white;">
+    <div id="news" class="section" style="background-color: white;">
         <div class="container">
-           
-           
-        </div>
+			<div class="col-md-8 col-sm-8">
+				<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
+					<h1 class="section-heading">News</h1>
+				</div>
+				<!-- Debut article html -->
+				
+				
+				<p class="article-text bold">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football...</p>
+				<p class="article-text">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon !
+
+				Après une mise en bouche avec le Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions Potes » sera présent sur toutes les épreuves féminines et  masculines de la coupe du monde FIS ainsi que les championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom !
+
+				N’oublions pas le biathlon que nous retrouverons dès la fin du mois. Espérons que notre franc-tireur favori Martin Fourcade se soit remis physiquement !</p>
+
+				
+			</div>
+			<div class="col-md-3 col-md-offset-1 col-sm-4 hidden-xs">
+				<div id="list-right">
+					<div class="sectionSide">
+						<h2 class="section-heading">Sur le sujet</h2>	
+					</div>
+					
+					<div class="list-group list-articles-right clearfix">
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+						<a href="#" class="list-articles-item-right list-group-item col-md-12">
+							<span class="badge">Sport</span>
+							<img src="img/colombie.jpg" alt="aie"/>
+							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+							<p class="list-group-item-text">Categorie</p>
+						</a>
+					</div>	
+					
+				</div>
+			</div>
+		</div>
     </div>
-    <div class="section products" id="games" style="margin-bottom:120px;">
+    <div class="section " id="classements" style="margin-bottom:120px;">
         <div class="sectionSide">
-            <h2 class="section-heading">Jeux</h2>
+            <h2 class="section-heading">Classements</h2>
             <p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p>
         </div>
-        <div class='actualGames'>
-            
-        </div>
     </div>
-    <div class='section-contact section' id='inscription' style='min-height: 214px;'>
-        
+    <div class='section' id='resultats' style='min-height: 214px;'>
+        <nav class="navbar navbar-default" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Calendrier</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
     </div>
     
     
     <footer>
         <div class="container">
-            <p> 2015 Parions Potes</p>
+            <p>© 2015 Parions Potes</p>
         </div>
     </footer>
-    <!-- <script src="/js/modernizr.custom.js"></script> -->
-    <script src="/js/script.js"></script> 
-    <script src="/js/pagination.js"></script> 
-    <script src="/js/jquery.min.js"></script> 
-    <script src="/js/bootstrap.min.js"></script> 
-    <!--script src="./assets/js/docs.min.js"></script-->
+ 
+    <script src="../../js/pagination.js"></script> 
+    <script src="../../js/jquery.min.js"></script> 
+    <script src="../../js/bootstrap.min.js"></script> 
      
-    <script src="/js/classie.js"></script> 
-    <script src="/js/jquery.scrollTo.min.js"></script> 
-    <script src="/js/jqBootstrapValidation.js"></script> 
-    <!-- <script src="/bower_components/jquery/dist/jquery.js"></script>-->
-     
-    <!-- <script src="/bower_components/velocity/velocity.js"></script>
-            <script src="/bower_components/moment/min/moment-with-locales.min.js"></script> -->
-     
-    <!-- <script src="/bower_components/angular/angular.js"></script> -->
-     
-    <!-- <script src="/js/toucheffects.js"></script> -->
-     
-    <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
-     
-    <script src="/js/jquery.effects.core.min.js"></script> 
-    <script src="/js/jquery.effects.slide.min.js"></script> 
-    <script src="/js/masonry.pkgd.min.js"></script> 
-    <script src="/js/imagesloaded.pkgd.min.js"></script> 
+    <script src="../../js/classie.js"></script> 
+    <script src="../../js/jquery.scrollTo.min.js"></script> 
+    <script src="../../js/jqBootstrapValidation.js"></script> 
+    
+    <script src="../../js/imagesloaded.pkgd.min.js"></script> 
     <script type="text/javascript">
-        /*var pagedSections =
-[&amp;amp;amp;quot;#myCarousel&amp;amp;amp;quot;,&amp;amp;amp;quot;#games&amp;amp;amp;quot;,&amp;amp;amp;quot;#inscription&amp;amp;amp;quot;,&amp;amp;amp;quot;#presentation&amp;amp;amp;quot;,&amp;amp;amp;quot;#contact&amp;amp;amp;quot;];
-        //var pagedSections = [&amp;amp;amp;quot;#contact&amp;amp;amp;quot;];
-        var headerSize = 98;
-        
-        var pageSection = function() {  
-                var viewportHeight = $(window).height();
-                
-                $.each(pagedSections,function(index,value) {
-                        $(value).css(&amp;amp;amp;quot;min-height&amp;amp;amp;quot;,viewportHeight-headerSize);
-                });     
-                // $(&amp;amp;amp;#39;body&amp;amp;amp;#39;).scrollspy(&amp;amp;amp;quot;refresh&amp;amp;amp;quot;);
-        }*/
+    
 
     jQuery(document).ready(function ($) {
-                $(function () {
-$(&amp;amp;amp;quot;input,select,textarea&amp;amp;amp;quot;).not(&amp;amp;amp;quot;[type=submit]&amp;amp;amp;quot;).jqBootstrapValidation();
-} );
-        
-                Init_Forms();
-                initPagination();
+		$(function () {$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();} );
+
+		//Init_Forms();
+		//initPagination();
                 
-                //$(&amp;amp;amp;#39;body&amp;amp;amp;#39;).scrollspy({ target:
-&amp;amp;amp;#39;#navbar-main&amp;amp;amp;#39;,offset:250 }) ///
-lign qui
-&amp;amp;amp;#39;spy&amp;amp;amp;#39; le scroll
-de la page et surligne les menusp
-                //pageSection();
-                $(window).resize(function() {
-                        //pageSection();
-                         $(&amp;amp;amp;#39;body&amp;amp;amp;#39;).scrollspy(&amp;amp;amp;quot;refresh&amp;amp;amp;quot;);
-                });
-                $(&amp;amp;amp;#39;#archive-toggle&amp;amp;amp;#39;).click(function() {
-                        $(&amp;amp;amp;#39;[data-spy=&amp;amp;amp;quot;scroll&amp;amp;amp;quot;]&amp;amp;amp;#39;).each(function ()
+        //$('body').scrollspy({ target:'#navbar-main',offset:250 }) ///lign qui 'spy' le scrollde la page et surligne les menusp
+		//pageSection();
+		$(window).resize(function() {
+				//pageSection();
+				 $('body').scrollspy("refresh");
+		});
+		$('#archive-toggle').click(function() {
+				$('[data-spy="scroll"]').each(function ()
 {
-                          setTimeout(function(){ $(this).scrollspy(&amp;amp;amp;#39;refresh&amp;amp;amp;#39;);}, 1000);           
-                        });
-                });
-                //$.scrollTo( 0 );
+				  setTimeout(function(){ $(this).scrollspy('refresh');}, 1000);           
+				});
+		});
+		//$.scrollTo( 0 );
                 
-        //$(&amp;amp;amp;#39;.nav-tabs&amp;amp;amp;#39;).tab();
-                $(&amp;amp;amp;#39;a[data-action=&amp;amp;amp;quot;scrollTo&amp;amp;amp;quot;]&amp;amp;amp;#39;).click(function(e)
-{
-                        e.preventDefault();
-                        scrollX = $(&amp;amp;amp;#39;.header&amp;amp;amp;#39;).height();
-                        $(&amp;amp;amp;#39;.menu&amp;amp;amp;#39;).toggleClass(&amp;amp;amp;#39;active&amp;amp;amp;#39;);
-                        if(this.hash == &amp;amp;amp;quot;#myCarousel&amp;amp;amp;quot;) {
-                                $(&amp;amp;amp;#39;body&amp;amp;amp;#39;).scrollTo(0,500,null);
-                                       
-$(&amp;amp;amp;quot;.section&amp;amp;amp;quot;).removeClass(&amp;amp;amp;quot;inactiveSection&amp;amp;amp;quot;);
-                        } else {
-                                $(&amp;amp;amp;#39;body&amp;amp;amp;#39;).scrollTo(this.hash, 500, {offset: -scrollX});
-                        }
-                        $(&amp;amp;amp;#39;.navbar-collapse&amp;amp;amp;#39;).removeClass(&amp;amp;amp;#39;in&amp;amp;amp;#39;);
-                });
+        //$('.nav-tabs').tab();
+        $('a[data-action="scrollTo"]').click(function(e)
+		{
+			e.preventDefault();
+			scrollX = $('.header').height();
+			$('.menu').toggleClass('active');
+			if(this.hash == "#myCarousel") {
+					$('body').scrollTo(0,500,null);
+						   
+					$(".section").removeClass("inactiveSection");
+			} else {
+					$('body').scrollTo(this.hash, 500, {offset: -scrollX});
+			}
+                $('.navbar-collapse').removeClass('in');
+		});
                 
-                $(&amp;amp;amp;#39;[data-toggle=dropdown]&amp;amp;amp;#39;).dropdown();
+		$('[data-toggle=dropdown]').dropdown();
         
-                // cache the window object
-           $window = $(window);
+		// cache the window object
+	    $window = $(window);
                 
                
-$(&amp;amp;amp;#39;section[data-type=&amp;amp;amp;quot;background&amp;amp;amp;quot;]&amp;amp;amp;#39;).each(function(){
-                 // declare the variable to affect the defined data-type
-                 var $scroll = $(this);
-                                                 
-                  $(window).scroll(function() {
-                        if($(window).width() &amp;amp;amp;gt; 768){
-                            // HTML5 proves useful for helping with creating JS functions!
-                            // also, negative value because we&amp;amp;amp;#39;re scrolling upwards                             
-                            var yPos = -($window.scrollTop() / $scroll.data(&amp;amp;amp;#39;speed&amp;amp;amp;#39;)); 
+		$('section[data-type="background"]').each(function(){
+			 // declare the variable to affect the defined data-type
+			 var $scroll = $(this);
+											 
+			  $(window).scroll(function() {
+					if($(window).width() > 768){
+						// HTML5 proves useful for helping with creating JS functions!
+						// also, negative value because we're scrolling upwards                             
+						var yPos = -($window.scrollTop() / $scroll.data('speed')); 
 
-                            // background position
-                            var coords = &amp;amp;amp;#39;50% &amp;amp;amp;#39;+ yPos + &amp;amp;amp;#39;px&amp;amp;amp;#39;;
+						// background position
+						var coords = '50% '+ yPos + 'px';
 
-                            // move the background
-                            $scroll.css({ backgroundPosition: coords });
-                        }   
-                  }); // end window scroll
-           });  // end section function
+						// move the background
+						$scroll.css({ backgroundPosition: coords });
+					}   
+			  }); // end window scroll
+        });  // end section function
+               
                 
-                var $container = $(&amp;amp;amp;#39;.list-articles&amp;amp;amp;#39;);
-                $container.imagesLoaded( function () {
-                        $container.masonry({
-                                columnWidth: &amp;amp;amp;#39;.list-articles-item&amp;amp;amp;#39;,
-                                itemSelector: &amp;amp;amp;#39;.item-visible&amp;amp;amp;#39;
-                        });  
-                });
-                
-                $(function(){
-                   $(&amp;amp;amp;quot;#archive-toggle&amp;amp;amp;quot;).click(function () {
-                          $(this).text(function(i, text){
-                                  return text === &amp;amp;amp;quot;Archives&amp;amp;amp;quot; ?
-&amp;amp;amp;quot;Réduire&amp;amp;amp;quot; :
-&amp;amp;amp;quot;Archives&amp;amp;amp;quot;;
-                          })
-                   });
-                })
+		$(function(){
+		   $("#archive-toggle").click(function () {
+				  $(this).text(function(i, text){
+						  return text === "Archives" ? "Réduire" : "Archives";
+				  })
+		   });
+		})
                 
     });
-        var cbpAnimatedHeader = (function() {
+    var cbpAnimatedHeader = (function() {
  
-                var docElem = document.documentElement,
-                        header = document.querySelector( &amp;amp;amp;#39;header&amp;amp;amp;#39; ),
-                        didScroll = false,
-                        changeHeaderOn = 98;
+		var docElem = document.documentElement,
+				header = document.querySelector( 'header' ),
+				didScroll = false,
+				changeHeaderOn = 98;
                         
          
-                function init() {
-                        window.addEventListener( &amp;amp;amp;#39;scroll&amp;amp;amp;#39;, function( event ) {
-                                if( !didScroll ) {
-                                        didScroll = true;
-                                        setTimeout( scrollPage, 250 );
-                                }
-                        }, false );
-                }
+		function init() {
+				window.addEventListener( 'scroll', function( event ) {
+						if( !didScroll ) {
+								didScroll = true;
+								setTimeout( scrollPage, 250 );
+						}
+				}, false );
+		}
                 
-                function scrollPage() {
-                        var sy = scrollY();
-                        if ( sy &amp;amp;amp;gt;= changeHeaderOn ) {
-                                classie.add( header, &amp;amp;amp;#39;small&amp;amp;amp;#39; );
-                        }
-                        else {
-                                classie.remove( header, &amp;amp;amp;#39;small&amp;amp;amp;#39; );
-                        }
-                        didScroll = false;
-                        
-                        var activeTarget = $(&amp;amp;amp;quot;#navbar-main li.active
-a&amp;amp;amp;quot;).attr(&amp;amp;amp;quot;href&amp;amp;amp;quot;);
-                        //alert(activeTarget);
-                       
-$(&amp;amp;amp;quot;.activeSection&amp;amp;amp;quot;).removeClass(&amp;amp;amp;quot;activeSection&amp;amp;amp;quot;);
-                        if(sy &amp;amp;amp;gt; 650) {
-                       
-$(&amp;amp;amp;quot;.section&amp;amp;amp;quot;).addClass(&amp;amp;amp;quot;inactiveSection&amp;amp;amp;quot;);
-                        
-                        $(activeTarget).addClass(&amp;amp;amp;quot;activeSection&amp;amp;amp;quot;);
-                        } else {
-                       
-$(&amp;amp;amp;quot;.section&amp;amp;amp;quot;).removeClass(&amp;amp;amp;quot;inactiveSection&amp;amp;amp;quot;);
-                        }
-                        
-                }
+		function scrollPage() {
+			var sy = scrollY();
+			if ( sy >= changeHeaderOn ) {
+					classie.add( header, 'small' );
+			}
+			else {
+					classie.remove( header, 'small' );
+			}
+			didScroll = false;
+			
+			var activeTarget = $("#navbar-main li.active a").attr("href");
+			//alert(activeTarget);
+		   
+			$(".activeSection").removeClass("activeSection");
+			if(sy > 650) {
+		   
+				$(".section").addClass("inactiveSection");
+			
+				$(activeTarget).addClass("activeSection");
+			} else {
+		   
+				$(".section").removeClass("inactiveSection");
+			}
+				
+		}
          
-                function scrollY() {
-                        return window.pageYOffset || docElem.scrollTop;
-                }
-         
-                init();
+			function scrollY() {
+					return window.pageYOffset || docElem.scrollTop;
+			}
+	 
+			init();
          
         })();
 

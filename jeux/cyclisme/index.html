@@ -48,6 +48,10 @@
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
                         </button> 
                         <a class="navbar-brand logosmall" href="#myCarousel" id="logosmall" data-action="scrollTo"></a>
                         <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">
@@ -163,11 +167,12 @@
         </div>
     </div>
     <div class='section' id='resultats' style='min-height: 214px;'>
-        <nav class="navbar navbar-default" role="navigation">
+        <nav id="calendar" class="navbar navbar-default" role="navigation">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
 					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -176,9 +181,9 @@
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<div class="collapse navbar-collapse navbar-calendar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Link</a></li>
+					<li class="active"><a value="idcalendar">Link</a></li>
 					<li><a href="#">Link</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
@@ -201,13 +206,15 @@
     <script src="../../js/jqBootstrapValidation.js"></script> 
     
     <script src="../../js/imagesloaded.pkgd.min.js"></script> 
+	
+	<script src="js/tdf2015.js"></script>
     <script type="text/javascript">
     
 
     jQuery(document).ready(function ($) {
 		$(function () {$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();} );
 
-		//Init_Forms();
+		Init_TDF();
 		//initPagination();
                 
         //$('body').scrollspy({ target:'#navbar-main',offset:250 }) ///lign qui 'spy' le scrollde la page et surligne les menusp

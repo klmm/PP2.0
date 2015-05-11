@@ -8,7 +8,7 @@
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/commentaires/get_commentaires.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/likes/get_likes.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/fonctions.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php';
 //-------------------------------------------------------------------------------------//
 
     
@@ -116,15 +116,16 @@ $cr = array(
 //--------------------------------------HEADER--------------------------------------//
 	
     // DOCTYPE, META
-    echo '  
-    <!DOCTYPE html>
-        <html lang="en">
-        <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    echo '<!DOCTYPE html>
+        <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
         <link rel="shortcut icon" href="/img/CarrNoir.png">';
 
     // TITLE

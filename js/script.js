@@ -227,6 +227,7 @@ function Init_Forms()
 			success:function(data, textStatus, jqXHR) 
 			{
 				var result = data.split(';');
+				
 				if (result[0] == 'success'){
 					//chargement des coms
 					getAllComs(id_art);

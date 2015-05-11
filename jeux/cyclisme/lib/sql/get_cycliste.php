@@ -34,34 +34,33 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i]['id_cyclisme_athlete'] = $enregistrement->id_cyclisme_athlete;
-			$arr[$i]['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
-			$arr[$i]['nom'] = $enregistrement->nom;
-			$arr[$i]['prenom'] = $enregistrement->prenom;
-			$arr[$i]['date_naissance'] = $enregistrement->date_naissance;
-			$arr[$i]['note_paves'] = $enregistrement->note_paves;
-			$arr[$i]['note_vallons'] = $enregistrement->note_vallons;
-			$arr[$i]['note_montagne'] = $enregistrement->note_montagne;
-			$arr[$i]['note_sprint'] = $enregistrement->note_sprint;
-			$arr[$i]['note_clm'] = $enregistrement->note_clm;
-			$arr[$i]['photo'] = $enregistrement->photo;
-			$arr[$i]['id_pays'] = $enregistrement->id_pays;
-			$arr[$i]['note_baroudeur'] = $enregistrement->note_baroudeur;
+			$id_cycliste = $enregistrement->id_cyclisme_athlete;
+			$arr[$id_cycliste]['id_cyclisme_athlete'] = $enregistrement->id_cyclisme_athlete;
+			$arr[$id_cycliste]['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
+			$arr[$id_cycliste]['nom'] = $enregistrement->nom;
+			$arr[$id_cycliste]['prenom'] = $enregistrement->prenom;
+			$arr[$id_cycliste]['date_naissance'] = $enregistrement->date_naissance;
+			$arr[$id_cycliste]['note_paves'] = $enregistrement->note_paves;
+			$arr[$id_cycliste]['note_vallons'] = $enregistrement->note_vallons;
+			$arr[$id_cycliste]['note_montagne'] = $enregistrement->note_montagne;
+			$arr[$id_cycliste]['note_sprint'] = $enregistrement->note_sprint;
+			$arr[$id_cycliste]['note_clm'] = $enregistrement->note_clm;
+			$arr[$id_cycliste]['photo'] = $enregistrement->photo;
+			$arr[$id_cycliste]['id_pays'] = $enregistrement->id_pays;
+			$arr[$id_cycliste]['note_baroudeur'] = $enregistrement->note_baroudeur;
 			
 			//Cycliste inscrit ?
-			$id_cycliste = $enregistrement->id_cyclisme_athlete;
-
 			$prep2->bindValue(1,$id_cycliste,PDO::PARAM_INT);
 			$prep2->bindValue(2,$id_cal,PDO::PARAM_INT);
 			$prep2->bindValue(3,$id_jeu,PDO::PARAM_INT);
 			$prep2->execute();
 			$enregistrement2 = $prep2->fetch();
 			if($enregistrement2){
-				$arr[$i]['inscrit'] = 1;
-				$arr[$i]['forme'] = $enregistrement2->forme;
+				$arr[$id_cycliste]['inscrit'] = 1;
+				$arr[$id_cycliste]['forme'] = $enregistrement2->forme;
 			}
 			else{
-				$arr[$i]['inscrit'] = 0;
+				$arr[$id_cycliste]['inscrit'] = 0;
 			}
 			
 			$i++;
@@ -91,24 +90,41 @@
 		$prep->bindValue(2,$id_jeu,PDO::PARAM_INT);
 		$prep->execute();
 		
+		$sql2 = "SELECT *
+				FROM cyclisme_inscription_athlete
+				WHERE id_athlete=? AND (id_cal=? or id_cal=0) AND id_jeu=?";
+					
+		$prep2 = $db->prepare($sql2);
+		$prep2->setFetchMode(PDO::FETCH_OBJ);
+		
 		//On met les articles dans le tableau
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i]['id_cyclisme_athlete'] = $enregistrement->id_cyclisme_athlete;
-			$arr[$i]['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
-			$arr[$i]['nom'] = $enregistrement->nom;
-			$arr[$i]['prenom'] = $enregistrement->prenom;
-			$arr[$i]['date_naissance'] = $enregistrement->date_naissance;
-			$arr[$i]['note_paves'] = $enregistrement->note_paves;
-			$arr[$i]['note_vallons'] = $enregistrement->note_vallons;
-			$arr[$i]['note_montagne'] = $enregistrement->note_montagne;
-			$arr[$i]['note_sprint'] = $enregistrement->note_sprint;
-			$arr[$i]['note_clm'] = $enregistrement->note_clm;
-			$arr[$i]['photo'] = $enregistrement->photo;
-			$arr[$i]['id_pays'] = $enregistrement->id_pays;
-			$arr[$i]['note_baroudeur'] = $enregistrement->note_baroudeur;
+			$id_cycliste = $enregistrement->id_cyclisme_athlete;
+			$arr[$id_cycliste]['id_cyclisme_athlete'] = $enregistrement->id_cyclisme_athlete;
+			$arr[$id_cycliste]['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
+			$arr[$id_cycliste]['nom'] = $enregistrement->nom;
+			$arr[$id_cycliste]['prenom'] = $enregistrement->prenom;
+			$arr[$id_cycliste]['date_naissance'] = $enregistrement->date_naissance;
+			$arr[$id_cycliste]['note_paves'] = $enregistrement->note_paves;
+			$arr[$id_cycliste]['note_vallons'] = $enregistrement->note_vallons;
+			$arr[$id_cycliste]['note_montagne'] = $enregistrement->note_montagne;
+			$arr[$id_cycliste]['note_sprint'] = $enregistrement->note_sprint;
+			$arr[$id_cycliste]['note_clm'] = $enregistrement->note_clm;
+			$arr[$id_cycliste]['photo'] = $enregistrement->photo;
+			$arr[$id_cycliste]['id_pays'] = $enregistrement->id_pays;
+			$arr[$id_cycliste]['note_baroudeur'] = $enregistrement->note_baroudeur;
 			$i++;
+			
+			$prep2->bindValue(1,$id_cycliste,PDO::PARAM_INT);
+			$prep2->bindValue(2,$id_cal,PDO::PARAM_INT);
+			$prep2->bindValue(3,$id_jeu,PDO::PARAM_INT);
+			$prep2->execute();
+			$enregistrement2 = $prep2->fetch();
+			
+			$arr[$id_cycliste]['inscrit'] = 1;
+			$arr[$id_cycliste]['forme'] = $enregistrement2->forme;
 		}
 		
 		return $arr;

@@ -58,25 +58,26 @@
 	$i = 0;
 	while( $enregistrement = $prep->fetch() )
 	{
-	    $arr[$i]['id_cyclisme_calendrier'] = $enregistrement->id_cyclisme_calendrier;
-	    $arr[$i]['id_jeu'] = $enregistrement->id_jeu;
-	    $arr[$i]['id_cal'] = $enregistrement->id_cal;
-	    $arr[$i]['nom_complet'] = $enregistrement->nom_complet;
-	    $arr[$i]['distance'] = $enregistrement->distance;
-	    $arr[$i]['date_debut'] = $enregistrement->date_debut;
-	    $arr[$i]['date_fin'] = $enregistrement->date_fin;
-	    $arr[$i]['profil_clm'] = $enregistrement->profil_clm;
-	    $arr[$i]['profil_paves'] = $enregistrement->profil_paves;
-	    $arr[$i]['profil_montagne'] = $enregistrement->profil_montagne;
-	    $arr[$i]['profil_sprint'] = $enregistrement->profil_sprint;
-	    $arr[$i]['profil_vallons'] = $enregistrement->profil_vallons;
-	    $arr[$i]['profil_baroudeurs'] = $enregistrement->profil_baroudeurs;
-	    $arr[$i]['profil_equipe'] = $enregistrement->profil_equipe;
-	    $arr[$i]['profil_jeunes'] = $enregistrement->profil_jeunes;
-	    $arr[$i]['classement'] = $enregistrement->classement;
-	    $arr[$i]['traite'] = $enregistrement->traite;
-	    $arr[$i]['disponible'] = $enregistrement->disponible;
-	    $arr[$i]['image'] = $enregistrement->image;
+	    $id_cal = $enregistrement->id_cyclisme_calendrier;
+	    $arr[$id_cal]['id_cyclisme_calendrier'] = $enregistrement->id_cyclisme_calendrier;
+	    $arr[$id_cal]['id_jeu'] = $enregistrement->id_jeu;
+	    $arr[$id_cal]['id_cal'] = $enregistrement->id_cal;
+	    $arr[$id_cal]['nom_complet'] = $enregistrement->nom_complet;
+	    $arr[$id_cal]['distance'] = $enregistrement->distance;
+	    $arr[$id_cal]['date_debut'] = $enregistrement->date_debut;
+	    $arr[$id_cal]['date_fin'] = $enregistrement->date_fin;
+	    $arr[$id_cal]['profil_clm'] = $enregistrement->profil_clm;
+	    $arr[$id_cal]['profil_paves'] = $enregistrement->profil_paves;
+	    $arr[$id_cal]['profil_montagne'] = $enregistrement->profil_montagne;
+	    $arr[$id_cal]['profil_sprint'] = $enregistrement->profil_sprint;
+	    $arr[$id_cal]['profil_vallons'] = $enregistrement->profil_vallons;
+	    $arr[$id_cal]['profil_baroudeurs'] = $enregistrement->profil_baroudeurs;
+	    $arr[$id_cal]['profil_equipe'] = $enregistrement->profil_equipe;
+	    $arr[$id_cal]['profil_jeunes'] = $enregistrement->profil_jeunes;
+	    $arr[$id_cal]['classement'] = $enregistrement->classement;
+	    $arr[$id_cal]['traite'] = $enregistrement->traite;
+	    $arr[$id_cal]['disponible'] = $enregistrement->disponible;
+	    $arr[$id_cal]['image'] = $enregistrement->image;
 
 	    $i++;
 	}

@@ -2,12 +2,13 @@
 
 	$id_cal = $_POST['id_cal'];
 	$id_jeu = $_POST['id_jeu'];
+	$annee = $_POST['annee'];
 	
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 
-	//On prépare la requête pour aller chercher les articles
+	//On prï¿½pare la requï¿½te pour aller chercher les articles
 	$sql = "DELETE FROM cyclisme_inscription_equipe
 			WHERE id_cal=? AND id_jeu=?";
 	$prep = $db->prepare($sql);
@@ -18,7 +19,7 @@
 	
 	//echo 'resultat : ' . $res . '<br/>';
 	
-	//On prépare la requête pour aller chercher les articles
+	//On prï¿½pare la requï¿½te pour aller chercher les articles
 	$sql2 = "INSERT INTO cyclisme_inscription_equipe(id_equipe,id_jeu,id_cal) VALUES(?,?,?)";
 	$prep2 = $db->prepare($sql2);
 	$prep2->setFetchMode(PDO::FETCH_OBJ);
@@ -39,5 +40,5 @@
 		}
 	}
 	
-	header('Location: /jeux/cyclisme/admin/inscriptions.php?id_cal=' . $id_cal . '&id_jeu=' . $id_jeu);
+	header('Location: /jeux/cyclisme/admin/inscriptions.php?id_cal=' . $id_cal . '&id_jeu=' . $id_jeu . '&annee=' . $annee);
 ?>

@@ -44,10 +44,10 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendier AND joueur=?";
+	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? AND joueur=?";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
-	$prep->bindValue(2,$joueur,PDO::PARAM_INT);
+	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
 	$prep->bindValue(3,$joueur,PDO::PARAM_STR);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
@@ -68,6 +68,42 @@
 	    $arr['bonus_risque'] = $enregistrement->bonus_risque;
 	    $arr['score_total'] = $enregistrement->score_total;
 	    $arr['classement'] = $enregistrement->classement;
+
+	    $i++;
+	}
+
+	return $arr;
+    }
+    
+    function get_pronos_cal($id_jeu,$id_cal){
+	// On �tablit la connexion avec la base de donn�es
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+	$bdd = new Connexion();
+	$db = $bdd->getDB();
+
+	//On fait la requete sur le login
+	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=?";
+	$prep = $db->prepare($sql);
+	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
+	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
+	$prep->execute();
+	$prep->setFetchMode(PDO::FETCH_OBJ);
+
+	//On fait le test si un enrengistrement a �t� trouv�
+	while ($enregistrement = $prep->fetch())
+	{
+	    $joueur = $enregistrement->joueur;
+	    $arr[$joueur]['id_cyclisme_prono'] = $enregistrement->id_cyclisme_prono;
+	    $arr[$joueur]['id_jeu'] = $enregistrement->id_jeu;
+	    $arr[$joueur]['joueur'] = $joueur;
+	    $arr[$joueur]['id_cal'] = $enregistrement->id_calendrier;
+	    $arr[$joueur]['prono'] = $enregistrement->prono;
+	    $arr[$joueur]['points_prono'] = $enregistrement->points_prono;
+	    $arr[$joueur]['score_base'] = $enregistrement->score_base;
+	    $arr[$joueur]['bonus_nombre'] = $enregistrement->bonus_nombre;
+	    $arr[$joueur]['bonus_risque'] = $enregistrement->bonus_risque;
+	    $arr[$joueur]['score_total'] = $enregistrement->score_total;
+	    $arr[$joueur]['classement'] = $enregistrement->classement;
 
 	    $i++;
 	}

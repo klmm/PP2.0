@@ -1,5 +1,13 @@
 <?php
 
+    function date_sql_to_long($date){
+	$date2 = strtotime($date);
+	setlocale(LC_TIME, 'fr_FR');
+	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
+
+	return strftime('%A %d %B %Y, à %Hh%M', $unix);
+    }
+    
     function date_to_duration($date){
 	$now   = time();
 	$date2 = strtotime($date);

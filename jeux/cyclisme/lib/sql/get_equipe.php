@@ -1,6 +1,6 @@
 <?php
 
-	function get_equipes_non_inscrites($id_jeu, $id_cal){
+	function get_equipes_non_inscrites($id_jeu, $id_cal, $annee){
 		// On �tablit la connexion avec la base de donn�es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
@@ -13,24 +13,24 @@
 					SELECT id_equipe
 					FROM cyclisme_inscription_equipe
 					WHERE (id_cyclisme_equipe=id_equipe AND (id_cal=0 OR id_cal=" . $id_cal . ") AND id_jeu=" . $id_jeu . ")
-					)
+					) AND saison=" . $annee . " 
 				ORDER BY nom_complet ASC";
 		$prep = $db->prepare($sql);
 		$prep->setFetchMode(PDO::FETCH_OBJ);
-		$prep->bindValue(1,$id,PDO::PARAM_INT);
 		$prep->execute();
 		
 		//On met les articles dans le tableau
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i]['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
-			$arr[$i]['niveau'] = $enregistrement->niveau;
-			$arr[$i]['nom_complet'] = $enregistrement->nom_complet;
-			$arr[$i]['nom_courant'] = $enregistrement->nom_courant;
-			$arr[$i]['nom_court'] = $enregistrement->nom_court;
-			$arr[$i]['photo'] = $enregistrement->photo;
-			$arr[$i]['saison'] = $enregistrement->saison;
+			$id_equipe = $enregistrement->id_cyclisme_equipe;
+			$arr[$id_equipe]['id_cyclisme_equipe'] = $id_equipe;
+			$arr[$id_equipe]['niveau'] = $enregistrement->niveau;
+			$arr[$id_equipe]['nom_complet'] = $enregistrement->nom_complet;
+			$arr[$id_equipe]['nom_courant'] = $enregistrement->nom_courant;
+			$arr[$id_equipe]['nom_court'] = $enregistrement->nom_court;
+			$arr[$id_equipe]['photo'] = $enregistrement->photo;
+			$arr[$id_equipe]['saison'] = $enregistrement->saison;
 			$i++;
 		}
 		
@@ -61,14 +61,15 @@
 		$i = 0;
 		while( $enregistrement = $prep->fetch() )
 		{
-			$arr[$i]['id_cyclisme_equipe'] = $enregistrement->id_cyclisme_equipe;
-			$arr[$i]['niveau'] = $enregistrement->niveau;
-			$arr[$i]['nom_complet'] = $enregistrement->nom_complet;
-			$arr[$i]['nom_courant'] = $enregistrement->nom_courant;
-			$arr[$i]['nom_court'] = $enregistrement->nom_court;
-			$arr[$i]['photo'] = $enregistrement->photo;
-			$arr[$i]['saison'] = $enregistrement->saison;
-			$i++;
+		    $id_equipe = $enregistrement->id_cyclisme_equipe;
+		    $arr[$id_equipe]['id_cyclisme_equipe'] = $id_equipe;
+		    $arr[$id_equipe]['niveau'] = $enregistrement->niveau;
+		    $arr[$id_equipe]['nom_complet'] = $enregistrement->nom_complet;
+		    $arr[$id_equipe]['nom_courant'] = $enregistrement->nom_courant;
+		    $arr[$id_equipe]['nom_court'] = $enregistrement->nom_court;
+		    $arr[$id_equipe]['photo'] = $enregistrement->photo;
+		    $arr[$id_equipe]['saison'] = $enregistrement->saison;
+		    $i++;
 		}
 		
 		return $arr;

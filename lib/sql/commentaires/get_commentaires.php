@@ -4,7 +4,7 @@
 
 	// On �tablit la connexion avec la base de donn�es
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
-	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/fonctions.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 

@@ -154,12 +154,20 @@
     
     if($bConnected){
 	$arr_prono_joueur = get_prono($ID_JEU,$ID_CAL,$loginjoueur);
+	$chaine_id_cyclistes = $arr_prono_joueur['prono'];
     }
     else{
 	$arr_prono_joueur = null;
+	$chaine_id_cyclistes = '';
     }
     
-    $arr_cyclistes = get_cyclistes_inscrits($ID_JEU, $ID_CAL);
+    $chaine_id_cyclistes .= $arr_calendrier['classement'];
+    
+    $tab_id_cyclistes = explode(";", $chaine_id_cyclistes);
+    $tab_id_cyclistes = array_unique($tab_id_cyclistes);
+    echo $chaine_id_cyclistes;
+    print_r($tab_id_cyclistes);
+    $arr_cyclistes = get_cyclistes_tab_id($ID_JEU, $ID_CAL, $tab_id_cyclistes);
     
     $arr_equipes = get_equipes_inscrites($ID_JEU, $ID_CAL);
     

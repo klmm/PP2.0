@@ -1,0 +1,4 @@
+RewriteEngine on 
+RewriteRule articles/([0-9a-z-]+)/([0-9a-z-]+)/([0-9]+)-([0-9a-z-]+)$ /article.php?id=$3
+
+ErrorDocument 404 /redirect/erreur404.php

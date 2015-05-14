@@ -6,6 +6,7 @@
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/images/get_images.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/auto_login.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 //-------------------------------------------------------------------------------------//
 
 
@@ -289,8 +290,12 @@ $cr = array(
 	fclose($handle);
         
         $categorie_article = $arr_unes[$i]['categorie'];
+	$sous_categorie_article = $arr_unes[$i]['souscategorie'];
+	
+	$url = '/articles/' . $categorie_article . '/' . $sous_categorie_article . '/' . $arr_unes[$i]['id_article'] . '-' . $arr_unes[$i]['titre'];
+	$url_propre = clean_url($url);
         echo '
-                                    <a href="article.php?id=' . $arr_unes[$i]['id_article'] . '">
+                                    <a href="' . $url_propre . '">
                                         <img src="' . $arr_unes[$i]['photo_chemin_deg'] . '" class="img-responsive" alt="' . $arr_unes[$i]['photo_chemin_deg'] . '">
                                         <div class="container">
                                             <div class="carousel-caption">
@@ -334,9 +339,13 @@ $cr = array(
     for ($i = 0; $i < $nb_tous; $i++) {
         
         $categorie = $arr_tous[$i]['categorie'];
+	$sous_categorie_article = $arr_tous[$i]['souscategorie'];
+	
+	$url = '/articles/' . $categorie . '/' . $sous_categorie_article . '/' . $arr_tous[$i]['id_article'] . '-' . $arr_tous[$i]['titre'];
+	$url_propre = clean_url($url);
         echo '
                             <li class="list-articles-item list-group-item col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-0">
-                                <a href="article.php?id=' . $arr_tous[$i]['id_article'] . '">
+                                <a href="' . $url_propre . '">
                                     <span class="badge ' . $bcr[$categorie] . '">' . $categorie . '</span>
                                     <img src="' . $arr_tous[$i]['photo_chemin_deg'] . '" alt="oo ' . $arr_tous[$i]['photo_chemin_deg'] . '"/>
                                     <h4 class="list-group-item-heading">' . $arr_tous[$i]['titre'] . '</h4>

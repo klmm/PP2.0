@@ -9,6 +9,7 @@
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/commentaires/get_commentaires.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/likes/get_likes.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 //-------------------------------------------------------------------------------------//
 
     
@@ -194,7 +195,7 @@ $cr = array(
                                                 </form>
 						<li class="divider"> </li>
 						<form style="text-align: center; padding: 5px; cursor:pointer;">
-						    <a href="/pp2.0.php#inscription">S\'inscrire</a>
+						    <a href="/#inscription">S\'inscrire</a>
 						</form>
 						<form style="text-align: center; padding: 5px; cursor:pointer;">
 						    <a data-toggle="collapse" data-target="#lostPassword">Mot de passe oublié ?</a>
@@ -243,7 +244,7 @@ $cr = array(
                                         <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
                                         <li class=""><a href="#article" data-action="scrollTo">Article</a></li>
                                         <li class=""><a href="#commentaires" data-action="scrollTo">Commentaires (' . $nb_comm . ')</a></li>
-                                        <li class=""><a href="pp2.0.php">Retour au site</a></li>
+                                        <li class=""><a href="/">Retour au site</a></li>
                                     </ul>  
                                 </div>
                             </div>
@@ -294,20 +295,23 @@ $cr = array(
                         </div>
                         <p class="article-text">';
 
-    include $_SERVER['DOCUMENT_ROOT'] . '/articles/' . $id_article . '.htm';							
+    include $_SERVER['DOCUMENT_ROOT'] . '/articles/' . $id_article . '.htm';
+
+    $url = '/articles/' . $categorie . '/' . $sous_categorie . '/' . $id_article . '-' . $titre;
+    $url_propre = clean_url($url);
 
     echo '          
                         </p>
 			<p class="col-md-6 article-text author">' . $auteur . '</p>
 			<p class="col-md-6 article-text date">' . date_to_duration($date_pub) . '</p>
-			<div class="social-sharing is-large" data-permalink="http://parions-potes.fr/article.php?id=5">
-			    <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://parions-potes.fr/article.php?id=' . $id_article . '" class="share-facebook">
+			<div class="social-sharing is-large" data-permalink="http://parions-potes.fr/' . $url_propre . '">
+			    <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://parions-potes.fr' . $url_propre . '" class="share-facebook">
 				<span class="icon icon-facebook"></span>
 				<span class="share-title">Share</span>
 				<span class="share-count">0</span>
 			    </a>
 
-			    <a target="_blank" href="http://twitter.com/share?url=http://parions-potes.fr/article.php?id=' . $id_article . '" class="share-twitter">
+			    <a target="_blank" href="http://twitter.com/share?url=http://parions-potes.fr' . $url_propre . '" class="share-twitter">
 				<span class="icon icon-twitter"></span>
 				<span class="share-title">Tweet</span>
 				<span class="share-count">0</span>
@@ -320,16 +324,20 @@ $cr = array(
 				
     if ($nb_articles_categorie > 1){
 	
+    
         echo '
                             <div class="sectionSide">
 				<h2 class="section-heading">' . $articles_categorie[0]['categorie'] . '</h2>	
                             </div>';
 			
         for ($i = 0; $i < $nb_articles_categorie; $i++){
+	    $url = '/articles/' . $articles_categorie[0]['categorie'] . '/' . $articles_categorie[$i]['souscategorie'] . '/' . $articles_categorie[$i]['id_article'] . '-' . $articles_categorie[$i]['titre'];
+	    $url_propre = clean_url($url);
+	
             if ($articles_categorie[$i]['id_article'] != $id_article){
 		echo '
 			    <div class="list-group list-articles-right clearfix">
-				<a href="article.php?id=' . $articles_categorie[$i]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
+				<a href="' . $url_propre . '" class="list-articles-item-right list-group-item col-md-12">
 				    <span class="badge ' . $bcr[$categorie] . '">' . $categorie . '</span>
 				    <img src="' . $articles_categorie[$i]['photo_chemin_deg'] . '" alt="' . $articles_categorie[$i]['photo_chemin_deg'] . '"/>
 				    <h4 class="list-group-item-heading">' . $articles_categorie[$i]['titre'] . '</h4>
@@ -341,16 +349,20 @@ $cr = array(
     }
 		
     if ($nb_articles_recents > 0){
+	
         echo '
                             <div class="sectionSide">
                                 <h2 class="section-heading">A LA UNE</h2>	
                             </div>';
 
         for ($j = 0; $j < $nb_articles_recents; $j++){
+	    $url = '/articles/' . $articles_recents[$j]['categorie'] . '/' . $articles_recents[$j]['souscategorie'] . '/' . $articles_recents[$j]['id_article'] . '-' . $articles_recents[$j]['titre'];
+	    $url_propre = clean_url($url);
+	    
 	    $categorie_une = $articles_recents[$j]['categorie'];
 	    echo '
                             <div class="list-group list-articles-right clearfix">
-                                <a href="article.php?id=' . $articles_recents[$j]['id_article'] . '" class="list-articles-item-right list-group-item col-md-12">
+                                <a href="' . $url_propre . '" class="list-articles-item-right list-group-item col-md-12">
                                     <span class="badge ' . $bcr[$categorie_une] . '">' . $categorie_une . '</span>
                                     <img src="' . $articles_recents[$j]['photo_chemin_deg'] . '" alt="' . $articles_recents[$j]['photo_chemin_deg'] . '"/>
                                     <h4 class="list-group-item-heading">' . $articles_recents[$j]['titre'] . '</h4>

@@ -1,43 +1,54 @@
 <?php
     //--------------------------------------FONCTIONS--------------------------------------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/breves/get_breves.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/images/get_images.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/auto_login.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/articles/get_articles.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_equipe.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_cycliste.php';
     //-------------------------------------------------------------------------------------//
     
     
     
     //--------------------------------------VARIABLES DE SESSION--------------------------------------//
-    session_start();
-    $loginjoueur = $_SESSION['LoginJoueur'];
-
-    if($loginjoueur == ""){
-        auto_login();
-        $loginjoueur = $_SESSION['LoginJoueur'];
-    }
-    $idjoueur = $_SESSION['IDJoueur'];
-    $mailjoueur = $_SESSION['MailJoueur'];
-    $admin = $_SESSION['Admin'];
-
-    if($loginjoueur != ""){
-        update_derniere_visite();
-        $bConnected = true;
-    }
-    else{
-        $bConnected = false;
-    }
+   
     //------------------------------------------------------------------------------------------------//
     
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
     $ID_JEU = $_POST['id_jeu'];
     $ID_CAL = $_POST['id_cal'];
+    $joueur = $_POST['joueur'];
     
-    $arr_pronos = get_pronos_cal($ID_JEU,$ID_CAL);
-    //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
+    //--------------------------------------CALENDRIER--------------------------------------//
+    $calendrier = get_calendrier($ID_JEU,$ID_CAL);
+    $b_equipe = $calendrier['profil_equipe'];
+    //------------------------------------------------------------------------------------------------//
+    
+    
+    //-------------------------PRONO DU JOUEUR-----------------------------------//
+    $prono = get_prono($ID_JEU,$ID_CAL,$joueur);
+    //----------------------------------------------------------------------------//
+    
+    //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
+    if($b_equipe){
+	$chaine_id_equipes = $prono['prono'];
+	
+	$tab_id_equipes = array_unique(explode(";", $chaine_id_equipes));
+	$tab_equipes = get_equipes_tab_id($tab_id_equipes);
+    }
+    else{
+	$chaine_id_cyclistes = $prono['prono'];
+	
+	$tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));
+	$tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$tab_id_cyclistes);
+    }
+    //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
+    
+    $res = array(
+		'calendrier' => $calendrier,
+		'prono' => $prono,
+		'cyclistes' => $tab_cyclistes,
+		'equipes' => $tab_equipes
+	);
+    
     
     echo json_encode($res);
 	

@@ -24,8 +24,7 @@
         if ($vrai_mdp == $motdepasse){
             session_start();
             // IP du client
-            $ip = $_SERVER['REMOTE_ADDR'];
-                
+ 
             $id = $enregistrement->IDJoueur;
             $_SESSION['IDJoueur'] = $id;
             $_SESSION['LoginJoueur'] = $login;

@@ -304,14 +304,14 @@ $cr = array(
                         </p>
 			<p class="col-md-6 article-text author">' . $auteur . '</p>
 			<p class="col-md-6 article-text date">' . date_to_duration($date_pub) . '</p>
-			<div class="social-sharing is-large" data-permalink="http://parions-potes.fr/' . $url_propre . '">
-			    <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://parions-potes.fr' . $url_propre . '" class="share-facebook">
+			<div class="social-sharing is-large" data-permalink="http://www.parions-potes.fr/' . $url_propre . '">
+			    <a target="_blank" href="http://www.facebook.com/sharer.php?u=http://www.parions-potes.fr' . $url_propre . '" class="share-facebook">
 				<span class="icon icon-facebook"></span>
 				<span class="share-title">Share</span>
 				<span class="share-count">0</span>
 			    </a>
 
-			    <a target="_blank" href="http://twitter.com/share?url=http://parions-potes.fr' . $url_propre . '" class="share-twitter">
+			    <a target="_blank" href="http://twitter.com/share?url=http://www.parions-potes.fr' . $url_propre . '" class="share-twitter">
 				<span class="icon icon-twitter"></span>
 				<span class="share-title">Tweet</span>
 				<span class="share-count">0</span>

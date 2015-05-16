@@ -9,9 +9,6 @@ function auto_login(){
     $key = $_COOKIE['ParionsPotes'];
 
 	if (isset($key)){
-		// IP du client
-		$ip = $_SERVER['REMOTE_ADDR'];
-		
 		$sql = "SELECT * FROM Joueurs WHERE SHA1(CONCAT('SEL1-df299', `Login`, `IDJoueur`, 'SEL2-ef144'))='" . $key. "'";
 		$prep = $db->prepare($sql);
 		$prep->execute();

@@ -335,31 +335,43 @@ function getAllComs(idart) {
 		data : postData,
 		success:function(data, textStatus, jqXHR) 
 		{
+		    
 			var result = $.parseJSON(data);
 			var coms = result.commentaires;
 			var likes = result.likes;
 			var likedisable, dislikedisable;
-			if(coms == null){
+			var no_like = false;
+			
+			
+			if(coms == null){			    
 			    $( ".com-container" ).append(  'AUCUN COMMENTAIRE');
 			    return;
 			}
+			
+			if(likes == null){
+			    no_like = true;
+			}
+			
 			$( ".com-container" ).empty();
 			for (var i = 0; i < coms.length; i++) {
 				var object = coms[i];
-				//if(likes[object['id_commentaire']] == 1)
-				if(likes.hasOwnProperty(object['id_commentaire']))	{
-					if(likes[object['id_commentaire']] == 1){
-						likedisable = "disabled";
-						dislikedisable = "disabled";
-					} else {
-						likedisable = "disabled";
-						dislikedisable = "disabled";
-					}
-					
-				} else {
-					likedisable = "";
-					dislikedisable = "";
-				}			
+				
+				if(no_like == false){
+				    if(likes.hasOwnProperty(object['id_commentaire']))	{
+					    if(likes[object['id_commentaire']] == 1){
+						    likedisable = "disabled";
+						    dislikedisable = "disabled";
+					    } else {
+						    likedisable = "disabled";
+						    dislikedisable = "disabled";
+					    }
+
+				    } else {
+					    likedisable = "";
+					    dislikedisable = "";
+				    }
+				}
+				
 				$( ".com-container" ).append(  '<div class="like-form col-md-10 col-md-offset-1">' +		
 				   
 						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden">Id</p>' +
@@ -386,7 +398,7 @@ function getAllComs(idart) {
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
-			//do nothing
+			alert('error');//do nothing
 		}
 	});
 	

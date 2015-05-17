@@ -1,11 +1,23 @@
 <?php
 
-    function date_sql_to_long($date){
+    function date_naissance_sql_to_fr($date_naissance){
+	$arr = explode('-',$date_naissance);
+	
+	return $arr[2] . '/' . $arr[1] . '/' . $arr[0];
+    }
+
+
+    function dateheure_sql_to_fr($date){
 	$date2 = strtotime($date);
 	setlocale(LC_TIME, 'fr_FR');
 	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
-
-	return strftime('%A %d %B %Y, à %Hh%M', $unix);
+	
+	$arr = array(
+	    'date' => strftime('%A %d %B %Y', $unix),
+	    'heure' => strftime('%Hh%M', $unix)
+	);
+	
+	return $arr;
     }
     
     function date_to_duration($date){

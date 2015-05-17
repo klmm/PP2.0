@@ -1,5 +1,7 @@
 <?php
-
+    
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php');
+    
 	function get_cyclistes_inscriptions($id_jeu, $id_cal){
 		// On �tablit la connexion avec la base de donn�es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
@@ -40,6 +42,7 @@
 			$arr[$id_cycliste]['nom'] = $enregistrement->nom;
 			$arr[$id_cycliste]['prenom'] = $enregistrement->prenom;
 			$arr[$id_cycliste]['date_naissance'] = $enregistrement->date_naissance;
+			$arr[$id_cycliste]['date_naissance_fr'] = date_naissance_sql_to_fr($arr[$id_cycliste]['date_naissance']);
 			$arr[$id_cycliste]['note_paves'] = $enregistrement->note_paves;
 			$arr[$id_cycliste]['note_vallons'] = $enregistrement->note_vallons;
 			$arr[$id_cycliste]['note_montagne'] = $enregistrement->note_montagne;
@@ -74,6 +77,7 @@
 	function get_cyclistes_inscrits($id_jeu, $id_cal){
 		// On �tablit la connexion avec la base de donn�es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+		
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
@@ -109,6 +113,7 @@
 			$arr[$id_cycliste]['nom'] = $enregistrement->nom;
 			$arr[$id_cycliste]['prenom'] = $enregistrement->prenom;
 			$arr[$id_cycliste]['date_naissance'] = $enregistrement->date_naissance;
+			$arr[$id_cycliste]['date_naissance_fr'] = date_naissance_sql_to_fr($arr[$id_cycliste]['date_naissance']);
 			$arr[$id_cycliste]['note_paves'] = $enregistrement->note_paves;
 			$arr[$id_cycliste]['note_vallons'] = $enregistrement->note_vallons;
 			$arr[$id_cycliste]['note_montagne'] = $enregistrement->note_montagne;
@@ -197,6 +202,7 @@
 				$arr[$id_cycliste]['nom'] = $enregistrement->nom;
 				$arr[$id_cycliste]['prenom'] = $enregistrement->prenom;
 				$arr[$id_cycliste]['date_naissance'] = $enregistrement->date_naissance;
+				$arr[$id_cycliste]['date_naissance_fr'] = date_naissance_sql_to_fr($arr[$id_cycliste]['date_naissance']);
 				$arr[$id_cycliste]['note_paves'] = $enregistrement->note_paves;
 				$arr[$id_cycliste]['note_vallons'] = $enregistrement->note_vallons;
 				$arr[$id_cycliste]['note_montagne'] = $enregistrement->note_montagne;

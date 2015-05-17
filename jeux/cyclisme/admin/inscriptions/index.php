@@ -31,7 +31,7 @@
 	echo '<table style="width:100%">
 		  <tr>
 			<td valign="top">';
-	echo '<form method="post" action="/jeux/cyclisme/lib/form/update_inscriptions_cyclistes.php">';
+	echo '<form method="post" action="/jeux/cyclisme/admin/inscriptions/update_inscriptions_cyclistes.php">';
 	echo '<input type="text" name="id_jeu" value="' . $id_jeu . '" hidden>';
 	echo '<input type="text" name="id_cal" value="' . $id_cal . '" hidden>';
 	echo '<input type="text" name="annee" value="' . $annee . '" hidden>';
@@ -67,7 +67,7 @@
 	
 	
 	echo '  <h1>Equipes</h1>
-                <form method="post" action="/jeux/cyclisme/lib/form/update_inscriptions_equipes.php">
+                <form method="post" action="/jeux/cyclisme/admin/inscriptions/update_inscriptions_equipes.php">
                     <input type="text" name="id_jeu" value="' . $id_jeu . '" hidden>
                     <input type="text" name="id_cal" value="' . $id_cal . '" hidden>
 		    <input type="text" name="annee" value="' . $annee . '" hidden>';

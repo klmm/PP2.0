@@ -40,5 +40,5 @@
 		}
 	}
 	
-	header('Location: /jeux/cyclisme/admin/inscriptions.php?id_cal=' . $id_cal . '&id_jeu=' . $id_jeu . '&annee=' . $annee);
+	header('Location: /jeux/cyclisme/admin/inscriptions/?id_cal=' . $id_cal . '&id_jeu=' . $id_jeu . '&annee=' . $annee);
 ?>

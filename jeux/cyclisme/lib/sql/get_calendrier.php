@@ -1,5 +1,7 @@
 <?php
 
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php');
+
     function get_calendrier($id_jeu, $id_cal){
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
@@ -21,8 +23,16 @@
 	    $arr['id_cal'] = $enregistrement->id_cal;
 	    $arr['nom_complet'] = $enregistrement->nom_complet;
 	    $arr['distance'] = $enregistrement->distance;
+	    
 	    $arr['date_debut'] = $enregistrement->date_debut;
+	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
+	    $arr['date_debut_fr'] = $arr_date[0];
+	    $arr['heure_debut_fr'] = $arr_date[1];
+	    
 	    $arr['date_fin'] = $enregistrement->date_fin;
+	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
+	    $arr['date_fin_fr'] = $arr_date[0];
+	    $arr['heure_fin_fr'] = $arr_date[1];
 	    $arr['profil_clm'] = $enregistrement->profil_clm;
 	    $arr['profil_paves'] = $enregistrement->profil_paves;
 	    $arr['profil_montagne'] = $enregistrement->profil_montagne;
@@ -36,6 +46,26 @@
 	    $arr['disponible'] = $enregistrement->disponible;
 	    $arr['image'] = $enregistrement->image;
 	    
+	    $dh_debut = $arr['date_debut'];
+	    $now   = time();
+	    $dh_debut = strtotime($dh_debut);
+	    
+	    if($now > $dh_debut){
+		$arr['commence'] = "1";
+	    }
+	    else{
+		$arr['commence'] = "0";
+	    }
+	    
+	    $dh_fin = $arr['date_fin'];
+	    $dh_fin = strtotime($dh_fin);
+	    
+	    if($now > $dh_fin){
+		$arr['termine'] = "1";
+	    }
+	    else{
+		$arr['termine'] = "0";
+	    }
 	}
 
 	return $arr;
@@ -64,8 +94,17 @@
 	    $arr[$id_cal]['id_cal'] = $enregistrement->id_cal;
 	    $arr[$id_cal]['nom_complet'] = $enregistrement->nom_complet;
 	    $arr[$id_cal]['distance'] = $enregistrement->distance;
+	    
 	    $arr[$id_cal]['date_debut'] = $enregistrement->date_debut;
+	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
+	    $arr[$id_cal]['date_debut_fr'] = $arr_date[0];
+	    $arr[$id_cal]['heure_debut_fr'] = $arr_date[1];
+	    
 	    $arr[$id_cal]['date_fin'] = $enregistrement->date_fin;
+	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
+	    $arr[$id_cal]['date_fin_fr'] = $arr_date[0];
+	    $arr[$id_cal]['heure_fin_fr'] = $arr_date[1];
+	    
 	    $arr[$id_cal]['profil_clm'] = $enregistrement->profil_clm;
 	    $arr[$id_cal]['profil_paves'] = $enregistrement->profil_paves;
 	    $arr[$id_cal]['profil_montagne'] = $enregistrement->profil_montagne;
@@ -80,6 +119,27 @@
 	    $arr[$id_cal]['image'] = $enregistrement->image;
 
 	    $i++;
+	    
+	    $dh_debut = $arr[$id_cal]['date_debut'];
+	    $now   = time();
+	    $dh_debut = strtotime($dh_debut);
+	    
+	    if($now > $dh_debut){
+		$arr[$id_cal]['commence'] = "1";
+	    }
+	    else{
+		$arr[$id_cal]['commence'] = "0";
+	    }
+	    
+	    $dh_fin = $arr[$id_cal]['date_fin'];
+	    $dh_fin = strtotime($dh_fin);
+	    
+	    if($now > $dh_fin){
+		$arr[$id_cal]['termine'] = "1";
+	    }
+	    else{
+		$arr[$id_cal]['termine'] = "0";
+	    }
 	}
 	return $arr;
     }

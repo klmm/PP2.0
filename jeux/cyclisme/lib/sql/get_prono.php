@@ -51,16 +51,18 @@
 	$prep->bindValue(3,$joueur,PDO::PARAM_STR);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
-
+	
 	//On fait le test si un enrengistrement a �t� trouv�
 	$enregistrement = $prep->fetch();
 	if($enregistrement)
 	{
+	   
 	    $id_cal = $enregistrement->id_calendrier;
 	    $arr['id_cyclisme_prono'] = $enregistrement->id_cyclisme_prono;
 	    $arr['id_jeu'] = $enregistrement->id_jeu;
 	    $arr['joueur'] = $enregistrement->joueur;
-	    $arr['id_cal'] = $enregistrement->id_calendrier;
+	    
+	    $arr['id_cal'] = $id_cal;
 	    $arr['prono'] = $enregistrement->prono;
 	    $arr['points_prono'] = $enregistrement->points_prono;
 	    $arr['score_base'] = $enregistrement->score_base;

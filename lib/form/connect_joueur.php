@@ -42,7 +42,7 @@
             }
 
             // MAJ dernière connexion
-            require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php');
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php');
             update_derniere_visite();
 
             return;

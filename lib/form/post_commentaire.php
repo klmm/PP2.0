@@ -16,7 +16,7 @@
 	return;
     }
 
-    $sql = "INSERT INTO ArticlesCommentaire(IDArticle,Joueur,Contenu,DateHeurePub,NombreLikes,NombreDislikes) VALUES(?,?,?,NOW(),0,0)";
+    $sql = "INSERT INTO commentaire(IDArticle,Joueur,Contenu,DateHeurePub,NombreLikes,NombreDislikes,id_jeu,id_cal) VALUES(?,?,?,NOW(),0,0,0,0)";
 
     //echo $login . ' - ' . $contenu . ' - ' . $id_article . ' - ';
     $prep = $db->prepare($sql);

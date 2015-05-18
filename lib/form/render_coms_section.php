@@ -1,7 +1,7 @@
 <?php
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/commentaires/get_commentaires.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/likes/get_likes.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_commentaires.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php');
 
     session_start();
     $login = $_SESSION['LoginJoueur'];
@@ -10,13 +10,12 @@
     $res1 = get_commentaires_article($id_article);
     
     if($login==''){
-	$res2[0]['id_commentaire'] = 0;
+	$res2 = null;
     }
     else{
 	$res2 = get_likes($id_article, $login);
     }
     
-
     $res = array(
 	'result' => 'success',
 	'commentaires' => $res1,

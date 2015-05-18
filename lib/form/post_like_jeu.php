@@ -18,7 +18,7 @@
 
 	
 	// Like déjà existant ?
-	$sql = "SELECT * FROM jeu_commentaire_like WHERE id_jeu_commentaire=? AND joueur=?";
+	$sql = "SELECT * FROM likes WHERE IDComm = ? AND Joueur = ?";
 	$prep = $db->prepare($sql);
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	$prep->bindValue(1,$id_comm,PDO::PARAM_INT);
@@ -33,7 +33,7 @@
 
 	
 	// Ajout du like
-	$sql = "INSERT INTO jeu_commentaire_like(id_jeu_commentaire,b_like,joueur,id_jeu,id_calendrier) VALUES(?,?,?,?,?)";
+	$sql = "INSERT INTO likes(IDComm,bLike,Joueur,IDArticle,id_jeu,id_cal) VALUES(?,?,?,0,?,?)";
 	$prep2 = $db->prepare($sql);
 	//$prep2->setFetchMode(PDO::FETCH_OBJ);
 	$prep2->bindValue(1,$id_comm,PDO::PARAM_INT);
@@ -52,14 +52,14 @@
 	
 	// Incrémentation du nombre de like/dislike du commentaires
 	if ($bLike == true){
-		$sql = "UPDATE ArticlesCommentaire SET NombreLikes = NombreLikes + 1 WHERE IDCommentaire = ?";
+		$sql = "UPDATE commentaire SET NombreLikes = NombreLikes + 1 WHERE IDCommentaire = ?";
 		$prep3 = $db->prepare($sql);
 		$prep3->setFetchMode(PDO::FETCH_OBJ);
 		$prep3->bindValue(1,$id_comm,PDO::PARAM_INT);
 		$res = $prep3->execute();
 	}
 	else{
-		$sql = "UPDATE ArticlesCommentaire SET NombreDislikes = NombreDislikes + 1 WHERE IDCommentaire = ?";
+		$sql = "UPDATE commentaire SET NombreDislikes = NombreDislikes + 1 WHERE IDCommentaire = ?";
 		$prep3 = $db->prepare($sql);
 		$prep3->setFetchMode(PDO::FETCH_OBJ);
 		$prep3->bindValue(1,$id_comm,PDO::PARAM_INT);

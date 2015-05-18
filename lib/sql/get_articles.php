@@ -1,5 +1,6 @@
 <?php
-
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php';
+    
 	function get_articles_tous(){
 		// On �tablit la connexion avec la base de donn�es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
@@ -18,6 +19,7 @@
 		{
 			$arr[$i]['id_article'] = $enregistrement->IDArticle;
 			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['dateheurepub_fr'] = date_to_duration($arr[$i]['dateheurepub']);
 			$arr[$i]['categorie'] = $enregistrement->Categorie;
 			$arr[$i]['souscategorie'] = $enregistrement->SousCategorie;
 			$arr[$i]['titre'] = $enregistrement->Titre;
@@ -71,6 +73,7 @@
 		{
 			$arr[$i]['id_article'] = $enregistrement->IDArticle;
 			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['dateheurepub_fr'] = date_to_duration($arr[$i]['dateheurepub']);
 			$arr[$i]['categorie'] = $enregistrement->Categorie;
 			$arr[$i]['souscategorie'] = $enregistrement->SousCategorie;
 			$arr[$i]['titre'] = $enregistrement->Titre;
@@ -112,6 +115,7 @@
 		{
 			$arr[$i]['id_article'] = $enregistrement->IDArticle;
 			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['dateheurepub_fr'] = date_to_duration($arr[$i]['dateheurepub']);
 			$arr[$i]['categorie'] = $enregistrement->Categorie;
 			$arr[$i]['souscategorie'] = $enregistrement->SousCategorie;
 			$arr[$i]['titre'] = $enregistrement->Titre;
@@ -154,6 +158,7 @@
 		{
 			$arr[$i]['id_article'] = $enregistrement->IDArticle;
 			$arr[$i]['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr[$i]['dateheurepub_fr'] = date_to_duration($arr[$i]['dateheurepub']);
 			$arr[$i]['categorie'] = $enregistrement->Categorie;
 			$arr[$i]['souscategorie'] = $enregistrement->SousCategorie;
 			$arr[$i]['titre'] = $enregistrement->Titre;
@@ -205,6 +210,7 @@
 				
                             $arr[$i]['id_article'] = $enregistrement2->IDArticle;
                             $arr[$i]['dateheurepub'] = $enregistrement2->DateHeurePub;
+			    $arr[$i]['dateheurepub_fr'] = date_to_duration($arr[$i]['dateheurepub']);
                             $arr[$i]['categorie'] = $enregistrement2->Categorie;
                             $arr[$i]['souscategorie'] = $enregistrement2->SousCategorie;
                             $arr[$i]['titre'] = $enregistrement2->Titre;
@@ -246,6 +252,7 @@
 		{
 			$arr['id_article'] = $enregistrement->IDArticle;
 			$arr['dateheurepub'] = $enregistrement->DateHeurePub;
+			$arr['dateheurepub_fr'] = date_to_duration($arr['dateheurepub']);
 			$arr['categorie'] = $enregistrement->Categorie;
 			$arr['souscategorie'] = $enregistrement->SousCategorie;
 			$arr['titre'] = $enregistrement->Titre;
@@ -293,6 +300,7 @@
 
 			$arr[$i]['id_article'] = $enregistrement2->IDArticle;
 			$arr[$i]['dateheurepub'] = $enregistrement2->DateHeurePub;
+			$arr[$i]['dateheurepub_fr'] = date_to_duration($arr[$i]['dateheurepub']);
 			$arr[$i]['categorie'] = $enregistrement2->Categorie;
 			$arr[$i]['souscategorie'] = $enregistrement2->SousCategorie;
 			$arr[$i]['titre'] = $enregistrement2->Titre;

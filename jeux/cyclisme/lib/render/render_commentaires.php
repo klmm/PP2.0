@@ -6,14 +6,13 @@
     ------------ INPUTS -------*/
    
     /* --------- OUTPUTS -------
-    id_jeu
-    id_cal
+
     ------------ OUTPUTS -------*/
    
 
     //--------------------------------------FONCTIONS--------------------------------------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_commentaires.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_likes.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_commentaires.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php';
     //-------------------------------------------------------------------------------------//
   
    
@@ -47,9 +46,9 @@
     
     
     //----------------------COMMENTAIRES & LIKES -----------------------------------//
-    $tab_commentaires = get_commentaires_cal($ID_JEU, $ID_CAL);
+    $tab_commentaires = get_commentaires_calendrier($ID_JEU, $ID_CAL);
     if($bConnected){
-	$tab_likes = get_likes($ID_JEU,$ID_CAL,$loginjoueur);
+	$tab_likes = get_likes_jeu($ID_JEU,$ID_CAL,$loginjoueur);
     }
     else{
 	$tab_likes = null;

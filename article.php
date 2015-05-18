@@ -1,14 +1,13 @@
 <?php
 
 //--------------------------------------FONCTIONS--------------------------------------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/articles/get_articles.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/images/get_images.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/auto_login.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/commentaires/get_commentaires.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/likes/get_likes.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_images.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/auto_login.php';   
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_commentaires.php'; 
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 //-------------------------------------------------------------------------------------//
 
@@ -94,9 +93,8 @@ $cr = array(
     $nb_articles_recents = sizeof($articles_recents);
 
     // Commentaires postés sur l'article
-    $commentaires = get_commentaires_article($id_article);
-    $nb_comm = sizeof($commentaires);
-
+    $nb_comm = get_nb_commentaires_article($id_article);
+    
     // Commentaires likés/dislikés par le joueur
     if ($bConnected){
         $likes = get_likes($id_article, $loginjoueur);
@@ -460,8 +458,8 @@ $cr = array(
                         </div>';
                    
     }
-	
 	*/
+	
     echo '
 		    </div>
 		</div>

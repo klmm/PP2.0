@@ -1,11 +1,11 @@
 <?php
 
 //--------------------------------------FONCTIONS--------------------------------------//
-    include($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/articles/get_articles.php');
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/jeux/get_jeux.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/images/get_images.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/auto_login.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/update_joueurs.php';
+    include($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php');
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_images.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/auto_login.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 //-------------------------------------------------------------------------------------//
 

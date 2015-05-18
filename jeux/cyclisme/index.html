@@ -9,12 +9,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <link rel="shortcut icon" href="../../img/CarrNoir.png" />
+        <link rel="shortcut icon" href="../../img/logos/defaut.png" />
         <title>Tour de France 2015</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet" />
         <link href="../../css/font-awesome.min.css" rel="stylesheet" />
         <link href="../../css/carousel.css" rel="stylesheet" />
         <link href="../../css/style.css" rel="stylesheet" />
+		<link href="../../css/pagearticle.css" rel="stylesheet" />
         <link href="css/tdf2015.css" rel="stylesheet" />
 		
         <style type="text/css"></style>
@@ -29,12 +30,12 @@
                 <ul class="social" style="float:right; margin-right: 20px;">
                     <li class="twitter">
                         <a href="https://twitter.com/ParionsPotes" target="_blank">
-                            <img src="/img/static/icons_set/no_border/twitter.png" alt="Twitter" />
+                            <img src="../../img/static/icons_set/no_border/twitter.png" alt="Twitter" />
                         </a>
                     </li>
                     <li class="facebook">
                         <a href="https://www.facebook.com/parionspotes" target="_blank">
-                            <img src="/img/static/icons_set/no_border/facebook.png" alt="Facebook" />
+                            <img src="../../img/static/icons_set/no_border/facebook.png" alt="Facebook" />
                         </a>
                     </li>
                 </ul>
@@ -132,25 +133,25 @@
 					<div class="list-group list-articles-right clearfix">
 						<a href="#" class="list-articles-item-right list-group-item col-md-12">
 							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
+							<img src="../../img/articles/football/msn_deg.jpg" alt="aie"/>
 							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
 							<p class="list-group-item-text">Categorie</p>
 						</a>
 						<a href="#" class="list-articles-item-right list-group-item col-md-12">
 							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
+							<img src="../../img/articles/football/msn_deg.jpg" alt="aie"/>
 							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
 							<p class="list-group-item-text">Categorie</p>
 						</a>
 						<a href="#" class="list-articles-item-right list-group-item col-md-12">
 							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
+							<img src="../../img/articles/football/msn_deg.jpg" alt="aie"/>
 							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
 							<p class="list-group-item-text">Categorie</p>
 						</a>
 						<a href="#" class="list-articles-item-right list-group-item col-md-12">
 							<span class="badge">Sport</span>
-							<img src="img/colombie.jpg" alt="aie"/>
+							<img src="../../img/articles/football/msn_deg.jpg" alt="aie"/>
 							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
 							<p class="list-group-item-text">Categorie</p>
 						</a>
@@ -160,34 +161,387 @@
 			</div>
 		</div>
     </div>
+	
+	
+	
     <div class="section " id="classements" style="margin-bottom:120px;">
         <div class="sectionSide">
             <h2 class="section-heading">Classements</h2>
             <p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p>
         </div>
     </div>
-    <div class='section' id='resultats' style='min-height: 214px;'>
-        <nav id="calendar" class="navbar navbar-default" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Calendrier</a>
-			</div>
+	
+	
+	
+    <div class='section clearfix' id='resultats' style='min-height: 214px;'>
+		<div class="left-content col-md-3">
+			<nav id="calendar" class="navbar navbar-default" role="navigation">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Calendrier</a>
+				</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse navbar-calendar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a value="idcalendar">Link</a></li>
-					<li><a href="#">Link</a></li>
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</nav>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-calendar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a value="idcalendar">Link</a></li>
+						<li><a href="#">Link</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div>
+		<div class="right-content col-md-9 col-sm-12 col-xs-12"> <!-- ii le panel qui va se remplir en ajax ! -->
+			<div class="pres-panel"> <!-- panel info calendrier pour l'instant on touche pas trop -->
+				<div class='pres-box' style='background-image:url(../../img/articles/cyclisme/demare_deg.jpg)'>
+					<div class='pres-content'>
+						<div class='pres-button col-md-12 col-sm-12 col-xs-12'>
+							<a class='btn btn-primary btn-lg bcr-rugby'
+							href='lien pari' disabled="disabled">Parier</a>
+						</div>
+						<div class='pres-text col-md-9 col-sm-9 hidden-xs'>
+							<div class='jumbotron bcr-rugby'>
+								<p>Attention à la cuiller de bois !</p>
+							</div>
+						</div>
+						<div class='pres-stat col-md-3 col-sm-3 hidden-xs'>
+							<div class='stat-box stat-inline'>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="result-panel"> <!-- panel resultat: soit rien, soit la row-later, soit les deux rows player-result et other-result-->
+				<div class="row later">
+					<div class="table-box col-md-6 col-sm-6 col-xs-12">
+						<div class="sectionSide">
+							<p class="section-highlight">Mon Top 10</p>
+						</div>	 
+						<table class="table table-hover">
+							<tr class="goodbet"> <!-- classe pou les tout piles -->
+								<th class="table-place col-md-2">1.</th> <!-- on definit ici les tailles des colonnes du tableau -->
+								<td class="table-name col-md-6">Fabio ARU</td>
+								<td class="table-point col-md-4">625</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">2.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">3.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">4.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="goodbet">
+								<th class="table-place">5.</th>
+								<td class="table-name">Alberto Contador</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">6.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="goodbet">
+								<th class="table-place">7.</th>
+								<td class="table-name">Richie Porte</td>
+								<td class="table-point">130</td>
+							</tr>
+							<tr class="almostbet"> <!-- classe pour les mal placés -->
+								<th class="table-place">8.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">9.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">5</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">10.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+						</table>
+					</div>
+					<div class="stat-box col-md-6 col-sm-6 col-xs-12">
+						<!-- zone pour des stats -->
+					</div>
+				</div>
+				<div class="row player-result">
+					<div class="table-box col-md-6 col-sm-6 col-xs-12">
+						<div class="sectionSide">
+							<p class="section-highlight">Résultat</p>
+						</div>	
+						<table class="table table-hover">
+							<tr>
+								<th class="table-place col-md-2">1.</th>
+								<td class="table-name col-md-10">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">2.</th>
+								<td class="table-name">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">3.</th>
+								<td class="table-name">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">4.</th>
+								<td class="table-name">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">5.</th>
+								<td class="table-name">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">6.</th>
+								<td class="table-name">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">7.</th>
+								<td class="table-name">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">8.</th>
+								<td class="table-name">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">9.</th>
+								<td class="table-name">...</td>
+							</tr>
+							<tr>
+								<th class="table-place">10.</th>
+								<td class="table-name">...</td>
+							</tr>
+						</table>
+					</div>
+					<div class="table-stat-box col-md-6 col-sm-6 col-xs-12">
+						<div class="sectionSide">
+							<p class="section-highlight">Mon Top 10</p>
+						</div>	
+						<table class="table table-hover">
+							<tr class="goodbet">
+								<th class="table-place col-md-2">1.</th>
+								<td class="table-name col-md-6">Fabio ARU</td>
+								<td class="table-point col-md-4">625</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">2.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">3.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">4.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="goodbet">
+								<th class="table-place">5.</th>
+								<td class="table-name">Alberto Contador</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">6.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="goodbet">
+								<th class="table-place">7.</th>
+								<td class="table-name">Richie Porte</td>
+								<td class="table-point">130</td>
+							</tr>
+							<tr class="almostbet">
+								<th class="table-place">8.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">9.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">5</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">10.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="row other-result">
+					<div class="table-box col-md-6 col-sm-6 col-xs-12">
+						<div class="sectionSide">
+							<p class="section-highlight">Scores</p>
+						</div>	
+						<table id="id cal !!!!" class="table table-hover scores"><!-- ne pas oublier l'id et la classe scores -->
+							<tr class="">
+								<th class="table-place col-md-2">1.</th>
+								<td class="table-name col-md-6">Camomito</td>
+								<td class="table-point col-md-4">625</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">2.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">3.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">4.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">5.</th>
+								<td class="table-name">Kevin</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">6.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">7.</th>
+								<td class="table-name">Toto</td>
+								<td class="table-point">130</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">8.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">9.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">125</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">10.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+						</table>
+					</div>
+					<div class="table-stat-box col-md-6 col-sm-6 col-xs-12">
+						<div class="sectionSide">
+							<p class="section-highlight">Son Top 10</p>
+						</div>	
+						<table class="table table-hover">
+							<tr class="goodbet">
+								<th class="table-place col-md-2">1.</th>
+								<td class="table-name col-md-6">Fabio ARU</td>
+								<td class="table-point col-md-4">625</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">2.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">3.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">4.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="goodbet">
+								<th class="table-place">5.</th>
+								<td class="table-name">Alberto Contador</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">6.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="goodbet">
+								<th class="table-place">7.</th>
+								<td class="table-name">Richie Porte</td>
+								<td class="table-point">130</td>
+							</tr>
+							<tr class="almostbet">
+								<th class="table-place">8.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">9.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">5</td>
+							</tr>
+							<tr class="">
+								<th class="table-place">10.</th>
+								<td class="table-name">...</td>
+								<td class="table-point">...</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="comment-panel"> <!-- panel commentaire on insere exactement la meme chose que pour les articles -->
+				<div class="" id="commentaires">
+					<div class="sectionSide">
+						<h2 class="section-heading">Commentaires</h2>
+						<p class="section-highlight">Connectez-vous pour participer au débat !</p>
+						<input name="id_article" id="id_article" type="text" class="hidden" required="" value="2">
+					</div>	    
+					<div class="row com-container">
+						<div class="like-form col-md-10 col-md-offset-1">
+							<p id="id-com" value="216" class="hidden">Id</p>
+							<p id="id-art" value="2" class="hidden">Id</p>
+							<div class="comment-box clearfix">
+								<p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
+								<p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h51</p>
+								<p class="time pull-right hidden">15/05/2015, à 22h51</p>
+								<p class="comment col-md-12 col-sm-12 col-xs-12">test</p>
+							</div>
+							<div class="like-box clearfix">
+								<button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;">
+									<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
+									<span class="count">0</span>
+								</button>
+								<button class="btn-like btn btn-success pull-right " style="margin-left:10px;">
+									<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
+									<span class="count">0</span>
+								</button>
+							</div>
+						</div>
+						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="215" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h49</p><p class="time pull-right hidden">15/05/2015, à 22h49</p><p class="comment col-md-12 col-sm-12 col-xs-12">test</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
+						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="214" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h47</p><p class="time pull-right hidden">15/05/2015, à 22h47</p><p class="comment col-md-12 col-sm-12 col-xs-12">test</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
+						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="212" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h45</p><p class="time pull-right hidden">15/05/2015, à 22h45</p><p class="comment col-md-12 col-sm-12 col-xs-12">test</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
+						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="203" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">mardi 12 mai 2015, à 10h28</p><p class="time pull-right hidden">12/05/2015, à 10h28</p><p class="comment col-md-12 col-sm-12 col-xs-12">aa</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
+						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="202" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">lundi 11 mai 2015, à 21h45</p><p class="time pull-right hidden">11/05/2015, à 21h45</p><p class="comment col-md-12 col-sm-12 col-xs-12">test 2</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
+						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="46" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">mardi 28 avril 2015, à 08h57</p><p class="time pull-right hidden">28/04/2015, à 08h57</p><p class="comment col-md-12 col-sm-12 col-xs-12">test toto</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
     
     
@@ -206,6 +560,7 @@
     <script src="../../js/jqBootstrapValidation.js"></script> 
     
     <script src="../../js/imagesloaded.pkgd.min.js"></script> 
+	<script src="../../js/d3.min.js"></script> 
 	
 	<script src="js/tdf2015.js"></script>
     <script type="text/javascript">

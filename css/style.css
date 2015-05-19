@@ -246,13 +246,13 @@ header.small #header-bottom {
 }
 #header-top h1 { /* logo header déplié */
 	text-indent:-99999px;
-	width:162px;
+	width:160px;
 	height:78px;
 	padding:0;
 	margin:0;
 	margin-top:10px;
 	background:transparent url(../img/logos/logovide-header_small_dep.png) no-repeat top left;
-	background-size: 162px 78px;
+	background-size: 160px 78px;
 	-webkit-transition: opacity 0.5s;
 	   -moz-transition: opacity 0.5s;
 		    transition: opacity 0.5s;

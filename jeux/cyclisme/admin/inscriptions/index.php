@@ -45,15 +45,20 @@
 			$id_equipe_en_cours = $id_equipe_new;
 			echo '<h2>' . $arr_equipe_affichage['nom_courant'] . '</h2><br/>';
 		}
+		
+		$abandon = $cycliste['abandon'];
+		
 		if ($cycliste['inscrit'] == 0){
 			echo '  <input type="checkbox" name="cyclistes[]" value="' . $id_cycliste . '">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '
                         <input type="text" name="equipe' . $id_cycliste .'" value="' . $cycliste['id_cyclisme_equipe'] .'" hidden>        
-			<input type="text" name="forme' . $id_cycliste .'" value="80" maxlength="3" size="3"><br/>';
+			<input type="text" name="forme' . $id_cycliste .'" value="80" maxlength="3" size="3">
+			<input type="input" name="abandon' . $id_cycliste . '" value="0" maxlength="1" size="1"><br/>';
 		}
 		else{
 			echo '  <input type="checkbox" name="cyclistes[]" value="' . $id_cycliste . '" checked>' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '
                         <input type="text" name="equipe' . $id_cycliste .'" value="' . $cycliste['id_cyclisme_equipe'] .'" hidden>        
-			<input type="text" name="forme' . $id_cycliste .'" value="' . $cycliste['forme'] .'" maxlength="3" size="3"><br/>';
+			<input type="text" name="forme' . $id_cycliste .'" value="' . $cycliste['forme'] .'" maxlength="3" size="3">
+			<input type="input" name="abandon' . $id_cycliste . '" value="' . $abandon . '" maxlength="1" size="1"><br/>';
 		}
 	}
 

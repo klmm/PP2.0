@@ -20,7 +20,7 @@
 	//echo 'resultat : ' . $res . '<br/>';
 	
 	//On pr�pare la requ�te pour aller chercher les articles
-	$sql2 = "INSERT INTO cyclisme_inscription_athlete(id_athlete,id_jeu,id_cal,forme,id_equipe) VALUES(?,?,?,?,?)";
+	$sql2 = "INSERT INTO cyclisme_inscription_athlete(id_athlete,id_jeu,id_cal,forme,id_equipe,abandon) VALUES(?,?,?,?,?,?)";
 	$prep2 = $db->prepare($sql2);
 	$prep2->setFetchMode(PDO::FETCH_OBJ);
 	
@@ -30,12 +30,13 @@
                     $forme = $_POST['forme' . $id_cycliste];
                     $cycliste=intval($id_cycliste);
 		    $id_equipe = $_POST['equipe' . $id_cycliste];
-			    
+		    $abandon = $_POST['abandon' . $id_cycliste];
                     $prep2->bindValue(1,$cycliste,PDO::PARAM_INT);
                     $prep2->bindValue(2,$id_jeu,PDO::PARAM_INT);
                     $prep2->bindValue(3,$id_cal,PDO::PARAM_INT);
                     $prep2->bindValue(4,$forme,PDO::PARAM_INT);
 		    $prep2->bindValue(5,$id_equipe,PDO::PARAM_INT);
+		    $prep2->bindValue(6,$abandon,PDO::PARAM_BOOL);
                     $res = $prep2->execute();
 		}
 	}

@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+/*require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	
     $bdd = new Connexion();
     $db = $bdd->getDB();
@@ -13,7 +13,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$prep->bindValue(2,$login,PDO::PARAM_STR);
 	$prep->bindValue(3,$contenu,PDO::PARAM_STR);
 	$res_req = $prep->execute();
-    }
+    }*/
+
     //echo $login . ' - ' . $contenu . ' - ' . $id_article . ' - ';
     
 		

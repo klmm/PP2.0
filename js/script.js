@@ -325,7 +325,7 @@ function Init_Forms()
 
 function getAllComs(idart) {
 
-	var formURL = "/lib/form/render_coms_section.php";
+	var formURL = "/lib/render/render_commentaires.php";
 	var postData = "id_article=" + idart;
 	$.ajax(
 	{

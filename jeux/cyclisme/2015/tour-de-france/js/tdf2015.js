@@ -1,3 +1,6 @@
+// A CHANGER LORS DE LA CREATION D'UN JEU
+var id_jeu = 4;
+
 function Init_TDF()
 {
 	$(document).on('click', '#calendar a', function(e)
@@ -125,6 +128,114 @@ function Init_TDF()
 		});
 		e.preventDefault(); //STOP default action
 	});
+	
+	$("#post-form-jeu").submit(function(e)
+	{
+		$('.alert').alert('close');
+		
+		var postData = $(this).serializeArray();
+		var id_cal = $(this).find("#id_cal").attr("value");
+		
+		alert(id_jeu + ' - ' + id_cal);
+		$.ajax(
+		{
+			url : "/lib/form/post_commentaire_jeu.php",
+			type: "POST",
+			data : postData,
+			success:function(data, textStatus, jqXHR) 
+			{
+				var result = data.split(';');
+				if (result[0] == 'success'){
+					//chargement des coms
+					getAllComsJeu(id_jeu,id_cal);
+				}else {
+					$( "#post-container" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
+					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+					'<strong>Attention!  </strong>'+result[0]+'</div>' );
+				}
+				$('form')[0].reset();
+			},
+			error: function(jqXHR, textStatus, errorThrown) 
+			{
+				$( "#post-container" ).append( '<div class="alert alert-danger alert-dismissible" role="alert">'+
+					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+					'<strong>Attention!  </strong>'+errorThrown+'</div>' );
+			}
+		});
+		e.preventDefault(); //STOP default action
+		
+	});
+	
+	$(document).on('click', '.btn-like-jeu', function(e)
+	{
+		var $this = $(this);
+		var id_cal = $(this).parent().parent().find("#id-cal").attr("value");
+		var id_comm = $(this).parent().parent().find("#id-com").attr("value");
+		var $antithis = $(this).parent().find(".btn-dislike-jeu");
+		var postData = "id_jeu=" + id_jeu + "&type=1&id_cal=" + id_cal + "&id_comm=" + id_comm;
+		
+		$.ajax(
+		{
+			url : "/lib/form/post_like_jeu.php",
+			type: "POST",
+			data : postData,
+			success:function(data, textStatus, jqXHR) 
+			{
+				if (data == 'success'){
+				    $this.addClass("disabled");
+				    $this.blur();				
+				    $antithis.addClass("disabled");
+				    var c = $this.find(".count").html().valueOf();
+				    c++;
+				    $this.find(".count").text(c);
+					
+				}
+				else{
+				    
+				}
+				
+				//$('form')[0].reset();
+			},
+			error: function(jqXHR, textStatus, errorThrown) 
+			{
+			    // rien
+			}
+		});
+		e.preventDefault(); //STOP default action
+	});
+	$(document).on('click', '.btn-dislike-jeu', function(e)
+	{
+		var $this = $(this);
+		var id_com = $(this).parent().parent().find("#id-com").attr("value");
+		var id_cal = $(this).parent().parent().find("#id-cal").attr("value");
+		var $antithis = $(this).parent().find(".btn-like-jeu");
+		var postData = "id_comm=" + id_com + "&type=0&id_jeu=" + id_jeu + "&id_cal=" + id_cal;
+		$.ajax(
+		{
+			url : "/lib/form/post_like_jeu.php",
+			type: "POST",
+			data : postData,
+			success:function(data, textStatus, jqXHR) 
+			{
+				if (data == 'success'){
+				    $this.addClass("disabled");
+					$this.blur();				
+					$antithis.addClass("disabled");
+					var c = $this.find(".count").html().valueOf();
+					c++;
+					$this.find(".count").text(c);
+				}
+				//$('form')[0].reset();
+			},
+			error: function(jqXHR, textStatus, errorThrown) 
+			{
+			    // rien
+					 
+			}
+		});
+		e.preventDefault(); //STOP default action
+		
+	});
 }
 
 function render_pres_panel(calendrier){
@@ -177,3 +288,82 @@ function Build_Chart(el, result){
 
 	});
 }
+
+function getAllComsJeu(id_jeu,id_cal) {
+	
+	
+	var formURL = "/lib/render/render_commentaires_jeu.php";
+	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
+	$.ajax(
+	{
+		url : formURL,
+		type: "POST",
+		data : postData,
+		success:function(data, textStatus, jqXHR) 
+		{
+			var result = $.parseJSON(data);
+			var coms = result.commentaires;
+			var likes = result.likes;
+			var likedisable, dislikedisable;
+			var no_like = false;
+			
+			
+			if(coms == null){			    
+			    $( ".com-container" ).append(  'AUCUN COMMENTAIRE');
+			    return;
+			}
+			
+			if(likes == null){
+			    no_like = true;
+			}
+			
+			$( ".com-container" ).empty();
+			for (var i = 0; i < coms.length; i++) {
+				var object = coms[i];
+				
+				if(no_like == false){
+				    if(likes.hasOwnProperty(object['id_commentaire']))	{
+					    if(likes[object['id_commentaire']] == 1){
+						    likedisable = "disabled";
+						    dislikedisable = "disabled";
+					    } else {
+						    likedisable = "disabled";
+						    dislikedisable = "disabled";
+					    }
+
+				    } else {
+					    likedisable = "";
+					    dislikedisable = "";
+				    }
+				}
+				
+				$( ".com-container" ).append(  '<div class="like-form col-md-10 col-md-offset-1">' +		
+				   
+						'<p id="id-cal" value="' + id_cal + '" class="hidden"></p>' +
+						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden"></p>' +
+						'<div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">' + object['joueur'] + '</p>' +
+						    '<p class="time col-md-8 col-sm-8 col-xs-8">' + object['dateheurepub_conv'] + '</p>' +
+						    '<p class="time pull-right hidden">' + object['dateheurepub_court'] + '</p>' +
+						    '<p class="comment col-md-12 col-sm-12 col-xs-12">' + object['contenu'] + '</p>'+
+						'</div>' +
+
+						'<div class="like-box clearfix">' +
+						    '<button class="btn-dislike-jeu btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;">' +
+							'<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
+							'<span class="count">' + object['nbdislikes'] + '</span>' +
+						    '</button>' +
+						    '<button class="btn-like-jeu btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;">' +
+							'<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
+							'<span class="count">' + object['nblikes'] + '</span>' +
+						    '</button>' + 
+						'</div>' +
+				'</div>' );
+
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown) 
+		{
+			alert('error');//do nothing
+		}
+	});
+};

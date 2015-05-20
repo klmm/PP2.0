@@ -1,6 +1,6 @@
 <?php
 
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	
     $bdd = new Connexion();
     $db = $bdd->getDB();
@@ -29,7 +29,7 @@
     $res_req = $prep->execute();
 
     if( $res_req == false){
-	echo 'Erreur lors de l\'envoi du commentaire...';
+	echo 'Erreur lors de l\'envoi du commentaire... ' . $id_jeu . ' - ' . $id_cal;
 	return;
     }
     

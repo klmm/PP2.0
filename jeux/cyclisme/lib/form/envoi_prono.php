@@ -57,7 +57,7 @@
 	return;
     }
     
-    if($calendrier['date_debut'] < $dateactuelle){
+    if($calendrier['commence'] == '1'){
 	echo 'Vous ne pouvez plus pronostiquer sur cette épreuve...';
 	return;
     }

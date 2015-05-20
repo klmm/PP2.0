@@ -78,7 +78,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=?";
+	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? ORDER BY date_debut ASC";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
@@ -142,6 +142,25 @@
 	    }
 	}
 	return $arr;
+    }
+    
+    
+    function get_id_calendrier_actuel($ID_JEU){
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+	$bdd = new Connexion();
+	$db = $bdd->getDB();
+	
+	$now = time();
+	$unix = mktime(date('H',$now),date('i',$now),date('s',$now),date('n',$now),date('j',$now),date('Y',$now));
+
+	$date = strftime('%Y-%m-%d %H:%M:00', $unix);
+	
+	//On fait la requete sur le login
+	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND (date_debut>? OR (date_debut<? AND date_fin>? AND distance>0)) ORDER BY date_debut ASC LIMIT 1";
+	$prep = $db->prepare($sql);
+	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
+	$prep->execute();
+	$prep->setFetchMode(PDO::FETCH_OBJ);
     }
 
 ?>

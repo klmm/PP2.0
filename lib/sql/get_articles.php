@@ -1,5 +1,6 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_images.php';
     
 	function get_articles_tous(){
 		// On �tablit la connexion avec la base de donn�es

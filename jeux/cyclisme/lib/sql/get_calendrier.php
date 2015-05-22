@@ -153,14 +153,53 @@
 	$now = time();
 	$unix = mktime(date('H',$now),date('i',$now),date('s',$now),date('n',$now),date('j',$now),date('Y',$now));
 
-	$date = strftime('%Y-%m-%d %H:%M:00', $unix);
+	$date_heure = strftime('%Y-%m-%d %H:%M:%S', $unix);
+	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND (date_debut>? OR (date_debut<? AND date_fin>? AND distance>0)) ORDER BY date_debut ASC LIMIT 1";
+	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND LEFT(date_debut,8)=? AND LEFT(date_fin,8)=? LIMIT 1";
 	$prep = $db->prepare($sql);
-	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
+	$prep->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+	$prep->bindValue(2,$date_seule,PDO::PARAM_STR);
+	$prep->bindValue(3,$date_seule,PDO::PARAM_STR);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
+	
+	$enregistrement = $prep->fetch();
+
+	if( $enregistrement ){
+	    return $enregistrement->id_cal;
+	}
+	else{
+	    //On fait la requete sur le login
+	    $sql2 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND date_debut>? ORDER BY date_debut ASC LIMIT 1";
+	    $prep2 = $db->prepare($sql2);
+	    $prep2->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+	    $prep2->bindValue(2,$date_heure,PDO::PARAM_STR);
+	    $prep2->execute();
+	    $prep2->setFetchMode(PDO::FETCH_OBJ);
+	    $enregistrement2 = $prep2->fetch();
+
+	    if( $enregistrement2 ){
+		return $enregistrement2->id_cal;
+	    }
+	    else{
+		$sql3 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? ORDER BY date_fin DESC LIMIT 1";
+		$prep3 = $db->prepare($sql3);
+		$prep3->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+		$prep3->execute();
+		$prep3->setFetchMode(PDO::FETCH_OBJ);
+
+		$enregistrement3 = $prep3->fetch();
+
+		if( $enregistrement3 ){
+		    return $enregistrement3->id_cal;
+		}
+		else{
+		    return 0;
+		}
+	    }
+	}
     }
 
 ?>

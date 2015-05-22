@@ -73,14 +73,20 @@ $cr = array(
     echo '<!DOCTYPE html>
         <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html/>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="author" content="Parions Potes" />
 
-        <link rel="shortcut icon" href="/img/CarrNoir.png">';
+	<meta name="content-language" content="fr"/>
+	<meta name="description" content="Parions Potes est un site de pronostics gratuits sur les principaux événements sportifs de l’année. Multisport, Parions Potes met surtout en avant trois sports peu ouverts aux pronostics : le cyclisme, le ski alpin et le biathlon."/>
+	<meta name="keywords" content="pronostics paris gratuits sport cyclisme ski biathlon amis"/>
+	<meta name="subject" content=""/>
+	<meta name="copyright" content="Parions Potes 2015"/>
+	<meta name="identifier-url" content="www.parions-potes.fr"/>
+
+        <link rel="shortcut icon" href="/img/logos/logo_site.ico"/>';
 		
 		
     // TITLE
@@ -297,7 +303,7 @@ $cr = array(
 	$url_propre = clean_url($url);
         echo '
                                     <a href="' . $url_propre . '">
-                                        <img src="' . $arr_unes[$i]['photo_chemin_deg'] . '" class="img-responsive" alt="' . $arr_unes[$i]['photo_chemin_deg'] . '">
+                                        <img src="' . $arr_unes[$i]['photo_chemin'] . '" class="img-responsive" alt="' . $arr_unes[$i]['photo_chemin'] . '">
                                         <div class="container">
                                             <div class="carousel-caption">
                                                 <div class="col-md-9">

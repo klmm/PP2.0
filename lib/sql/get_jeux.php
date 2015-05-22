@@ -127,5 +127,35 @@
 		
 		return $arr;
 	}
-	
+			
+	function get_jeu_id($id_jeu){
+		// On �tablit la connexion avec la base de donn�es
+		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+		$bdd = new Connexion();
+		$db = $bdd->getDB();
+		$date_actu = date('Y-m-d H:i:s');
+
+		//On fait la requete sur le login
+		$sql = "SELECT * FROM jeu WHERE id_jeu=?";
+		$prep = $db->prepare($sql);
+		$prep->bindValue(1,$id_jeu,PDO::PARAM_STR);
+		$prep->execute();
+		$prep->setFetchMode(PDO::FETCH_OBJ);
+
+		//On fait le test si un enrengistrement a �t� trouv�
+		$enregistrement = $prep->fetch();
+
+		if( $enregistrement ){
+			$arr['id_jeu'] = $enregistrement->id_jeu;
+			$arr['date_debut'] = $enregistrement->date_debut;
+			$arr['date_fin'] = $enregistrement->date_fin;
+			$arr['sport'] = $enregistrement->sport;
+			$arr['competition'] = $enregistrement->competition;
+			$arr['url'] = $enregistrement->url;
+			$arr['image'] = $enregistrement->image;
+			$arr['description'] = $enregistrement->description;
+		}
+		
+		return $arr;
+	}
 ?>

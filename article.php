@@ -82,7 +82,8 @@ $cr = array(
     $categorie = $infos_article['categorie'];
     $sous_categorie = $infos_article['souscategorie'];
     $date_pub = $infos_article['dateheurepub'];
-
+    $contenu = 'A' . html_entity_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/articles/' . $id_article . '.htm',NULL,NULL,106,90));
+    
     // Articles de la même rubrique
     $articles_categorie = get_articles_categorie($categorie,5);
     $nb_articles_categorie = sizeof($articles_categorie);
@@ -90,9 +91,6 @@ $cr = array(
     // Articles à la une
     $articles_recents = get_articles_unes();
     $nb_articles_recents = sizeof($articles_recents);
-
-    // Commentaires postés sur l'article
-    $nb_comm = get_nb_commentaires_article($id_article);
 //------------------------------------------------------------------------------------------------//
 
 
@@ -113,10 +111,18 @@ $cr = array(
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="" />
+        <meta name="description" content="' . $contenu . '" />
         <meta name="author" content="" />
+	<meta property="og:image" content="http://www.parions-potes.fr' . $photo_chemin_deg . '">	    
 
-        <link rel="shortcut icon" href="/img/CarrNoir.png">';
+	<meta name="content-language" content="fr"/>
+	<meta name="description" content=""/>
+	<meta name="keywords" content="pronostics paris gratuits sport cyclisme ski biathlon amis ' . $titre . '"/>
+	<meta name="subject" content=""/>
+	<meta name="copyright" content="Parions Potes 2015"/>
+	<meta name="identifier-url" content="www.parions-potes.fr"/>
+	
+        <link rel="shortcut icon" href="/img/logos/logo_site.ico"/>';
 
     // TITLE
     echo '
@@ -232,7 +238,7 @@ $cr = array(
                                     <ul class="nav navbar-nav pull-right" style="">
                                         <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
                                         <li class=""><a href="#article" data-action="scrollTo">Article</a></li>
-                                        <li class=""><a href="#commentaires" data-action="scrollTo">Commentaires (' . $nb_comm . ')</a></li>
+                                        <li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
                                         <li class=""><a href="/">Retour au site</a></li>
                                     </ul>  
                                 </div>
@@ -486,7 +492,7 @@ $cr = array(
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 		
 		Init_Forms();
-		getAllComs($("#id_article").val());
+		getAllComs(' . $id_article . ');
 		
 		$(window).resize(function() {		
                     $(\'body\').scrollspy("refresh");

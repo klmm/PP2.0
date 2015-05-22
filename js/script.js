@@ -274,9 +274,6 @@ function Init_Forms()
 				    $this.find(".count").text(c);
 					
 				}
-				else{
-				    
-				}
 				
 				//$('form')[0].reset();
 			},

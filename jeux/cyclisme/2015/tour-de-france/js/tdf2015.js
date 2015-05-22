@@ -1,7 +1,7 @@
 // A CHANGER LORS DE LA CREATION D'UN JEU
 var id_jeu = 4;
 
-function Init_TDF()
+function Init_Forms_Cyclisme()
 {
 	$(document).on('click', '#calendar a', function(e)
 	{
@@ -165,6 +165,7 @@ function Init_TDF()
 		e.preventDefault(); //STOP default action
 		
 	});
+
 	
 	$(document).on('click', '.btn-like-jeu', function(e)
 	{
@@ -203,6 +204,7 @@ function Init_TDF()
 		});
 		e.preventDefault(); //STOP default action
 	});
+	
 	$(document).on('click', '.btn-dislike-jeu', function(e)
 	{
 		var $this = $(this);

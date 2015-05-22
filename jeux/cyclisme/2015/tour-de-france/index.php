@@ -5,6 +5,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_breves.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/auto_login.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
@@ -33,8 +34,24 @@
     }
     //------------------------------------------------------------------------------------------------//
     
+    
+    
+    
+    
+    
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
     $id_cal = get_id_calendrier_actuel($ID_JEU);
+    echo 'id_cal : ' . $id_cal;
+    $jeu = get_jeu_id($ID_JEU);
+    
+    /*
+    $arr['date_debut'];
+    $arr['date_fin'];
+    $arr['sport'];
+    $arr['competition'];
+    $arr['url'];
+    $arr['image'];
+    $arr['description'];*/
     
     $arr_breves = get_breves_jeu($ID_JEU);
     $nb_breves = sizeof($arr_breves);
@@ -44,9 +61,27 @@
     
     $arr_calendrier = get_calendrier_jeu($ID_JEU);
     $nb_calendier = sizeof($arr_calendrier);
+    //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
+
     
-    $calendrier = $arr_calendrier[$id_cal];
     
+    
+    //---------------------------------JEU COMMENCE ?---------------------------//
+    $now = time();
+    $dh_debut = strtotime($jeu['date_debut']);
+
+    if($now < $dh_debut && $admin != true){
+	header('Location: /redirect/404.php');
+	return;
+    }
+    //---------------------------------JEU COMMENCE ?---------------------------//
+    
+    
+    
+    
+    
+    
+    // -------------------------------- TRI DU CALENDRIER ------------------------//
     foreach($arr_calendrier as $id_c => $cal){
 	if($cal['commence'] == "1"){
 	    $arr_calendrier[$id_c]['date_debut'] = $cal['date_fin'];
@@ -59,15 +94,12 @@
       return strnatcmp($a['date_debut'], $b['date_debut']);
     }
     usort($arr_calendrier, 'compare_date_debut');
-     
-    if($bConnected){
-	$arr_pronos = get_pronos_joueurs_jeu($ID_JEU,$loginjoueur);
-    }
-    else{
-	$arr_pronos = null;
-    }
-    //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
-
+    // -------------------------------- TRI DU CALENDRIER ------------------------//
+    
+    
+    
+    
+    
     
     
     
@@ -83,11 +115,18 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <link rel="shortcut icon" href="/img/CarrNoir.png">';
+	<meta name="content-language" content="fr"/>
+	<meta name="description" content="Pronostics sur le Tour de France 2015."/>
+	<meta name="keywords" content="pronostics paris gratuits sport cyclisme tdf tour de france 2015"/>
+	<meta name="subject" content=""/>
+	<meta name="copyright" content="Parions Potes 2015"/>
+	<meta name="identifier-url" content="www.parions-potes.fr"/>
+
+        <link rel="shortcut icon" href="/img/logos/logo_site.ico"/>';
 
     // TITLE
     echo '
-        <title>' . $titre . '</title>';
+        <title>Parions Potes : Tour de France 2015</title>';
 
     // BOOTSTRAP
     echo '
@@ -181,8 +220,8 @@
             jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 		
-		Init_TDF();
-		getAllComsJeu(4,$("#id_cal").val());
+		Init_Forms_Cyclisme();
+		getAllComsJeu(' . $ID_JEU . ',' . $id_cal . ');
 		
 		$(window).resize(function() {		
                     $(\'body\').scrollspy("refresh");

@@ -7,7 +7,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM jeu_breve WHERE id_jeu=? ORDER BY dateheurepub";
+	$sql = "SELECT * FROM jeu_breve WHERE id_jeu=? ORDER BY date_publication DESC";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
@@ -19,7 +19,7 @@
 	{
 	    $arr[$i]['id_jeu_breve'] = $enregistrement->id_jeu_breve;
 	    $arr[$i]['id_jeu'] = $enregistrement->id_jeu;
-	    $arr[$i]['dateheurepub'] = $enregistrement->dateheurepub;
+	    $arr[$i]['dateheurepub'] = $enregistrement->date_publication;
 	    $arr[$i]['contenu'] = $enregistrement->contenu;
 	    $arr[$i]['titre'] = $enregistrement->titre;
 

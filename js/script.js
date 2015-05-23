@@ -338,7 +338,7 @@ function getAllComs(idart) {
 			var likedisable, dislikedisable;
 			var no_like = false;
 			
-			
+			$( ".com-container" ).empty();
 			if(coms == null){			    
 			    $( ".com-container" ).append(  'AUCUN COMMENTAIRE');
 			    return;
@@ -348,7 +348,7 @@ function getAllComs(idart) {
 			    no_like = true;
 			}
 			
-			$( ".com-container" ).empty();
+			
 			for (var i = 0; i < coms.length; i++) {
 				var object = coms[i];
 				

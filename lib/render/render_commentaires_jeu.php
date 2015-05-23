@@ -57,18 +57,12 @@
 
     
     
-    
-    
-    
-    
-    
-    
-    
-    
+   
     
     
     //-------------------------------OUTPUT------------------------------------//
     $res = array(
+		    'connecte' => $bConnected,
 		    'commentaires' => $tab_commentaires,
 		    'likes' => $tab_likes
 		    

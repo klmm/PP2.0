@@ -12,7 +12,7 @@ function Init_Forms_Cyclisme()
 		var postData = "id_cal=" + id + "id_jeu=4";
 		$.ajax(
 		{
-			url : "/lib/render/render_calendrier.php",
+			url : "/jeux/cyclisme/lib/render/render_calendrier.php",
 			type: "POST",
 			data : postData,
 			success:function(data, textStatus, jqXHR) 
@@ -107,7 +107,7 @@ function Init_Forms_Cyclisme()
 		var postData = "id_cal=" + id_cal + "id_jeu=" + id_jeu + "joueur=" + joueur;
 		$.ajax(
 		{
-			url : "/lib/render/render_prono.php",
+			url : "/jeux/cyclisme/lib/render/render_prono.php",
 			type: "POST",
 			data : postData,
 			success:function(data, textStatus, jqXHR) 
@@ -134,17 +134,18 @@ function Init_Forms_Cyclisme()
 		$('.alert').alert('close');
 		
 		var postData = $(this).serializeArray();
+		var formURL = $(this).attr("action");
 		var id_cal = $(this).find("#id_cal").attr("value");
 		
-		alert(id_jeu + ' - ' + id_cal);
 		$.ajax(
 		{
-			url : "/lib/form/post_commentaire_jeu.php",
+			url : formURL,
 			type: "POST",
 			data : postData,
 			success:function(data, textStatus, jqXHR) 
 			{
 				var result = data.split(';');
+				
 				if (result[0] == 'success'){
 					//chargement des coms
 					getAllComsJeu(id_jeu,id_cal);
@@ -165,6 +166,8 @@ function Init_Forms_Cyclisme()
 		e.preventDefault(); //STOP default action
 		
 	});
+	
+	
 
 	
 	$(document).on('click', '.btn-like-jeu', function(e)
@@ -306,10 +309,26 @@ function getAllComsJeu(id_jeu,id_cal) {
 			var result = $.parseJSON(data);
 			var coms = result.commentaires;
 			var likes = result.likes;
+			var connecte = result.connecte;
 			var likedisable, dislikedisable;
 			var no_like = false;
+
+			$( ".contact-form" ).empty();
+			if(connecte){
+			     $( ".contact-form" ).append('<div class="col-md-10 col-md-offset-1">'+
+				    '<input name="id_jeu" id="id_jeu" type="text" class="hidden" required="" value="' + id_jeu + '"/>'+
+				    '<input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' + id_cal + '"/>'+
+				    '<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">'+
+					'<span>Poster</span>'+
+				    '</button>'+
+				    '<textarea id="contenu" class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>'+				
+				'</div>');
+			}
+			else{
+			    
+			}
 			
-			
+			$( ".com-container" ).empty();
 			if(coms == null){			    
 			    $( ".com-container" ).append(  'AUCUN COMMENTAIRE');
 			    return;
@@ -319,7 +338,6 @@ function getAllComsJeu(id_jeu,id_cal) {
 			    no_like = true;
 			}
 			
-			$( ".com-container" ).empty();
 			for (var i = 0; i < coms.length; i++) {
 				var object = coms[i];
 				

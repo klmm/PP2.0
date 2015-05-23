@@ -9,10 +9,10 @@
 
     function dateheure_sql_to_fr($date){
 	$date2 = strtotime($date);
-	setlocale(LC_TIME, 'fr_FR');
 	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
 	
 	$arr = array(
+	    'date_court' => strftime('%d/%m/%Y', $unix),
 	    'date' => strftime('%A %d %B %Y', $unix),
 	    'heure' => strftime('%Hh%M', $unix)
 	);
@@ -89,6 +89,6 @@
 	setlocale(LC_TIME, 'fr_FR');
 	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
 
-	return strftime('%d/%m/%Y, à %Hh%M', $unix);
+	return strftime('%d/%m/%y, à %Hh%M', $unix);
     }		
 ?>

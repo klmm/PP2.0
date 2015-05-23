@@ -4,7 +4,6 @@
 	
     $bdd = new Connexion();
     $db = $bdd->getDB();
-
     session_start();
     $login = $_SESSION['LoginJoueur'];
     $contenu = $_POST['contenu'];	

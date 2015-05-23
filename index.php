@@ -4,11 +4,12 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
-    //require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_images.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/auto_login.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 //-------------------------------------------------------------------------------------//
+
+
 
 
 
@@ -28,7 +29,6 @@ $cr = array(
     'Biathlon'      => 'cr-biathlon',
     'Cyclisme'      => 'cr-cyclisme'
 );
-
 //--------------------------------------------------------------------------------------//
 
     
@@ -42,16 +42,20 @@ $cr = array(
     session_start();
     $loginjoueur = $_SESSION['LoginJoueur'];
 
+
     if($loginjoueur == ""){
         auto_login();
         $loginjoueur = $_SESSION['LoginJoueur'];
     }
+
+
+
     $idjoueur = $_SESSION['IDJoueur'];
     $mailjoueur = $_SESSION['MailJoueur'];
     $admin = $_SESSION['Admin'];
 
     if($loginjoueur != ""){
-        update_derniere_visite();
+        update_derniere_visite($loginjoueur);
         $bConnected = true;
     }
     else{
@@ -59,9 +63,9 @@ $cr = array(
     }
 //------------------------------------------------------------------------------------------------//
 
-
-
-
+/*
+ 	
+*/
 
 
 
@@ -73,7 +77,7 @@ $cr = array(
     echo '<!DOCTYPE html>
         <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
-        <meta http-equiv="Content-Type" content="text/html/>
+        <meta http-equiv="Content-Type" content="text/html;utf-8"/>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -595,8 +599,6 @@ $cr = array(
 //--------------------------------------FIN INSCRIPTION--------------------------------------//
 
 
-/*<input type='password' placeholder='Mot de passe (entre et 8 et 20 chiffres et lettres)' name='motdepasse' class='form-control' required='' data-validation-required-message='Veuillez choisir un mot de passe'>
-<input type='password' placeholder='Confirmation du mot de passe' name='confmotdepasse' class='form-control' required='' data-validation-required-message='Veuillez confirmer votre mot de passe'>*/
 
 
 
@@ -790,18 +792,7 @@ $cr = array(
 	    <script src="/js/imagesloaded.pkgd.min.js"></script>
 
 	    <script type="text/javascript">
-	/*var pagedSections = ["#myCarousel","#games","#inscription","#presentation","#contact"];
-	//var pagedSections = ["#contact"];
-	var headerSize = 98;
-	
-	var pageSection = function() {	
-		var viewportHeight = $(window).height();
-		
-		$.each(pagedSections,function(index,value) {
-			$(value).css("min-height",viewportHeight-headerSize);
-		});	
-		// $(\'body\').scrollspy("refresh");
-	}*/
+
 
     jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );

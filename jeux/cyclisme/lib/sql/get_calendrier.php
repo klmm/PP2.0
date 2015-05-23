@@ -26,13 +26,16 @@
 	    
 	    $arr['date_debut'] = $enregistrement->date_debut;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
-	    $arr['date_debut_fr'] = $arr_date[0];
-	    $arr['heure_debut_fr'] = $arr_date[1];
+	    $arr['date_debut_fr_court'] = $arr_date['date_court'];
+	    $arr['date_debut_fr'] = $arr_date['date'];
+	    $arr['heure_debut_fr'] = $arr_date['heure'];
 	    
 	    $arr['date_fin'] = $enregistrement->date_fin;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
-	    $arr['date_fin_fr'] = $arr_date[0];
-	    $arr['heure_fin_fr'] = $arr_date[1];
+	    $arr['date_fin_fr_court'] = $arr_date['date_court'];
+	    $arr['date_fin_fr'] = $arr_date['date'];
+	    $arr['heure_fin_fr'] = $arr_date['heure'];
+	    
 	    $arr['profil_clm'] = $enregistrement->profil_clm;
 	    $arr['profil_paves'] = $enregistrement->profil_paves;
 	    $arr['profil_montagne'] = $enregistrement->profil_montagne;
@@ -97,13 +100,16 @@
 	    
 	    $arr[$id_cal]['date_debut'] = $enregistrement->date_debut;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
-	    $arr[$id_cal]['date_debut_fr'] = $arr_date[0];
-	    $arr[$id_cal]['heure_debut_fr'] = $arr_date[1];
+	    $arr[$id_cal]['date_debut_fr'] = $arr_date['date'];
+	    $arr[$id_cal]['date_debut_fr_court'] = $arr_date['date_court'];
+	    $arr[$id_cal]['heure_debut_fr'] = $arr_date['heure'];
+	    
 	    
 	    $arr[$id_cal]['date_fin'] = $enregistrement->date_fin;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
-	    $arr[$id_cal]['date_fin_fr'] = $arr_date[0];
-	    $arr[$id_cal]['heure_fin_fr'] = $arr_date[1];
+	    $arr[$id_cal]['date_fin_fr_court'] = $arr_date['date_court'];
+	    $arr[$id_cal]['date_fin_fr'] = $arr_date['date'];
+	    $arr[$id_cal]['heure_fin_fr'] = $arr_date['heure'];
 	    
 	    $arr[$id_cal]['profil_clm'] = $enregistrement->profil_clm;
 	    $arr[$id_cal]['profil_paves'] = $enregistrement->profil_paves;
@@ -141,9 +147,15 @@
 		$arr[$id_cal]['termine'] = "0";
 	    }
 	}
+	
+	usort($arr, 'compare_date_debut');
 	return $arr;
     }
     
+    function compare_date_debut($a, $b)
+    {
+      return strnatcmp($a['date_debut'], $b['date_debut']);
+    }
     
     function get_id_calendrier_actuel($ID_JEU){
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-
+	
 	$joueur = $_SESSION['LoginJoueur'];
 	if ($joueur == ''){
 	    echo 'Connectez-vous !';

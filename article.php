@@ -44,7 +44,7 @@ $cr = array(
     $admin = $_SESSION['Admin'];
 
     if($loginjoueur != ""){
-        update_derniere_visite();
+        update_derniere_visite($loginjoueur);
         $bConnected = true;
     }
     else{
@@ -107,7 +107,7 @@ $cr = array(
     echo '<!DOCTYPE html>
         <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html;utf-8" />
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -116,7 +116,6 @@ $cr = array(
 	<meta property="og:image" content="http://www.parions-potes.fr' . $photo_chemin_deg . '">	    
 
 	<meta name="content-language" content="fr"/>
-	<meta name="description" content=""/>
 	<meta name="keywords" content="pronostics paris gratuits sport cyclisme ski biathlon amis ' . $titre . '"/>
 	<meta name="subject" content=""/>
 	<meta name="copyright" content="Parions Potes 2015"/>

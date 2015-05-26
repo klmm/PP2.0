@@ -6,7 +6,9 @@
     $db = $bdd->getDB();
     session_start();
     $login = $_SESSION['LoginJoueur'];
-    $contenu = $_POST['contenu'];	
+    $contenu = $_POST['contenu'];
+    $a_virer = array('<','>');
+    $contenu = str_replace($a_virer,'',$contenu);
     $contenu = htmlentities(nl2br($contenu));
     $id_article = $_POST['id_article'];
 	

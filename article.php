@@ -63,14 +63,14 @@ $cr = array(
     $id_article = $_GET['id'];
 
     if (!is_numeric($id_article)){
-        echo 'article non trouvé';
+        header('Location: /redirect/erreur404.php');
         return;
     }
 
     // Infos sur l'article en lui-même
     $infos_article = get_article_infos($id_article);
     if ($infos_article['id_article'] == 0){
-        echo 'article non trouvé';
+        header('Location: /redirect/erreur404.php');
         return;
     }
     $titre = $infos_article['titre'];
@@ -82,7 +82,10 @@ $cr = array(
     $categorie = $infos_article['categorie'];
     $sous_categorie = $infos_article['souscategorie'];
     $date_pub = $infos_article['dateheurepub'];
-    $contenu = 'A' . html_entity_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/articles/' . $id_article . '.htm',NULL,NULL,106,90));
+    
+    $handle = fopen($filename, "r+");
+    $debut_article = fread($handle, 300) . '...';
+    fclose($handle);
     
     // Articles de la même rubrique
     $articles_categorie = get_articles_categorie($categorie,5);
@@ -111,7 +114,7 @@ $cr = array(
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="' . $contenu . '" />
+        <meta name="description" content="' . $debut_article . '" />
         <meta name="author" content="" />
 	<meta property="og:image" content="http://www.parions-potes.fr' . $photo_chemin_deg . '">	    
 

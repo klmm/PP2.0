@@ -7,7 +7,7 @@
     $login = $_SESSION['LoginJoueur'];
     $id_article = $_POST['id_article'];
     
-    $res1 = get_commentaires_article($id_article);
+    $res1 = get_commentaires_article($id_article,0);
     
     if($login==''){
 	$res2 = null;

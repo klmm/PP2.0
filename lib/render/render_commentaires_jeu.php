@@ -46,7 +46,7 @@
     
     
     //----------------------COMMENTAIRES & LIKES -----------------------------------//
-    $tab_commentaires = get_commentaires_calendrier($ID_JEU, $ID_CAL);
+    $tab_commentaires = get_commentaires_calendrier($ID_JEU, $ID_CAL, 0);
     if($bConnected){
 	$tab_likes = get_likes_jeu($ID_JEU,$ID_CAL,$loginjoueur);
     }

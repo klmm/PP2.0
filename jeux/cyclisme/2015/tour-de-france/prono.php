@@ -289,7 +289,8 @@
 	    <script>
 		jQuery(document).ready(function ($) {
 		    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-
+		    
+		    Init_Forms();
 		    Init_Forms_Cyclisme();
 		    getAllComsJeu(' . $ID_JEU . ',' . $ID_CAL . ');
 

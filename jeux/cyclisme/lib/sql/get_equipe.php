@@ -69,6 +69,8 @@
 		    $arr[$id_equipe]['nom_court'] = $enregistrement->nom_court;
 		    $arr[$id_equipe]['photo'] = $enregistrement->photo;
 		    $arr[$id_equipe]['saison'] = $enregistrement->saison;
+		    $arr[$id_equipe]['pos_prono'] = 0;
+		    $arr[$id_equipe]['nb_coureurs'] = 0;
 		    $i++;
 		}
 		

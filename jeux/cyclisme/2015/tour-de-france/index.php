@@ -1,5 +1,7 @@
 <?php
     $ID_JEU = 4;
+    $js = '/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js';
+    $css = '/jeux/cyclisme/2015/tour-de-france/css/tdf2015.css';
     
     //--------------------------------------FONCTIONS--------------------------------------//
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_breves.php';
@@ -118,6 +120,7 @@
 
         <link href="/css/carousel.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
+	<link href="' . $css . '" rel="stylesheet">
         <link href="/css/pagearticle.css" rel="stylesheet">
 	<link href="/css/social-buttons.css" rel="stylesheet">
         <script src="/js/modernizr.custom.js"></script></head>';
@@ -353,7 +356,7 @@
             </div>
 	</footer>
 	
-	<script src="/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js"></script>
+	<script src="' . $js . '"></script>
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
 	<script src="/js/classie.js"></script>

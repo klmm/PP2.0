@@ -3,14 +3,27 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php');
 
-    function get_commentaires_article($id){
+    function get_commentaires_article($id,$tri){
 	
 	// On �tablit la connexion avec la base de donn�es
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
-
+	
+	switch($tri){
+	    case 0: // plus récents
+		$order = 'ORDER BY DateHeurePub DESC';
+		break;
+	    
+	    case 1: // plus de likes
+		$order = 'ORDER BY NombreLikes DESC, DateHeurePub DESC';
+		break;
+	    
+	    default:
+		$order = 'ORDER BY DateHeurePub DESC';
+	}
+	
 	//On pr�pare la requ�te pour aller chercher les articles
-	$sql = "SELECT * FROM commentaire WHERE IDArticle = ? ORDER BY DateHeurePub DESC";
+	$sql = "SELECT * FROM commentaire WHERE IDArticle = ? " . $order;
 	$prep = $db->prepare($sql);
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	$prep->bindValue(1,$id,PDO::PARAM_INT);
@@ -38,13 +51,23 @@
 	return $arr;
     }
     
-    function get_commentaires_calendrier($id_jeu,$id_cal){
+    function get_commentaires_calendrier($id_jeu,$id_cal,$tri){
 	// On �tablit la connexion avec la base de donn�es
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
+	
+	switch($tri){
+	    case 0: // plus récents
+		$order = 'ORDER BY DateHeurePub DESC';
+		break;
+	    
+	    case 1: // plus de likes
+		$order = 'ORDER BY NombreLikes DESC, DateHeurePub DESC';
+		break;
+	}
 
 	//On pr�pare la requ�te pour aller chercher les articles
-	$sql = "SELECT * FROM commentaire WHERE id_jeu=? AND id_cal=? ORDER BY DateHeurePub DESC";
+	$sql = "SELECT * FROM commentaire WHERE id_jeu=? AND id_cal=? " . $order;
 	$prep = $db->prepare($sql);
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);

@@ -29,22 +29,33 @@
     
     // ------------ VERIFICATION DES PARAMETRES ----------//
     if($calendrier == null){
-	echo 'Cette épreuve n\'existe pas...';
+	$msg = 'Cette épreuve n\'existe pas...';
+	$rafr = true;
+	$res = false;
+	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	echo json_encode($rep);
 	return;
     }
     if ($login == ''){
-	echo 'Joueur non connecté';
+	$msg = 'Vous n\'êtes pas connecté';
+	$rafr = false;
+	$res = false;
+	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	echo json_encode($rep);
 	return;
     }
     if (sizeof($arr_prono) != 10){
 	if($calendrier['profil_equipe']){
-	    echo 'Vous n\'avez pas sélectionné dix équipes';
-	    return;
+	    $msg = 'Vous n\'avez pas sélectionné dix équipes';
 	}
 	else{
-	    echo 'Vous n\'avez pas sélectionné dix coureurs';
-	    return;
+	    $msg =  'Vous n\'avez pas sélectionné dix coureurs';
 	}	
+	$rafr = false;
+	$res = false;
+	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	echo json_encode($rep);
+	return;
     }
     // ------------ VERIFICATION DES PARAMETRES ----------//
 
@@ -53,12 +64,20 @@
     // ------------ PRONO DISPONIBLE ? ----------//
     //$dateactuelle = time
     if($calendrier['disponible'] == 0){
-	echo 'Vous ne pouvez pas encore pronostiquer sur cette épreuve...';
+	$rafr = true;
+	$res = false;
+	$msg = 'Vous ne pouvez pas encore pronostiquer sur cette épreuve...';
+	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	echo json_encode($rep);
 	return;
     }
     
     if($calendrier['commence'] == '1'){
-	echo 'Vous ne pouvez plus pronostiquer sur cette épreuve...';
+	$rafr = true;
+	$res = false;
+	$msg = 'Vous ne pouvez plus pronostiquer sur cette épreuve...';
+	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	echo json_encode($rep);
 	return;
     }
     // ------------ PRONO DISPONIBLE ? ----------//
@@ -87,8 +106,12 @@
     
     
     // ------------ CONSTRUCTION DU PRONO ----------//
-    foreach($arr_prono as $id_cycliste) {
-	$prono .= $id_cycliste . ';';
+    $taille_prono = sizeof($arr_prono);
+    for($i=0;$i<$taille_prono;$i++) {
+	if($i!=0){
+	    $prono .= ';';
+	}
+	$prono .= $id_cycliste;
     }
     // ------------ CONSTRUCTION DU PRONO ----------//
     
@@ -102,7 +125,7 @@
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	
-	 echo 'success;Pronostic modifié !';
+	 $msg = 'success;Pronostic modifié !';
     }
     else{
 	$sql = "INSERT INTO cyclisme_prono(id_jeu,id_calendrier,joueur,prono,points_prono,score_base,bonus_nombre,bonus_risque,score_total,classement) VALUES(?,?,?,?,'',0,0,?,0,0)";
@@ -115,8 +138,12 @@
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	
-	echo 'success;Pronostic enregistré !';
+	$msg = 'success;Pronostic enregistré !';
     }  
+    $rafr = true;
+    $res = true;
+    $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+    echo json_encode($rep);
     // ------------ ENVOI DU PRONO ----------//
     
    

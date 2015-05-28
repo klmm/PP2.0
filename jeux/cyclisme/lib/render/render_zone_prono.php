@@ -63,9 +63,7 @@
     
     //-----------------------------LISTE DE PRONO----------------------//
     $all_cyclistes = get_cyclistes_jeu($ID_JEU,$ID_CAL);
-    if($b_equipe){
-	$all_equipes = get_equipes_inscrites($ID_JEU,$ID_CAL);
-    }
+    $all_equipes = get_equipes_inscrites($ID_JEU,$ID_CAL);
 	   
   // CALCUL DES MOYENNES DES CYCLISTES ET DES EQUIPES
     $moy_max = 0;

@@ -26,7 +26,7 @@
 
 		$sql2 = "SELECT *
 				FROM cyclisme_inscription_athlete
-				WHERE id_athlete=? AND (id_cal=? or id_cal=0) AND id_jeu=?";
+				WHERE id_athlete=? AND (id_cal=? OR id_cal=0) AND id_jeu=?";
 					
 		$prep2 = $db->prepare($sql2);
 		$prep2->setFetchMode(PDO::FETCH_OBJ);
@@ -342,6 +342,63 @@
 		    
 		    $arr[$id_cycliste]['pos_prono'] = 0;
 		}
+
+	    return $arr;
+	}
+	
+	function get_cyclistes_equipe($ID_JEU, $ID_CAL, $id_equipe){
+	    require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+	    $bdd = new Connexion();
+	    $db = $bdd->getDB();
+
+	    //On pr�pare la requ�te pour aller chercher les articles
+	    $sql = "SELECT *
+			    FROM cyclisme_inscription_athlete
+			    WHERE id_jeu=? AND (id_cal=0 OR id_cal=?) AND id_equipe=? AND abandon=0";
+
+	    $prep = $db->prepare($sql);
+	    $prep->setFetchMode(PDO::FETCH_OBJ);
+	    $prep->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+	    $prep->bindValue(2,$ID_CAL,PDO::PARAM_INT);
+	    $prep->bindValue(3,$id_equipe,PDO::PARAM_INT);
+	    $prep->execute();
+
+	    $sql2 = "SELECT *
+			    FROM cyclisme_athlete
+			    WHERE id_cyclisme_athlete=?";
+
+	    $prep2 = $db->prepare($sql2);
+	    $prep2->setFetchMode(PDO::FETCH_OBJ);
+
+
+	    // Parcours des cyclistes dont l'�quipe est inscrite
+	    while( $enregistrement = $prep->fetch() )
+	    {
+		    $id_cycliste = $enregistrement->id_athlete;
+
+		    $prep2->bindValue(1,$id_cycliste,PDO::PARAM_INT);
+		    $prep2->execute();
+		    $enregistrement2 = $prep2->fetch();
+		    
+		    $arr[$id_cycliste]['forme'] = $enregistrement->forme;
+
+		if($enregistrement2){
+		    $arr[$id_cycliste]['id_cyclisme_athlete'] = $enregistrement2->id_cyclisme_athlete;
+		    $arr[$id_cycliste]['id_cyclisme_equipe'] = $enregistrement2->id_cyclisme_equipe;
+		    $arr[$id_cycliste]['nom'] = $enregistrement2->nom;
+		    $arr[$id_cycliste]['prenom'] = $enregistrement2->prenom;
+		    $arr[$id_cycliste]['date_naissance'] = $enregistrement2->date_naissance;
+		    $arr[$id_cycliste]['date_naissance_fr'] = date_naissance_sql_to_fr($arr[$id_cycliste]['date_naissance']);
+		    $arr[$id_cycliste]['note_paves'] = $enregistrement2->note_paves;
+		    $arr[$id_cycliste]['note_vallons'] = $enregistrement2->note_vallons;
+		    $arr[$id_cycliste]['note_montagne'] = $enregistrement2->note_montagne;
+		    $arr[$id_cycliste]['note_sprint'] = $enregistrement2->note_sprint;
+		    $arr[$id_cycliste]['note_clm'] = $enregistrement2->note_clm;
+		    $arr[$id_cycliste]['photo'] = $enregistrement2->photo;
+		    $arr[$id_cycliste]['id_pays'] = $enregistrement2->id_pays;
+		    $arr[$id_cycliste]['note_baroudeur'] = $enregistrement2->note_baroudeur;
+		}
+	    }
 
 	    return $arr;
 	}

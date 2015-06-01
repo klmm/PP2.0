@@ -2,6 +2,69 @@
 	padding-right: 0;
 	padding-left: 0;
 }
+#news{
+	margin-bottom: 100px;
+}
+#zone-news{
+	max-height: 500px;
+	overflow: auto;
+	padding: 0 15px;
+
+}
+#zone-news p{
+	font-size: 15px;
+}
+
+/* tab-panel */
+#classements {
+	//background-color: #808285;
+}
+
+.nav-center {  
+  text-align: center;
+}
+.nav-center ul.nav {
+    display: inline-block;
+}
+.nav-center li {
+    display: inline
+}
+.nav-center a {
+    float: left
+}
+
+
+.classement-table {
+	max-height: 370px;
+	overflow: auto;
+}
+.tabs  {
+  text-align: center;
+}
+
+.tabs .nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+}
+
+.tabs .nav li.active a{
+  border-top: 4px solid;
+}
+
+.tabs .nav li {
+  margin: -1px 0.25em;
+
+}
+.tabs .nav a {
+
+  font-size: 1.45em;
+  line-height: 2.5;
+  padding: 0 1.25em;
+  //white-space: nowrap;
+}
+
 
 /* pres-panel */
 .pres-box{ 
@@ -75,42 +138,6 @@
   position: absolute;
   border: none;
 }
-/* tab-panel */
-#classements {
-	//background-color: #808285;
-}
-
-.tabs  {
-  text-align: center;
-}
-
-.tabs .nav ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: inline-block;
-}
-
-.tabs .nav li.active a{
-  border-top: 4px solid;
-}
-
-.tabs .nav li {
-  //border: 1px solid #becbd2;
- // border-bottom: none;
-  margin: -1px 0.25em;
-  //display: block;
-  //float: left;
-  //position: relative;
-}
-.tabs .nav a {
-  //color: #becbd2;
-  //display: block;
-  font-size: 1.45em;
-  line-height: 2.5;
-  padding: 0 1.25em;
-  //white-space: nowrap;
-}
 
 
 
@@ -143,6 +170,15 @@
 	.pres-box{ 
 		background:  50% 50% scroll;  
 	 }
+	 .tabs .nav li.active a{
+	  border: none;
+	}
+	.tabs .nav a {
+	  border: none;
+	}
+	.tabs .nav li{
+	  margin: 0;
+	}
 }
 
 
@@ -152,6 +188,17 @@
 		//max-width:300px;
 		margin-right: 0;
 		margin-left: 0;
+		border:none;
+	}
+	
+	#calendar .navbar-header{
+		background-color: rgb(67, 67, 67);
+		color: white;
+		font-size: 16px;
+	}
+	#calendar .navbar-brand{
+		color: white;
+		width: 100%;
 	}
 
 	#calendar .navbar-collapse {
@@ -162,7 +209,17 @@
 		padding-left:0;
 		padding-right:0;
 	}
-	
+	#calendar .navbar-nav>li>a {
+		background-color: rgb(67, 67, 67);
+		color: white;
+		height: 50px;
+		line-height: 40px;
+		font-size: 16px;
+	}
+	#calendar .navbar-nav>li.ative>a, #calendar .navbar-nav>li>a:hover {
+		background-color: rgb(200, 200, 200);
+		color: black;
+	}
 	#calendar .navbar-collapse.collapse {
 		display: block !important;
 		width: auto !important;
@@ -185,4 +242,5 @@
 	#calendar .navbar-collapse .navbar-nav.navbar-right:last-child {
 		margin-right: 0;
 	}
+	
 }

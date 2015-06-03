@@ -142,7 +142,83 @@
 
 
 /* result-panel */
+.hidden-num{
+transition : all 0.6s;
+visibility:hidden;
+transform: rotateY(180deg);
+opacity:0;
+}
+.visible-num{
+transition : all 0.6s;
+visibility:visible;
+transform: rotateY(360deg);
+opacity : 1;
+}
+#sortable1, #sortable2, #numero {
 
+min-height: 400px;
+list-style-type: none;
+margin: 0;
+padding: 5px 0 0 0;
+}
+#numero {
+width: 6%;
+border: transparent dashed 3px;
+float:left;
+}
+#sortable2 {
+width: 94%;
+background-color: lavender;
+border: grey dashed 3px;
+}
+#sortable1 li, #sortable2 li, #numero li {
+margin: 0 5px 5px 5px;
+padding: 5px;
+font-size: 1.2em;
+//width: 94%;
+}
+#sortable1 li, #sortable2 li {
+border: 1px solid #d3d3d3;
+font-weight: normal;
+background-color: #B5CBF0;
+color: white;
+}
+#sortable1 li:hover, #sortable2 li:hover {
+
+background-color: lightgrey;
+
+}
+#numero li {
+margin: 0 5px 5px 5px;
+padding: 5px;
+width: 20px;
+border: 1px solid #C00000;
+font-size: 1.2em;
+background-color: #C00000;
+color: white;
+margin-left : 40%;
+}
+#pari-panel li img {
+height: 23px;
+width: 32px;
+vertical-align: middle;
+float : right;
+}
+#pari-panel li span {
+float: right;
+margin-right: 10;
+margin-left: 5%;
+padding-left: 10;
+padding-right: 10;
+color: white;
+background-color: black;
+}
+
+#canvas-holder{
+width:15%;
+height:15%;
+float:left;
+}
 
 .result-panel .section-highlight{
 	color: black;
@@ -163,6 +239,11 @@
 .arc path {
   stroke: #fff;
 }
+
+/*pari-panel */
+
+
+
 
 
 

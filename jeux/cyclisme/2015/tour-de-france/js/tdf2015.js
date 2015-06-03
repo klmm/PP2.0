@@ -243,6 +243,49 @@ function Init_Forms_Cyclisme()
 	});
 }
 
+function Init_Zone_Paris()
+{
+	$( "#sortable1").sortable({
+		connectWith: ".connectedSortable",
+		scroll : true,
+		cursor : "move",
+		over: function( event, ui ) {
+			if($("#sortable2 li").size() == 10) {
+				$( "#numero" ).switchClass( "visible", "hidden", 1000);
+			}
+		}
+	}).disableSelection();
+	$( "#sortable2" ).sortable({
+		connectWith: ".connectedSortable",
+		scroll : true,
+		cursor : "move",
+		over: function( event, ui ) {
+			if($("#sortable2 li").size() == 10) {
+				$( "#numero" ).switchClass( "hidden", "visible", 1000);
+			}
+			if($("#sortable2 li").size() > 10) {
+				$( "#sortable1" ).sortable( "cancel" );
+			}
+		}
+//		receive: function( event, ui ) {calcrisk();}
+	}).disableSelection();
+	
+	$("#item-search").keyup(function(){
+		filterItems($("#item-search").val());
+	});
+	
+	$.expr[':'].icontains = function(obj, index, meta, stack){
+		return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
+	};
+}
+
+function filterItems(search){
+	
+	$("#sortable1 li").css( "display", "none");
+	$("#sortable1 li:icontains("+search +")").css( "display", "block");
+	
+}
+
 function render_pres_panel(calendrier){
 	
 }

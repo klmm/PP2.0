@@ -1,7 +1,6 @@
 <?php
 
     // ------------ INCLUDES ----------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/lib/mail/envoi_mails.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
     // ------------ INCLUDES ----------//
     
@@ -17,7 +16,8 @@
     
     // ------------ RECUPERATION DES PARAMETRES ----------//
     session_start();
-    $login = $_SESSION['LoginJoueur'];
+    //$login = $_SESSION['LoginJoueur'];
+    $login = $_POST['joueur'];
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
     $bonus = $_POST['bonus'];
@@ -28,6 +28,26 @@
     
     
     // ------------ VERIFICATION DES PARAMETRES ----------//
+    if(!is_numeric($id_jeu) || !is_numeric($id_cal) || !is_numeric($bonus)){
+	$msg = 'Paramètre non numérique';
+	$rafr = true;
+	$res = false;
+	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	echo json_encode($rep);
+	return;
+    }
+    
+    foreach($arr_prono as $key => $value){
+	if (!is_numeric($value)){
+	    $msg = 'Paramètre non numérique';
+	    $rafr = true;
+	    $res = false;
+	    $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	    echo json_encode($rep);
+	    return;
+	}
+    }
+    
     if($calendrier == null){
 	$msg = 'Cette épreuve n\'existe pas...';
 	$rafr = true;
@@ -36,6 +56,7 @@
 	echo json_encode($rep);
 	return;
     }
+    
     if ($login == ''){
 	$msg = 'Vous n\'êtes pas connecté';
 	$rafr = false;
@@ -44,6 +65,7 @@
 	echo json_encode($rep);
 	return;
     }
+    
     if (sizeof($arr_prono) != 10){
 	if($calendrier['profil_equipe']){
 	    $msg = 'Vous n\'avez pas sélectionné dix équipes';
@@ -111,7 +133,7 @@
 	if($i!=0){
 	    $prono .= ';';
 	}
-	$prono .= $id_cycliste;
+	$prono .= $arr_prono[$i];
     }
     // ------------ CONSTRUCTION DU PRONO ----------//
     
@@ -125,10 +147,10 @@
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	
-	 $msg = 'success;Pronostic modifié !';
+	 $msg = 'Pronostic modifié !';
     }
     else{
-	$sql = "INSERT INTO cyclisme_prono(id_jeu,id_calendrier,joueur,prono,points_prono,score_base,bonus_nombre,bonus_risque,score_total,classement) VALUES(?,?,?,?,'',0,0,?,0,0)";
+	$sql = "INSERT INTO cyclisme_prono(id_jeu,id_calendrier,joueur,prono,points_prono,score_base,bonus_nombre,bonus_risque,score_total,classement,nb_trouves) VALUES(?,?,?,?,'',0,0,?,0,0,0)";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
@@ -138,7 +160,7 @@
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	
-	$msg = 'success;Pronostic enregistré !';
+	$msg = 'Pronostic enregistré !';
     }  
     $rafr = true;
     $res = true;

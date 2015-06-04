@@ -2,6 +2,7 @@
     $ID_JEU = 4;
     $js = '/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js';
     $css = '/jeux/cyclisme/2015/tour-de-france/css/tdf2015.css';
+    $titre = 'Parions Potes - Tour de France 2015';
     
     //--------------------------------------FONCTIONS--------------------------------------//
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_breves.php';
@@ -72,19 +73,7 @@
     //---------------------------------JEU COMMENCE ?---------------------------//
     
     
-    
-    
-    
-    
-    // -------------------------------- TRI DU CALENDRIER ------------------------//
-    foreach($arr_calendrier as $id_c => $cal){
-	if($cal['commence'] == "1"){
-	    $arr_calendrier[$id_c]['date_debut'] = $cal['date_fin'];
-	    $arr_calendrier[$id_c]['date_debut_fr'] = $cal['date_fin_fr'];
-	}
-    }
-    // -------------------------------- TRI DU CALENDRIER ------------------------//
-    
+
     
     
 
@@ -111,7 +100,7 @@
 
     // TITLE
     echo '
-        <title>Parions Potes : Tour de France 2015</title>';
+        <title>' . $titre . '</title>';
 
     // BOOTSTRAP
     echo '

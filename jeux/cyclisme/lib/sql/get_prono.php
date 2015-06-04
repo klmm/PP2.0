@@ -30,6 +30,7 @@
 	    $arr[$id_cal]['bonus_risque'] = $enregistrement->bonus_risque;
 	    $arr[$id_cal]['score_total'] = $enregistrement->score_total;
 	    $arr[$id_cal]['classement'] = $enregistrement->classement;
+	    $arr[$id_cal]['nb_trouves'] = $enregistrement->nb_trouves;
 
 	    $i++;
 	}
@@ -70,6 +71,7 @@
 	    $arr['bonus_risque'] = $enregistrement->bonus_risque;
 	    $arr['score_total'] = $enregistrement->score_total;
 	    $arr['classement'] = $enregistrement->classement;
+	    $arr['nb_trouves'] = $enregistrement->nb_trouves;
 
 	    $i++;
 	}
@@ -106,6 +108,7 @@
 	    $arr[$joueur]['bonus_risque'] = $enregistrement->bonus_risque;
 	    $arr[$joueur]['score_total'] = $enregistrement->score_total;
 	    $arr[$joueur]['classement'] = $enregistrement->classement;
+	    $arr[$joueur]['nb_trouves'] = $enregistrement->nb_trouves;
 
 	    $i++;
 	}

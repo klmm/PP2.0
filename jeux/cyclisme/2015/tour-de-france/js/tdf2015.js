@@ -245,6 +245,10 @@ function Init_Forms_Cyclisme()
 
 function Init_Zone_Paris()
 {
+	$('#calendar-list li').on('click', function(){
+		alert($(this).text());
+	});
+	
 	$( "#sortable1").sortable({
 		connectWith: ".connectedSortable",
 		scroll : true,

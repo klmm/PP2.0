@@ -16,10 +16,10 @@
 	$enr = $prep->fetch();
 	
 	if ($enr){
-	    return true;
+	    return $enr->id_joueurs_inscriptions;
 	}
 	else{
-	    return false;
+	    return 0;
 	}
     }
 ?>

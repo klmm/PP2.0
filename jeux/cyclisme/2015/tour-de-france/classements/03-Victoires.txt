@@ -1,0 +1,6 @@
+Nombre de victoires
+Récompense les vainqueurs d'étape
+;;Victoires;Pronos
+2;8;2;2
+1;test113;1;2
+1;test147;1;2

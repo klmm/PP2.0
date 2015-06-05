@@ -2,7 +2,7 @@
 
     // ------------ INCLUDES ----------//
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/classements/calcule_classements.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/admin/calcule_classements.php';
     // ------------ INCLUDES ----------//
     
     

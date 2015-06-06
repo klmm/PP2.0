@@ -101,7 +101,25 @@ p {
     color: #ef3afb;
 }
 
+/* ______________________________ modal panel ___________________________________*/
+#dataConfirmModal{
 
+}
+.modal-dialog{
+	z-index: 1001;
+}
+.modal-content{
+
+}
+.modal-header{
+
+}
+.modal-body{
+
+}
+.modal-footer{
+
+}
 
 /*** social links ****/
 ul.social li {
@@ -150,7 +168,7 @@ header {
 	 position: fixed;
     top: 0;
     left: 0;
-	z-index:10000;
+	z-index:1000;
 	width: 100%;
 	//overflow: hidden;
     -webkit-transition: height 0.3s;

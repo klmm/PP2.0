@@ -139,9 +139,12 @@
   border: none;
 }
 
+/*pari-panel */
+#validate {
+	height: 40px;
+	margin-bottom: 25px;
+}
 
-
-/* result-panel */
 .hidden-num{
 transition : all 0.6s;
 visibility:hidden;
@@ -170,6 +173,7 @@ float:left;
 width: 94%;
 background-color: lavender;
 border: grey dashed 3px;
+  float: left;
 }
 #sortable1 li, #sortable2 li, #numero li {
 margin: 0 5px 5px 5px;
@@ -239,9 +243,6 @@ float:left;
 .arc path {
   stroke: #fff;
 }
-
-/*pari-panel */
-
 
 
 

@@ -109,18 +109,21 @@
     <div id="pari-panel" class="section" style="background-color: white;">
         <div class="container">
 			<div class="btn-group">
-			  <button type="button" class="btn btn-default">Etape 1 : Ultrecht - Mont Ventoux !! bam direct</button>
+			  <button type="button" class="btn btn-default" data-toggle="dropdown">Etape 1 : Ultrecht - Mont Ventoux !! bam direct</button>
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 				<span class="caret"></span>
 				<span class="sr-only">Toggle Dropdown</span>
 			  </button>
 			  <ul id="calendar-list" class="dropdown-menu" role="menu">
-				<li><a href="#">Etape 2 : Ultrecht - Mont Ventoux !! bam direct</a></li>
+				<li><a href="http://www.google.fr">Etape 2 : Ultrecht - Mont Ventoux !! bam direct</a></li>
 				<li><a href="#">Etape 3 : Ultrecht - Mont Ventoux !! bam direct</a></li>
 				<li><a href="#">Etape 4 : Ultrecht - Mont Ventoux !! bam direct</a></li>
 				<li><a href="#">Etape 5 : Ultrecht - Mont Ventoux !! bam direct</a></li>
 			  </ul>
 			</div>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pari Précédent</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pari Suivant</button>
+			
 		
 			<div class="sectionSide">
 				<h2 class="section-heading">Etape 1 : Ultrecht - Mont Ventoux !! bam direct</h2>
@@ -283,7 +286,7 @@
 				</ul>
 			</div>
 			<div class="col-xs-6">
-				
+				<button id="validate" type="button" class="btn btn-primary btn-block" >Valider</button>
 				<ul id="numero" class="hidden-num">
 					<li class="ui-state-highlight ui-sortable-handle">1</li>
 					<li class="ui-state-highlight ui-sortable-handle">2</li>
@@ -299,6 +302,8 @@
 				<ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">
 					
 				</ul>
+				
+				<button id="register" type="button" class="btn btn-primary btn-block hidden" >Enregistrer</button>
 			</div>
 		</div>
     </div>

@@ -245,8 +245,24 @@ function Init_Forms_Cyclisme()
 
 function Init_Zone_Paris()
 {
+	var pari_valide = false;
+	/*
+	*
+	*    check top 10 plein ou vide
+	*/
+	
 	$('#calendar-list li').on('click', function(){
-		alert($(this).text());
+		//alert($(this).attr('href'));
+		var href = $(this).find('a').attr('href');
+		var titre = "Avertissement !";
+		var texte = "Votre pari ne semble pas terminé. Voulez-vous continuer ?";
+		if (pari_valide){
+			return true;
+		} else {
+			dialog(href, titre, texte);
+			return false;
+		}
+		
 	});
 	
 	$( "#sortable1").sortable({
@@ -281,12 +297,158 @@ function Init_Zone_Paris()
 	$.expr[':'].icontains = function(obj, index, meta, stack){
 		return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
 	};
+	
+	$('a[data-confirm]').click(function(ev) {
+		var href = $(this).attr('href');
+		dialog(href);
+		return false;
+	});
+	$('button[data-alert]').click(function(ev) {
+		var titre = "";
+		var texte = "";
+		popup(titre, texte);
+		return false;
+	});
+	
+	$("#validate").click(function(ev){
+		check_Pari();
+	});
+	
 }
 
 function filterItems(search){
 	
 	$("#sortable1 li").css( "display", "none");
 	$("#sortable1 li:icontains("+search +")").css( "display", "block");
+	
+}
+	
+function dialog(href, titre, message){
+	if (!$('#dataConfirmModal').length) {
+		$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true">'+
+		'<div class="modal-dialog">'+
+		'<div class="modal-content">'+
+		'<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">'+ titre +'</h3></div>'+
+		'<div class="modal-body"><p>'+ message +'</p></div>'+
+		'<div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button><a class="btn btn-danger" id="dataConfirmOK">Confirmer</a></div></div></div></div>');
+	}
+	$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+	$('#dataConfirmOK').attr('href', href);
+	$('#dataConfirmModal').modal({show:true});
+}
+
+function dialog(href, titre, message){
+	if (!$('#dataConfirmModal').length) {
+		$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true">'+
+		'<div class="modal-dialog">'+
+		'<div class="modal-content">'+
+		'<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">'+ titre +'</h3></div>'+
+		'<div class="modal-body"><p>'+ message +'</p></div>'+
+		'<div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button></div></div></div></div>');
+	}
+	$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+	$('#dataConfirmModal').modal({show:true});
+}
+
+function check_Pari(calendrier){
+	var pari, pari1, pari2, pari3, pari4, pari5, pari6, pari7, pari8, pari9, pari10;
+	var total = 0;
+	
+	if($("#sortable2 li").size() == 10) {
+		var i = 1;
+		$('#sortable2 li').each(function() {
+			switch(i) {
+				case 1:
+				pari1=$(this).attr("id");
+				pari1 = pari1.substring(11);
+//				span1=$(this).getElementsByTagName("span");
+//				note1=span1[0].innerHTML;
+		
+				break;
+				case 2:
+				pari2=$(this).attr("id");
+				pari2 = pari2.substring(11);
+//				span2=$(this).getElementsByTagName("span");
+//				note2=span2[0].innerHTML;
+				
+				break;
+				case 3:
+				pari3=$(this).attr("id");
+				pari3 = pari3.substring(11);
+//				span3=$(this).getElementsByTagName("span");
+//				note3=span3[0].innerHTML;
+				
+				break;
+				case 4:
+				pari4=$(this).attr("id");
+				pari4 = pari4.substring(11);
+//				span4=$(this).getElementsByTagName("span");
+//				note4=span4[0].innerHTML;
+				
+				break;
+				case 5:
+				pari5=$(this).attr("id");
+				pari5 = pari5.substring(11);
+//				span5=$(this).getElementsByTagName("span");
+//				note5=span5[0].innerHTML;
+				
+				break;
+				case 6:
+				pari6=$(this).attr("id");
+				pari6 = pari6.substring(11);
+//				span6=$(this).getElementsByTagName("span");
+//				note6=span6[0].innerHTML;
+				
+				break;
+				case 7:
+				pari7=$(this).attr("id");
+				pari7 = pari7.substring(11);
+//				span7=$(this).getElementsByTagName("span");
+//				note7=span7[0].innerHTML;
+				
+				break;
+				case 8:
+				pari8=$(this).attr("id");
+				pari8 = pari8.substring(11);
+//				span8=$(this).getElementsByTagName("span");
+//				note8=span8[0].innerHTML;
+				
+				break;
+				case 9:
+				pari9=$(this).attr("id");
+				pari9 = pari9.substring(11);
+//				span9=$(this).getElementsByTagName("span");
+//				note9=span9[0].innerHTML;
+				
+				break;
+				case 10:
+				pari10=$(this).attr("id");
+				pari10 = pari10.substring(11);
+//				span10=$(this).getElementsByTagName("span");
+//				note10=span10[0].innerHTML;
+				
+				break;
+			}
+			
+			
+			i += 1;
+			});
+			pari = pari1+";"+pari2+";"+pari3+";"+pari4+";"+pari5+";"+pari6+";"+pari7+";"+pari8+";"+pari9+";"+pari10+";";
+			
+			//calcul note totale pari
+			
+			$('#sortable2 li span').each(function() {
+				total += parseInt($(this).text());
+				});
+			pari = pari + total + ";";
+			alert(pari);
+		}
+		else {
+			alert("Votre pari n'est pas complet !");
+			pari = "undefined";
+		}
+		
+	//	return pari;
 	
 }
 

@@ -11,6 +11,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/render/render_zone_prono.php';
     //-------------------------------------------------------------------------------------//
 
 
@@ -42,7 +43,7 @@
 
 
 
-    //--------------------------------------INFOS SUR L'ARTICLE--------------------------------------//
+    //--------------------------------------INFOS SUR LE CALENDRIER--------------------------------------//
 	$ID_CAL = $_GET['id'];
 
 	if (!is_numeric($ID_CAL)){
@@ -53,13 +54,18 @@
 	// Infos sur l'article en lui-même
 	$jeu = get_jeu_id($ID_JEU);
 	$calendrier = get_calendrier($ID_JEU,$ID_CAL);
-
+	$liste_calendrier = get_calendrier_jeu_avenir($ID_JEU);
 	if ($calendrier == null){
 	    header('Location: /redirect/erreur404.php?url=' . $jeu['url']);
 	    return;
 	}
 	
 	$titre = $calendrier['nom_complet'];
+		
+	$res = get_zone_prono($ID_JEU, $ID_CAL);
+	$cyclistes = $res['cyclistes'];
+	$prono = $res['prono'];
+	$equipes = $res['equipes'];
     //------------------------------------------------------------------------------------------------//
 
 
@@ -204,9 +210,9 @@
                                     <ul class="nav navbar-nav pull-right" style="">
                                         <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
                                         <li class=""><a href="#presentation" data-action="scrollTo">Présentation</a></li>
-					<li class=""><a href="#pronostic" data-action="scrollTo">Mon prono</a></li>
+					<li class=""><a href="#prono" data-action="scrollTo">Mon prono</a></li>
 					<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
-                                        <li class=""><a href="/">Retour à l\'accueil</a></li>
+                                        <li class=""><a href="../">Retour à l\'accueil</a></li>
                                     </ul>  
                                 </div>
                             </div>
@@ -217,16 +223,106 @@
 //---------------------------------------------FIN HEADER------------------------------------------------------//';
 
 
+//---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//	
+    echo '
+            <section id="presentation" data-speed="2" data-type="background">
+                <div class="container" id="presentation-etape">
+		    <div class="btn-group">
+			<button type="button" class="btn btn-default">' . $calendrier['nom_complet'] . '</button>
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			    <span class="caret"></span>
+			    <span class="sr-only">Toggle Dropdown</span>
+			</button>
+			<ul id="calendar-list" class="dropdown-menu" role="menu">';
+    
+    foreach($liste_calendrier as $key => $value){
+	$url_cal = $value['id_cyclisme_calendrier'] . '-' . $value['nom_complet'];
+	echo '		    <li><a href="' . clean_url($url_cal) . '">' . $value['nom_complet'] . '</a></li>';
+    }
 
+    
+    echo '
+			</ul>
+		    </div>
+		    <div class="sectionSide">
+			<h2 class="section-heading">' . $calendrier['nom_complet'] . '</h2>
+			<p class="section-highlight">Faites votre pari ! Faites glisser vos favoris dans la zone prévue.</p>
+		    </div>
+		</div>
+	    </section>';
+//---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//
 
+    
+//---------------------------------------------ZONE PRONO------------------------------------------------------//	
+    echo '
+            <section id="prono" data-speed="2" data-type="background">
+                <div class="container" id="zone-prono">';		  
 
+    echo '
+		    <div class="col-xs-6">
+			<input id="item-search" type="text" placeholder="Recherche" name="nom" class="form-control" style="margin-bottom:25px;"/>
+			<ul id="sortable1" class="connectedSortable ui-sortable">';
+    
+    if($calendrier['profil_equipe']){
+	foreach($equipes as $id => $equipe){
+	    if($equipe['pos_prono'] === 0){
+		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipe['nom_complet'] . '<span>' . $equipe['etoiles'] . '</span><img src="' . $equipe['photo'] . '" alt=""/>' . $equipe['moyenne'] . '</li>';
+	    }
+	}
+    }
+    else{
+	foreach($cyclistes as $id => $cycliste){
+	    if($cycliste['pos_prono'] == 0){
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '<span>' . $cycliste['etoiles'] . '</span><span>' . $cycliste['equipe_nom_court'] . '</span><img src="' . $cycliste['photo'] . '" alt=""/><img src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/>' . $cycliste['moyenne'] . '</li>';
+	    }
+	}
+    }
+    
+   		
+			
+    echo '
+			</ul>
+		    </div>
+		    <div class="col-xs-6">
+			<ul id="numero" class="hidden-num">
+			    <li class="ui-state-highlight ui-sortable-handle">1</li>
+			    <li class="ui-state-highlight ui-sortable-handle">2</li>
+			    <li class="ui-state-default ui-sortable-handle">3</li>
+			    <li class="ui-state-highlight ui-sortable-handle">4</li>
+			    <li class="ui-state-default ui-sortable-handle">5</li>
+			    <li class="ui-state-highlight ui-sortable-handle">6</li>
+			    <li class="ui-state-highlight ui-sortable-handle">7</li>
+			    <li class="ui-state-highlight ui-sortable-handle">8</li>
+			    <li class="ui-state-highlight ui-sortable-handle">9</li>
+			    <li class="ui-state-highlight ui-sortable-handle">10</li>
+			</ul>
+			<ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">';
+    
+    for($i=1;$i<11;$i++){
+	if($calendrier['profil_equipe']){
+	    $key = array_search($i, array_column($equipes, 'pos_prono'));
+	    if($key != null){
+		echo '	    <li id="' . $equipes[$key]['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipes[$key]['nom_complet'] . '<span>' . $equipes[$key]['etoiles'] . '</span><img src="' . $equipes[$key]['photo'] . '" alt=""/></li>';
+	    }
+	}
+	else{
+	    $key = array_search($i, array_column($cyclistes, 'pos_prono'));
+	    if($key != null){
+		echo '	    <li id="' . $cyclistes[$key]['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cyclistes[$key]['prenom'] . ' ' . $cyclistes[$key]['nom'] . '<span>' . $cyclistes[$key]['etoiles'] . '</span><span>' . $cyclistes[$key]['equipe_nom_court'] . '</span><img src="' . $cyclistes[$key]['photo'] . '" alt=""/><img src="' . $cyclistes[$key]['pays_drapeau_petit'] . '" alt=""/>' . $cyclistes[$key]['moyenne'] . '</li>';
+	    }
+	}
+		
+    }
+    
+    echo '
+			</ul>
+		    </div>
+		</div>
+	    </section>';
+//---------------------------------------------ZONE PRONO------------------------------------------------------//
 
-
-
-
-
-
-
+    
+    
 
 //---------------------------------------------COMMENTAIRES------------------------------------------------------//	
     echo '
@@ -278,20 +374,23 @@
 	    <script src="/js/jquery.scrollTo.min.js"></script>
 	    <script src="/js/jqBootstrapValidation.js"></script>	
 	    <script src="/js/script.js"></script>
+	    <script src="/js/jquery-ui.dd.min.js"></script>
 	    <script src="' . $js . '"></script>
 	    <script src="/bower_components/velocity/velocity.js"></script>
 	    <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
 	    <script src="/bower_components/angular/angular.js"></script>
-	    <!-- <script src="/js/toucheffects.js"></script> -->
 	    <script src="/js/social-buttons.js"></script>
-
-
+	    <script src="/js/pagination.js"></script>
+	    <script src="/js/imagesloaded.pkgd.min.js"></script>
+	    <script src="/js/d3.min.js"></script>
+	    
 	    <script>
 		jQuery(document).ready(function ($) {
 		    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 		    
 		    Init_Forms();
 		    Init_Forms_Cyclisme();
+		    Init_Zone_Paris();
 		    getAllComsJeu(' . $ID_JEU . ',' . $ID_CAL . ');
 
 		    $(window).resize(function() {		

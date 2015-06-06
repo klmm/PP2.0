@@ -116,7 +116,7 @@ $cr = array(
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="' . $debut_article . '" />
         <meta name="author" content="" />
-	<meta property="og:image" content="http://www.parions-potes.fr' . $photo_chemin_deg . '">	    
+	<meta property="og:image" content="' . $photo_chemin_deg . '">	    
 
 	<meta name="content-language" content="fr"/>
 	<meta name="keywords" content="pronostics paris gratuits sport cyclisme ski biathlon amis ' . $titre . '"/>

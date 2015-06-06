@@ -89,7 +89,8 @@ $cr = array(
 	<meta name="subject" content=""/>
 	<meta name="copyright" content="Parions Potes 2015"/>
 	<meta name="identifier-url" content="www.parions-potes.fr"/>
-
+	<meta property="og:image" content="/img/logos/logovide-header_dep.png">
+	    
         <link rel="shortcut icon" href="/img/logos/logo_site.ico"/>';
 		
 		

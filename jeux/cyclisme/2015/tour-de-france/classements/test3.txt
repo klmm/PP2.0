@@ -1,8 +1,0 @@
-titre test3.txt
-description test3.txt
-col1;col2;col3
-40;50;10
-pos1;nom1;points1
-pos2;nom2;points2
-pos3;nom3;points3
-pos4;nom4;points4

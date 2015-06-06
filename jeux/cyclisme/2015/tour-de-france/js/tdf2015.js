@@ -24,7 +24,7 @@ function Init_Forms_Cyclisme()
 				var cyclistes = result.cyclistes;
 				var equipes = result.equipes;
 				
-				render_pres_panel(calendrier);
+				render_pres_panel(id);
 				
 				
 			/*
@@ -290,8 +290,26 @@ function filterItems(search){
 	
 }
 
-function render_pres_panel(calendrier){
-	
+function render_pres_panel(id_cal){
+    	var formURL = "/jeux/cyclisme/lib/render/render_calendrier.php";
+	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
+	$.ajax(
+	{
+		url : formURL,
+		type: "POST",
+		data : postData,
+		success:function(data, textStatus, jqXHR) 
+		{	    
+		    var result = $.parseJSON(data);
+		    $( ".cal-container" ).empty();
+		    $( ".cal-container" ).append(result);
+		    
+		},
+		error: function(jqXHR, textStatus, errorThrown) 
+		{
+			alert('error');//do nothing
+		}
+	});
 }
 
 function Build_Chart(el, result){

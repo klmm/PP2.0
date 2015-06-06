@@ -96,7 +96,7 @@
 	$titre = 'Classement général';
 	$descr = 'Récompense le meilleur pronostiqueur du jeu';
 	$colonnes = ';;Score;Pronos';
-	$taille_colonnes = '2;8;2;2';
+	$taille_colonnes = '2;6;2;2';
 	
 	$score_actuel = -1;
 	$pos_actuel = 1;
@@ -139,7 +139,7 @@
 	$titre = 'Classement par points';
 	$descr = 'Récompense le pronostiqueur le plus régulier';
 	$colonnes = ';;Score;Pronos';
-	$taille_colonnes = '2;8;2;2';
+	$taille_colonnes = '2;6;2;2';
 	
 	$score_actuel = -1;
 	$pos_actuel = 1;
@@ -184,7 +184,7 @@
 	$titre = 'Nombre de victoires';
 	$descr = 'Récompense les vainqueurs d\'étape';
 	$colonnes = ';;Victoires;Pronos';
-	$taille_colonnes = '2;8;2;2';
+	$taille_colonnes = '2;6;2;2';
 	
 	$score_actuel = -1;
 	$pos_actuel = 1;
@@ -229,7 +229,7 @@
 	$titre = 'Nombre de podiums';
 	$descr = 'Récompense les trusteurs de podiums';
 	$colonnes = ';;Podiums;Pronos';
-	$taille_colonnes = '2;8;2;2';
+	$taille_colonnes = '2;6;2;2';
 	
 	$score_actuel = -1;
 	$pos_actuel = 1;
@@ -274,7 +274,7 @@
 	$titre = 'Nombre de top 10';
 	$descr = 'Récompense les habitués aux Top 10';
 	$colonnes = ';;Top 10;Pronos';
-	$taille_colonnes = '2;8;2;2';
+	$taille_colonnes = '2;6;2;2';
 	
 	$score_actuel = -1;
 	$pos_actuel = 1;
@@ -319,7 +319,7 @@
 	$titre = 'Baroudeurs';
 	$descr = 'Récompense les preneurs de risque';
 	$colonnes = ';;Bonus risque moyen;Pronos';
-	$taille_colonnes = '2;7;3;2';
+	$taille_colonnes = '2;5;3;2';
 	
 	$score_actuel = -1;
 	$pos_actuel = 1;
@@ -361,7 +361,7 @@
 	$titre = 'Tir groupé';
 	$descr = 'Récompense les plus réguliers';
 	$colonnes = ';;Moyenne corrects;Pronos';
-	$taille_colonnes = '2;7;3;2';
+	$taille_colonnes = '2;5;3;2';
 	
 	$score_actuel = -1;
 	$pos_actuel = 1;

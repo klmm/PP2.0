@@ -7,6 +7,7 @@
     //--------------------------------------FONCTIONS--------------------------------------//
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_breves.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/auto_login.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/get_classements.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
@@ -53,7 +54,7 @@
     $nb_articles = sizeof($arr_articles);
     
     $arr_calendrier = get_calendrier_jeu($ID_JEU);
-    $nb_calendier = sizeof($arr_calendrier);
+    $nb_calendrier = sizeof($arr_calendrier);
     
     $classements = get_classements($jeu['url'] . '/classements');
     $nb_classements = sizeof($classements);
@@ -212,9 +213,9 @@
                                 <div class="navbar-collapse collapse" id="navbar-main">
                                     <ul class="nav navbar-nav pull-right" style="">
                                         <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
-                                        <li class=""><a href="#actualite" data-action="scrollTo">Actualite</a></li>
+                                        <li class=""><a href="#news" data-action="scrollTo">Actualité</a></li>
                                         <li class=""><a href="#classements" data-action="scrollTo">Classements</a></li>
-					<li class=""><a href="#pronostics" data-action="scrollTo">Pronostics</a></li>
+					<li class=""><a href="#resultats" data-action="scrollTo">Pronostics</a></li>
 					<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
                                         <li class=""><a href="/">Retour au site</a></li>
                                     </ul>  
@@ -226,64 +227,194 @@
             </header>';
 //---------------------------------------------FIN HEADER------------------------------------------------------//';
 
-    
-    echo '
-            <section id="test" data-speed="2" data-type="background">
-                <div class="container" id="tests">';
-    
-
 
 //---------------------------------------------BREVES------------------------------------------------------//	
-    echo '<section id="actualite" data-speed="4" data-type="background">
-	<br/>---------------------------------------------BREVES------------------------------------------------------<br/>';
+    echo '  <div id="news" class="section" style="background-color: white;">
+		<div class="container">
+		    <div class="col-md-8 col-sm-8">
+			<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
+			    <h1 class="section-heading">News</h1>
+			</div>
+			<div id="zone-news">';
+    
     if($nb_breves > 0){
 	for ($i=0;$i<$nb_breves;$i++){
-
+	    echo '	    <p class="article-text bold">' . $arr_breves[$i]['titre'] . '</p>';
+	    echo '	    <p class="article-text">' . $arr_breves[$i]['contenu'] . '</p>';
 	}
     }
-    echo '<br/>---------------------------------------------BREVES------------------------------------------------------<br/>';
-//---------------------------------------------BREVES------------------------------------------------------//	    
+    echo '		</div>
+		    </div>
+		    <div class="col-md-3 col-md-offset-1 col-sm-4 hidden-xs">
+			<div id="list-right">
+			    <div class="sectionSide">
+				<h2 class="section-heading">Sur le sujet</h2>	
+			    </div>
+			    <div class="list-group list-articles-right clearfix">';
     
-//---------------------------------------------ARTICLES------------------------------------------------------//	
-    echo '<br/>---------------------------------------------ARTICLES------------------------------------------------------<br/>';
-    if($nb_articles){
+    
+    
+    if($nb_articles > 0){
 	for ($i=0;$i<$nb_articles;$i++){
-
+	    $url = clean_url('/articles/' . $arr_articles[$i]['categorie'] . '/' . $arr_articles[$i]['souscategorie'] . '/' . $arr_articles[$i]['id_article'] . '-' . $arr_articles[$i]['titre']);
+	    echo '		<a href="' . $url . '" class="list-articles-item-right list-group-item col-md-12">
+				    <img src="' . $arr_articles[$i]['photo_chemin_deg'] . '" alt="aie"/>
+				    <h4 class="list-group-item-heading">' . $arr_articles[$i]['titre'] . '</h4>
+				    <p class="list-group-item-text">Categorie</p>
+				</a>';
 	}
     }
-    echo '<br/>---------------------------------------------ARTICLES------------------------------------------------------<br/>
-    </section>';
-//---------------------------------------------ARTICLES------------------------------------------------------//	    
-    
-//---------------------------------------------CLASSEMENTS------------------------------------------------------//	
-    echo '<section id="classements" data-speed="4" data-type="background">
-    <br/>---------------------------------------------CLASSEMENTS------------------------------------------------------<br/>';
-    if($nb_classements){
-	for ($i=0;$i<$nb_classements;$i++){
-
-	}
-    }
-    echo '<br/>---------------------------------------------CLASSEMENTS------------------------------------------------------<br/>
-    </section>';
-//---------------------------------------------CLASSEMENTS------------------------------------------------------//	  
-
-//---------------------------------------------CALENDRIER------------------------------------------------------//	
-    echo '<section id="pronostics" data-speed="4" data-type="background">
-	<br/>---------------------------------------------CALENDRIER------------------------------------------------------<br/>';
-    if($nb_calendier){
-	for ($i=0;$i<$nb_calendier;$i++){
-
-	}
-    }
-    echo '<br/>---------------------------------------------CALENDRIER------------------------------------------------------<br/>
-    </section>';
-//---------------------------------------------BREVES------------------------------------------------------//
-   
     
     echo '
-           </div>
-	   </section>';
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>';
+		
+//---------------------------------------------BREVES------------------------------------------------------//	    
+ 
     
+    
+//---------------------------------------------CLASSEMENTS------------------------------------------------------//	
+    if($nb_classements > 0){
+	echo '  <div class="section " id="classements" style="margin-bottom:120px;">
+		    <div class="sectionSide">
+			<h2 class="section-heading">Classements</h2>
+			<p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p>
+		    </div>
+		    <div class="navbar" role="navigation">
+			<div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tabs">
+				<span class="sr-only">Toggle navigation</span>';
+
+
+	for ($i=0;$i<$nb_classements;$i++){
+	    echo '		<span class="icon-bar"></span>';
+	}
+
+	echo '		    </button>
+			</div>
+			<div id="tabs" class="tabs collapse navbar-collapse nav-center">
+			    <ul class="nav nav-tabs" role="tablist">';
+
+	echo '			<li role="presentation" class="active"><a href="#section-0" class="icon-shop" role="tab" data-toggle="tab"><span>' . $classements[0]['titre'] . '</span></a></li>';
+
+	for ($i=1;$i<$nb_classements;$i++){
+	    echo '		<li role="presentation" class=""><a href="#section-' . $i . '" class="icon-shop" role="tab" data-toggle="tab"><span>' . $classements[$i]['titre'] . '</span></a></li>';
+	}
+
+	echo '		    </ul>
+			</div>
+		    </div>
+		    <div class="tab-content">';
+
+	for ($i=0;$i<$nb_classements;$i++){
+	    if($i == 0){
+		 echo '	<div id="section-' . $i . '" role="tabpanel" class="tab-pane active">';
+	    }
+	    else{
+		echo '	<div id="section-' . $i . '" role="tabpanel" class="tab-pane">';
+	    }
+	    
+	    echo '	    <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+				<div class="sectionSide">
+				    <p class="section-highlight">' . $classements[$i]['description'] . '</p>
+				</div>
+				<div class="classement-table">
+				    <table class="table">';   
+
+	    // TITRES DE COLONNES
+	    echo '			<tr class="">';
+
+	    for($j=0;$j<sizeof($classements[$i]['titre_colonnes']);$j++){
+		echo '			    <th class="col-md-' . $classements[$i]['largeur_colonnes'][$j] . '">' . $classements[$i]['titre_colonnes'][$j] . '</th>';
+	    }
+
+	    echo '			</tr>';
+	     // TITRES DE COLONNES
+	    
+	    
+	    for($j=0;$j<sizeof($classements[$i]['classement']);$j++){
+		echo '			<tr class="">';
+		for($k=0;$k<sizeof($classements[$i]['classement'][$j]);$k++){
+		    echo '		    <td class="">' . $classements[$i]['classement'][$j][$k] . '</th>';
+		}
+		echo '			</tr>';
+	    }
+
+	    echo '		    </table>
+				</div>
+			    </div>
+			</div>';
+	}
+
+	echo '	    </div>
+		</div>';
+    }
+    
+//---------------------------------------------CLASSEMENTS------------------------------------------------------//	  
+
+    
+    
+    
+    
+//---------------------------------------------CALENDRIER------------------------------------------------------//	
+    if($nb_calendrier > 0){
+	echo '	<div class="section clearfix" id="resultats" style="min-height: 214px;">
+		    <div class="left-content col-md-3">
+			<nav id="calendar" class="navbar navbar-default" role="navigation">
+			    <div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
+				    <span class="sr-only">Toggle navigation</span>';
+
+	for ($i=0;$i<$nb_calendrier;$i++){
+	    echo '		    <span class="icon-bar"></span>';
+	}
+	
+	echo '			</button>
+				<a class="navbar-brand" href="#">Calendrier</a>
+			    </div>
+
+			    <div class="collapse navbar-collapse navbar-calendar">
+				<ul class="nav navbar-nav">';
+	
+	$PREM_CAL_ID = 0;
+	for($i=0;$i<$nb_calendrier;$i++){
+	    $calendrier = $arr_calendrier[$i];
+	    $id = $calendrier['id_cyclisme_calendrier'];
+	    if($PREM_CAL_ID == 0){
+		echo '		    <li class="active"><a value="' . $id . '">' . $calendrier['nom_complet'] . '</a></li>';
+		$PREM_CAL_ID = $id;
+	    }
+	    else{
+		echo '		    <li class=""><a value="' . $id . '">' . $calendrier['nom_complet'] . '</a></li>';
+	    }
+	}
+					    
+	echo '
+				</ul>
+			    </div>
+			</nav>
+		    </div>
+		</div>';   
+    }
+//---------------------------------------------CALENDRIER------------------------------------------------------//
+   
+   
+    
+// -- ZONE AJAX ---
+    echo '	<div class="cal-container right-content col-md-9 col-sm-12 col-xs-12">
+		    <div class="pres-panel">
+		    
+		    </div>
+		    <div class="result-panel">
+		    
+		    </div>
+		</div>';
+    
+    
+// 
 //---------------------------------------------COMMENTAIRES------------------------------------------------------//	
     echo '
             <section id="comment" data-speed="2" data-type="background">
@@ -366,7 +497,9 @@
 		
 		Init_Forms();
 		Init_Forms_Cyclisme();
+		render_pres_panel(' . $PREM_CAL_ID . ');
 		getAllComsJeu(' . $ID_JEU . ',' . $id_cal . ');
+		    
 		
 		$(window).resize(function() {		
                     $(\'body\').scrollspy("refresh");

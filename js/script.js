@@ -25,7 +25,7 @@ function Init_Forms()
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 					'<strong>Attention!  </strong>'+result[0]+'</div>' );
 				}
-				$('form')[0].reset();
+				$('#inscription-form')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
@@ -62,7 +62,7 @@ function Init_Forms()
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 					'<strong>Attention!  </strong>'+result[0]+'</div>' );
 				}
-				$('form')[0].reset();
+				$('#contact-form')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
@@ -96,7 +96,7 @@ function Init_Forms()
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 					'<strong>Attention!  </strong>'+result[0]+'</div>' );
 				}
-				$('form')[0].reset();
+				$('#formLogin')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
@@ -132,7 +132,7 @@ function Init_Forms()
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 					'<strong>Attention!  </strong>'+result[0]+'</div>' );
 				}
-				$('form')[0].reset();
+				$('#lostPassword')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
@@ -169,7 +169,7 @@ function Init_Forms()
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 					'<strong>Attention!  </strong>'+result[0]+'</div>' );
 				}
-				$('form')[0].reset();
+				$('#changePassword')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
@@ -201,7 +201,7 @@ function Init_Forms()
 				}else {
 					//on ne fait rien ?
 				}
-				$('form')[0].reset();
+				//$('form')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
@@ -236,7 +236,7 @@ function Init_Forms()
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
 					'<strong>Attention!  </strong>'+result[0]+'</div>' );
 				}
-				$('form')[0].reset();
+				$('#post-form')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{

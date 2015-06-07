@@ -71,34 +71,34 @@ p {
 }
 /* ______________________________ couleurs sports___________________________________*/
 .bcr-foot{
-    background-color: #96ff00;
+    background-color: #96ff00!important;
 }
 .cr-foot{
-    color: #96ff00;
+    color: #96ff00!important;
 }
 .bcr-rugby{
-    background-color: #ff004e;
+    background-color: #ff004e!important;
 }
 .cr-rugby{
-    color: #ff004e;
+    color: #ff004e!important;
 }
 .bcr-cyclisme{
-    background-color: #f0da00;
+    background-color: #f0da00!important;
 }
 .cr-cyclisme{
-    color: #f0da00;
+    color: #f0da00!important;
 }
 .bcr-ski{
-    background-color: #0095f0;
+    background-color: #0095f0!important;
 }
 .cr-ski{
-    color: #0095f0;
+    color: #0095f0!important;
 }
 .bcr-biathlon{
-    background-color: #ef3afb;
+    background-color: #ef3afb!important;
 }
 .cr-biathlon{
-    color: #ef3afb;
+    color: #ef3afb!important;
 }
 
 /* ______________________________ modal panel ___________________________________*/
@@ -106,7 +106,7 @@ p {
 
 }
 .modal-dialog{
-	z-index: 1001;
+	z-index: 2000;
 }
 .modal-content{
 
@@ -168,7 +168,7 @@ header {
 	 position: fixed;
     top: 0;
     left: 0;
-	z-index:1000;
+	z-index:1500;
 	width: 100%;
 	//overflow: hidden;
     -webkit-transition: height 0.3s;

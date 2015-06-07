@@ -246,10 +246,9 @@ function Init_Forms_Cyclisme()
 function Init_Zone_Paris()
 {
 	var pari_valide = false;
-	/*
-	*
-	*    check top 10 plein ou vide
-	*/
+	if($("#sortable2 li").size() == 10) {
+		pari_valide = true;
+	}
 	
 	$('#calendar-list li').on('click', function(){
 		//alert($(this).attr('href'));

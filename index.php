@@ -817,7 +817,7 @@ $cr = array(
         //$(\'.nav-tabs\').tab();
 		$(\'a[data-action="scrollTo"]\').click(function(e) {
 			e.preventDefault();
-			scrollX = $(\'.header\').height();
+			scrollX = 57;
 			$(\'.menu\').toggleClass(\'active\');
 			if(this.hash == "#myCarousel") {
 				$(\'body\').scrollTo(0,500,null);

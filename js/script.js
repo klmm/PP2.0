@@ -257,6 +257,7 @@ function Init_Forms()
 		var id_com = $(this).parent().parent().find("#id-com").attr("value");
 		var id_art = $(this).parent().parent().find("#id-art").attr("value");
 		var $antithis = $(this).parent().find(".btn-dislike");
+		var $status = $(this).parent().find(".like-status");
 		var postData = "id_comm=" + id_com + "&type=1&id_article=" + id_art;
 		$.ajax(
 		{
@@ -269,6 +270,8 @@ function Init_Forms()
 				    $this.addClass("disabled");
 				    $this.blur();				
 				    $antithis.addClass("disabled");
+				    //$status.addClass("like-status");
+					$status.text('Vous avez aimé');
 				    var c = $this.find(".count").html().valueOf();
 				    c++;
 				    $this.find(".count").text(c);
@@ -291,6 +294,7 @@ function Init_Forms()
 		var id_com = $(this).parent().parent().find("#id-com").attr("value");
 		var id_art = $(this).parent().parent().find("#id-art").attr("value");
 		var $antithis = $(this).parent().find(".btn-like");
+		var $status = $(this).parent().find(".like-status");
 		var postData = "id_comm=" + id_com + "&type=0&id_article=" + id_art;
 		$.ajax(
 		{
@@ -303,6 +307,9 @@ function Init_Forms()
 				    $this.addClass("disabled");
 					$this.blur();				
 					$antithis.addClass("disabled");
+					$status.removeClass("like-status");
+					$status.addClass("dislike-status");
+					$status.text('Vous n\'avez pas aimé');
 					var c = $this.find(".count").html().valueOf();
 					c++;
 					$this.find(".count").text(c);
@@ -335,12 +342,14 @@ function getAllComs(idart) {
 			var result = $.parseJSON(data);
 			var coms = result.commentaires;
 			var likes = result.likes;
-			var likedisable, dislikedisable;
+			var btn_disabled_class, status_class, status_text;
 			var no_like = false;
 			
 			$( ".com-container" ).empty();
 			if(coms == null){			    
-			    $( ".com-container" ).append(  'AUCUN COMMENTAIRE');
+			    $( ".com-container" ).append( '<div class="sectionSide">'+
+							'<p class="section-highlight">Il n\'y a encore aucun commentaire</p>'+
+							'</div>');
 			    return;
 			}
 			
@@ -355,16 +364,19 @@ function getAllComs(idart) {
 				if(no_like == false){
 				    if(likes.hasOwnProperty(object['id_commentaire']))	{
 					    if(likes[object['id_commentaire']] == 1){
-						    likedisable = "disabled";
-						    dislikedisable = "disabled";
+						    btn_disabled_class = "disabled";
+						    status_class = "dislike-status";
+						    status_text = "Vous n'avez pas aimé";
 					    } else {
-						    likedisable = "disabled";
-						    dislikedisable = "disabled";
+						    btn_disabled_class = "disabled";
+						    status_class = "like-status";
+						    status_text = "Vous avez aimé";
 					    }
 
 				    } else {
-					    likedisable = "";
-					    dislikedisable = "";
+					    btn_disabled_class = "";
+					    status_class = "like-status";
+					    status_text = "";
 				    }
 				}
 				
@@ -379,14 +391,15 @@ function getAllComs(idart) {
 						'</div>' +
 
 						'<div class="like-box clearfix">' +
-						    '<button class="btn-dislike btn btn-danger pull-right '+ dislikedisable +'" style="margin-left:10px;">' +
+						    '<button class="btn-dislike btn btn-danger pull-right '+ btn_disabled_class +'" style="margin-left:10px;">' +
 							'<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
 							'<span class="count">' + object['nbdislikes'] + '</span>' +
 						    '</button>' +
-						    '<button class="btn-like btn btn-success pull-right '+ likedisable +'" style="margin-left:10px;">' +
+						    '<button class="btn-like btn btn-success pull-right '+ btn_disabled_class +'" style="margin-left:10px;">' +
 							'<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>' +
 							'<span class="count">' + object['nblikes'] + '</span>' +
 						    '</button>' + 
+							'<span class="'+status_class+' pull-right">'+status_text+'</span>' +
 						'</div>' +
 				'</div>' );
 

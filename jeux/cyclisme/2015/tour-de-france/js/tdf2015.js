@@ -556,7 +556,9 @@ function getAllComsJeu(id_jeu,id_cal) {
 			
 			$( ".com-container" ).empty();
 			if(coms == null){			    
-			    $( ".com-container" ).append(  'AUCUN COMMENTAIRE');
+			    $( ".com-container" ).append('<div class="sectionSide">'+
+							'<p class="section-highlight">Il n\'y a encore aucun commentaire</p>'+
+							'</div>');
 			    return;
 			}
 			

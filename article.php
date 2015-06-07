@@ -327,46 +327,50 @@ $cr = array(
 				<h2 class="section-heading">' . $articles_categorie[0]['categorie'] . '</h2>	
                             </div>';
 			
+		echo '
+			    <div class="list-group list-articles-right clearfix">';
         for ($i = 0; $i < $nb_articles_categorie; $i++){
 	    $url = '/articles/' . $articles_categorie[0]['categorie'] . '/' . $articles_categorie[$i]['souscategorie'] . '/' . $articles_categorie[$i]['id_article'] . '-' . $articles_categorie[$i]['titre'];
 	    $url_propre = clean_url($url);
 	
             if ($articles_categorie[$i]['id_article'] != $id_article){
 		echo '
-			    <div class="list-group list-articles-right clearfix">
 				<a href="' . $url_propre . '" class="list-articles-item-right list-group-item col-md-12">
 				    <span class="badge ' . $bcr[$categorie] . '">' . $categorie . '</span>
 				    <img src="' . $articles_categorie[$i]['photo_chemin_deg'] . '" alt="' . $articles_categorie[$i]['photo_chemin_deg'] . '"/>
 				    <h4 class="list-group-item-heading">' . $articles_categorie[$i]['titre'] . '</h4>
 				    <p class="list-group-item-text">' . $articles_categorie[$i]['titre'] . '</p>
-				</a>
-			    </div>';
+				</a>';
 	    }
         }
+		echo '
+			    </div>';
     }
 		
     if ($nb_articles_recents > 0){
 	
         echo '
-                            <div class="sectionSide">
+                            <div class="sectionSide" style="padding-top: 15px;">
                                 <h2 class="section-heading">A LA UNE</h2>	
                             </div>';
-
+		echo '
+			    <div class="list-group list-articles-right clearfix">';
+				
         for ($j = 0; $j < $nb_articles_recents; $j++){
 	    $url = '/articles/' . $articles_recents[$j]['categorie'] . '/' . $articles_recents[$j]['souscategorie'] . '/' . $articles_recents[$j]['id_article'] . '-' . $articles_recents[$j]['titre'];
 	    $url_propre = clean_url($url);
 	    
 	    $categorie_une = $articles_recents[$j]['categorie'];
 	    echo '
-                            <div class="list-group list-articles-right clearfix">
                                 <a href="' . $url_propre . '" class="list-articles-item-right list-group-item col-md-12">
                                     <span class="badge ' . $bcr[$categorie_une] . '">' . $categorie_une . '</span>
                                     <img src="' . $articles_recents[$j]['photo_chemin_deg'] . '" alt="' . $articles_recents[$j]['photo_chemin_deg'] . '"/>
                                     <h4 class="list-group-item-heading">' . $articles_recents[$j]['titre'] . '</h4>
                                     <p class="list-group-item-text">' . $articles_recents[$j]['titre'] . '</p>
-                                </a>
-                            </div>';
+                                </a>';
         }
+		echo '
+			    </div>';
     }
 
     echo '

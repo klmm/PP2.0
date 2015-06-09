@@ -219,6 +219,8 @@ function Init_Forms()
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
 		var id_art = $(this).find("#id_article").attr("value");
+		var id_jeu = $(this).find("#id-jeu").attr("value");
+		var id_cal = $(this).find("#id-article").attr("value");
 		$.ajax(
 		{
 			url : formURL,
@@ -230,7 +232,7 @@ function Init_Forms()
 				
 				if (result[0] == 'success'){
 					//chargement des coms
-					getAllComs(id_art);
+					getAllComs(1,id_art,0,0);
 				}else {
 					$( "#post-container" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
@@ -256,9 +258,18 @@ function Init_Forms()
 		var $this = $(this);
 		var id_com = $(this).parent().parent().find("#id-com").attr("value");
 		var id_art = $(this).parent().parent().find("#id-art").attr("value");
+		var id_jeu = $(this).parent().parent().find("#id-jeu").attr("value");
+		var id_cal = $(this).parent().parent().find("#id-cal").attr("value");
 		var $antithis = $(this).parent().find(".btn-dislike");
 		var $status = $(this).parent().find(".like-status");
-		var postData = "id_comm=" + id_com + "&type=1&id_article=" + id_art;
+		
+		var postData = '';
+		if(id_art == null || id_art == 0){
+		    postData = "id_comm=" + id_com + "&type=1&id_jeu=" + id_jeu + "&id_cal=" + id_cal;
+		}
+		else{
+		    postData = "id_comm=" + id_com + "&type=1&id_article=" + id_art;
+		}
 		$.ajax(
 		{
 			url : "/lib/form/post_like.php",
@@ -266,17 +277,17 @@ function Init_Forms()
 			data : postData,
 			success:function(data, textStatus, jqXHR) 
 			{
-				if (data == 'success'){
-				    $this.addClass("disabled");
-				    $this.blur();				
-				    $antithis.addClass("disabled");
-				    //$status.addClass("like-status");
-					$status.text('Vous avez aimé');
-				    var c = $this.find(".count").html().valueOf();
-				    c++;
-				    $this.find(".count").text(c);
-					
-				}
+			    if (data == 'success'){
+				$this.addClass("disabled");
+				$this.blur();				
+				$antithis.addClass("disabled");
+				//$status.addClass("like-status");
+				    $status.text('Vous avez aimé');
+				var c = $this.find(".count").html().valueOf();
+				c++;
+				$this.find(".count").text(c);
+
+			    }
 				
 				//$('form')[0].reset();
 			},
@@ -327,10 +338,16 @@ function Init_Forms()
 	});
 }
 
-function getAllComs(idart) {
+function getAllComs(b_article, id_1, id_2, tri) {
 
 	var formURL = "/lib/render/render_commentaires.php";
-	var postData = "id_article=" + idart;
+	var postData = '';
+	if(b_article){
+	    postData = "b_article=" + b_article + "&id_article=" + id_1;
+	}
+	else{
+	    postData = "b_article=" + b_article + "&id_jeu=" + id_1 + "&id_cal=" + id_2;
+	}
 	$.ajax(
 	{
 		url : formURL,
@@ -342,8 +359,22 @@ function getAllComs(idart) {
 			var result = $.parseJSON(data);
 			var coms = result.commentaires;
 			var likes = result.likes;
+			var barticle = result.b_article;
+			var connecte = result.connecte;
 			var btn_disabled_class, status_class, status_text;
 			var no_like = false;
+			
+			if(connecte && barticle == false){
+			    $( ".contact-form" ).empty();
+			     $( ".contact-form" ).append('<div class="col-md-10 col-md-offset-1">'+
+				    '<input name="id_jeu" id="id_jeu" type="text" class="hidden" required="" value="' + id_1 + '"/>'+
+				    '<input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' + id_2 + '"/>'+
+				    '<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">'+
+					'<span>Poster</span>'+
+				    '</button>'+
+				    '<textarea id="contenu" class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>'+				
+				'</div>');
+			}
 			
 			$( ".com-container" ).empty();
 			if(coms == null){			    
@@ -379,11 +410,17 @@ function getAllComs(idart) {
 					    status_text = "";
 				    }
 				}
+				else{
+				    btn_disabled_class = "";
+				    status_class = "like-status";
+				    status_text = "";
+				}
 				
 				$( ".com-container" ).append(  '<div class="like-form col-md-10 col-md-offset-1">' +		
 				   
-						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden">Id</p>' +
-						'<p id="id-art" value="' + idart + '" class="hidden">Id</p>' +
+						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden"></p>' +
+						'<p id="id-art" value="' + id_1 + '" class="hidden"></p>' +
+						'<p id="id-cal" value="' + id_2 + '" class="hidden"></p>' +
 						'<div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">' + object['joueur'] + '</p>' +
 						    '<p class="time col-md-8 col-sm-8 col-xs-8">' + object['dateheurepub_conv'] + '</p>' +
 						    '<p class="time pull-right hidden">' + object['dateheurepub_court'] + '</p>' +

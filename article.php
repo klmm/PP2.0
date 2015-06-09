@@ -498,7 +498,7 @@ $cr = array(
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 		
 		Init_Forms();
-		getAllComs(' . $id_article . ');
+		getAllComs(1,' . $id_article . ',0,0);
 		
 		$(window).resize(function() {		
                     $(\'body\').scrollspy("refresh");

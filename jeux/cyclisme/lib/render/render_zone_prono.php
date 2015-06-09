@@ -106,9 +106,14 @@
 		unset($all_equipes[$id]);
 	    }
 	}
-
-
-
+	
+	if($b_jeunes || $b_equipe){
+	    $_SESSION['cyclisme_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 20;
+	}
+	else{
+	    $_SESSION['cyclisme_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 30;
+	}
+	
       // CALCUL DES ETOILES CYCLISTES
 	foreach($all_cyclistes as $id => $cycliste){
 	    $moy = $cycliste['moyenne'];
@@ -118,55 +123,75 @@
 	    if($b_jeunes){
 		switch($diff)
 		{
+		    case 0:
+			$nb_etoiles = 2;
+			break;
 		    case $diff <= 6 :
-			$all_cyclistes[$id]['etoiles'] = 2;
+			$nb_etoiles = 2;
 			break;
 		    case $diff > 6 && $diff <= 12 :
-			$all_cyclistes[$id]['etoiles'] = 1;
+			$nb_etoiles = 1;
 			break;
 		    default :
-			 $all_cyclistes[$id]['etoiles'] = 0;
+			 $nb_etoiles = 0;
 		}
 	    }
 	    else{
 		switch($diff)
 		{
+		    case 0:
+			$nb_etoiles = 3;
+			break;
 		    case $diff <= 7 :
-			$all_cyclistes[$id]['etoiles'] = 3;
+			$nb_etoiles = 3;
 			break;
 		    case $diff > 7 && $diff <= 10 :
-			$all_cyclistes[$id]['etoiles'] = 2;
+			$nb_etoiles = 2;
 			break;
 		    case $diff > 10 && $diff <= 18 :
-			$all_cyclistes[$id]['etoiles'] = 1;
+			$nb_etoiles = 1;
 			break;
 		    default :
-			 $all_cyclistes[$id]['etoiles'] = 0;
+			 $nb_etoiles = 0;
 		}
 	    }
-	}
-
-	foreach($all_equipes as $id => $equipe){
-	    $moy = $equipe['moyenne'];
-
-	    $diff = intval($moy_max_equipe - $moy);
-
-	    switch($diff)
-	    {
-		case $diff <= 3 :
-		    $all_equipes[$id]['etoiles'] = 2;
-		    break;
-		case $diff > 3 && $diff <= 5 :
-		    $all_equipes[$id]['etoiles'] = 1;
-		    break;
-		default :
-		    $all_equipes[$id]['etoiles'] = 0;
+	    
+	    $all_cyclistes[$id]['etoiles'] = $nb_etoiles;
+	    
+	    if($b_equipe == false){
+		$_SESSION['cyclisme_notes'][$ID_JEU][$ID_CAL][$id] = $nb_etoiles;
 	    }
 	}
 
+	if($b_equipe){
+	    foreach($all_equipes as $id => $equipe){
+		$moy = $equipe['moyenne'];
 
+		$diff = intval($moy_max_equipe - $moy);
+
+		switch($diff)
+		{
+		    case 0:
+			$nb_etoiles = 2;
+			break;
+		    case $diff <= 5 :
+			$nb_etoiles = 2;
+			break;
+		    case $diff > 5 && $diff <= 8 :
+			$nb_etoiles = 1;
+			break;
+		    default :
+			$nb_etoiles = 0;
+		}
+		
+		$all_equipes[$id]['etoiles'] = $nb_etoiles;
+		
+		$_SESSION['cyclisme_notes'][$ID_JEU][$ID_CAL][$id] = $nb_etoiles;
+	    }
+	}
+	
        // MON PRONO
-	if($b_equipe){	
+	if($b_equipe){
 	    $taille_prono = sizeof($tab_id_equipes);
 	    if($taille_prono > 1){
 		for($i=0;$i<$taille_prono;$i++){
@@ -178,7 +203,9 @@
 	    $taille_prono = sizeof($tab_id_cyclistes);
 	    if($taille_prono > 1){
 		for($i=0;$i<$taille_prono;$i++){
-		    $all_cyclistes[$tab_id_cyclistes[$i]]['pos_prono'] = $i+1;
+		    if($all_cyclistes[$tab_id_cyclistes[$i]] !== null){
+			$all_cyclistes[$tab_id_cyclistes[$i]]['pos_prono'] = $i+1;
+		    }
 		}
 	    }
 	}

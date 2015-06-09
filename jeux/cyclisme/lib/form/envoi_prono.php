@@ -16,11 +16,10 @@
     
     // ------------ RECUPERATION DES PARAMETRES ----------//
     session_start();
-    //$login = $_SESSION['LoginJoueur'];
-    $login = $_POST['joueur'];
+    $login = $_SESSION['LoginJoueur'];
+    //$login = $_POST['joueur'];
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
-    $bonus = $_POST['bonus'];
     $arr_prono = $_POST['prono'];
     $calendrier = get_calendrier($id_jeu, $id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//
@@ -28,7 +27,7 @@
     
     
     // ------------ VERIFICATION DES PARAMETRES ----------//
-    if(!is_numeric($id_jeu) || !is_numeric($id_cal) || !is_numeric($bonus)){
+    if(!is_numeric($id_jeu) || !is_numeric($id_cal)){
 	$msg = 'Paramètre non numérique';
 	$rafr = true;
 	$res = false;
@@ -129,12 +128,29 @@
     
     // ------------ CONSTRUCTION DU PRONO ----------//
     $taille_prono = sizeof($arr_prono);
+    $nb_etoiles_prono = $_SESSION['cyclisme_notes'][$id_jeu][$id_cal]['etoiles_max'];;
     for($i=0;$i<$taille_prono;$i++) {
 	if($i!=0){
 	    $prono .= ';';
 	}
-	$prono .= $arr_prono[$i];
+	$id_coureur_prono = $arr_prono[$i];
+	$prono .= $id_coureur_prono;
+	
+	$etoiles_coureur = $_SESSION['cyclisme_notes'][$id_jeu][$id_cal][$id_coureur_prono];
+	if($etoiles_coureur === null){
+	    $rafr = true;
+	    $res = false;
+	    $msg = 'Problème dans le pronostic...';
+	    $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	    echo json_encode($rep);
+	    return;
+	}
+	else{
+	    $nb_etoiles_prono -= $etoiles_coureur;
+	}
     }
+    $bonus = $nb_etoiles_prono*2;
+    
     // ------------ CONSTRUCTION DU PRONO ----------//
     
     // ------------ ENVOI DU PRONO ----------//

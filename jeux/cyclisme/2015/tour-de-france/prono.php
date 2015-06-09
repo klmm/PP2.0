@@ -301,13 +301,13 @@
     for($i=1;$i<11;$i++){
 	if($calendrier['profil_equipe']){
 	    $key = array_search($i, array_column($equipes, 'pos_prono'));
-	    if($key != null){
+	    if($key !== false){
 		echo '	    <li id="' . $equipes[$key]['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipes[$key]['nom_complet'] . '<span>' . $equipes[$key]['etoiles'] . '</span><img src="' . $equipes[$key]['photo'] . '" alt=""/></li>';
 	    }
 	}
 	else{
 	    $key = array_search($i, array_column($cyclistes, 'pos_prono'));
-	    if($key != null){
+	    if($key !== false){
 		echo '	    <li id="' . $cyclistes[$key]['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cyclistes[$key]['prenom'] . ' ' . $cyclistes[$key]['nom'] . '<span>' . $cyclistes[$key]['etoiles'] . '</span><span>' . $cyclistes[$key]['equipe_nom_court'] . '</span><img src="' . $cyclistes[$key]['photo'] . '" alt=""/><img src="' . $cyclistes[$key]['pays_drapeau_petit'] . '" alt=""/>' . $cyclistes[$key]['moyenne'] . '</li>';
 	    }
 	}
@@ -391,7 +391,7 @@
 		    Init_Forms();
 		    Init_Forms_Cyclisme();
 		    Init_Zone_Paris();
-		    getAllComsJeu(' . $ID_JEU . ',' . $ID_CAL . ');
+		    getAllComs(0,' . $ID_JEU . ',' . $ID_CAL . ',0);
 
 		    $(window).resize(function() {		
 			$(\'body\').scrollspy("refresh");

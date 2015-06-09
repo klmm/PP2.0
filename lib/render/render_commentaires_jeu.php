@@ -23,12 +23,7 @@
     session_start();
     $loginjoueur = $_SESSION['LoginJoueur'];
 
-    if($loginjoueur != ""){
-        $bConnected = true;
-    }
-    else{
-        $bConnected = false;
-    }
+    
     //------------------------------------------------------------------------------------------------//
     
     

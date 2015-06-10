@@ -72,7 +72,8 @@
 	foreach($all_cyclistes as $id => $cycliste){
 	    if($b_jeunes == false || intval(substr($cycliste['date_naissance'],0,4)) > $annee_course-25){
 		$moy = ($cycliste['note_paves']*$calendrier['profil_paves'] + $cycliste['note_vallons']*$calendrier['profil_vallons'] + 
-			$cycliste['note_montagne']*$calendrier['profil_montagne'] + $cycliste['note_sprint']*$calendrier['profil_sprint'] + 
+			$cycliste['note_montagne']*$calendrier['profil_montagne'] + $cycliste['note_sprint']*$calendrier['profil_sprint'] +
+			$cycliste['note_baroudeur']*$calendrier['profil_baroudeurs'] +
 			$cycliste['note_clm']*$calendrier['profil_clm'] + 10*$cycliste['forme'])/100;
 		$all_cyclistes[$id]['moyenne'] = round($moy,1);
 

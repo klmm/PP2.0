@@ -218,9 +218,6 @@ function Init_Forms()
 		$('.alert').alert('close');
 		var postData = $(this).serializeArray();
 		var formURL = $(this).attr("action");
-		var id_art = $(this).find("#id_article").attr("value");
-		var id_jeu = $(this).find("#id-jeu").attr("value");
-		var id_cal = $(this).find("#id-article").attr("value");
 		$.ajax(
 		{
 			url : formURL,
@@ -229,10 +226,9 @@ function Init_Forms()
 			success:function(data, textStatus, jqXHR) 
 			{
 				var result = data.split(';');
-				
 				if (result[0] == 'success'){
 					//chargement des coms
-					getAllComs(1,id_art,0,0);
+				    getAllComs(result[1],result[2],result[3],0);
 				}else {
 					$( "#post-container" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
 					'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
@@ -252,24 +248,20 @@ function Init_Forms()
 	});
 	
 	$(document).on('click', '.btn-like', function(e)
-	//$(".btn-like").click(function(e)
 	{
 		
 		var $this = $(this);
 		var id_com = $(this).parent().parent().find("#id-com").attr("value");
-		var id_art = $(this).parent().parent().find("#id-art").attr("value");
-		var id_jeu = $(this).parent().parent().find("#id-jeu").attr("value");
+		var id_art_jeu = $(this).parent().parent().find("#id-art-jeu").attr("value");
 		var id_cal = $(this).parent().parent().find("#id-cal").attr("value");
+		var b_article = $(this).parent().parent().find("#b-article").attr("value");
 		var $antithis = $(this).parent().find(".btn-dislike");
 		var $status = $(this).parent().find(".like-status");
 		
 		var postData = '';
-		if(id_art == null || id_art == 0){
-		    postData = "id_comm=" + id_com + "&type=1&id_jeu=" + id_jeu + "&id_cal=" + id_cal;
-		}
-		else{
-		    postData = "id_comm=" + id_com + "&type=1&id_article=" + id_art;
-		}
+		
+		postData = "b_article=" + b_article + "&id_comm=" + id_com + "&type=1&id_art_jeu=" + id_art_jeu + '&id_cal=' + id_cal;
+		
 		$.ajax(
 		{
 			url : "/lib/form/post_like.php",
@@ -281,32 +273,34 @@ function Init_Forms()
 				$this.addClass("disabled");
 				$this.blur();				
 				$antithis.addClass("disabled");
-				//$status.addClass("like-status");
-				    $status.text('Vous avez aimé');
+				$status.text('Vous avez aimé');
 				var c = $this.find(".count").html().valueOf();
 				c++;
 				$this.find(".count").text(c);
-
 			    }
-				
-				//$('form')[0].reset();
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
-			    // rien
 			}
 		});
 		e.preventDefault(); //STOP default action
 	});
+	
 	$(document).on('click', '.btn-dislike', function(e)
-	//$(".btn-dislike").click(function(e)
 	{
-		var $this = $(this);
+	    
+	    var $this = $(this);
 		var id_com = $(this).parent().parent().find("#id-com").attr("value");
-		var id_art = $(this).parent().parent().find("#id-art").attr("value");
+		var id_art_jeu = $(this).parent().parent().find("#id-art-jeu").attr("value");
+		var id_cal = $(this).parent().parent().find("#id-cal").attr("value");
+		var b_article = $(this).parent().parent().find("#b-article").attr("value");
 		var $antithis = $(this).parent().find(".btn-like");
 		var $status = $(this).parent().find(".like-status");
-		var postData = "id_comm=" + id_com + "&type=0&id_article=" + id_art;
+		
+		var postData = '';
+		
+		postData = "b_article=" + b_article + "&id_comm=" + id_com + "&type=0&id_art_jeu=" + id_art_jeu + '&id_cal=' + id_cal;
+		
 		$.ajax(
 		{
 			url : "/lib/form/post_like.php",
@@ -314,27 +308,23 @@ function Init_Forms()
 			data : postData,
 			success:function(data, textStatus, jqXHR) 
 			{
-				if (data == 'success'){
-				    $this.addClass("disabled");
-					$this.blur();				
-					$antithis.addClass("disabled");
-					$status.removeClass("like-status");
-					$status.addClass("dislike-status");
-					$status.text('Vous n\'avez pas aimé');
-					var c = $this.find(".count").html().valueOf();
-					c++;
-					$this.find(".count").text(c);
-				}
-				//$('form')[0].reset();
+			    if (data == 'success'){
+				$this.addClass("disabled");
+				$this.blur();
+				$status.removeClass("like-status");
+				$status.addClass("dislike-status");
+				$antithis.addClass("disabled");
+				$status.text('Vous n\'avez pas aimé');
+				var c = $this.find(".count").html().valueOf();
+				c++;
+				$this.find(".count").text(c);
+			    }
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
-			    // rien
-					 
 			}
 		});
-		e.preventDefault(); //STOP default action
-		
+		e.preventDefault(); //STOP default action	
 	});
 }
 
@@ -342,12 +332,13 @@ function getAllComs(b_article, id_1, id_2, tri) {
 
 	var formURL = "/lib/render/render_commentaires.php";
 	var postData = '';
-	if(b_article){
+	if(b_article == 1){
 	    postData = "b_article=" + b_article + "&id_article=" + id_1;
 	}
 	else{
 	    postData = "b_article=" + b_article + "&id_jeu=" + id_1 + "&id_cal=" + id_2;
 	}
+	
 	$.ajax(
 	{
 		url : formURL,
@@ -364,16 +355,17 @@ function getAllComs(b_article, id_1, id_2, tri) {
 			var btn_disabled_class, status_class, status_text;
 			var no_like = false;
 			
-			if(connecte && barticle == false){
-			    $( ".contact-form" ).empty();
-			     $( ".contact-form" ).append('<div class="col-md-10 col-md-offset-1">'+
-				    '<input name="id_jeu" id="id_jeu" type="text" class="hidden" required="" value="' + id_1 + '"/>'+
+			if(connecte){
+			    $( ".post-form" ).empty();
+			    $( ".post-form" ).append('<div class="col-md-10 col-md-offset-1">'+
+				    '<input name="b_article" id="b_article" type="text" class="hidden" required="" value="' + barticle + '"/>'+
+				    '<input name="id_art_jeu" id="id_art_jeu" type="text" class="hidden" required="" value="' + id_1 + '"/>'+
 				    '<input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' + id_2 + '"/>'+
 				    '<button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">'+
-					'<span>Poster</span>'+
+				    '<span>Poster</span>'+
 				    '</button>'+
 				    '<textarea id="contenu" class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>'+				
-				'</div>');
+			       '</div>');
 			}
 			
 			$( ".com-container" ).empty();
@@ -388,23 +380,25 @@ function getAllComs(b_article, id_1, id_2, tri) {
 			    no_like = true;
 			}
 			
-			
 			for (var i = 0; i < coms.length; i++) {
 				var object = coms[i];
-				
 				if(no_like == false){
 				    if(likes.hasOwnProperty(object['id_commentaire']))	{
-					    if(likes[object['id_commentaire']] == 1){
+					    if(likes[object['id_commentaire']] === 1){
 						    btn_disabled_class = "disabled";
 						    status_class = "dislike-status";
 						    status_text = "Vous n'avez pas aimé";
-					    } else {
+						    //alert(object['id_commentaire'] + ' - ' + status_text);
+					    }
+					    else{
 						    btn_disabled_class = "disabled";
 						    status_class = "like-status";
 						    status_text = "Vous avez aimé";
+						    //alert(object['id_commentaire'] + ' - ' + status_text);
 					    }
 
 				    } else {
+					    //alert(object['id_commentaire']);
 					    btn_disabled_class = "";
 					    status_class = "like-status";
 					    status_text = "";
@@ -419,7 +413,8 @@ function getAllComs(b_article, id_1, id_2, tri) {
 				$( ".com-container" ).append(  '<div class="like-form col-md-10 col-md-offset-1">' +		
 				   
 						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden"></p>' +
-						'<p id="id-art" value="' + id_1 + '" class="hidden"></p>' +
+						'<p id="b-article" value="' + barticle + '" class="hidden"></p>' +
+						'<p id="id-art-jeu" value="' + id_1 + '" class="hidden"></p>' +
 						'<p id="id-cal" value="' + id_2 + '" class="hidden"></p>' +
 						'<div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">' + object['joueur'] + '</p>' +
 						    '<p class="time col-md-8 col-sm-8 col-xs-8">' + object['dateheurepub_conv'] + '</p>' +
@@ -439,6 +434,7 @@ function getAllComs(b_article, id_1, id_2, tri) {
 							'<span class="'+status_class+' pull-right">'+status_text+'</span>' +
 						'</div>' +
 				'</div>' );
+			
 
 			}
 		},

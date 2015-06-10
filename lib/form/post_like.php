@@ -7,7 +7,9 @@
 	    return;
 	}
 	
-	$id_article = $_POST['id_article'];
+	$b_article = $_POST['b_article'];
+	$id_art_jeu = $_POST['id_art_jeu'];
+	
 	$id_comm = $_POST['id_comm'];
 	$bLike = $_POST['type'];
 
@@ -30,17 +32,30 @@
 	    return;
 	}
 
-	
-	// Ajout du like
-	$sql = "INSERT INTO likes(IDComm,bLike,Joueur,IDArticle,id_cal,id_jeu) VALUES(?,?,?,?,0,0)";
-	$prep2 = $db->prepare($sql);
-	$prep2->setFetchMode(PDO::FETCH_OBJ);
-	$prep2->bindValue(1,$id_comm,PDO::PARAM_INT);
-	$prep2->bindValue(2,$bLike,PDO::PARAM_BOOL);
-	$prep2->bindValue(3,$joueur,PDO::PARAM_STR);
-	$prep2->bindValue(4,$id_article,PDO::PARAM_INT);
-	
-	$res = $prep2->execute();
+	if($b_article){
+	    $sql = "INSERT INTO likes(IDComm,bLike,Joueur,IDArticle,id_cal,id_jeu) VALUES(?,?,?,?,0,0)";
+	    $prep2 = $db->prepare($sql);
+	    $prep2->setFetchMode(PDO::FETCH_OBJ);
+	    $prep2->bindValue(1,$id_comm,PDO::PARAM_INT);
+	    $prep2->bindValue(2,$bLike,PDO::PARAM_BOOL);
+	    $prep2->bindValue(3,$joueur,PDO::PARAM_STR);
+	    $prep2->bindValue(4,$id_art_jeu,PDO::PARAM_INT);
+
+	    $res = $prep2->execute();
+	}
+	else{
+	    $id_cal = $_POST['id_cal'];
+	    
+	    $sql = "INSERT INTO likes(IDComm,bLike,Joueur,IDArticle,id_jeu,id_cal) VALUES(?,?,?,0,?,?)";
+	    $prep2 = $db->prepare($sql);
+	    $prep2->bindValue(1,$id_comm,PDO::PARAM_INT);
+	    $prep2->bindValue(2,$bLike,PDO::PARAM_BOOL);
+	    $prep2->bindValue(3,$joueur,PDO::PARAM_STR);
+	    $prep2->bindValue(4,$id_art_jeu,PDO::PARAM_INT);
+	    $prep2->bindValue(5,$id_cal,PDO::PARAM_INT);
+	    
+	    $res = $prep2->execute();
+	}
 	
 	if( $res == false )
 	{

@@ -252,7 +252,7 @@
 	    </section>';
 //---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//
 
-    
+   
 //---------------------------------------------ZONE PRONO------------------------------------------------------//	
     echo '
             <section id="prono" data-speed="2" data-type="background">
@@ -266,19 +266,17 @@
     if($calendrier['profil_equipe']){
 	foreach($equipes as $id => $equipe){
 	    if($equipe['pos_prono'] === 0){
-		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipe['nom_complet'] . '<span>' . $equipe['etoiles'] . '</span><img src="' . $equipe['photo'] . '" alt=""/>' . $equipe['moyenne'] . '</li>';
+		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipe['nom_complet'] . '<span>' . $equipe['etoiles'] . '</span></li>';
 	    }
 	}
     }
     else{
 	foreach($cyclistes as $id => $cycliste){
 	    if($cycliste['pos_prono'] == 0){
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '<span>' . $cycliste['etoiles'] . '</span><span>' . $cycliste['equipe_nom_court'] . '</span><img src="' . $cycliste['photo'] . '" alt=""/><img src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/>' . $cycliste['moyenne'] . '</li>';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '<span>' . $cycliste['etoiles'] . '</span><img src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/></li>';
 	    }
 	}
-    }
-    
-   		
+    }	
 			
     echo '
 			</ul>
@@ -298,32 +296,32 @@
 			</ul>
 			<ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">';
     
-    for($i=1;$i<11;$i++){
-	if($calendrier['profil_equipe']){
-	    $key = array_search($i, array_column($equipes, 'pos_prono'));
-	    if($key !== false){
-		echo '	    <li id="' . $equipes[$key]['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipes[$key]['nom_complet'] . '<span>' . $equipes[$key]['etoiles'] . '</span><img src="' . $equipes[$key]['photo'] . '" alt=""/></li>';
+    if($bConnected){
+	for($i=1;$i<11;$i++){
+	    if($calendrier['profil_equipe']){
+		/*$key = array_search($i, array_column($equipes, 'pos_prono'));
+		if($key !== false){
+		    echo '	    <li id="' . $equipes[$key]['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipes[$key]['nom_complet'] . '<span>' . $equipes[$key]['etoiles'] . '</span><img src="' . $equipes[$key]['photo'] . '" alt=""/></li>';
+		}*/
+	    }
+	    else{
+		/*$key = array_search($i, array_column($cyclistes, 'pos_prono'));
+		if($key !== false){
+		    echo '	    <li id="' . $cyclistes[$key]['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cyclistes[$key]['prenom'] . ' ' . $cyclistes[$key]['nom'] . '<span>' . $cyclistes[$key]['etoiles'] . '</span><span>' . $cyclistes[$key]['equipe_nom_court'] . '</span><img src="' . $cyclistes[$key]['photo'] . '" alt=""/><img src="' . $cyclistes[$key]['pays_drapeau_petit'] . '" alt=""/>' . $cyclistes[$key]['moyenne'] . '</li>';
+		}*/
 	    }
 	}
-	else{
-	    $key = array_search($i, array_column($cyclistes, 'pos_prono'));
-	    if($key !== false){
-		echo '	    <li id="' . $cyclistes[$key]['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cyclistes[$key]['prenom'] . ' ' . $cyclistes[$key]['nom'] . '<span>' . $cyclistes[$key]['etoiles'] . '</span><span>' . $cyclistes[$key]['equipe_nom_court'] . '</span><img src="' . $cyclistes[$key]['photo'] . '" alt=""/><img src="' . $cyclistes[$key]['pays_drapeau_petit'] . '" alt=""/>' . $cyclistes[$key]['moyenne'] . '</li>';
-	    }
-	}
-		
     }
-    
+
     echo '
 			</ul>
 		    </div>
 		</div>
 	    </section>';
-//---------------------------------------------ZONE PRONO------------------------------------------------------//
+//---------------------------------------------ZONE PRONO------------------------------------------------------//   
+   
 
-    
-    
-
+ 
 //---------------------------------------------COMMENTAIRES------------------------------------------------------//	
     echo '
             <section id="comment" data-speed="2" data-type="background">
@@ -337,7 +335,7 @@
 		    </div>
 		    
                     <div class="row post-container">		
-			<form id="post-form-jeu" role="form" class="row contact-form" action="/lib/form/post_commentaire_jeu.php" method="POST">
+			<form id="post-form" role="form" class="row post-form" action="/lib/form/post_commentaire.php" method="POST">
 			
 
 			</form>
@@ -387,12 +385,13 @@
 	    <script>
 		jQuery(document).ready(function ($) {
 		    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-		    
+		    		 
+		    getAllComs(0,' . $ID_JEU . ',' . $ID_CAL . ',0);
+			
 		    Init_Forms();
 		    Init_Forms_Cyclisme();
 		    Init_Zone_Paris();
-		    getAllComs(0,' . $ID_JEU . ',' . $ID_CAL . ',0);
-
+		     
 		    $(window).resize(function() {		
 			$(\'body\').scrollspy("refresh");
 		    });

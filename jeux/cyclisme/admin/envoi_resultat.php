@@ -202,7 +202,7 @@
 	    }
 	}
 	
-	$score_total_joueur = $score_base_joueur + $bonus_risque_joueur + $bonus_regularite_joueur;
+	$score_total_joueur = ($score_base_joueur + $bonus_regularite_joueur)*(1+$bonus_risque_joueur/100);
 	
 	if($score_actuel != $score_total_joueur){
 	    $place_actuelle = $place_cpt;

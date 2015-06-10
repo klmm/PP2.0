@@ -383,7 +383,14 @@ $cr = array(
 	
 	
 	
-	
+	/*<div class="col-md-10 col-md-offset-1">
+                                <input name="id_article" id="id_article" type="text" class="hidden" required="" value="' . $id_article . '"/>
+                                <button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
+                                    <span>Poster</span>
+                                </button>
+
+                                <textarea id="contenu" class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>					
+                            </div>*/
 	
 	
 	
@@ -394,8 +401,7 @@ $cr = array(
     echo '
             <section id="comment" data-speed="2" data-type="background">
                 <div class="container" id="commentaires">';
-		
-		
+				
     if ($bConnected){
         echo '
 		    <div class="sectionSide">
@@ -404,15 +410,8 @@ $cr = array(
 		    </div>
 		    
                     <div class="row post-container">		
-                        <form id="post-form" role="form" class="row contact-form" action="/lib/form/post_commentaire.php" method="POST">
-                            <div class="col-md-10 col-md-offset-1">
-                                <input name="id_article" id="id_article" type="text" class="hidden" required="" value="' . $id_article . '"/>
-                                <button type="submit" class="btn btn-primary pull-right" style="padding:10px;margin-bottom:10px;width:200px;">
-                                    <span>Poster</span>
-                                </button>
-
-                                <textarea id="contenu" class="form-control" rows="5" name="contenu" placeholder="Votre message"></textarea>					
-                            </div>
+                        <form id="post-form" role="form" class="row post-form" action="/lib/form/post_commentaire.php" method="POST">
+                            
                         </form>
                     </div>';
     }
@@ -424,46 +423,8 @@ $cr = array(
 		    </div>';
     }
 	
-	echo '	    <div class="row com-container">';
-    /*
-	for ($i = 0; $i < $nb_comm; $i++){
-	$id_comm = $commentaires[$i]['id_commentaire'];
-        echo '		
-                        <div class="like-form col-md-10 col-md-offset-1">
-                            <p id="id-com" value="' . $id_comm . '" class="hidden">' . $id_comm . '</p>
-			    <p id="id-art" value="' . $id_article . '" class="hidden">' . $id_article . '</p>
-                            <p class="user pull-left">' . $commentaires[$i]['joueur'] . '</p>
-                            <p class="time pull-right">' . $commentaires[$i]['dateheurepub_conv'] . '</p>
-                            <p class="comment">' . $commentaires[$i]['contenu'] . '</p>';
-	
-	if ($likes[$id_comm] == 1){
-	    echo '	    <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;" disabled>';
-	}
-	else{
-	    echo '	    <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">';
-	}
-	
-	echo '			<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-                                <span class="count">' . $commentaires[$i]['nbdislikes'] . '</span>
-                            </button>';
-	
-	if ($likes[$id_comm] == 2){
-	    echo '	    <button class="btn-like btn btn-success pull-right" style="margin-left:10px;" disabled>';
-	}
-	else{
-	    echo '	    <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">';
-	}
-
-        echo'
-				<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-                                <span class="count">' . $commentaires[$i]['nblikes'] . '</span>
-                            </button>
-                        </div>';
-                   
-    }
-	*/
-	
-    echo '
+	echo '	    <div class="row com-container">
+	    
 		    </div>
 		</div>
             </section>';
@@ -496,10 +457,10 @@ $cr = array(
         <script>
             jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-		
+		  
 		Init_Forms();
 		getAllComs(1,' . $id_article . ',0,0);
-		
+
 		$(window).resize(function() {		
                     $(\'body\').scrollspy("refresh");
 		});

@@ -428,7 +428,7 @@
 		    </div>
 		    
                     <div class="row post-container">		
-			<form id="post-form-jeu" role="form" class="row contact-form" action="/lib/form/post_commentaire_jeu.php" method="POST">
+			<form id="post-form" role="form" class="row post-form" action="/lib/form/post_commentaire.php" method="POST">
 			
 
 			</form>
@@ -494,12 +494,12 @@
 	    
             jQuery(document).ready(function ($) {
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-		
+				
+		getAllComs(0,' . $ID_JEU . ',' . $id_cal . ',0);
+		render_pres_panel(' . $PREM_CAL_ID . ');
+		    
 		Init_Forms();
 		Init_Forms_Cyclisme();
-		render_pres_panel(' . $PREM_CAL_ID . ');
-		getAllComsJeu(' . $ID_JEU . ',' . $id_cal . ');
-		    
 		
 		$(window).resize(function() {		
                     $(\'body\').scrollspy("refresh");

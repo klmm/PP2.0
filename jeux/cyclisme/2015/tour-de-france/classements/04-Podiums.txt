@@ -8,3 +8,4 @@ Récompense les trusteurs de podiums
 1;test106;1;2
 1;test113;1;2
 1;test147;1;2
+1;Toto;1;2

@@ -21,3 +21,4 @@ Récompense le pronostiqueur le plus régulier
 16;test157;2;2
 18;test25;1;2
 18;test0;1;2
+18;Toto;1;2

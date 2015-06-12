@@ -305,8 +305,9 @@
 		}*/
 	    }
 	    else{
-		/*$key = array_search($i, array_column($cyclistes, 'pos_prono'));
-		if($key !== false){
+		$key = array_search($i, array_column($cyclistes, 'pos_prono'));
+		echo 'key : ' . $key;
+		/*if($key !== false){
 		    echo '	    <li id="' . $cyclistes[$key]['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cyclistes[$key]['prenom'] . ' ' . $cyclistes[$key]['nom'] . '<span>' . $cyclistes[$key]['etoiles'] . '</span><span>' . $cyclistes[$key]['equipe_nom_court'] . '</span><img src="' . $cyclistes[$key]['photo'] . '" alt=""/><img src="' . $cyclistes[$key]['pays_drapeau_petit'] . '" alt=""/>' . $cyclistes[$key]['moyenne'] . '</li>';
 		}*/
 	    }

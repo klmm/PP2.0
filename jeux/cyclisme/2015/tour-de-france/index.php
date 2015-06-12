@@ -16,6 +16,13 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
     //-------------------------------------------------------------------------------------//
     
+    $bcr = array(
+	'Football'      => 'bcr-foot',
+	'Ski alpin'     => 'bcr-ski',
+	'Rugby'         => 'bcr-rugby',
+	'Biathlon'      => 'bcr-biathlon',
+	'Cyclisme'      => 'bcr-cyclisme'
+    );
     
     //--------------------------------------VARIABLES DE SESSION--------------------------------------//
     session_start();
@@ -258,6 +265,7 @@
 	for ($i=0;$i<$nb_articles;$i++){
 	    $url = clean_url('/articles/' . $arr_articles[$i]['categorie'] . '/' . $arr_articles[$i]['souscategorie'] . '/' . $arr_articles[$i]['id_article'] . '-' . $arr_articles[$i]['titre']);
 	    echo '		<a href="' . $url . '" class="list-articles-item-right list-group-item col-md-12">
+				    <span class="badge ' . $bcr[$arr_articles[$i]['categorie']] . '">' . $arr_articles[$i]['categorie'] . '</span>
 				    <img src="' . $arr_articles[$i]['photo_chemin_deg'] . '" alt="aie"/>
 				    <h4 class="list-group-item-heading">' . $arr_articles[$i]['titre'] . '</h4>
 				    <p class="list-group-item-text">Categorie</p>
@@ -336,7 +344,13 @@
 	    
 	    
 	    for($j=0;$j<sizeof($classements[$i]['classement']);$j++){
-		echo '			<tr class="">';
+		if($classements[$i]['classement'][$j][1] == $loginjoueur){
+		    $class_surlign_joueur = 'goodbet';
+		}
+		else{
+		    $class_surlign_joueur = '';
+		}
+		echo '			<tr class="' . $class_surlign_joueur . '">';
 		for($k=0;$k<sizeof($classements[$i]['classement'][$j]);$k++){
 		    echo '		    <td class="">' . $classements[$i]['classement'][$j][$k] . '</th>';
 		}
@@ -379,13 +393,11 @@
 			    <div class="collapse navbar-collapse navbar-calendar">
 				<ul class="nav navbar-nav">';
 	
-	$PREM_CAL_ID = 0;
 	for($i=0;$i<$nb_calendrier;$i++){
 	    $calendrier = $arr_calendrier[$i];
 	    $id = $calendrier['id_cyclisme_calendrier'];
-	    if($PREM_CAL_ID == 0){
+	    if($id == $id_cal){
 		echo '		    <li class="active"><a value="' . $id . '">' . $calendrier['nom_complet'] . '</a></li>';
-		$PREM_CAL_ID = $id;
 	    }
 	    else{
 		echo '		    <li class=""><a value="' . $id . '">' . $calendrier['nom_complet'] . '</a></li>';

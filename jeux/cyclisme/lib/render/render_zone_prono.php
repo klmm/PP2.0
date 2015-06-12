@@ -125,16 +125,16 @@
 		switch($diff)
 		{
 		    case 0:
-			$nb_etoiles = 2;
+			$nb_etoiles = 3;
 			break;
 		    case $diff <= 6 :
-			$nb_etoiles = 2;
+			$nb_etoiles = 3;
 			break;
 		    case $diff > 6 && $diff <= 12 :
-			$nb_etoiles = 1;
+			$nb_etoiles = 2;
 			break;
 		    default :
-			 $nb_etoiles = 0;
+			 $nb_etoiles = 1;
 		}
 	    }
 	    else{
@@ -173,16 +173,16 @@
 		switch($diff)
 		{
 		    case 0:
-			$nb_etoiles = 2;
+			$nb_etoiles = 3;
 			break;
 		    case $diff <= 5 :
-			$nb_etoiles = 2;
+			$nb_etoiles = 3;
 			break;
 		    case $diff > 5 && $diff <= 8 :
-			$nb_etoiles = 1;
+			$nb_etoiles = 2;
 			break;
 		    default :
-			$nb_etoiles = 0;
+			$nb_etoiles = 1;
 		}
 		
 		$all_equipes[$id]['etoiles'] = $nb_etoiles;
@@ -202,10 +202,14 @@
 	}
 	else{
 	    $taille_prono = sizeof($tab_id_cyclistes);
+	    echo 'TTT';
 	    if($taille_prono > 1){
 		for($i=0;$i<$taille_prono;$i++){
 		    if($all_cyclistes[$tab_id_cyclistes[$i]] !== null){
 			$all_cyclistes[$tab_id_cyclistes[$i]]['pos_prono'] = $i+1;
+		    }
+		    else{
+			echo 'XX' . $i . 'XX';
 		    }
 		}
 	    }

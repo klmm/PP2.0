@@ -6,6 +6,7 @@ Récompense les plus réguliers
 1;test24;2.5;2
 1;test107;2.5;2
 4;test5;2;2
+4;Toto;2;2
 4;test25;2;2
 4;test185;2;2
 4;test191;2;2

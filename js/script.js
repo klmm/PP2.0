@@ -278,6 +278,12 @@ function Init_Forms()
 				c++;
 				$this.find(".count").text(c);
 			    }
+			    else{
+				$this.blur();
+				$status.removeClass("like-status");
+				$status.addClass("dislike-status");
+				$status.text(data);
+			    }
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
@@ -319,9 +325,16 @@ function Init_Forms()
 				c++;
 				$this.find(".count").text(c);
 			    }
+			    else{
+				$this.blur();
+				$status.removeClass("like-status");
+				$status.addClass("dislike-status");
+				$status.text(data);
+			    }
 			},
 			error: function(jqXHR, textStatus, errorThrown) 
 			{
+			  
 			}
 		});
 		e.preventDefault(); //STOP default action	

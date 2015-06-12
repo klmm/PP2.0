@@ -2,6 +2,7 @@ Nombre de top 10
 Récompense les habitués aux Top 10
 ;;Top 10;Pronos
 2;8;2;2
+1;Toto;2;2
 1;test24;2;2
 2;test23;1;2
 2;test157;1;2

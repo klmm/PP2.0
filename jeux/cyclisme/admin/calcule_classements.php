@@ -335,7 +335,7 @@
 	    else{
 		$pos = $pos_actuel;
 	    }
-	    $line[] = $pos . ';' . $login . ';' . $score . ';' . $nb_paris;
+	    $line[] = $pos . ';' . $login . ';' . $score . '%;' . $nb_paris;
 	    $pos_cpt++;
 	    $score_actuel = $score;
 	}

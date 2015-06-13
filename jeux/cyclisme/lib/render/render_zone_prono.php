@@ -197,19 +197,17 @@
 	    if($taille_prono > 1){
 		for($i=0;$i<$taille_prono;$i++){
 		    $all_equipes[$tab_id_equipes[$i]]['pos_prono'] = $i+1;
+		    $prono['cyclistes_prono'][$i] = $all_equipes[$tab_id_equipes[$i]];
 		}
 	    }
 	}
 	else{
 	    $taille_prono = sizeof($tab_id_cyclistes);
-	    echo 'TTT';
 	    if($taille_prono > 1){
 		for($i=0;$i<$taille_prono;$i++){
 		    if($all_cyclistes[$tab_id_cyclistes[$i]] !== null){
 			$all_cyclistes[$tab_id_cyclistes[$i]]['pos_prono'] = $i+1;
-		    }
-		    else{
-			echo 'XX' . $i . 'XX';
+			$prono['cyclistes_prono'][$i] = $all_cyclistes[$tab_id_cyclistes[$i]];
 		    }
 		}
 	    }

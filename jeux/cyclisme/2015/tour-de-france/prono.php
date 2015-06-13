@@ -59,6 +59,17 @@
 	    header('Location: /redirect/erreur404.php?url=' . $jeu['url']);
 	    return;
 	}
+		
+	if ($calendrier['commence']){
+	    header('Location: ../');
+	    return;
+	}
+	
+	if (!$calendrier['disponible']){
+	    header('Location: ../');
+	    return;
+	}
+
 	
 	$titre = $calendrier['nom_complet'];
 		
@@ -272,7 +283,7 @@
     }
     else{
 	foreach($cyclistes as $id => $cycliste){
-	    if($cycliste['pos_prono'] == 0){
+	    if($cycliste['pos_prono'] === 0){
 		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '<span>' . $cycliste['etoiles'] . '</span><img src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/></li>';
 	    }
 	}
@@ -297,19 +308,18 @@
 			<ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">';
     
     if($bConnected){
-	for($i=1;$i<11;$i++){
+	for($i=0;$i<10;$i++){
 	    if($calendrier['profil_equipe']){
-		/*$key = array_search($i, array_column($equipes, 'pos_prono'));
-		if($key !== false){
-		    echo '	    <li id="' . $equipes[$key]['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipes[$key]['nom_complet'] . '<span>' . $equipes[$key]['etoiles'] . '</span><img src="' . $equipes[$key]['photo'] . '" alt=""/></li>';
-		}*/
+		$equipe = $prono['cyclistes_prono'][$i];
+		if ($equipe['id_cyclisme_equipe']){
+		    echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipe['nom_complet'] . '<span>' . $equipe['etoiles'] . '</span><img src="' . $equipe['photo'] . '" alt=""/></li>';
+		}
 	    }
 	    else{
-		$key = array_search($i, array_column($cyclistes, 'pos_prono'));
-		echo 'key : ' . $key;
-		/*if($key !== false){
-		    echo '	    <li id="' . $cyclistes[$key]['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cyclistes[$key]['prenom'] . ' ' . $cyclistes[$key]['nom'] . '<span>' . $cyclistes[$key]['etoiles'] . '</span><span>' . $cyclistes[$key]['equipe_nom_court'] . '</span><img src="' . $cyclistes[$key]['photo'] . '" alt=""/><img src="' . $cyclistes[$key]['pays_drapeau_petit'] . '" alt=""/>' . $cyclistes[$key]['moyenne'] . '</li>';
-		}*/
+		$cycliste = $prono['cyclistes_prono'][$i];
+		if ($cycliste['id_cyclisme_athlete']){
+		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '<span>' . $cycliste['etoiles'] . '</span><span>' . $cycliste['equipe_nom_court'] . '</span><img src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/></li>';
+		}
 	    }
 	}
     }

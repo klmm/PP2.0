@@ -83,9 +83,11 @@ $cr = array(
     $sous_categorie = $infos_article['souscategorie'];
     $date_pub = $infos_article['dateheurepub'];
     
+    /*$filename = $_SERVER['DOCUMENT_ROOT'] . '/articles/' . $id_article . '.htm';
     $handle = fopen($filename, "r+");
     $debut_article = fread($handle, 300) . '...';
     fclose($handle);
+        <meta name="description" content="' . $debut_article . '" />     */
     
     // Articles de la même rubrique
     $articles_categorie = get_articles_categorie($categorie,5);
@@ -114,10 +116,11 @@ $cr = array(
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="' . $debut_article . '" />
         <meta name="author" content="" />
-	<meta property="og:image" content="' . $photo_chemin_deg . '">	    
-
+	<meta property="og:title" content="' . $titre . '" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="www.parions-potes.fr" />
+	<meta property="og:image" content="' . $photo_chemin_deg . '">
 	<meta name="content-language" content="fr"/>
 	<meta name="keywords" content="pronostics paris gratuits sport cyclisme ski biathlon amis ' . $titre . '"/>
 	<meta name="subject" content=""/>

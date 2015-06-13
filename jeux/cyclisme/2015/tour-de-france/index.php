@@ -234,6 +234,9 @@
             </header>';
 //---------------------------------------------FIN HEADER------------------------------------------------------//';
 
+echo '  <div id="test" class="section test" style="background-color: white;">
+    
+	</div>';
 
 //---------------------------------------------BREVES------------------------------------------------------//	
     echo '  <div id="news" class="section" style="background-color: white;">
@@ -417,10 +420,10 @@
     
 // -- ZONE AJAX ---
     echo '	<div class="cal-container right-content col-md-9 col-sm-12 col-xs-12">
-		    <div class="pres-panel">
-		    
+		    <div id="pres-panel" class="pres-panel">
+
 		    </div>
-		    <div class="result-panel">
+		    <div id="result-panel" class="result-panel" >
 		    
 		    </div>
 		</div>';
@@ -441,7 +444,7 @@
 		    
                     <div class="row post-container">		
 			<form id="post-form" role="form" class="row post-form" action="/lib/form/post_commentaire.php" method="POST">
-			
+			    
 
 			</form>
                     </div>';
@@ -508,7 +511,7 @@
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 				
 		getAllComs(0,' . $ID_JEU . ',' . $id_cal . ',0);
-		render_pres_panel(' . $PREM_CAL_ID . ');
+		render_pres_panel(' . $id_cal . ');
 		    
 		Init_Forms();
 		Init_Forms_Cyclisme();

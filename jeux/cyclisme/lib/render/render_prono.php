@@ -19,12 +19,7 @@
     //-------------------------------------------------------------------------------------//
     
     
-    
-    //--------------------------------------VARIABLES DE SESSION--------------------------------------//
-    session_start();
-    $loginjoueur = $_SESSION['LoginJoueur'];
-    //------------------------------------------------------------------------------------------------//
-    
+
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
     $ID_JEU = $_POST['id_jeu'];
     $ID_CAL = $_POST['id_cal'];
@@ -38,7 +33,7 @@
     $b_traite = $calendrier['traite'];
     //------------------------------------------------------------------------------------------------//
     
-    if($b_commence || $joueur == $loginjoueur){
+    if($b_commence){
 	//-------------------------PRONO DU JOUEUR-----------------------------------//
 	$prono = get_prono($ID_JEU,$ID_CAL,$joueur);
 	//----------------------------------------------------------------------------//
@@ -66,14 +61,37 @@
 	$tab_equipes = null;
     }
     
-    $res = array(
-		'calendrier' => $calendrier,
-		'prono' => $prono,
-		'cyclistes' => $tab_cyclistes,
-		'equipes' => $tab_equipes
-	);
+    $prono['prono'] = explode(";", $prono['prono']);
+    $prono['points_prono'] = explode(";", $prono['points_prono']);
+    
+    $res = '	<div id="son_prono" class="table-stat-box col-md-6 col-sm-6 col-xs-12">
+		    <div class="sectionSide">
+			<p class="section-highlight">Top 10 de ' . $joueur . '</p>
+		    </div>	
+		    <table class="table table-hover">';
+    
+    for($i=0;$i<10;$i++){
+	
+	$id_entite_prono = $prono['prono'][$i];
+	$res .= '	<tr class "">';
+	
+	if(!$b_equipe){
+	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
+			    <td class="table-name col-md-6">' .  $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
+			    <td class="table-point col-md-4">' . $prono['points_prono'][$i] . '</td>';
+	}
+	else{
+	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
+			    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
+			    <td class="table-point col-md-4">' . $prono['points_prono'][$i] . '</td>';
+	}
+	$res .= '	</tr>';
+    }
+    
+    $res .= '	    </table>
+		</div>';
     
     
-    echo json_encode($res);
+    echo $res;
 	
 ?>

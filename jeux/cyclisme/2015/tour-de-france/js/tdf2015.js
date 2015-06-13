@@ -5,34 +5,8 @@ function Init_Forms_Cyclisme()
 {
 	$(document).on('click', '#calendar a', function(e)
 	{
-		
-		var $this = $(this);
-		var id = $(this).attr("value");
-		
-		var postData = "id_cal=" + id + "id_jeu=4";
-		$.ajax(
-		{
-			url : "/jeux/cyclisme/lib/render/render_calendrier.php",
-			type: "POST",
-			data : postData,
-			success:function(data, textStatus, jqXHR) 
-			{
-				var result = $.parseJSON(data);
-				var calendrier = result.calendrier;
-				var prono_joueur = result.prono_joueur;
-				var pronos = result.pronos;
-				var cyclistes = result.cyclistes;
-				var equipes = result.equipes;
-				
-				render_pres_panel(id);	
-				
-			},
-			error: function(jqXHR, textStatus, errorThrown) 
-			{
-			    // rien
-			}
-		});
-		e.preventDefault(); //STOP default action
+		var id = $(this).attr("value");	
+		render_pres_panel(id);
 	});
 	
 	$(document).on('mouseover', '#calendar a', function(e)
@@ -42,36 +16,13 @@ function Init_Forms_Cyclisme()
 		//juste affichage de l'image...à voir
 	});
 	
-	$(document).on('click', '#scores > tr', function(e)
+	$(document).on('click', '.scores tr', function(e)
 	{
-		var $this = $(this);
 		var joueur = $(this).find(".table-name").html().valueOf();
-		var id_jeu = 4;
-		var id_cal = $(this).parent().attr("id");
-	
-		var postData = "id_cal=" + id_cal + "id_jeu=" + id_jeu + "joueur=" + joueur;
-		$.ajax(
-		{
-			url : "/jeux/cyclisme/lib/render/render_prono.php",
-			type: "POST",
-			data : postData,
-			success:function(data, textStatus, jqXHR) 
-			{
-				var result = $.parseJSON(data);
-				var calendrier = result.calendrier;
-				var pronos = result.pronos;
-				var cyclistes = result.cyclistes;
-				var equipes = result.equipes;
-				
-			
-				
-			},
-			error: function(jqXHR, textStatus, errorThrown) 
-			{
-			    // rien
-			}
-		});
-		e.preventDefault(); //STOP default action
+		var id_cal = $(this).parent().parent().attr("id");
+		
+		alert(id_cal + ' ' + joueur);
+		render_prono_autre(id_cal,joueur);
 	});
 }
 
@@ -293,8 +244,35 @@ function render_pres_panel(id_cal){
 		success:function(data, textStatus, jqXHR) 
 		{	    
 		    var result = $.parseJSON(data);
-		    $( ".cal-container" ).empty();
-		    $( ".cal-container" ).append(result);
+		    var html = result.html;
+		    var premier = result.premier;
+		    $( ".test" ).empty();
+		    $( ".test" ).append(html);
+		    if (premier != null){
+			render_prono_autre(id_cal,premier);
+		    }
+		    
+		},
+		error: function(jqXHR, textStatus, errorThrown) 
+		{
+			alert('error');//do nothing
+		}
+	});
+}
+
+function render_prono_autre(id_cal,joueur){
+    	var formURL = "/jeux/cyclisme/lib/render/render_prono.php";
+	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&joueur=" + joueur;
+	$.ajax(
+	{
+		url : formURL,
+		type: "POST",
+		data : postData,
+		success:function(data, textStatus, jqXHR) 
+		{	    
+		    var result = data;
+		    $( ".son_prono" ).empty();
+		    $( ".test" ).append(result);
 		    
 		},
 		error: function(jqXHR, textStatus, errorThrown) 

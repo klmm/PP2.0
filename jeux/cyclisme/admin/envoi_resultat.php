@@ -29,7 +29,7 @@
     
     // ------------ VERIFICATION DES PARAMETRES ----------//
     if(!is_numeric($id_jeu) || !is_numeric($id_cal)){
-	$msg = 'Paramètre non numérique';
+	$msg = 'Paramètre non numérique ' . $id_jeu . ' - ' . $id_cal;
 	$rafr = true;
 	$res = false;
 	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
@@ -39,7 +39,7 @@
     
     foreach($arr_resultat as $key => $value){
 	if (!is_numeric($value)){
-	    $msg = 'Paramètre non numérique';
+	    $msg = 'Id non numérique' . $key;
 	    $rafr = true;
 	    $res = false;
 	    $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
@@ -174,24 +174,22 @@
 	$prep2->setFetchMode(PDO::FETCH_OBJ);
     }
 
-    $sql4 = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY score_total DESC";
+    $sql4 = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=?";
     $prep4 = $db->prepare($sql4);
     $prep4->bindValue(1,$id_jeu,PDO::PARAM_INT);
     $prep4->bindValue(2,$id_cal,PDO::PARAM_INT);
     $prep4->execute();
     $prep4->setFetchMode(PDO::FETCH_OBJ);
     
-    $sql3 = "UPDATE cyclisme_prono SET classement=?, bonus_nombre=?, score_total=? WHERE id_cyclisme_prono=?";
+    $sql3 = "UPDATE cyclisme_prono SET bonus_nombre=?, score_total=? WHERE id_cyclisme_prono=?";
     $prep3 = $db->prepare($sql3);
     
-    $place_actuelle = 1;
-    $place_cpt = 1;
-    $score_actuel = -1;
     while($enregistrement4 = $prep4->fetch()){
 	$id_prono = $enregistrement4->id_cyclisme_prono;
 	$nb_trouves_joueur = $enregistrement4->nb_trouves;
 	$score_base_joueur = $enregistrement4->score_base;
 	$bonus_risque_joueur = $enregistrement4->bonus_risque;
+	$bonus_regularite_joueur = 0;
 	
 	if($nb_trouves_joueur > 0){
 	    if ($nb_trouves_max == 1){
@@ -203,7 +201,34 @@
 	}
 	
 	$score_total_joueur = ($score_base_joueur + $bonus_regularite_joueur)*(1+$bonus_risque_joueur/100);
-	
+	    
+	$prep3->bindValue(1,$bonus_regularite_joueur,PDO::PARAM_INT);
+	$prep3->bindValue(2,$score_total_joueur,PDO::PARAM_INT);
+	$prep3->bindValue(3,$id_prono,PDO::PARAM_INT);
+	$prep3->execute();
+	$prep3->setFetchMode(PDO::FETCH_OBJ);
+    }
+    
+    
+    
+    
+    $sql6 = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY score_total DESC";
+    $prep6 = $db->prepare($sql6);
+    $prep6->bindValue(1,$id_jeu,PDO::PARAM_INT);
+    $prep6->bindValue(2,$id_cal,PDO::PARAM_INT);
+    $prep6->execute();
+    $prep6->setFetchMode(PDO::FETCH_OBJ);
+    
+    $sql7 = "UPDATE cyclisme_prono SET classement=? WHERE id_cyclisme_prono=?";
+    $prep7 = $db->prepare($sql7);
+    
+    $place_actuelle = 1;
+    $place_cpt = 1;
+    $score_actuel = -1;
+    while($enregistrement6 = $prep6->fetch()){
+	$id_prono = $enregistrement6->id_cyclisme_prono;
+	$score_total_joueur = $enregistrement6->score_total;
+
 	if($score_actuel != $score_total_joueur){
 	    $place_actuelle = $place_cpt;
 	    $place_joueur = $place_cpt;
@@ -212,12 +237,10 @@
 	    $place_joueur = $place_actuelle;
 	}
 	    
-	$prep3->bindValue(1,$place_joueur,PDO::PARAM_INT);
-	$prep3->bindValue(2,$bonus_regularite_joueur,PDO::PARAM_INT);
-	$prep3->bindValue(3,$score_total_joueur,PDO::PARAM_INT);
-	$prep3->bindValue(4,$id_prono,PDO::PARAM_INT);
-	$prep3->execute();
-	$prep3->setFetchMode(PDO::FETCH_OBJ);
+	$prep7->bindValue(1,$place_joueur,PDO::PARAM_INT);
+	$prep7->bindValue(2,$id_prono,PDO::PARAM_INT);
+	$prep7->execute();
+	$prep7->setFetchMode(PDO::FETCH_OBJ);
 	
 	$score_actuel = $score_total_joueur;
 	$place_cpt++;
@@ -231,10 +254,11 @@
     
     
     // ------------ MAJ CALENDRIER ----------//
-    $sql5 = "UPDATE cyclisme_calendrier SET traite=1, disponible=0 WHERE id_jeu=? AND id_cal=?";
+    $sql5 = "UPDATE cyclisme_calendrier SET classement=?, traite=1, disponible=0 WHERE id_jeu=? AND id_cal=?";
     $prep5 = $db->prepare($sql5);
-    $prep5->bindValue(1,$id_jeu,PDO::PARAM_STR);
-    $prep5->bindValue(2,$id_cal,PDO::PARAM_STR);
+    $prep5->bindValue(1,$resultat,PDO::PARAM_STR);
+    $prep5->bindValue(2,$id_jeu,PDO::PARAM_INT);
+    $prep5->bindValue(3,$id_cal,PDO::PARAM_INT);
     $prep5->execute();
     // ------------ MAJ CALENDRIER ----------//
     

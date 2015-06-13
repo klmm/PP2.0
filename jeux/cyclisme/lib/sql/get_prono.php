@@ -86,7 +86,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=?";
+	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY classement ASC";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);

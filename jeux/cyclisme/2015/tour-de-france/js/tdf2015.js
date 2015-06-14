@@ -52,23 +52,25 @@ function Init_Zone_Paris()
 		cursor : "move",
 		over: function( event, ui ) {
 			if($("#sortable2 li").size() == 10) {
-				$( "#numero" ).switchClass( "visible", "hidden", 1000);
+				//$( "#numero" ).switchClass( "visible", "hidden", 1000);
 			}
-		}
+		},
+		receive: function( event, ui ) {calcrisk();updateNums();}
 	}).disableSelection();
 	$( "#sortable2" ).sortable({
 		connectWith: ".connectedSortable",
 		scroll : true,
 		cursor : "move",
 		over: function( event, ui ) {
+			
 			if($("#sortable2 li").size() == 10) {
-				$( "#numero" ).switchClass( "hidden", "visible", 1000);
+				//$( "#numero" ).switchClass( "hidden", "visible", 1000);
 			}
 			if($("#sortable2 li").size() > 10) {
 				$( "#sortable1" ).sortable( "cancel" );
 			}
-		}
-//		receive: function( event, ui ) {calcrisk();}
+		},
+		receive: function( event, ui ) {calcrisk();updateNums();}
 	}).disableSelection();
 	
 	$("#item-search").keyup(function(){
@@ -129,6 +131,57 @@ function dialog(href, titre, message){
 	}
 	$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
 	$('#dataConfirmModal').modal({show:true});
+}
+
+
+
+function render_pres_panel(id_cal){
+    	var formURL = "/jeux/cyclisme/lib/render/render_calendrier.php";
+	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
+	$.ajax(
+	{
+		url : formURL,
+		type: "POST",
+		data : postData,
+		success:function(data, textStatus, jqXHR) 
+		{	    
+		    var result = $.parseJSON(data);
+		    var html = result.html;
+		    var premier = result.premier;
+		    $( ".test" ).empty();
+		    $( ".test" ).append(html);
+		    if (premier != null){
+			render_prono_autre(id_cal,premier);
+		    }
+		    
+		},
+		error: function(jqXHR, textStatus, errorThrown) 
+		{
+			alert('error');//do nothing
+		}
+	});
+}
+
+function render_prono_autre(id_cal,joueur){
+    	var formURL = "/jeux/cyclisme/lib/render/render_prono.php";
+	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&joueur=" + joueur;
+	$.ajax(
+	{
+		url : formURL,
+		type: "POST",
+		data : postData,
+		success:function(data, textStatus, jqXHR) 
+		{	    
+		    var result = data;
+		    $( ".son_prono" ).empty();
+		    $( ".test" ).append(result);
+		    
+		},
+		error: function(jqXHR, textStatus, errorThrown) 
+		{
+			alert('error');//do nothing
+		}
+	});
 }
 
 function check_Pari(calendrier){
@@ -233,53 +286,37 @@ function check_Pari(calendrier){
 	
 }
 
-function render_pres_panel(id_cal){
-    	var formURL = "/jeux/cyclisme/lib/render/render_calendrier.php";
-	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
-	$.ajax(
-	{
-		url : formURL,
-		type: "POST",
-		data : postData,
-		success:function(data, textStatus, jqXHR) 
-		{	    
-		    var result = $.parseJSON(data);
-		    var html = result.html;
-		    var premier = result.premier;
-		    $( ".test" ).empty();
-		    $( ".test" ).append(html);
-		    if (premier != null){
-			render_prono_autre(id_cal,premier);
-		    }
-		    
-		},
-		error: function(jqXHR, textStatus, errorThrown) 
-		{
-			alert('error');//do nothing
+function calcrisk(){
+	var jauge = $('.result-area').find('.progress-bar');
+	var total = 0;
+	
+	$('#sortable2 li').each(function() {
+		var rating = $(this).find('.item-rating .glyphicon-star').size();
+		if(rating == 0){
+			total += 6;
+		} else if(rating == 1) {
+			total += 4;
+		} else if(rating == 2) {
+			total += 2;
 		}
+		
 	});
+	
+//	var moyenne = total/$("#sortable2 li").size();
+	
+	$('.progress-bar').css('width', total+'%').attr('aria-valuenow', total);
+	jauge.text(total +'%');
 }
 
-function render_prono_autre(id_cal,joueur){
-    	var formURL = "/jeux/cyclisme/lib/render/render_prono.php";
-	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&joueur=" + joueur;
-	$.ajax(
-	{
-		url : formURL,
-		type: "POST",
-		data : postData,
-		success:function(data, textStatus, jqXHR) 
-		{	    
-		    var result = data;
-		    $( ".son_prono" ).empty();
-		    $( ".test" ).append(result);
-		    
-		},
-		error: function(jqXHR, textStatus, errorThrown) 
-		{
-			alert('error');//do nothing
-		}
-	});
+function updateNums(){
+
+		var i = 1;
+		$('#sortable2 li').each(function() {
+			$(this).find('.item-place').text(i +'. ');
+
+			i += 1;
+		});
+		
 }
 
 function Build_Chart(el, result){

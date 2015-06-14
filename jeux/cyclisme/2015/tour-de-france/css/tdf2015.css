@@ -170,10 +170,10 @@ border: transparent dashed 3px;
 float:left;
 }
 #sortable2 {
-width: 94%;
-background-color: lavender;
+width: 100%;
+background-color: rgb(239, 240, 241);;
 border: grey dashed 3px;
-  float: left;
+ // float: left;
 }
 #sortable1 li, #sortable2 li, #numero li {
 margin: 0 5px 5px 5px;
@@ -182,15 +182,15 @@ font-size: 1.2em;
 //width: 94%;
 }
 #sortable1 li, #sortable2 li {
-border: 1px solid #d3d3d3;
+border: 1px solid #A2A8B2;
 font-weight: normal;
-background-color: #B5CBF0;
+background-color: #A2A8B2;
 color: white;
 }
 #sortable1 li:hover, #sortable2 li:hover {
 
 background-color: lightgrey;
-
+border: 1px solid #d3d3d3;
 }
 #numero li {
 margin: 0 5px 5px 5px;
@@ -202,21 +202,39 @@ background-color: #C00000;
 color: white;
 margin-left : 40%;
 }
-#pari-panel li img {
+#pari-panel li .item-flag {
 height: 23px;
 width: 32px;
 vertical-align: middle;
 float : right;
 }
-#pari-panel li span {
+#pari-panel li .item-team {
+height: 24px;
+//width: 30px;
+vertical-align: middle;
+float : right;
+margin-right: 10px;
+}
+#pari-panel li .item-note {
 float: right;
-margin-right: 10;
+margin-right: 10px;
 margin-left: 5%;
-padding-left: 10;
-padding-right: 10;
+padding-left: 10px;
+padding-right: 10px;
 color: white;
 background-color: black;
 }
+#pari-panel li .item-name {
+margin-left: 5px;
+}
+#pari-panel li .item-rating {
+float: right;
+margin-right: 10px;
+margin-left: 5%;
+line-height: 27px;
+color: rgb(255, 232, 0);
+}
+  
 
 #canvas-holder{
 width:15%;
@@ -229,6 +247,19 @@ float:left;
 }
 .table-place{
 
+}
+.affix{
+ top:100px;
+ width: 540px;
+}
+.progress{
+	width: 100%;
+	margin-top: 5px;
+}
+.progress-title{
+	position: absolute;
+	right: 20px;
+	color: lightgrey;
 }
 
 /** color **/
@@ -245,8 +276,17 @@ float:left;
 }
 
 
+@media (max-width: 1200px) {
+	.affix{
+		width: 440px;
+	}
+}
 
-
+@media (max-width: 992px) {
+	.affix{
+		width: 330px;
+	}
+}
 
 @media (max-width: 768px) {
 	.pres-box{ 
@@ -261,9 +301,10 @@ float:left;
 	.tabs .nav li{
 	  margin: 0;
 	}
+	.affix{
+		width: 43%;
+	}
 }
-
-
 
 @media (min-width: 768px) {
 	#calendar{

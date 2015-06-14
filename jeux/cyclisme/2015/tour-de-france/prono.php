@@ -220,8 +220,7 @@
                                 <div class="navbar-collapse collapse" id="navbar-main">
                                     <ul class="nav navbar-nav pull-right" style="">
                                         <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
-                                        <li class=""><a href="#presentation" data-action="scrollTo">Présentation</a></li>
-					<li class=""><a href="#prono" data-action="scrollTo">Mon prono</a></li>
+					<li class=""><a href="#pari-panel" data-action="scrollTo">Mon prono</a></li>
 					<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
                                         <li class=""><a href="../">Retour à l\'accueil</a></li>
                                     </ul>  
@@ -236,7 +235,7 @@
 
 //---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//	
     echo '
-            <section id="presentation" data-speed="2" data-type="background">
+            <div id="pari-panel" class="section" style="background-color: white;">
                 <div class="container" id="presentation-etape">
 		    <div class="btn-group">
 			<button type="button" class="btn btn-default">' . $calendrier['nom_complet'] . '</button>
@@ -255,20 +254,17 @@
     echo '
 			</ul>
 		    </div>
+		    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pari précédent</button>
+		    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pari suivant</button>
+			
 		    <div class="sectionSide">
 			<h2 class="section-heading">' . $calendrier['nom_complet'] . '</h2>
 			<p class="section-highlight">Faites votre pari ! Faites glisser vos favoris dans la zone prévue.</p>
-		    </div>
-		</div>
-	    </section>';
+		    </div>';
 //---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//
 
    
 //---------------------------------------------ZONE PRONO------------------------------------------------------//	
-    echo '
-            <section id="prono" data-speed="2" data-type="background">
-                <div class="container" id="zone-prono">';		  
-
     echo '
 		    <div class="col-xs-6">
 			<input id="item-search" type="text" placeholder="Recherche" name="nom" class="form-control" style="margin-bottom:25px;"/>
@@ -277,14 +273,24 @@
     if($calendrier['profil_equipe']){
 	foreach($equipes as $id => $equipe){
 	    if($equipe['pos_prono'] === 0){
-		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipe['nom_complet'] . '<span>' . $equipe['etoiles'] . '</span></li>';
+		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
+	    
+		for($z=0; $z<$equipe['etoiles']; $z++){
+		    echo '	<span class="glyphicon glyphicon-star"></span>';
+		}
+		echo '	    </div></li>';
 	    }
 	}
     }
     else{
 	foreach($cyclistes as $id => $cycliste){
 	    if($cycliste['pos_prono'] === 0){
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '<span>' . $cycliste['etoiles'] . '</span><img src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/></li>';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+	    
+		for($z=0; $z<$cycliste['etoiles']; $z++){
+		    echo '	<span class="glyphicon glyphicon-star"></span>';
+		}
+		echo '	    </div></li>';
 	    }
 	}
     }	
@@ -293,42 +299,44 @@
 			</ul>
 		    </div>
 		    <div class="col-xs-6">
-			<ul id="numero" class="hidden-num">
-			    <li class="ui-state-highlight ui-sortable-handle">1</li>
-			    <li class="ui-state-highlight ui-sortable-handle">2</li>
-			    <li class="ui-state-default ui-sortable-handle">3</li>
-			    <li class="ui-state-highlight ui-sortable-handle">4</li>
-			    <li class="ui-state-default ui-sortable-handle">5</li>
-			    <li class="ui-state-highlight ui-sortable-handle">6</li>
-			    <li class="ui-state-highlight ui-sortable-handle">7</li>
-			    <li class="ui-state-highlight ui-sortable-handle">8</li>
-			    <li class="ui-state-highlight ui-sortable-handle">9</li>
-			    <li class="ui-state-highlight ui-sortable-handle">10</li>
-			</ul>
-			<ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">';
+			<div class="result-area clearfix" data-spy="affix" data-offset-top="300">
+			    <button id="validate" type="button" class="btn btn-primary btn-block" >Valider</button>
+			    <ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">';
     
     if($bConnected){
-	for($i=0;$i<10;$i++){
+	for($i=0;$i<sizeof($prono['cyclistes_prono']);$i++){
 	    if($calendrier['profil_equipe']){
 		$equipe = $prono['cyclistes_prono'][$i];
 		if ($equipe['id_cyclisme_equipe']){
-		    echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $equipe['nom_complet'] . '<span>' . $equipe['etoiles'] . '</span><img src="' . $equipe['photo'] . '" alt=""/></li>';
-		}
+		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+		    for($z=0; $z<$cycliste['etoiles']; $z++){
+			echo '	<span class="glyphicon glyphicon-star"></span>';
+		    }
+		    echo '	    </div></li>';}
 	    }
 	    else{
 		$cycliste = $prono['cyclistes_prono'][$i];
-		if ($cycliste['id_cyclisme_athlete']){
-		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '<span>' . $cycliste['etoiles'] . '</span><span>' . $cycliste['equipe_nom_court'] . '</span><img src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/></li>';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+	    
+		for($z=0; $z<$cycliste['etoiles']; $z++){
+		    echo '	<span class="glyphicon glyphicon-star"></span>';
 		}
+		echo '	    </div></li>';
 	    }
 	}
     }
 
     echo '
-			</ul>
+			    </ul>		
+			    <button id="register" type="button" class="btn btn-primary btn-block hidden" >Enregistrer</button>
+			    <div class="progress progress-striped active"><span class="progress-title">prise de risque</span>
+				<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="60" style="min-width:2em">0%
+				</div>
+			    </div>	
+			</div>
 		    </div>
 		</div>
-	    </section>';
+	    </div>';
 //---------------------------------------------ZONE PRONO------------------------------------------------------//   
    
 
@@ -396,7 +404,9 @@
 	    <script>
 		jQuery(document).ready(function ($) {
 		    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-		    		 
+		    
+		    calcrisk();
+		    updateNums();
 		    getAllComs(0,' . $ID_JEU . ',' . $ID_CAL . ',0);
 			
 		    Init_Forms();
@@ -450,6 +460,8 @@
 	var docElem = document.documentElement,
 	    header = document.querySelector( \'header\' ),
 	    didScroll = false,
+	    resultarea = document.querySelector( \'.result-area\' ),
+	    fixResultZone = 150,
 	    changeHeaderOn = 98;
 
 

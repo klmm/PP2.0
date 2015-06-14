@@ -70,7 +70,8 @@ function Init_Zone_Paris()
 				$( "#sortable1" ).sortable( "cancel" );
 			}
 		},
-		receive: function( event, ui ) {calcrisk();updateNums();}
+		update: function( event, ui ) {updateNums()},
+		receive: function( event, ui ) {calcrisk();}
 	}).disableSelection();
 	
 	$("#item-search").keyup(function(){
@@ -315,6 +316,10 @@ function updateNums(){
 			$(this).find('.item-place').text(i +'. ');
 
 			i += 1;
+		});
+		
+		$('#sortable1 li').each(function() {
+			$(this).find('.item-place').text('');
 		});
 		
 }

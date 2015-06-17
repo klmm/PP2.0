@@ -296,11 +296,6 @@ $cr = array(
             echo '              <div class="item">';
         }
         
-        $filename = $_SERVER['DOCUMENT_ROOT'] . "/articles/" . $arr_unes[$i]['id_article'] . ".htm";
-	$handle = fopen($filename, "r+");
-	$debut_article = fread($handle, 300) . '...';
-	fclose($handle);
-        
         $categorie_article = $arr_unes[$i]['categorie'];
 	$sous_categorie_article = $arr_unes[$i]['souscategorie'];
 	
@@ -313,7 +308,7 @@ $cr = array(
                                             <div class="carousel-caption">
                                                 <div class="col-md-9">
                                                     <h1>'. $arr_unes[$i]['titre'] . '</h1>
-                                                    <p class="unes-intro">' . $debut_article . '</p>
+                                                    <p class="unes-intro">' . $arr_unes[$i]['debut'] . '...</p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <p class="unes-sport ' . $cr[$categorie_article] . '">'. $categorie_article . '<br/>' . $arr_unes[$i]['souscategorie'] . '</p>

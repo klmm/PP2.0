@@ -82,12 +82,7 @@ $cr = array(
     $categorie = $infos_article['categorie'];
     $sous_categorie = $infos_article['souscategorie'];
     $date_pub = $infos_article['dateheurepub'];
-    
-    /*$filename = $_SERVER['DOCUMENT_ROOT'] . '/articles/' . $id_article . '.htm';
-    $handle = fopen($filename, "r+");
-    $debut_article = fread($handle, 300) . '...';
-    fclose($handle);
-        <meta name="description" content="' . $debut_article . '" />     */
+    $debut_article = $infos_article['debut'];
     
     // Articles de la même rubrique
     $articles_categorie = get_articles_categorie($categorie,5);
@@ -126,6 +121,7 @@ $cr = array(
 	<meta name="subject" content=""/>
 	<meta name="copyright" content="Parions Potes 2015"/>
 	<meta name="identifier-url" content="www.parions-potes.fr"/>
+	<meta name="description" content="' . $debut_article . '" />
 	
         <link rel="shortcut icon" href="/img/logos/logo_site.ico"/>';
 

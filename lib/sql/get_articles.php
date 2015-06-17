@@ -27,6 +27,7 @@
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
 			$arr[$i]['photo_id'] = $enregistrement->IDPhoto;
 			$arr[$i]['auteur'] = $enregistrement->Auteur;
+			$arr[$i]['debut'] = $enregistrement->debut;
 
 			$i++;
 		}
@@ -81,6 +82,7 @@
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
 			$arr[$i]['photo_id'] = $enregistrement->IDPhoto;
 			$arr[$i]['auteur'] = $enregistrement->Auteur;
+			$arr[$i]['debut'] = $enregistrement->debut;
 
 			$i++;
 		}
@@ -123,6 +125,7 @@
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
 			$arr[$i]['photo_id'] = $enregistrement->IDPhoto;
 			$arr[$i]['auteur'] = $enregistrement->Auteur;
+			$arr[$i]['debut'] = $enregistrement->debut;
 
 			$i++;
 		}
@@ -166,6 +169,7 @@
 			$tab_id_photo[$i] = $enregistrement->IDPhoto;
 			$arr[$i]['photo_id'] = $enregistrement->IDPhoto;
 			$arr[$i]['auteur'] = $enregistrement->Auteur;
+			$arr[$i]['debut'] = $enregistrement->debut;
 
 			$i++;
 		}
@@ -218,6 +222,7 @@
                             $tab_id_photo[$i] = $enregistrement2->IDPhoto;
                             $arr[$i]['photo_id'] = $enregistrement2->IDPhoto;
                             $arr[$i]['auteur'] = $enregistrement2->Auteur;
+			    $arr[$i]['debut'] = $enregistrement2->debut;
 
                             $i++;
 			}
@@ -260,6 +265,7 @@
 			$tab_id_photo[0] = $enregistrement->IDPhoto;
 			$arr['photo_id'] = $enregistrement->IDPhoto;
 			$arr['auteur'] = $enregistrement->Auteur;
+			$arr['debut'] = $enregistrement->debut;
 			
 			$tab_img = get_images_id($tab_id_photo);
 		
@@ -308,6 +314,7 @@
 			$tab_id_photo[$i] = $enregistrement2->IDPhoto;
 			$arr[$i]['photo_id'] = $enregistrement2->IDPhoto;
 			$arr[$i]['auteur'] = $enregistrement2->Auteur;
+			$arr[$i]['debut'] = $enregistrement2->debut;
 
 			$i++;
 		    }

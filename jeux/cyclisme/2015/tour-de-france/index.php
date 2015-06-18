@@ -1,5 +1,5 @@
 <?php
-    $ID_JEU = 4;
+    $ID_JEU = 1;
     $js = '/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js';
     $css = '/jeux/cyclisme/2015/tour-de-france/css/tdf2015.css';
     $titre = 'Parions Potes - Tour de France 2015';
@@ -224,7 +224,6 @@
                                         <li class=""><a href="#classements" data-action="scrollTo">Classements</a></li>
 					<li class=""><a href="#resultats" data-action="scrollTo">Pronostics</a></li>
 					<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
-                                        <li class=""><a href="/">Retour au site</a></li>
                                     </ul>  
                                 </div>
                             </div>

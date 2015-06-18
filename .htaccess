@@ -6,7 +6,7 @@
 
 
 # REDIRECTION POUR LES PAGES NON TROUVEES
-ErrorDocument 404 /redirect/erreur404.php
+ErrorDocument 404 /redirect/erreur404.html
 
 ## REECRITURE DES URLs
 RewriteEngine on

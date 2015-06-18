@@ -63,14 +63,14 @@ $cr = array(
     $id_article = $_GET['id'];
 
     if (!is_numeric($id_article)){
-        header('Location: /redirect/erreur404.php');
+        header('Location: /redirect/erreur404.html');
         return;
     }
 
     // Infos sur l'article en lui-même
     $infos_article = get_article_infos($id_article);
     if ($infos_article['id_article'] == 0){
-        header('Location: /redirect/erreur404.php');
+        header('Location: /redirect/erreur404.html');
         return;
     }
     $titre = $infos_article['titre'];
@@ -237,10 +237,8 @@ $cr = array(
                                 </div>
                                 <div class="navbar-collapse collapse" id="navbar-main">
                                     <ul class="nav navbar-nav pull-right" style="">
-                                        <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
                                         <li class=""><a href="#article" data-action="scrollTo">Article</a></li>
                                         <li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
-                                        <li class=""><a href="/">Retour au site</a></li>
                                     </ul>  
                                 </div>
                             </div>

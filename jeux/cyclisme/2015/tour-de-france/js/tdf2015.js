@@ -1,5 +1,5 @@
 // A CHANGER LORS DE LA CREATION D'UN JEU
-var id_jeu = 4;
+var id_jeu = 1;
 
 function Init_Forms_Cyclisme()
 {
@@ -95,7 +95,56 @@ function Init_Zone_Paris()
 	});
 	
 	$("#validate").click(function(ev){
-		check_Pari();
+	   
+	    var formURL = $(this).attr("action");
+	    var id_cal =  $(this).parent().find("#id_cal").attr("value");;
+	    var i = 0;
+	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
+	   	    
+	    $('#sortable2 li').each(function() {
+		postData += "&prono[" + i + "]=" + $(this).attr("id");
+		i++;
+	    });
+	    
+	    $.ajax(
+	    {
+		url : formURL,
+		type: "POST",
+		data : postData,
+		success:function(data, textStatus, jqXHR) 
+		{	 
+		    var result = $.parseJSON(data);
+		    var msg = result.msg;
+		    var rafr = result.rafr;
+		    var res = result.resultat;
+		    
+		    if(res == null){
+			alert('res nul');
+			//location.reload();
+			return;
+		    }
+		    
+		    if(rafr == null || rafr == true){
+			alert('rafr nul');
+			//location.reload();
+			return;
+		    }
+		    
+		    if(msg != null){
+			$( "#msg-container" ).empty();
+			$( "#msg-container" ).append(msg);
+		    }
+		    else{
+			alert('msg nul');
+		    }
+		    
+
+		},
+		error: function(jqXHR, textStatus, errorThrown) 
+		{
+		    alert('error');//do nothing
+		}
+	    });
 	});
 	
 }
@@ -183,108 +232,6 @@ function render_prono_autre(id_cal,joueur){
 			alert('error');//do nothing
 		}
 	});
-}
-
-function check_Pari(calendrier){
-	var pari, pari1, pari2, pari3, pari4, pari5, pari6, pari7, pari8, pari9, pari10;
-	var total = 0;
-	
-	if($("#sortable2 li").size() == 10) {
-		var i = 1;
-		$('#sortable2 li').each(function() {
-			switch(i) {
-				case 1:
-				pari1=$(this).attr("id");
-				pari1 = pari1.substring(11);
-//				span1=$(this).getElementsByTagName("span");
-//				note1=span1[0].innerHTML;
-		
-				break;
-				case 2:
-				pari2=$(this).attr("id");
-				pari2 = pari2.substring(11);
-//				span2=$(this).getElementsByTagName("span");
-//				note2=span2[0].innerHTML;
-				
-				break;
-				case 3:
-				pari3=$(this).attr("id");
-				pari3 = pari3.substring(11);
-//				span3=$(this).getElementsByTagName("span");
-//				note3=span3[0].innerHTML;
-				
-				break;
-				case 4:
-				pari4=$(this).attr("id");
-				pari4 = pari4.substring(11);
-//				span4=$(this).getElementsByTagName("span");
-//				note4=span4[0].innerHTML;
-				
-				break;
-				case 5:
-				pari5=$(this).attr("id");
-				pari5 = pari5.substring(11);
-//				span5=$(this).getElementsByTagName("span");
-//				note5=span5[0].innerHTML;
-				
-				break;
-				case 6:
-				pari6=$(this).attr("id");
-				pari6 = pari6.substring(11);
-//				span6=$(this).getElementsByTagName("span");
-//				note6=span6[0].innerHTML;
-				
-				break;
-				case 7:
-				pari7=$(this).attr("id");
-				pari7 = pari7.substring(11);
-//				span7=$(this).getElementsByTagName("span");
-//				note7=span7[0].innerHTML;
-				
-				break;
-				case 8:
-				pari8=$(this).attr("id");
-				pari8 = pari8.substring(11);
-//				span8=$(this).getElementsByTagName("span");
-//				note8=span8[0].innerHTML;
-				
-				break;
-				case 9:
-				pari9=$(this).attr("id");
-				pari9 = pari9.substring(11);
-//				span9=$(this).getElementsByTagName("span");
-//				note9=span9[0].innerHTML;
-				
-				break;
-				case 10:
-				pari10=$(this).attr("id");
-				pari10 = pari10.substring(11);
-//				span10=$(this).getElementsByTagName("span");
-//				note10=span10[0].innerHTML;
-				
-				break;
-			}
-			
-			
-			i += 1;
-			});
-			pari = pari1+";"+pari2+";"+pari3+";"+pari4+";"+pari5+";"+pari6+";"+pari7+";"+pari8+";"+pari9+";"+pari10+";";
-			
-			//calcul note totale pari
-			
-			$('#sortable2 li span').each(function() {
-				total += parseInt($(this).text());
-				});
-			pari = pari + total + ";";
-			alert(pari);
-		}
-		else {
-			alert("Votre pari n'est pas complet !");
-			pari = "undefined";
-		}
-		
-	//	return pari;
-	
 }
 
 function calcrisk(){

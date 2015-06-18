@@ -17,11 +17,10 @@
     
     // ------------ RECUPERATION DES PARAMETRES ----------//
     session_start();
-    //$admin = $_SESSION['Admin'];
-    $admin = true;
+    $admin = $_SESSION['Admin'];
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
-    $arr_resultat = $_POST['resultat'];
+    $arr_resultat = $_POST['prono'];
     $calendrier = get_calendrier($id_jeu, $id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//
     
@@ -275,7 +274,7 @@
     
     
     
-    
+    $msg = 'Ok !';
     $rafr = true;
     $res = true;
     $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);

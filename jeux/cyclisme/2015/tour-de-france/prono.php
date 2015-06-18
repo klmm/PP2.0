@@ -1,5 +1,5 @@
 <?php
-	$ID_JEU = 4;
+	$ID_JEU = 1;
 	$js = '/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js';
 	$css = '/jeux/cyclisme/2015/tour-de-france/css/tdf2015.css';
 
@@ -47,29 +47,38 @@
 	$ID_CAL = $_GET['id'];
 
 	if (!is_numeric($ID_CAL)){
-	    header('Location: /redirect/erreur404.php');
+	    header('Location: /redirect/erreur404.html');
 	    return;
 	}
-
 	// Infos sur l'article en lui-même
 	$jeu = get_jeu_id($ID_JEU);
 	$calendrier = get_calendrier($ID_JEU,$ID_CAL);
 	$liste_calendrier = get_calendrier_jeu_avenir($ID_JEU);
 	if ($calendrier == null){
-	    header('Location: /redirect/erreur404.php?url=' . $jeu['url']);
-	    return;
-	}
-		
-	if ($calendrier['commence']){
-	    header('Location: ../');
+	    header('Location: /redirect/erreur404.html');
 	    return;
 	}
 	
+	if($admin == false){
+	    $mise_resultat = false;
+	    if ($calendrier['commence']){
+		echo '<h2>Le pronostic n\'est plus disponible...</h2><script>setTimeout(function(){ window.location.href = "../"; }, 3000)</script>';
+		return;
+	    }   
+	}
+	else{
+	    if ($calendrier['commence']){
+		$mise_resultat = true;
+	    } 
+	    else{
+		$mise_resultat = false;
+	    }
+	}
+	
 	if (!$calendrier['disponible']){
-	    header('Location: ../');
+	    echo '<h2>Le pronostic n\'est pas encore disponible...</h2><script>setTimeout(function(){ window.location.href = "../"; }, 3000)</script>';
 	    return;
 	}
-
 	
 	$titre = $calendrier['nom_complet'];
 		
@@ -222,7 +231,6 @@
                                         <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
 					<li class=""><a href="#pari-panel" data-action="scrollTo">Mon prono</a></li>
 					<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
-                                        <li class=""><a href="../">Retour à l\'accueil</a></li>
                                     </ul>  
                                 </div>
                             </div>
@@ -284,7 +292,7 @@
     }
     else{
 	foreach($cyclistes as $id => $cycliste){
-	    if($cycliste['pos_prono'] === 0){
+	    if($cycliste['pos_prono'] === 0 || $mise_resultat == true){
 		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$cycliste['etoiles']; $z++){
@@ -300,10 +308,23 @@
 		    </div>
 		    <div class="col-xs-6">
 			<div class="result-area clearfix" data-spy="affix" data-offset-top="300">
-			    <button id="validate" type="button" class="btn btn-primary btn-block" >Valider</button>
+			    <div class="msg-container"> </div>
+			    <input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>';
+    
+    
+    if($bConnected && $mise_resultat == false){
+	echo '		    <button id="validate" type="button" class="btn btn-primary btn-block" action="/jeux/cyclisme/lib/form/envoi_prono.php">Valider</button>';
+    }
+    else{
+	if($mise_resultat == true){
+	    echo '	    <button id="validate" type="button" class="btn btn-primary btn-block" action="/jeux/cyclisme/admin/envoi_resultat.php">Enregistrer</button>';
+	}
+    }
+				    
+    echo '
 			    <ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">';
     
-    if($bConnected){
+    if($bConnected && $mise_resultat == false){
 	for($i=0;$i<sizeof($prono['cyclistes_prono']);$i++){
 	    if($calendrier['profil_equipe']){
 		$equipe = $prono['cyclistes_prono'][$i];

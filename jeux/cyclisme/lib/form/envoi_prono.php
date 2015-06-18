@@ -178,7 +178,7 @@
 	
 	$msg = 'Pronostic enregistré !';
     }  
-    $rafr = true;
+    $rafr = false;
     $res = true;
     $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
     echo json_encode($rep);

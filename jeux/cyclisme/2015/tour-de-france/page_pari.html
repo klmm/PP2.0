@@ -127,6 +127,7 @@
 		
 			<div class="sectionSide">
 				<h2 class="section-heading">Etape 1 : Ultrecht - Mont Ventoux !! bam direct</h2>
+				<p class="section-highlight" style="margin-bottom:50px">214 km - heure limite pari : 14h57</p>
 				<p class="section-highlight">Faites votre pari ! Faites glisser vos favoris dans la zone prévue.</p>
 			</div>
 			<div class="col-xs-6">
@@ -136,10 +137,8 @@
 						<span class="item-place"></span>
 						<!-- <img class="item-team" src="../../img/equipes/2015/Fdj.png" alt="fdj" /> -->
 						<span class="item-name">Lara Gut</span>
-						<img class="item-flag" src="../../../../img/drapeaux/32x21/France.png" alt="FRA" />
+						<img class="item-flag hidden-xs" src="../../../../img/drapeaux/32x21/France.png" alt="FRA" />
 						<div class="item-rating">
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
 							<span class="glyphicon glyphicon-star"></span>
 							<span class="glyphicon glyphicon-star"></span>
 							<span class="glyphicon glyphicon-star"></span>
@@ -257,23 +256,13 @@
 
 					
 				</ul>
+				<div id="bottom-list"></div>
 			</div>
 			<div class="col-xs-6">
-				<div class="result-area clearfix" data-spy="affix" data-offset-top="300"> 
+				<div class="result-area clearfix " data-spy="affix" > 
 				<!-- <div class="result-area clearfix"> -->
 					<button id="validate" type="button" class="btn btn-primary btn-block" >Valider</button>
-					<!-- <ul id="numero" class="hidden-num">
-						<li class="ui-state-highlight ui-sortable-handle">1</li>
-						<li class="ui-state-highlight ui-sortable-handle">2</li>
-						<li class="ui-state-default ui-sortable-handle">3</li>
-						<li class="ui-state-highlight ui-sortable-handle">4</li>
-						<li class="ui-state-default ui-sortable-handle">5</li>
-						<li class="ui-state-highlight ui-sortable-handle">6</li>
-						<li class="ui-state-highlight ui-sortable-handle">7</li>
-						<li class="ui-state-highlight ui-sortable-handle">8</li>
-						<li class="ui-state-highlight ui-sortable-handle">9</li>
-						<li class="ui-state-highlight ui-sortable-handle">10</li>
-					</ul> -->
+					
 					<ul id="sortable2" class="connectedSortable ui-sortable">
 						
 					</ul>
@@ -365,12 +354,7 @@
 				//pageSection();
 				 $('body').scrollspy("refresh");
 		});
-		$('#archive-toggle').click(function() {
-				$('[data-spy="scroll"]').each(function ()
-{
-				  setTimeout(function(){ $(this).scrollspy('refresh');}, 1000);           
-				});
-		});
+		
 		//$.scrollTo( 0 );
                 
         //$('.nav-tabs').tab();
@@ -387,6 +371,7 @@
 					$('body').scrollTo(this.hash, 500, {offset: -scrollX});
 			}
                 $('.navbar-collapse').removeClass('in');
+			
 		});
                 
 		$('[data-toggle=dropdown]').dropdown();
@@ -394,35 +379,20 @@
 		// cache the window object
 	    $window = $(window);
                 
-               
-		$('section[data-type="background"]').each(function(){
-			 // declare the variable to affect the defined data-type
-			 var $scroll = $(this);
-											 
-			  $(window).scroll(function() {
-					if($(window).width() > 768){
-						// HTML5 proves useful for helping with creating JS functions!
-						// also, negative value because we're scrolling upwards                             
-						var yPos = -($window.scrollTop() / $scroll.data('speed')); 
-
-						// background position
-						var coords = '50% '+ yPos + 'px';
-
-						// move the background
-						$scroll.css({ backgroundPosition: coords });
-					}   
-			  }); // end window scroll
-        });  // end section function
-               
-                
-		$(function(){
-		   $("#archive-toggle").click(function () {
-				  $(this).text(function(i, text){
-						  return text === "Archives" ? "Réduire" : "Archives";
-				  })
-		   });
-		})
-                
+        $('.result-area').affix({
+			  offset: {
+				top: 380,
+				bottom: function () {
+				  var total = $('body').height();
+				  var bottomfixed = $('#bottom-list').offset().top;
+				  var offset = total - bottomfixed;
+				  //if(total - offset < bottomfixed) {offset = ofset - $('.result-area').height();}
+				  return offset;
+				}
+			  }
+			});     
+		
+             
     });
     var cbpAnimatedHeader = (function() {
  
@@ -467,6 +437,8 @@
 				$(".section").removeClass("inactiveSection");
 			}
 				
+				
+			
 		}
          
 			function scrollY() {

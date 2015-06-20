@@ -165,17 +165,15 @@ visibility:visible;
 transform: rotateY(360deg);
 opacity : 1;
 }
-#sortable1, #sortable2, #numero {
+#sortable1, #sortable2 {
 
 min-height: 400px;
 list-style-type: none;
 margin: 0;
 padding: 5px 0 0 0;
 }
-#numero {
-width: 6%;
-border: transparent dashed 3px;
-float:left;
+#sortable1 {
+min-height: 700px;
 }
 #sortable2 {
 width: 100%;
@@ -183,11 +181,10 @@ background-color: rgb(239, 240, 241);;
 border: grey dashed 3px;
  // float: left;
 }
-#sortable1 li, #sortable2 li, #numero li {
+#sortable1 li, #sortable2 li{
 margin: 0 5px 5px 5px;
 padding: 5px;
 font-size: 1.2em;
-//width: 94%;
 }
 #sortable1 li, #sortable2 li {
 border: 1px solid #A2A8B2;
@@ -260,6 +257,9 @@ float:left;
  top:100px;
  width: 540px;
 }
+.affix-bottom{
+	position: relative;
+}
 .progress{
 	width: 100%;
 	margin-top: 5px;
@@ -312,6 +312,24 @@ float:left;
 	.affix{
 		width: 43%;
 	}
+	
+	.calendar-combo .btn{
+		font-size:15px;
+	}
+	#calendar-list{
+		font-size:15px;
+	}
+	#sortable1 li, #sortable2 li{
+		font-size: 1em;
+	}
+	#pari-panel li .item-rating {
+		line-height: normal;
+		margin:0;
+	}
+	#pari-panel li .item-name {
+		margin:0;
+	}
+
 }
 
 @media (min-width: 768px) {
@@ -374,4 +392,35 @@ float:left;
 		margin-right: 0;
 	}
 	
+	
+}
+@media (max-width: 650px) {
+	
+	#sortable1 li, #sortable2 li{
+		font-size: 0.8em;
+	}
+}
+
+@media (max-width: 500px) {
+	.calendar-combo .btn{
+		font-size:12px;
+	}
+	#calendar-list{
+		font-size:12px;
+	}
+	#sortable1 li, #sortable2 li{
+		font-size: 0.6em;
+	}
+}
+
+@media (max-width: 370px) {
+	.calendar-combo .btn{
+		font-size:9px;
+	}
+	#calendar-list{
+		font-size:9px;
+	}
+	#sortable1 li, #sortable2 li{
+		font-size: 0.5em;
+	}
 }

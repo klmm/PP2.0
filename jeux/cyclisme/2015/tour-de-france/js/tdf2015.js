@@ -105,7 +105,7 @@ function Init_Zone_Paris()
 		postData += "&prono[" + i + "]=" + $(this).attr("id");
 		i++;
 	    });
-	    
+	    //alert(postData);
 	    $.ajax(
 	    {
 		url : formURL,
@@ -235,6 +235,9 @@ function render_prono_autre(id_cal,joueur){
 }
 
 function calcrisk(){
+	if($("#sortable2 li").size() > 10) {
+				return;
+	}
 	var jauge = $('.result-area').find('.progress-bar');
 	var total = 0;
 	

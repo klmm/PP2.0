@@ -444,7 +444,7 @@ $cr = array(
     echo '  <div class="section products" id="games" style="margin-bottom:120px;">
                 <div class="sectionSide">
                     <h2 class="section-heading">Jeux</h2>
-                    <p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p> 
+                    <p class="section-highlight">Venez vous confronter aux autres joueurs dans la bonne humeur !</p> 
                 </div>';
 
     if ($nb_jeux_avenir > 0){
@@ -585,7 +585,7 @@ $cr = array(
                     </div>
                     <div class='col-md-6'>
                         <input type='text' placeholder='Login (entre 3 et 12 chiffres et lettres)' name='login' class='form-control' required='' data-validation-required-message='Veuillez choisir un login'>
-                        <input type='email' placeholder='email' name='email' class='form-control' required='' data-validation-required-message='Veuillez indiquer une adresse mail valide'>	
+                        <input type='email' placeholder='email (votre mot de passe vous y sera envoyé)' name='email' class='form-control' required='' data-validation-required-message='Veuillez indiquer une adresse mail valide'>	
                     </div>
                     <div class='col-md-4'></div>
                     <div class='col-md-4'>
@@ -593,7 +593,7 @@ $cr = array(
                                 <span style='display:block;padding: 0 8px 0 8px;height:38px;line-height:38px;'>Envoyer</span>
                         </button>
                     </div>
-                    <div class='col-md-4'></div>
+		    <div class='col-md-4'></div>
                 </form>
             </div>
         </div>";
@@ -651,7 +651,7 @@ $cr = array(
                     <div id='contact-container' class='row'>
                         <div class='sectionSide'>
                             <h2 class='section-heading'>Contact</h2>
-                            <p class='section-highlight'>Un souci, une question, une idée? N'hésitez pas à nous contacter !</p>
+                            <p class='section-highlight'>Un souci, une question, une idée ? N'hésitez pas à nous contacter !</p>
                         </div>
 
                         <form id='contact-form' role='form' class='row contact-form' action='/lib/form/contact_mail.php' method='POST'>

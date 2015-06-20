@@ -8,6 +8,7 @@
 
 
     function dateheure_sql_to_fr($date){
+	setlocale(LC_TIME, 'fr_FR');
 	$date2 = strtotime($date);
 	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
 	

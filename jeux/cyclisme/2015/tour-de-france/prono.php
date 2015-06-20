@@ -264,13 +264,20 @@
 	echo '		    <li><a href="' . clean_url($url_cal) . '">' . $value['nom_complet'] . '</a></li>';
     }
 
+    if($calendrier['distance'] != 0){
+	$distance = ' (' . $calendrier['distance'] . ' km)';
+    }
+    else{
+	$distance = '';
+    }
     
     echo '
 			</ul>
 		    </div>
 			
 		    <div class="sectionSide">
-			<h2 class="section-heading">' . $calendrier['nom_complet'] . '</h2>
+			<h2 class="section-heading">' . $calendrier['nom_complet'] . $distance . '</h2>
+			<p class="section-highlight" style="margin-bottom:50px">' . $calendrier['date_debut_fr'] . ' - '. $calendrier['heure_debut_fr'] . '</p>
 			<p class="section-highlight">Faites votre pari ! Faites glisser vos favoris dans la zone prévue.</p>
 		    </div>';
 //---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//
@@ -285,7 +292,7 @@
     if($calendrier['profil_equipe']){
 	foreach($equipes as $id => $equipe){
 	    if($equipe['pos_prono'] === 0){
-		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
+		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$equipe['etoiles']; $z++){
 		    echo '	<span class="glyphicon glyphicon-star"></span>';
@@ -297,7 +304,7 @@
     else{
 	foreach($cyclistes as $id => $cycliste){
 	    if($cycliste['pos_prono'] === 0 || $mise_resultat == true){
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden xs" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$cycliste['etoiles']; $z++){
 		    echo '	<span class="glyphicon glyphicon-star"></span>';
@@ -309,9 +316,10 @@
 			
     echo '
 			</ul>
+			<div id="bottom-list"></div>
 		    </div>
 		    <div class="col-xs-6">
-			<div class="result-area clearfix" data-spy="affix" data-offset-top="300">
+			<div class="result-area clearfix" data-spy="affix">
 			    <div id="msg-container"> </div>
 			    <input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>';
     
@@ -427,9 +435,9 @@
 	    <script src="/js/d3.min.js"></script>
 	    
 	    <script>
-		jQuery(document).ready(function ($) {
-		    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-		    
+	    jQuery(document).ready(function ($) {
+		$(function () {$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();} );
+
 		    calcrisk();
 		    updateNums();
 		    getAllComs(0,' . $ID_JEU . ',' . $ID_CAL . ',0);
@@ -437,101 +445,103 @@
 		    Init_Forms();
 		    Init_Forms_Cyclisme();
 		    Init_Zone_Paris();
-		     
-		    $(window).resize(function() {		
-			$(\'body\').scrollspy("refresh");
-		    });
-		    //$.scrollTo( 0 );
-		    $(\'body\').scrollspy({ target: \'#navbar-main\',offset:250 })
-		    $(\'.nav-tabs\').tab();
-		    $(\'a[data-action="scrollTo"]\').click(function(e) {
-			    e.preventDefault();
-			    scrollX = $(\'.header\').height();
-			    $(\'.menu\').toggleClass(\'active\');
-			    if(this.hash == "#image") {
-				    $(\'body\').scrollTo(0,500,null);
-					    $(".section").removeClass("inactiveSection");
-			    } else {
-				    $(\'body\').scrollTo(this.hash, 500, {offset: -scrollX});
-			    }
-			    $(\'.navbar-collapse\').removeClass(\'in\');
-		    });
-
-		    $(\'[data-toggle=dropdown]\').dropdown();
-
-		    // cache the window object
-	       $window = $(window);
-
-	       $(\'section[data-type="background"]\').each(function(){
-		     // declare the variable to affect the defined data-type
-		     var $scroll = $(this);
-
-		      $(window).scroll(function() {
-			    // HTML5 proves useful for helping with creating JS functions!
-			    // also, negative value because we\'re scrolling upwards                             
-			    var yPos = -($window.scrollTop() / $scroll.data(\'speed\')) + 100; 
-
-			    // background position
-			    var coords = \'50% \'+ yPos + \'px\';
-
-			    // move the background
-			    $scroll.css({ backgroundPosition: coords });    
-		      }); // end window scroll
-	       });  // end section function
-
-	});
-	    var cbpAnimatedHeader = (function() {
-
-	var docElem = document.documentElement,
-	    header = document.querySelector( \'header\' ),
-	    didScroll = false,
-	    resultarea = document.querySelector( \'.result-area\' ),
-	    fixResultZone = 150,
-	    changeHeaderOn = 98;
-
-
-	function init() {
-	    window.addEventListener( \'scroll\', function( event ) {
-		if( !didScroll ) {
-		    didScroll = true;
-		    setTimeout( scrollPage, 250 );
-		}
-	    }, false );
-	}
-	    function stickyMenu(element,nextelement) {
-
-	    }
-	function scrollPage() {
-	    var sy = scrollY();
-	    if ( sy >= changeHeaderOn ) {
-		classie.add( header, \'small\' );
-	    }
-	    else {
-		classie.remove( header, \'small\' );
-	    }
-	    didScroll = false;
-
-		    var activeTarget = $("#navbar-main li.active a").attr("href");
-		    //alert(activeTarget);
-		    $(".activeSection").removeClass("activeSection");
-		    if(sy > 650) {
-		    $(".section").addClass("inactiveSection");
-
-		    $(activeTarget).addClass("activeSection");
-		    } else {
-		    $(".section").removeClass("inactiveSection");
+                
+		$(window).resize(function() {
+				 $(\'body\').scrollspy("refresh");
+		});
+	                
+		$(\'a[data-action="scrollTo"]\').click(function(e)
+		{
+			e.preventDefault();
+			scrollX = $(\'.header\').height();
+			$(\'.menu\').toggleClass(\'active\');
+			if(this.hash == "#myCarousel") {
+					$(\'body\').scrollTo(0,500,null);
+						   
+					$(".section").removeClass("inactiveSection");
+			} else {
+					$(\'body\').scrollTo(this.hash, 500, {offset: -scrollX});
+			}
+			$(\'.navbar-collapse\').removeClass(\'in\');	
+		});
+                
+		$(\'[data-toggle=dropdown]\').dropdown();
+        
+		// cache the window object
+		$window = $(window);
+                
+		$(\'.result-area\').affix({
+		    offset: {
+			  top: 380,
+			  bottom: function () {
+			    var total = $(\'body\').height();
+			    var bottomfixed = $(\'#bottom-list\').offset().top;
+			    var offset = total - bottomfixed;
+			    //if(total - offset < bottomfixed) {offset = ofset - $(\'.result-area\').height();}
+			    return offset;
+			  }
 		    }
+		  });     
+		
+             
+	    });
+	    
 
-	}
 
-	function scrollY() {
-	    return window.pageYOffset || docElem.scrollTop;
-	}
+	    var cbpAnimatedHeader = (function() {
+ 
+		var docElem = document.documentElement,
+				header = document.querySelector( \'header\' ),
+				didScroll = false,
+				resultarea = document.querySelector( \'.result-area\' ),
+				fixResultZone = 150,
+				changeHeaderOn = 98;
+                        
+         
+		function init() {
+				window.addEventListener( \'scroll\', function( event ) {
+						if( !didScroll ) {
+								didScroll = true;
+								setTimeout( scrollPage, 250 );
+						}
+				}, false );
+		}
+                
+		function scrollPage() {
+			var sy = scrollY();
+			if ( sy >= changeHeaderOn ) {
+					classie.add( header, \'small\' );
+			}
+			else {
+					classie.remove( header, \'small\' );
+			}
+			didScroll = false;
+			
+			var activeTarget = $("#navbar-main li.active a").attr("href");
+			//alert(activeTarget);
+		   
+			$(".activeSection").removeClass("activeSection");
+			if(sy > 650) {
+		   
+				$(".section").addClass("inactiveSection");
+			
+				$(activeTarget).addClass("activeSection");
+			} else {
+		   
+				$(".section").removeClass("inactiveSection");
+			}
+				
+				
+			
+		}
+         
+		function scrollY() {
+				return window.pageYOffset || docElem.scrollTop;
+		}
 
-	init();
-
-    })();
-
+		init();
+         
+        })();
 
 	    </script>
 

@@ -25,7 +25,7 @@
 	    $arr['distance'] = $enregistrement->distance;
 	    
 	    $arr['date_debut'] = $enregistrement->date_debut;
-	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
+	    $arr_date = dateheure_sql_to_fr($arr['date_debut']);
 	    $arr['date_debut_fr_court'] = $arr_date['date_court'];
 	    $arr['date_debut_fr'] = $arr_date['date'];
 	    $arr['heure_debut_fr'] = $arr_date['heure'];

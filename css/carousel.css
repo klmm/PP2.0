@@ -27,7 +27,8 @@
 
 .carousel-inner > .item > a > img {
 	position: absolute;
-	top: 0;
+	top: 50%;
+	transform: translateY(-50%);
 	left: 0;
 	min-width: 100%;
 	opacity : 0.8;
@@ -104,6 +105,10 @@
 	text-align: justify;
 	max-height: 39px;
 	overflow: hidden;
+}
+
+.carousel-caption .credits {
+	margin-top:-50px;
 }
 
 .carousel-control {

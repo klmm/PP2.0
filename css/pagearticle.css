@@ -37,8 +37,8 @@
 /* Text */
 .article-text{ 
   font-family: 'Georgia';
-  line-height: 2em;
-  font-size: 20px;
+  line-height: 1.5em;
+  font-size: 1.5em;
   color: black;
 }
 
@@ -74,15 +74,6 @@
 
 #list-right{
 	 //box-shadow: 0 0 15px rgba(150,150,150,0.8);
-}
-
-#reuters {
-	margin-top:-100px;
-	color:white;
-	float: right;
-	font-size: 12px;
-	text-shadow: 1px 1px black;
-	padding: 10px;
 }
 
 /* liens articles */

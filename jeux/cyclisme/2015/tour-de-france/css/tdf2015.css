@@ -138,6 +138,14 @@
   position: absolute;
   border: none;
 }
+/*pari-panel pres+combo*/
+.calendar-combo{
+	left: 50%;
+	transform : translateX(-50%);
+}
+#calendar-list{
+	font-size:18px;
+}
 
 /*pari-panel */
 #validate {

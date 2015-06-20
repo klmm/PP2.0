@@ -69,6 +69,15 @@ p {
 	padding:60px 0;
 	margin-bottom:0;
 }
+
+.credits {
+	margin-top:-100px;
+	color:white;
+	float: right;
+	font-size: 12px;
+	text-shadow: 1px 1px black;
+	padding: 10px;
+}
 /* ______________________________ couleurs sports___________________________________*/
 .bcr-foot{
     background-color: #96ff00!important;
@@ -257,13 +266,26 @@ header.small #header-bottom {
 	background:#808285;
 	color:white;
 }
+#header-bottom  .nav>.home>a{
+	font-size:25px;
+	color:black;
+	top:0;
+}
+#header-bottom  .nav>.home>a>span{
+	display: none;
+	padding:15px 30px;
+	font-size:18px;
+	color:black;
+	line-height:27px;
+	font-family: 'Open Sans', sans-serif;
+}
 
 #header-bottom  .nav>li#logosmall.active>a {
 	background:transparent;
 
 }
 #header-top h1 { /* logo header déplié */
-	text-indent:-99999px;
+	//text-indent:-99999px;
 	width:160px;
 	height:78px;
 	padding:0;
@@ -275,6 +297,9 @@ header.small #header-bottom {
 	   -moz-transition: opacity 0.5s;
 		    transition: opacity 0.5s;
 	opacity:1;
+}
+#header-top h1 a{ 
+	opacity:0;
 }
 header.small #header-top h1 {
 	opacity:0;
@@ -372,7 +397,7 @@ ul.nav.nav-pills{
 }
 
 .badge {
-	border-radius:5px;
+	border-radius:0 0 0 5px;
 	//background-color:rgb(115, 50, 130);
 	font-size: 14px;
 	float:right;
@@ -644,6 +669,14 @@ footer  p {
 	}
 	.section-heading {
 		font-size: 30px;
+	}
+	
+	#header-bottom  .nav>.home>a>span{
+		display: inline;
+		font-size:14px;
+	}
+	#header-bottom  .nav>.home>a::before{
+		vertical-align: middle;
 	}
 }
 

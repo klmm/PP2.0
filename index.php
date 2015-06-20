@@ -165,7 +165,7 @@ $cr = array(
 					    </form>
 					    <li class="divider"> </li>
 					    <form style="text-align: center; padding: 5px; cursor:pointer;">
-						<a href="/#inscription">S\'inscrire</a>
+						<a href="#inscription">S\'inscrire</a>
 					    </form>
 					    <form style="text-align: center; padding: 5px; cursor:pointer;">
 						<a data-toggle="collapse" data-target="#lostPassword">Mot de passe oublié ?</a>
@@ -279,7 +279,7 @@ $cr = array(
     echo '  <div id="news-section" class="section" style="background-color: white;">	
                 <div class="container marketing">
                     <div class="row hidden-xs hidden-sm">
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" style="margin-top:0;"> 
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000" style="margin-top:0;"> 
                             <ol class="carousel-indicators">
                                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>';
  
@@ -312,6 +312,9 @@ $cr = array(
                                         <img src="' . $arr_unes[$i]['photo_chemin'] . '" class="img-responsive" alt="' . $arr_unes[$i]['photo_chemin'] . '">
                                         <div class="container">
                                             <div class="carousel-caption">
+						<div class="credits">
+						    <p>' . $arr_unes[$i]['photo_credits'] . '</p>
+						</div>
                                                 <div class="col-md-9">
                                                     <h1>'. $arr_unes[$i]['titre'] . '</h1>
                                                     <p class="unes-intro">' . $arr_unes[$i]['debut'] . '...</p>
@@ -447,34 +450,6 @@ $cr = array(
                     <p class="section-highlight">Venez vous confronter aux autres joueurs dans la bonne humeur !</p> 
                 </div>';
 
-    if ($nb_jeux_avenir > 0){
-        echo " 
-                <div class='actualGames'>
-                    <ul class='gamesList' style='padding:0;'>";
-        for ($i = 0; $i < $nb_jeux_avenir; $i++) {
-            $jeu_sport = $arr_jeux[$i]['sport'];
-            echo "
-                        <li class='game-item'>
-                            <section class='game-box' data-speed='6' data-type='background' style='background-image:url(" . $arr_jeux[$i]['image'] . ")'>
-                                <div class='game-content'>
-                                    <div class='game-text col-md-9 hidden-xs'>
-                                        <div class='jumbotron " . $bcr[$jeu_sport]. "'>
-                                            <h2>" . $jeu_sport . " - " . $arr_jeux[$i]['competition'] . "</h2>
-                                            <p>" . $arr_jeux[$i]['description'] . "</p>
-                                        </div>
-                                    </div>
-                                    <div class='game-button col-md-3 col-sm-3 col-xs-12'>
-                                            <a class='btn btn-primary btn-lg " . $bcr[$jeu_sport]. "' href='" . $arr_jeux[$i]['url'] . "' disabled>Bientôt...</a>
-                                    </div>
-                                </div>
-                            </section>
-                        </li>";
-        }
-        echo " 
-                    </ul>
-                </div>";
-    }
-
     if ($nb_jeux_encours > 0){
         echo " 
                 <div class='actualGames'>
@@ -502,7 +477,34 @@ $cr = array(
                     </ul>
                 </div>";
     }
-        
+    
+    if ($nb_jeux_avenir > 0){
+        echo " 
+                <div class='actualGames'>
+                    <ul class='gamesList' style='padding:0;'>";
+        for ($i = 0; $i < $nb_jeux_avenir; $i++) {
+            $jeu_sport = $arr_jeux[$i]['sport'];
+            echo "
+                        <li class='game-item'>
+                            <section class='game-box' data-speed='6' data-type='background' style='background-image:url(" . $arr_jeux[$i]['image'] . ")'>
+                                <div class='game-content'>
+                                    <div class='game-text col-md-9 hidden-xs'>
+                                        <div class='jumbotron " . $bcr[$jeu_sport]. "'>
+                                            <h2>" . $jeu_sport . " - " . $arr_jeux[$i]['competition'] . "</h2>
+                                            <p>" . $arr_jeux[$i]['description'] . "</p>
+                                        </div>
+                                    </div>
+                                    <div class='game-button col-md-3 col-sm-3 col-xs-12'>
+                                            <a class='btn btn-primary btn-lg " . $bcr[$jeu_sport]. "' href='" . $arr_jeux[$i]['url'] . "' disabled>Bientôt...</a>
+                                    </div>
+                                </div>
+                            </section>
+                        </li>";
+        }
+        echo " 
+                    </ul>
+                </div>";
+    }
 
     if ($nb_jeux_finis > 0){
         echo " 

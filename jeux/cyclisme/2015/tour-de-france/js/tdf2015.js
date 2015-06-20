@@ -50,28 +50,30 @@ function Init_Zone_Paris()
 		connectWith: ".connectedSortable",
 		scroll : true,
 		cursor : "move",
-		over: function( event, ui ) {
-			if($("#sortable2 li").size() == 10) {
-				//$( "#numero" ).switchClass( "visible", "hidden", 1000);
-			}
-		},
-		receive: function( event, ui ) {calcrisk();updateNums();}
+		receive: function( event, ui ) {
+		    calcrisk();
+		    updateNums();
+		}
 	}).disableSelection();
+	
 	$( "#sortable2" ).sortable({
 		connectWith: ".connectedSortable",
 		scroll : true,
 		cursor : "move",
-		over: function( event, ui ) {
-			
-			if($("#sortable2 li").size() == 10) {
-				//$( "#numero" ).switchClass( "hidden", "visible", 1000);
-			}
-			if($("#sortable2 li").size() > 10) {
-				$( "#sortable1" ).sortable( "cancel" );
-			}
+		over: function( event, ui ) {  
+		    updateNums();
+		    if($("#sortable2 li").size() == 11) {
+			$( "#sortable1" ).sortable( "cancel" );
+			updateNums();
+			calcrisk();
+		    }
 		},
-		update: function( event, ui ) {updateNums()},
-		receive: function( event, ui ) {calcrisk();}
+		update: function( event, ui ) {  
+		    updateNums();
+		},
+		receive: function( event, ui ) {
+		    calcrisk();
+		}
 	}).disableSelection();
 	
 	$("#item-search").keyup(function(){
@@ -117,25 +119,14 @@ function Init_Zone_Paris()
 		    var msg = result.msg;
 		    var rafr = result.rafr;
 		    var res = result.resultat;
-		    
-		    if(res == null){
-			alert('res nul');
-			//location.reload();
-			return;
-		    }
-		    
-		    if(rafr == null || rafr == true){
-			alert('rafr nul');
-			//location.reload();
-			return;
-		    }
-		    
-		    if(msg != null){
+		        
+		    if(msg != null && res != null){
+			alert(msg);
 			$( "#msg-container" ).empty();
 			$( "#msg-container" ).append(msg);
 		    }
 		    else{
-			alert('msg nul');
+			location.reload();
 		    }
 		    
 

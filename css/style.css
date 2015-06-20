@@ -197,7 +197,7 @@ header.small {
 	position:absolute;
 	left:0;
 	top:10px;
-	background:transparent url(../img/logos/logo_small.jpg) no-repeat top left !important;
+	background:transparent url(../img/logos/logo_small2.png) no-repeat top left !important;
 	opacity:0;
 	-webkit-transition: opacity 0.5s;
 	-moz-transition: opacity 0.5s;

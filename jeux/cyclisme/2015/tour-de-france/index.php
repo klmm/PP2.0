@@ -134,7 +134,7 @@
 	    <header id="home" class="no-js">
                <div class="navbar-wrapper" id="header-top">
                     <div class="container">
-                        <h1><a href="#image">Parions Potes</a></h1>  
+                        <h1><a href="/">Parions Potes</a></h1>  
                         <ul class="social" style="float:right; margin-right: 20px;">
                         <li class="twitter">
                             <a href="https://twitter.com/ParionsPotes" target="_blank">
@@ -546,7 +546,7 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 		// cache the window object
 	   $window = $(window);
 	 
-	   $(\'section[data-type="background"]\').each(function(){
+	   /*$(\'section[data-type="background"]\').each(function(){
 		 // declare the variable to affect the defined data-type
 		 var $scroll = $(this);
 						 
@@ -561,7 +561,7 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 			// move the background
 			$scroll.css({ backgroundPosition: coords });    
 		  }); // end window scroll
-	   });  // end section function
+	   });  // end section function*/
 		
     });
 	var cbpAnimatedHeader = (function() {

@@ -247,7 +247,7 @@
 	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND LEFT(date_debut,8)=? AND LEFT(date_fin,8)=? LIMIT 1";
+	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND LEFT(date_debut,8)=? AND LEFT(date_fin,8)=? ORDER BY date_debut ASC LIMIT 1";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 	$prep->bindValue(2,$date_seule,PDO::PARAM_STR);
@@ -257,12 +257,13 @@
 	
 	$enregistrement = $prep->fetch();
 
+	
 	if( $enregistrement ){
-	    return $enregistrement->id_cal;
+	    return $enregistrement->id_cal; // ETAPE DU JOUR
 	}
 	else{
-	    //On fait la requete sur le login
-	    $sql2 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND date_debut>? ORDER BY date_debut ASC LIMIT 1";
+	    
+	    $sql2 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND date_debut>? AND disponible=1 ORDER BY date_debut ASC LIMIT 1";
 	    $prep2 = $db->prepare($sql2);
 	    $prep2->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 	    $prep2->bindValue(2,$date_heure,PDO::PARAM_STR);
@@ -271,10 +272,10 @@
 	    $enregistrement2 = $prep2->fetch();
 
 	    if( $enregistrement2 ){
-		return $enregistrement2->id_cal;
+		return $enregistrement2->id_cal; // PROCHAINE DISPO
 	    }
 	    else{
-		$sql3 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? ORDER BY date_fin DESC LIMIT 1";
+		$sql3 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND traite=1 ORDER BY date_fin DESC LIMIT 1";
 		$prep3 = $db->prepare($sql3);
 		$prep3->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 		$prep3->execute();
@@ -283,10 +284,10 @@
 		$enregistrement3 = $prep3->fetch();
 
 		if( $enregistrement3 ){
-		    return $enregistrement3->id_cal;
+		    return $enregistrement3->id_cal; // DERNIERE TRAITEE
 		}
 		else{
-		    return 0;
+		    return 1;
 		}
 	    }
 	}

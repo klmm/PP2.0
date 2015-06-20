@@ -134,12 +134,13 @@
 	$tmp = '';
     }
     
+    // GERER POUR LE BOUTON PARIER : NON-DISPO / DISPO / COMMENCE
+    
     $res = '	    
 		    <div class="pres-box" style="background-image:url(/img/articles/cyclisme/demare_deg.jpg)">
 			<div class="pres-panel">
 			   <div class="pres-button col-md-12 col-sm-12 col-xs-12">
-				<a class="btn btn-primary btn-lg ' . $tmp . '"
-				href="' . $calendrier['url'] . '">Parier</a>
+				<a class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">Parier</a>
 			    </div>
 			    <div class="pres-text col-md-9 col-sm-9 hidden-xs">
 				<div class="jumbotron bcr-rugby">

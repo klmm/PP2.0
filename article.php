@@ -146,7 +146,7 @@ $cr = array(
             <header id="home" class="no-js">
                <div class="navbar-wrapper" id="header-top">
                     <div class="container">
-                        <h1><a href="#image">Parions Potes</a></h1>  
+                        <h1><a href="/">Parions Potes</a></h1>  
                         <ul class="social" style="float:right; margin-right: 20px;">
                         <li class="twitter">
                             <a href="https://twitter.com/ParionsPotes" target="_blank">
@@ -237,8 +237,9 @@ $cr = array(
                                 </div>
                                 <div class="navbar-collapse collapse" id="navbar-main">
                                     <ul class="nav navbar-nav pull-right" style="">
-                                        <li class=""><a href="#article" data-action="scrollTo">Article</a></li>
+                                        <li class="active"><a href="#article" data-action="scrollTo">Article</a></li>
                                         <li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
+					<li class="home"><a href="/" class="glyphicon glyphicon-home "  aria-label="home"><span> Retour au site</span></a></li>
                                     </ul>  
                                 </div>
                             </div>
@@ -279,7 +280,7 @@ $cr = array(
 //---------------------------------------------ARTICLE------------------------------------------------------//
     echo '
             <section id="article" data-speed="4" data-type="background">
-                <div id="reuters" class="right">
+                <div id="reuters" class="credits">
                     <p>' . $photo_credits . '</p>
                 </div>
                 <div class="container">

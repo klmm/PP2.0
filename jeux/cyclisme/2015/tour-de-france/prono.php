@@ -142,7 +142,7 @@
 	    <header id="home" class="no-js">
                <div class="navbar-wrapper" id="header-top">
                     <div class="container">
-                        <h1><a href="#image">Parions Potes</a></h1>  
+                        <h1><a href="../">Parions Potes</a></h1>  
                         <ul class="social" style="float:right; margin-right: 20px;">
                         <li class="twitter">
                             <a href="https://twitter.com/ParionsPotes" target="_blank">
@@ -234,10 +234,10 @@
                                 </div>
                                 <div class="navbar-collapse collapse" id="navbar-main">
                                     <ul class="nav navbar-nav pull-right" style="">
-                                        <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
-					<li class=""><a href="#pari-panel" data-action="scrollTo">Mon prono</a></li>
+					<li class="active"><a href="#pari-panel" data-action="scrollTo">Mon prono</a></li>
 					<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
-                                    </ul>  
+					<li class="home"><a href="../" class="glyphicon glyphicon-home "  aria-label="home"><span> Retour au site</span></a></li>
+				    </ul>  
                                 </div>
                             </div>
                         </div>
@@ -251,7 +251,7 @@
     echo '
             <div id="pari-panel" class="section" style="background-color: white;">
                 <div class="container" id="presentation-etape">
-		    <div class="btn-group">
+		    <div class="btn-group calendar-combo">
 			<button type="button" class="btn btn-default">' . $calendrier['nom_complet'] . '</button>
 			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 			    <span class="caret"></span>
@@ -268,8 +268,6 @@
     echo '
 			</ul>
 		    </div>
-		    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pari précédent</button>
-		    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Pari suivant</button>
 			
 		    <div class="sectionSide">
 			<h2 class="section-heading">' . $calendrier['nom_complet'] . '</h2>
@@ -314,7 +312,7 @@
 		    </div>
 		    <div class="col-xs-6">
 			<div class="result-area clearfix" data-spy="affix" data-offset-top="300">
-			    <div class="msg-container"> </div>
+			    <div id="msg-container"> </div>
 			    <input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>';
     
     
@@ -333,7 +331,7 @@
     if($bConnected && $mise_resultat == false){
 	for($i=0;$i<sizeof($prono['cyclistes_prono']);$i++){
 	    if($calendrier['profil_equipe']){
-		$equipe = $prono['cyclistes_prono'][$i];
+		$equipe = $prono['equipes_prono'][$i];
 		if ($equipe['id_cyclisme_equipe']){
 		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
 		    for($z=0; $z<$cycliste['etoiles']; $z++){

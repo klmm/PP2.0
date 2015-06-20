@@ -115,15 +115,15 @@ $cr = array(
 	<meta property="og:title" content="' . $titre . '" />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="www.parions-potes.fr" />
-	<meta property="og:image" content="' . $photo_chemin_deg . '">
+	<meta property="og:image" content="' . $photo_chemin . '">
 	<meta name="content-language" content="fr"/>
-	<meta name="keywords" content="pronostics paris gratuits sport cyclisme ski biathlon amis ' . $titre . '"/>
+	<meta name="keywords" content="pronostics paris gratuits ' . $titre . '"/>
 	<meta name="subject" content=""/>
 	<meta name="copyright" content="Parions Potes 2015"/>
 	<meta name="identifier-url" content="www.parions-potes.fr"/>
 	<meta name="description" content="' . $debut_article . '" />
 	
-        <link rel="shortcut icon" href="/img/logos/logo_site.ico"/>';
+        <link rel="shortcut icon" href="/img/logos/icone.ico"/>';
 
     // TITLE
     echo '

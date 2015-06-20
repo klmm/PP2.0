@@ -3,6 +3,9 @@
     $js = '/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js';
     $css = '/jeux/cyclisme/2015/tour-de-france/css/tdf2015.css';
     $titre = 'Parions Potes - Tour de France 2015';
+    $logo = '/img/logos/2015/tdf.png';
+    $description = 'Pronostics gratuits sur le Tour de France 2015.';
+    $keywords = 'pronostics paris gratuits sport cyclisme tdf tourdefrance 2015';
     
     //--------------------------------------FONCTIONS--------------------------------------//
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_breves.php';
@@ -98,13 +101,17 @@
         <meta name="author" content="" />
 
 	<meta name="content-language" content="fr"/>
-	<meta name="description" content="Pronostics sur le Tour de France 2015."/>
-	<meta name="keywords" content="pronostics paris gratuits sport cyclisme tdf tour de france 2015"/>
+	<meta name="description" content="' . $description . '"/>
+	<meta name="keywords" content="' . $keywords . '"/>
 	<meta name="subject" content=""/>
 	<meta name="copyright" content="Parions Potes 2015"/>
 	<meta name="identifier-url" content="www.parions-potes.fr"/>
+	<meta property="og:title" content="' . $titre . '" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="www.parions-potes.fr" />
+	<meta property="og:image" content="' . $logo . '"/>
 	
-        <link rel="shortcut icon" href="/img/logos/logo_site.ico"/>';
+        <link rel="shortcut icon" href="/img/logos/icone.ico"/>';
 
     // TITLE
     echo '

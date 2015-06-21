@@ -146,7 +146,7 @@
 		    $nb_trouves++;
 		    $score_tmp = $TABLEAU_POINTS[$i]*$TABLEAU_POINTS[$j];
 		    if($i == $j){
-			$score_tmp = $score_tmp*$COEFF_EXACT;
+			$score_tmp = intval($score_tmp*$COEFF_EXACT);
 		    }
 		    $score_joueur = $score_joueur+$score_tmp;
 		}

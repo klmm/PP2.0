@@ -248,22 +248,6 @@
 
 
 //---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//	
-    echo '
-            <div id="pari-panel" class="section" style="background-color: white;">
-                <div class="container" id="presentation-etape">
-		    <div class="btn-group calendar-combo">
-			<button type="button" class="btn btn-default">' . $calendrier['nom_complet'] . '</button>
-			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			    <span class="caret"></span>
-			    <span class="sr-only">Toggle Dropdown</span>
-			</button>
-			<ul id="calendar-list" class="dropdown-menu" role="menu">';
-    
-    foreach($liste_calendrier as $key => $value){
-	$url_cal = $value['id_cyclisme_calendrier'] . '-' . $value['nom_complet'];
-	echo '		    <li><a href="' . clean_url($url_cal) . '">' . $value['nom_complet'] . '</a></li>';
-    }
-
     if($calendrier['distance'] != 0){
 	$distance = ' (' . $calendrier['distance'] . ' km)';
     }
@@ -272,12 +256,28 @@
     }
     
     echo '
-			</ul>
-		    </div>
-			
+            <div id="pari-panel" class="section" style="background-color: white;">
+                <div class="container" id="presentation-etape">
 		    <div class="sectionSide">
 			<h2 class="section-heading">' . $calendrier['nom_complet'] . $distance . '</h2>
 			<p class="section-highlight" style="margin-bottom:50px">' . $calendrier['date_debut_fr'] . ' - '. $calendrier['heure_debut_fr'] . '</p>
+			
+			<div class="btn-group calendar-combo">
+			    <button type="button" class="btn btn-default">' . $calendrier['nom_complet'] . '</button>
+			    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				<span class="caret"></span>
+				<span class="sr-only">Toggle Dropdown</span>
+			    </button>
+			    <ul id="calendar-list" class="dropdown-menu" role="menu">';
+    
+    foreach($liste_calendrier as $key => $value){
+	$url_cal = $value['id_cyclisme_calendrier'] . '-' . $value['nom_complet'];
+	echo '			<li><a href="' . clean_url($url_cal) . '">' . $value['nom_complet'] . '</a></li>';
+    }
+    
+    echo '
+			    </ul>
+			</div>
 			<p class="section-highlight">Faites votre pari ! Faites glisser vos favoris dans la zone prévue.</p>
 		    </div>';
 //---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//
@@ -339,10 +339,10 @@
     if($bConnected && $mise_resultat == false){
 	for($i=0;$i<sizeof($prono['cyclistes_prono']);$i++){
 	    if($calendrier['profil_equipe']){
-		$equipe = $prono['equipes_prono'][$i];
+		$equipe = $prono['cyclistes_prono'][$i];
 		if ($equipe['id_cyclisme_equipe']){
-		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
-		    for($z=0; $z<$cycliste['etoiles']; $z++){
+		    echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden-xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
+		    for($z=0; $z<$equipe['etoiles']; $z++){
 			echo '	<span class="glyphicon glyphicon-star"></span>';
 		    }
 		    echo '	    </div></li>';}

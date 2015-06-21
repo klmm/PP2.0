@@ -7,6 +7,7 @@ function Init_Forms_Cyclisme()
 	{
 		var id = $(this).attr("value");	
 		render_pres_panel(id);
+		getAllComs(0,id_jeu,id,0);
 	});
 	
 	$(document).on('mouseover', '#calendar a', function(e)
@@ -20,8 +21,7 @@ function Init_Forms_Cyclisme()
 	{
 		var joueur = $(this).find(".table-name").html().valueOf();
 		var id_cal = $(this).parent().parent().attr("id");
-		
-		alert(id_cal + ' ' + joueur);
+
 		render_prono_autre(id_cal,joueur);
 	});
 }
@@ -37,12 +37,12 @@ function Init_Zone_Paris()
 		var href = $(this).find('a').attr('href');
 		var titre = "Avertissement !";
 		var texte = "Votre pari ne semble pas terminé. Voulez-vous continuer ?";
-		if (pari_valide){
+		/*if (pari_valide){
 			return true;
 		} else {
 			dialog(href, titre, texte);
 			return false;
-		}
+		}*/
 		
 	});
 	
@@ -186,6 +186,7 @@ function render_pres_panel(id_cal){
 		data : postData,
 		success:function(data, textStatus, jqXHR) 
 		{	    
+		    
 		    var result = $.parseJSON(data);
 		    var html = result.html;
 		    var premier = result.premier;
@@ -214,8 +215,8 @@ function render_prono_autre(id_cal,joueur){
 		success:function(data, textStatus, jqXHR) 
 		{	    
 		    var result = data;
-		    $( ".son_prono" ).empty();
-		    $( ".test" ).append(result);
+		    $( "#son_prono" ).empty();
+		    $( "#son_prono" ).append(result);
 		    
 		},
 		error: function(jqXHR, textStatus, errorThrown) 

@@ -109,7 +109,7 @@
 	}
 	
 	if($b_jeunes || $b_equipe){
-	    $_SESSION['cyclisme_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 20;
+	    $_SESSION['cyclisme_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 30;
 	}
 	else{
 	    $_SESSION['cyclisme_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 30;

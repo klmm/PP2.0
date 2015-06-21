@@ -118,6 +118,21 @@
     
   
     
+    
+    
+    
+    
+    
+    
+    if($calendrier['distance'] != 0){
+	$distance = ' (' . $calendrier['distance'] . ' km)';
+    }
+    else{
+	$distance = '';
+    }
+    
+    
+    
     $calendrier['url'] = clean_url('pronostic/' . $ID_CAL . '-' . $calendrier['nom_complet']);
     
     $prono_joueur['prono'] = explode(';',$prono_joueur['prono']);
@@ -127,33 +142,28 @@
     
     // AFFICHAGE PARTIE CALENDRIER
     
-    if($calendrier['commence']){
+    if($calendrier['commence'] && $calendrier['traite']){
 	$tmp = 'disabled';
+	$txt = 'Terminé';
+    }
+    elseif($calendrier['commence'] && !$calendrier['traite']){
+	$tmp = 'disabled';
+	$txt = 'En cours';
     }
     else{
 	$tmp = '';
+	$txt = 'Parier';
     }
-    
-    // GERER POUR LE BOUTON PARIER : NON-DISPO / DISPO / COMMENCE
-    
-    $res = '	    
-		    <div class="pres-box" style="background-image:url(/img/articles/cyclisme/demare_deg.jpg)">
-			<div class="pres-panel">
-			   <div class="pres-button col-md-12 col-sm-12 col-xs-12">
-				<a class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">Parier</a>
-			    </div>
-			    <div class="pres-text col-md-9 col-sm-9 hidden-xs">
-				<div class="jumbotron bcr-rugby">
-				    <p>' . $calendrier['nom_complet'] . '</p>
-				</div>
-			    </div>
-			    <div class="pres-stat col-md-3 col-sm-3 hidden-xs">
-				<div class="stat-box stat-inline">
 
-				</div>
-			    </div>
-			</div>
-		    </div>';
+    $res = '	    
+		<div class="pres-panel">
+		    <p class="section-highlight">' . $calendrier['nom_complet'] . $distance . '</p>
+			
+		    <div class="pres-button col-md-12 col-sm-12 col-xs-12">
+			<a class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
+		    </div>
+		</div>
+		<div class="result-panel">';
     
     // AFFICHAGE PARTIE CALENDRIER
     
@@ -186,7 +196,7 @@
 	
 	
 	// PRONO JOUEUR
-	$res .= '	<div class="table-box col-md-6 col-sm-6 col-xs-12">
+	$res .= '	<div class="table-stat-box col-md-6 col-sm-6 col-xs-12">
 			    <div class="sectionSide">
 				<p class="section-highlight">Mon Top 10</p>
 			    </div>
@@ -209,16 +219,18 @@
 	}
 	
 	$res .= '	    </table>
-			</div>';
+			</div>
+		    </div>';
 	
 	
 	
 	// AUTRES JOUEURS
-	$res .= '	<div class="row other-result">
-			    <div class="table-box col-md-6 col-sm-6 col-xs-12">
-				<div class="sectionSide">
-				    <p class="section-highlight">Scores</p>
-				</div>	
+	$res .= '   <div class="row other-result">
+			<div class="table-box col-md-6 col-sm-6 col-xs-12">
+			    <div class="sectionSide">
+				<p class="section-highlight">Scores</p>
+			    </div>
+			    <div class="classement-table">
 				<table id="' . $ID_CAL . '" class="table table-hover scores">';
 	
 	$count = 0;
@@ -243,7 +255,11 @@
 	
 	$res .= '		</table>
 			    </div>
-			</div>';
+			</div>
+			<div id="son_prono" class="table-stat-box col-md-6 col-sm-6 col-xs-12 hidden-xs">
+
+			</div>
+		    </div>';
 	
     }
     else{
@@ -273,10 +289,13 @@
 	
 	$res .= '	</table>
 		    </div>
+		    <div class="stat-box col-md-6 col-sm-6 col-xs-12">
+
+		    </div>
 		</div>';
     }
     
-    
+    $res .= '</div>';
     
     
     $envoi = array(
@@ -284,60 +303,4 @@
 	    'html' => $res);
     
     echo json_encode($envoi);
-/*
-		// AFFICHAGE PARTIE CLASSEMENTS
-		    
-		    // AFFICHAGE PRONO JOUEUR
-		    var content_prono_joueur = '' +
-			'<div class="row later">
-			    '<div class="table-box col-md-6 col-sm-6 col-xs-12">
-				'<div class="sectionSide">
-				    '<p class="section-highlight">Mon Top 10</p>
-				'</div>
-				'<table class="table table-hover">
-				    '<tr class="">';
-				    
-		    if(prono_joueur == null){
-			for (var i = 1; i <= 10; i++) {
-			    content_prono_joueur += '' +    
-				'<th class="table-place col-md-2">' + i + '.</th>
-				'<td class="table-name col-md-6">-</td>
-				'<td class="table-point col-md-4">-</td>';
-			}
-		    }
-		    else{
-			for (var i = 1; i <= prono_joueur.prono.length; i++) {
-			    content_prono_joueur += '' +    
-				'<th class="table-place col-md-2">' + i + '.</th>
-				'<td class="table-name col-md-6">' + cyclistes[prono_joueur.prono[i-1]].prenom + ' ' + cyclistes[prono_joueur.prono[i-1]].nom + '</td>';
-			
-			    if(calendrier.traite){
-				content_prono_joueur += '<td class="table-point col-md-4">' + prono_joueur.points_prono[i-1] + '</td>';
-			    }
-			    else{
-				content_prono_joueur += '<td class="table-point col-md-4">-</td>';
-			    }	
-			}
-		    }
-		    
-		    content_prono_joueur +='
-					    '</tr>
-					'</table>
-				    '</div>
-				    '<div class="stat-box col-md-6 col-sm-6 col-xs-12">
-					    '<!-- zone pour des stats -->
-				    '</div>
-				'</div>';
-		    
-		    
-		    
-		    
-		    // AFFICHAGE TOP 10 REEL
-		    if(calendrier.traite == "1"){
-			
-		    }
-		    else{
-
-		    }
-  */
 ?>

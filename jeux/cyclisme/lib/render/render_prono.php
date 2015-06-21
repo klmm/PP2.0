@@ -64,8 +64,7 @@
     $prono['prono'] = explode(";", $prono['prono']);
     $prono['points_prono'] = explode(";", $prono['points_prono']);
     
-    $res = '	<div id="son_prono" class="table-stat-box col-md-6 col-sm-6 col-xs-12">
-		    <div class="sectionSide">
+    $res = '	    <div class="sectionSide">
 			<p class="section-highlight">Top 10 de ' . $joueur . '</p>
 		    </div>	
 		    <table class="table table-hover">';
@@ -88,8 +87,7 @@
 	$res .= '	</tr>';
     }
     
-    $res .= '	    </table>
-		</div>';
+    $res .= '	    </table>';
     
     
     echo $res;

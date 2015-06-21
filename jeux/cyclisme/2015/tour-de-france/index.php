@@ -226,8 +226,7 @@
                                 </div>
                                 <div class="navbar-collapse collapse" id="navbar-main">
                                     <ul class="nav navbar-nav pull-right" style="">
-                                        <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
-                                        <li class=""><a href="#news" data-action="scrollTo">Actualité</a></li>
+                                        <li class="active"><a href="#news" data-action="scrollTo">Actualité</a></li>
                                         <li class=""><a href="#classements" data-action="scrollTo">Classements</a></li>
 					<li class=""><a href="#resultats" data-action="scrollTo">Pronostics</a></li>
 					<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
@@ -241,6 +240,18 @@
 //---------------------------------------------FIN HEADER------------------------------------------------------//';
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ 
 //---------------------------------------------BREVES------------------------------------------------------//	
     echo '  <div id="news" class="section" style="background-color: white;">
 		<div class="container">
@@ -288,12 +299,24 @@
 		
 //---------------------------------------------BREVES------------------------------------------------------//	    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 //---------------------------------------------CLASSEMENTS------------------------------------------------------//	
     if($nb_classements > 0){
 	echo '  <div class="section" id="classements" style="margin-bottom:120px;">
 		    <div class="sectionSide">
 			<h2 class="section-heading">Classements</h2>
-			<p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p>
 		    </div>
 		    <div id="tabs" class="tabs nav-center">
 			<ul class="nav nav-tabs" role="tablist" id="tab-list">';
@@ -377,9 +400,11 @@
     
 //---------------------------------------------CLASSEMENTS------------------------------------------------------//	  
 
+  
+    
+    
     
 
-    
     
 //---------------------------------------------CALENDRIER------------------------------------------------------//	
     if($nb_calendrier > 0){
@@ -419,61 +444,43 @@
 			    </div>
 			</nav>
 		    </div>
-		</div>';   
-    }
-//---------------------------------------------CALENDRIER------------------------------------------------------//
-   
-   
-    /*		    <div id="pres-panel" class="pres-panel">
-
+     		    <div id="cal-container" class="right-content col-md-9 col-sm-12 col-xs-12">	
+		
 		    </div>
-		    <div id="result-panel" class="result-panel" >
-		    
-		    </div>*/
-// -- ZONE AJAX ---
-    echo '	<div class="cal-container right-content col-md-9 col-sm-12 col-xs-12">
-
-		</div>';
-    
-// 
-//---------------------------------------------COMMENTAIRES------------------------------------------------------//	
-    echo '
-            <section id="comment" data-speed="2" data-type="background">
-                <div class="container" id="commentaires">';
-				
-    if ($bConnected){
+		    <div class="comment-panel">
+			<div class="" id="commentaires">';
+	
+	if ($bConnected){
         echo '
-		    <div class="sectionSide">
-			<h2 class="section-heading">Commentaires</h2>
-			<p class="section-highlight">Venez donner votre point de vue !</p>			
-		    </div>
-		    
-                    <div class="row post-container">		
-			<form id="post-form" role="form" class="row post-form" action="/lib/form/post_commentaire.php" method="POST">
-			    
+			    <div class="sectionSide">
+				<h2 class="section-heading">Commentaires</h2>
+				<p class="section-highlight">Venez donner votre point de vue !</p>			
+			    </div>
 
-			</form>
-                    </div>';
+			    <div class="row post-container">		
+				<form id="post-form" role="form" class="row post-form" action="/lib/form/post_commentaire.php" method="POST">
+
+
+				</form>
+			    </div>';
     }
     else{
-        echo '	    <div class="sectionSide">
-			<h2 class="section-heading">Commentaires</h2>
-			<p class="section-highlight">Connectez-vous pour participer au débat !</p>
-		    </div>';
+        echo '		    <div class="sectionSide">
+				<h2 class="section-heading">Commentaires</h2>
+				<p class="section-highlight">Connectez-vous pour participer au débat !</p>
+			    </div>';
     }
 	
-    echo '	    <div class="row com-container">
+    echo '		    <div class="row com-container">
 	
+			    </div>
+			</div>
 		    </div>
-		</div>
-            </section>';
-//---------------------------------------------FIN COMMENTAIRES------------------------------------------------------//	
+		</div>'; 
+    }
+//---------------------------------------------CALENDRIER------------------------------------------------------//
 
 
-
-    
-    
-    
     
     
     

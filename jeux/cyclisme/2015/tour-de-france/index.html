@@ -15,9 +15,8 @@
         <link href="../../../../css/font-awesome.min.css" rel="stylesheet" />
         <link href="../../../../css/carousel.css" rel="stylesheet" />
         <link href="../../../../css/style.css" rel="stylesheet" />
-	<link href="../../../../css/pagearticle.css" rel="stylesheet" />
+        <link href="../../../../css/pagearticle.css" rel="stylesheet" />
         <link href="css/tdf2015.css" rel="stylesheet" />
-		
         <style type="text/css"></style>
     </head>
     <body data-spy="scroll" data-target="#navbar-main" data-offset="100">
@@ -25,17 +24,17 @@
         <div class="navbar-wrapper" id="header-top">
             <div class="container">
                 <h1>
-                    <a href="#myCarousel">Parions Potes</a>
+                    <a href="/">Parions Potes</a>
                 </h1>
                 <ul class="social" style="float:right; margin-right: 20px;">
                     <li class="twitter">
                         <a href="https://twitter.com/ParionsPotes" target="_blank">
-                            <img src="../../../../img/static/icons_set/no_border/twitter.png" alt="Twitter" />
+                            <img src="/img/static/icons_set/no_border/twitter.png" alt="Twitter" />
                         </a>
                     </li>
                     <li class="facebook">
                         <a href="https://www.facebook.com/parionspotes" target="_blank">
-                            <img src="../../../../img/static/icons_set/no_border/facebook.png" alt="Facebook" />
+                            <img src="/img/static/icons_set/no_border/facebook.png" alt="Facebook" />
                         </a>
                     </li>
                 </ul>
@@ -50,12 +49,12 @@
                         data-target="#navbar-main">
                             <span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
                         </button> 
-                        <a class="navbar-brand logosmall" href="#myCarousel" id="logosmall" data-action="scrollTo"></a>
-                        <ul class="nav nav-pills" style="position:absolute;margin-left:90px;width:50%">
+                        <a class="navbar-brand logosmall" href="#image" id="logosmall" data-action="scrollTo"></a>
+                        <ul class="nav nav-pills">
                             <li class="dropdown" id="menuLogin">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navLogin"
                                 style="color:rgb(115, 50, 130);background:transparent;">
@@ -76,6 +75,9 @@
                                     </li>
                                     <li style="list-style: none; display: inline">
                                         <form style="text-align: center; padding: 5px; cursor:pointer;">
+                                            <a href="/#inscription">S'inscrire</a>
+                                        </form>
+                                        <form style="text-align: center; padding: 5px; cursor:pointer;">
                                             <a data-toggle="collapse" data-target="#lostPassword">Mot de passe oublié ?</a>
                                         </form>
                                         <form id="lostPassword" role="form" action="/lib/form/pass_oublie.php" method="post"
@@ -89,16 +91,19 @@
                         </ul></div>
                         <div class="navbar-collapse collapse" id="navbar-main">
                             <ul class="nav navbar-nav pull-right" style="">
+                                <!-- <li class="active"><a href="#image" data-action="scrollTo">Image</a></li> -->
                                 <li class="active">
-                                    <a href="#news" data-action="scrollTo">Présentation</a>
+                                    <a href="#news" data-action="scrollTo">Actualité</a>
                                 </li>
                                 <li class="">
                                     <a href="#classements" data-action="scrollTo">Classements</a>
                                 </li>
                                 <li class="">
-                                    <a href="#resultats" data-action="scrollTo">Calendrier</a>
+                                    <a href="#resultats" data-action="scrollTo">Pronostics</a>
                                 </li>
-                   
+                                <li class="">
+                                    <a href="#commentaires" data-action="scrollTo">Commentaires</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -106,110 +111,1146 @@
             </div>
         </div>
     </header>
-	
-	
-	
-    <div id="news" class="section" style="background-color: white;">
+    
+	<div id="news" class="section" style="background-color: white;">
         <div class="container">
-			<div class="col-md-8 col-sm-8">
-				<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
-					<h1 class="section-heading">News</h1>
-				</div>
-				<!-- Debut zone actualités -->
-				<div id="zone-news">
-					<p class="article-text bold">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football...</p>
-					<p class="article-text">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon !
-
-					Après une mise en bouche avec le Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions Potes » sera présent sur toutes les épreuves féminines et  masculines de la coupe du monde FIS ainsi que les championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom !
-
-					N’oublions pas le biathlon que nous retrouverons dès la fin du mois. Espérons que notre franc-tireur favori Martin Fourcade se soit remis physiquement !</p>
-					
-					<p class="article-text bold">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football...</p>
-					<p class="article-text">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon !
-
-					Après une mise en bouche avec le Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions Potes » sera présent sur toutes les épreuves féminines et  masculines de la coupe du monde FIS ainsi que les championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom !
-
-					N’oublions pas le biathlon que nous retrouverons dès la fin du mois. Espérons que notre franc-tireur favori Martin Fourcade se soit remis physiquement !</p>
-				</div>
-	
-			</div>
-			<div class="col-md-3 col-md-offset-1 col-sm-4 hidden-xs">
-				<div id="list-right">
-					<div class="sectionSide">
-						<h2 class="section-heading">Sur le sujet</h2>	
-					</div>
-					
-					<div class="list-group list-articles-right clearfix">
-						<a href="#" class="list-articles-item-right list-group-item col-md-12">
-							<span class="badge">Sport</span>
-							<img src="../../../../img/articles/football/msn_deg.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-						<a href="#" class="list-articles-item-right list-group-item col-md-12">
-							<span class="badge">Sport</span>
-							<img src="../../../../img/articles/football/msn_deg.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-						<a href="#" class="list-articles-item-right list-group-item col-md-12">
-							<span class="badge">Sport</span>
-							<img src="../../../../img/articles/football/msn_deg.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-						<a href="#" class="list-articles-item-right list-group-item col-md-12">
-							<span class="badge">Sport</span>
-							<img src="../../../../img/articles/football/msn_deg.jpg" alt="aie"/>
-							<h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
-							<p class="list-group-item-text">Categorie</p>
-						</a>
-					</div>	
-					
-				</div>
-			</div>
-		</div>
+            <div class="col-md-8 col-sm-8 col-xs-8 col-xs-offset-2">
+                <div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
+                    <h1 class="section-heading">News</h1>
+                </div>
+                <!-- Debut zone actualités -->
+                <div id="zone-news">
+                    <p class="article-text bold">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de
+                    football...</p>
+                    <p class="article-text">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de
+                    football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon ! Après une mise en bouche avec le
+                    Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions
+                    Potes » sera présent sur toutes les épreuves féminines et masculines de la coupe du monde FIS ainsi que les
+                    championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom ! N’oublions
+                    pas le biathlon que nous retrouverons dès la fin du mois. Espérons que notre franc-tireur favori Martin
+                    Fourcade se soit remis physiquement !</p>
+                    <p class="article-text bold">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de
+                    football...</p>
+                    <p class="article-text">Après la Coupe du monde de FIFA, le Tour de France et la saison européenne de
+                    football, « Parions Potes » lance son nouveau jeu Ski Alpin et Biathlon ! Après une mise en bouche avec le
+                    Ski Alpin à Soelden le mois dernier et les premiers bons résultats de nos géantistes français, « Parions
+                    Potes » sera présent sur toutes les épreuves féminines et masculines de la coupe du monde FIS ainsi que les
+                    championnats du monde. A commencer par ce weekend à Levi pour les premières manches de slalom ! N’oublions
+                    pas le biathlon que nous retrouverons dès la fin du mois. Espérons que notre franc-tireur favori Martin
+                    Fourcade se soit remis physiquement !</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-1 col-sm-4 hidden-xs">
+                <div id="list-right">
+                    <div class="sectionSide">
+                        <h2 class="section-heading">Sur le sujet</h2>
+                    </div>
+                    <div class="list-group list-articles-right clearfix">
+                    <a href="#" class="list-articles-item-right list-group-item col-md-12">
+                    <span class="badge">Sport</span> 
+                    <img src="../../../../img/articles/football/msn_deg.jpg" alt="aie" />
+                    <h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+                    <p class="list-group-item-text">Categorie</p></a> 
+                    <a href="#" class="list-articles-item-right list-group-item col-md-12">
+                    <span class="badge">Sport</span> 
+                    <img src="../../../../img/articles/football/msn_deg.jpg" alt="aie" />
+                    <h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+                    <p class="list-group-item-text">Categorie</p></a> 
+                    <a href="#" class="list-articles-item-right list-group-item col-md-12">
+                    <span class="badge">Sport</span> 
+                    <img src="../../../../img/articles/football/msn_deg.jpg" alt="aie" />
+                    <h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+                    <p class="list-group-item-text">Categorie</p></a> 
+                    <a href="#" class="list-articles-item-right list-group-item col-md-12">
+                    <span class="badge">Sport</span> 
+                    <img src="../../../../img/articles/football/msn_deg.jpg" alt="aie" />
+                    <h4 class="list-group-item-heading">Titre exemple pas trop trop long.</h4>
+                    <p class="list-group-item-text">Categorie</p></a></div>
+                </div>
+            </div>
+        </div>
     </div>
-	
-	
-	
-    <div class="section " id="classements" style="margin-bottom:120px;">
+   
+   <div class="section" id="classements" style="margin-bottom:120px;">
         <div class="sectionSide">
             <h2 class="section-heading">Classements</h2>
             <p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p>
         </div>
-		<div class="navbar" role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tabs">
-					<span class="sr-only">Toggle navigation</span>
+<!--         <div class="navbar" role="navigation">
+            <div class="navbar-header navbar-default">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tabs">
+                    <span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+                </button>
+				<a class="navbar-brand">Classements</a>
+            </div> -->
+            <div id="tabs" class="tabs nav-center">
+                <ul class="nav nav-tabs" role="tablist" id="tab-list">
+                    <li role="presentation" class="active">
+                        <a href="#section-0" role="tab" data-toggle="tab">
+                            <span>Général</span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#section-1" role="tab" data-toggle="tab">
+                            <span>Par points</span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#section-2"  role="tab" data-toggle="tab">
+                            <span>Victoires</span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#section-3" role="tab" data-toggle="tab">
+                            <span>Podiums</span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#section-4"  role="tab" data-toggle="tab">
+                            <span>Tops 10</span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#section-5" role="tab" data-toggle="tab">
+                            <span>Baroudeurs</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#section-6"  data-toggle="tab">
+                            <span>Tir groupé</span>
+                        </a>
+                    </li>
+					<li id="lastTab" class="dropdown">
+						<a class="btn dropdown-toggle" data-toggle="dropdown" >
+						  More <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" id="collapsed">
+						  
+						</ul>
+					</li>
+                </ul>
+            </div>
+        <!-- </div> -->
+        <div class="tab-content">
+            <div id="section-0" role="tabpanel" class="tab-pane active">
+                <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <div class="sectionSide">
+                        <p class="section-highlight">Récompense le meilleur pronostiqueur du jeu</p>
+                    </div>
+                    <div class="classement-table">
+                        <table class="table">
+                            <tbody>
+                                <tr class="">
+                                    <th class="col-md-2"></th>
+                                    <th class="col-md-8"></th>
+                                    <th class="col-md-2">Score</th>
+                                    <th class="col-md-2">Pronos</th>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test24</td>
+                                    <td class="">2503</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test185</td>
+                                    <td class="">2220</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">3</td>
+                                    <td class="">test147</td>
+                                    <td class="">2145</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test107</td>
+                                    <td class="">2054</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">Toto</td>
+                                    <td class="">2053</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">5</td>
+                                    <td class="">test157</td>
+                                    <td class="">2020</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">6</td>
+                                    <td class="">test109</td>
+                                    <td class="">1880</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">7</td>
+                                    <td class="">test5</td>
+                                    <td class="">1835</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">8</td>
+                                    <td class="">test113</td>
+                                    <td class="">1815</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">9</td>
+                                    <td class="">test23</td>
+                                    <td class="">1785</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">10</td>
+                                    <td class="">test94</td>
+                                    <td class="">1778</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test172</td>
+                                    <td class="">1749</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">12</td>
+                                    <td class="">test105</td>
+                                    <td class="">1740</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">13</td>
+                                    <td class="">test41</td>
+                                    <td class="">1724</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">14</td>
+                                    <td class="">test106</td>
+                                    <td class="">1692</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">15</td>
+                                    <td class="">test143</td>
+                                    <td class="">1650</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">16</td>
+                                    <td class="">test141</td>
+                                    <td class="">1640</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">17</td>
+                                    <td class="">test122</td>
+                                    <td class="">1630</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">18</td>
+                                    <td class="">test195</td>
+                                    <td class="">1622</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">19</td>
+                                    <td class="">test31</td>
+                                    <td class="">1605</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">20</td>
+                                    <td class="">test101</td>
+                                    <td class="">1604</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">21</td>
+                                    <td class="">test25</td>
+                                    <td class="">1597</td>
+                                    <td class="">2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="section-1" role="tabpanel" class="tab-pane">
+                <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <div class="sectionSide">
+                        <p class="section-highlight">Récompense le pronostiqueur le plus régulier</p>
+                    </div>
+                    <div class="classement-table">
+                        <table class="table">
+                            <tbody>
+                                <tr class="">
+                                    <th class="col-md-2"></th>
+                                    <th class="col-md-8"></th>
+                                    <th class="col-md-2">Score</th>
+                                    <th class="col-md-2">Pronos</th>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test113</td>
+                                    <td class="">25</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test147</td>
+                                    <td class="">25</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">3</td>
+                                    <td class="">test24</td>
+                                    <td class="">21</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test107</td>
+                                    <td class="">20</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test106</td>
+                                    <td class="">20</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">6</td>
+                                    <td class="">test94</td>
+                                    <td class="">16</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">7</td>
+                                    <td class="">test41</td>
+                                    <td class="">12</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">7</td>
+                                    <td class="">test122</td>
+                                    <td class="">12</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">9</td>
+                                    <td class="">test109</td>
+                                    <td class="">10</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">9</td>
+                                    <td class="">test38</td>
+                                    <td class="">10</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test93</td>
+                                    <td class="">7</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test5</td>
+                                    <td class="">7</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">13</td>
+                                    <td class="">test185</td>
+                                    <td class="">5</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">14</td>
+                                    <td class="">test40</td>
+                                    <td class="">3</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">14</td>
+                                    <td class="">test198</td>
+                                    <td class="">3</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">16</td>
+                                    <td class="">test23</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">16</td>
+                                    <td class="">test157</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">18</td>
+                                    <td class="">test25</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">18</td>
+                                    <td class="">test0</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">18</td>
+                                    <td class="">Toto</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="section-2" role="tabpanel" class="tab-pane">
+                <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <div class="sectionSide">
+                        <p class="section-highlight">Récompense les vainqueurs d&#39;étape</p>
+                    </div>
+                    <div class="classement-table">
+                        <table class="table">
+                            <tbody>
+                                <tr class="">
+                                    <th class="col-md-2"></th>
+                                    <th class="col-md-8"></th>
+                                    <th class="col-md-2">Victoires</th>
+                                    <th class="col-md-2">Pronos</th>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test113</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test147</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="section-3" role="tabpanel" class="tab-pane">
+                <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <div class="sectionSide">
+                        <p class="section-highlight">Récompense les trusteurs de podiums</p>
+                    </div>
+                    <div class="classement-table">
+                        <table class="table">
+                            <tbody>
+                                <tr class="">
+                                    <th class="col-md-2"></th>
+                                    <th class="col-md-8"></th>
+                                    <th class="col-md-2">Podiums</th>
+                                    <th class="col-md-2">Pronos</th>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test107</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test94</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test24</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test106</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test113</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test147</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">Toto</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="section-4" role="tabpanel" class="tab-pane">
+                <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <div class="sectionSide">
+                        <p class="section-highlight">Récompense les habitués aux Top 10</p>
+                    </div>
+                    <div class="classement-table">
+                        <table class="table">
+                            <tbody>
+                                <tr class="">
+                                    <th class="col-md-2"></th>
+                                    <th class="col-md-8"></th>
+                                    <th class="col-md-2">Top 10</th>
+                                    <th class="col-md-2">Pronos</th>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">Toto</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test24</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test23</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test157</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test94</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test0</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test93</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test25</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test38</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test40</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test41</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test122</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test5</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test185</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test147</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test109</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test198</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test107</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test113</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test106</td>
+                                    <td class="">1</td>
+                                    <td class="">2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="section-5" role="tabpanel" class="tab-pane">
+                <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <div class="sectionSide">
+                        <p class="section-highlight">Récompense les preneurs de risque</p>
+                    </div>
+                    <div class="classement-table">
+                        <table class="table">
+                            <tbody>
+                                <tr class="">
+                                    <th class="col-md-2"></th>
+                                    <th class="col-md-7"></th>
+                                    <th class="col-md-3">Bonus risque moyen</th>
+                                    <th class="col-md-2">Pronos</th>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test124</td>
+                                    <td class="">300</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">2</td>
+                                    <td class="">test159</td>
+                                    <td class="">290</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">3</td>
+                                    <td class="">test183</td>
+                                    <td class="">280</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test31</td>
+                                    <td class="">275</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">Toto</td>
+                                    <td class="">275</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test9</td>
+                                    <td class="">275</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">6</td>
+                                    <td class="">test153</td>
+                                    <td class="">265</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">6</td>
+                                    <td class="">test73</td>
+                                    <td class="">265</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">6</td>
+                                    <td class="">test125</td>
+                                    <td class="">265</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">6</td>
+                                    <td class="">test185</td>
+                                    <td class="">265</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">10</td>
+                                    <td class="">test24</td>
+                                    <td class="">260</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test193</td>
+                                    <td class="">250</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test117</td>
+                                    <td class="">250</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test44</td>
+                                    <td class="">250</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">14</td>
+                                    <td class="">test105</td>
+                                    <td class="">245</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">14</td>
+                                    <td class="">test147</td>
+                                    <td class="">245</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">16</td>
+                                    <td class="">test85</td>
+                                    <td class="">240</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">16</td>
+                                    <td class="">test18</td>
+                                    <td class="">240</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">16</td>
+                                    <td class="">test156</td>
+                                    <td class="">240</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">19</td>
+                                    <td class="">test97</td>
+                                    <td class="">230</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">20</td>
+                                    <td class="">test48</td>
+                                    <td class="">225</td>
+                                    <td class="">2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="section-6" role="tabpanel" class="tab-pane">
+                <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
+                    <div class="sectionSide">
+                        <p class="section-highlight">Récompense les plus réguliers</p>
+                    </div>
+                    <div class="classement-table">
+                        <table class="table">
+                            <tbody>
+                                <tr class="">
+                                    <th class="col-md-2"></th>
+                                    <th class="col-md-7"></th>
+                                    <th class="col-md-3">Moyenne corrects</th>
+                                    <th class="col-md-2">Pronos</th>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test41</td>
+                                    <td class="">2.5</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test24</td>
+                                    <td class="">2.5</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">1</td>
+                                    <td class="">test107</td>
+                                    <td class="">2.5</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test5</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">Toto</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test25</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test185</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test191</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test168</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test147</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">4</td>
+                                    <td class="">test172</td>
+                                    <td class="">2</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test94</td>
+                                    <td class="">1.5</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test188</td>
+                                    <td class="">1.5</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test83</td>
+                                    <td class="">1.5</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test23</td>
+                                    <td class="">1.5</td>
+                                    <td class="">2</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="">11</td>
+                                    <td class="">test72</td>
+                                    <td class="">1.5</td>
+                                    <td class="">2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	<div class='section clearfix' id='resultats' style='min-height: 214px;'>
+        <div class="left-content col-md-3">
+            <nav id="calendar" class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
+                    <span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div id="tabs" class="tabs collapse navbar-collapse nav-center">
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class=""><a href="#section-1" class="icon-shop" role="tab" data-toggle="tab"><span>Général</span></a></li>
-					<li role="presentation" class=""><a href="#section-2" class="icon-cup" role="tab" data-toggle="tab"><span>UCI World Tour</span></a></li>
-					<li role="presentation" class=""><a href="#section-3" class="icon-food" role="tab" data-toggle="tab"><span>Classiques de Printemps</span></a></li>
-					<li role="presentation" class="active"><a href="#section-4" class="icon-truck" role="tab" data-toggle="tab"><span>Grands Tours</span></a></li>
-				</ul>
-				
-			</div>
-			
-		</div>
-		<div class="tab-content">
-				<div id="section-1" role="tabpanel" class="tab-pane">
-					<div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-						<div class="sectionSide">
-							<p class="section-highlight">Mon Top 10</p>
-						</div>	 
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+                </button> 
+                <a class="navbar-brand">Calendrier</a></div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-calendar">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a value="idcalendar">Link</a>
+                        </li>
+                        <li>
+                            <a href="#">Link</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div class="right-content col-md-9 col-sm-12 col-xs-12">
+            <!-- ii le panel qui va se remplir en ajax ! -->
+            <div class="pres-panel">
+                <!-- panel info calendrier pour l'instant on touche pas trop -->
+                <div class='pres-box' style='background-image:url(../../../../img/articles/cyclisme/demare_deg.jpg)'>
+                    <div class='pres-content'>
+                        <div class='pres-button col-md-12 col-sm-12 col-xs-12'>
+                            <a class='btn btn-primary btn-lg bcr-rugby' href='lien%20pari' disabled="disabled">Parier</a>
+                        </div>
+                        <div class='pres-text col-md-9 col-sm-9 hidden-xs'>
+                            <div class='jumbotron bcr-rugby'>
+                                <p>Attention à la cuiller de bois !</p>
+                            </div>
+                        </div>
+                        <div class='pres-stat col-md-3 col-sm-3 hidden-xs'>
+                            <div class='stat-box stat-inline'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="result-panel">
+                <!-- panel resultat: soit rien, soit la row-later, soit les deux rows player-result et other-result-->
+                <div class="row later">
+                    <div class="table-box col-md-6 col-sm-6 col-xs-12">
+                        <div class="sectionSide">
+                            <p class="section-highlight">Mon Top 10</p>
+                        </div>
+                        <table class="table table-hover">
+                            <tr class="goodbet">
+                                <!-- classe pou les tout piles -->
+                                <th class="table-place col-md-2">1.</th>
+                                <!-- on definit ici les tailles des colonnes du tableau -->
+                                <td class="table-name col-md-6">Fabio ARU</td>
+                                <td class="table-point col-md-4">625</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">2.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">3.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">4.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="goodbet">
+                                <th class="table-place">5.</th>
+                                <td class="table-name">Alberto Contador</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">6.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="goodbet">
+                                <th class="table-place">7.</th>
+                                <td class="table-name">Richie Porte</td>
+                                <td class="table-point">130</td>
+                            </tr>
+                            <tr class="almostbet">
+                                <!-- classe pour les mal placés -->
+                                <th class="table-place">8.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">9.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">5</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">10.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="stat-box col-md-6 col-sm-6 col-xs-12">
+                        <!-- zone pour des stats -->
+                    </div>
+                </div>
+                <div class="row player-result">
+                    <div class="table-box col-md-6 col-sm-6 col-xs-12">
+                        <div class="sectionSide">
+                            <p class="section-highlight">Résultat</p>
+                        </div>
+                        <table class="table table-hover">
+                            <tr>
+                                <th class="table-place col-md-2">1.</th>
+                                <td class="table-name col-md-10">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">2.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">3.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">4.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">5.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">6.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">7.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">8.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">9.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                            <tr>
+                                <th class="table-place">10.</th>
+                                <td class="table-name">...</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="table-stat-box col-md-6 col-sm-6 col-xs-12">
+                        <div class="sectionSide">
+                            <p class="section-highlight">Mon Top 10</p>
+                        </div>
+                        <table class="table table-hover">
+                            <tr class="goodbet">
+                                <th class="table-place col-md-2">1.</th>
+                                <td class="table-name col-md-6">Fabio ARU</td>
+                                <td class="table-point col-md-4">625</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">2.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">3.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">4.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="goodbet">
+                                <th class="table-place">5.</th>
+                                <td class="table-name">Alberto Contador</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">6.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="goodbet">
+                                <th class="table-place">7.</th>
+                                <td class="table-name">Richie Porte</td>
+                                <td class="table-point">130</td>
+                            </tr>
+                            <tr class="almostbet">
+                                <th class="table-place">8.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">9.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">5</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">10.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row other-result">
+                    <div class="table-box col-md-6 col-sm-6 col-xs-12">
+                        <div class="sectionSide">
+                            <p class="section-highlight">Scores</p>
+                        </div>
 						<div class="classement-table">
-							<table class="table">
-								<tr class=""> 
-									<th class="table-place col-md-2">1.</th> 
-									<td class="table-name col-md-6">Fabio ARU</td>
+							<table id="id cal !!!!" class="table table-hover scores">
+								<!-- ne pas oublier l'id et la classe scores -->
+								<tr class="">
+									<th class="table-place col-md-2">1.</th>
+									<td class="table-name col-md-6">Camomito</td>
 									<td class="table-point col-md-4">625</td>
 								</tr>
 								<tr class="">
@@ -229,7 +1270,7 @@
 								</tr>
 								<tr class="">
 									<th class="table-place">5.</th>
-									<td class="table-name">Alberto Contador</td>
+									<td class="table-name">Kevin</td>
 									<td class="table-point">...</td>
 								</tr>
 								<tr class="">
@@ -239,10 +1280,10 @@
 								</tr>
 								<tr class="">
 									<th class="table-place">7.</th>
-									<td class="table-name">Richie Porte</td>
+									<td class="table-name">Toto</td>
 									<td class="table-point">130</td>
 								</tr>
-								<tr class=""> 
+								<tr class="">
 									<th class="table-place">8.</th>
 									<td class="table-name">...</td>
 									<td class="table-point">...</td>
@@ -250,17 +1291,7 @@
 								<tr class="">
 									<th class="table-place">9.</th>
 									<td class="table-name">...</td>
-									<td class="table-point">5</td>
-								</tr>
-								<tr class="">
-									<th class="table-place">10.</th>
-									<td class="table-name">...</td>
-									<td class="table-point">...</td>
-								</tr>
-								<tr class="">
-									<th class="table-place">9.</th>
-									<td class="table-name">...</td>
-									<td class="table-point">5</td>
+									<td class="table-point">125</td>
 								</tr>
 								<tr class="">
 									<th class="table-place">10.</th>
@@ -269,534 +1300,307 @@
 								</tr>
 							</table>
 						</div>
-					</div>
-				</div>
-				<div id="section-2" role="tabpanel" class="tab-pane">
-					
-				</div>
-				<div id="section-3" role="tabpanel" class="tab-pane">
-					
-				</div>
-				<div id="section-4" role="tabpanel" class="tab-pane active">
-					
-				</div>
-			</div>
+                    </div>
+                    <div class="table-stat-box col-md-6 col-sm-6 col-xs-12">
+                        <div class="sectionSide">
+                            <p class="section-highlight">Son Top 10</p>
+                        </div>
+                        <table class="table table-hover">
+                            <tr class="goodbet">
+                                <th class="table-place col-md-2">1.</th>
+                                <td class="table-name col-md-6">Fabio ARU</td>
+                                <td class="table-point col-md-4">625</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">2.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">3.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">4.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="goodbet">
+                                <th class="table-place">5.</th>
+                                <td class="table-name">Alberto Contador</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">6.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="goodbet">
+                                <th class="table-place">7.</th>
+                                <td class="table-name">Richie Porte</td>
+                                <td class="table-point">130</td>
+                            </tr>
+                            <tr class="almostbet">
+                                <th class="table-place">8.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">9.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">5</td>
+                            </tr>
+                            <tr class="">
+                                <th class="table-place">10.</th>
+                                <td class="table-name">...</td>
+                                <td class="table-point">...</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="comment-panel">
+                <!-- panel commentaire on insere exactement la meme chose que pour les articles -->
+                <div class="" id="commentaires">
+                    <div class="sectionSide">
+                        <h2 class="section-heading">Commentaires</h2>
+                        <p class="section-highlight">Connectez-vous pour participer au débat !</p>
+                        <input name="id_article" id="id_article" type="text" class="hidden" required="" value="2" />
+                    </div>
+                    <div class="row com-container">
+                        <div class="like-form col-md-10 col-md-offset-1">
+                            <p id="id-com" value="216" class="hidden">Id</p>
+                            <p id="id-art" value="2" class="hidden">Id</p>
+                            <div class="comment-box clearfix">
+                                <p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
+                                <p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h51</p>
+                                <p class="time pull-right hidden">15/05/2015, à 22h51</p>
+                                <p class="comment col-md-12 col-sm-12 col-xs-12">test</p>
+                            </div>
+                            <div class="like-box clearfix">
+                            <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button> 
+                            <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button></div>
+                        </div>
+                        <div class="like-form col-md-10 col-md-offset-1">
+                            <p id="id-com" value="215" class="hidden">Id</p>
+                            <p id="id-art" value="2" class="hidden">Id</p>
+                            <div class="comment-box clearfix">
+                                <p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
+                                <p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h49</p>
+                                <p class="time pull-right hidden">15/05/2015, à 22h49</p>
+                                <p class="comment col-md-12 col-sm-12 col-xs-12">test</p>
+                            </div>
+                            <div class="like-box clearfix">
+                            <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button> 
+                            <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button></div>
+                        </div>
+                        <div class="like-form col-md-10 col-md-offset-1">
+                            <p id="id-com" value="214" class="hidden">Id</p>
+                            <p id="id-art" value="2" class="hidden">Id</p>
+                            <div class="comment-box clearfix">
+                                <p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
+                                <p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h47</p>
+                                <p class="time pull-right hidden">15/05/2015, à 22h47</p>
+                                <p class="comment col-md-12 col-sm-12 col-xs-12">test</p>
+                            </div>
+                            <div class="like-box clearfix">
+                            <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button> 
+                            <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button></div>
+                        </div>
+                        <div class="like-form col-md-10 col-md-offset-1">
+                            <p id="id-com" value="212" class="hidden">Id</p>
+                            <p id="id-art" value="2" class="hidden">Id</p>
+                            <div class="comment-box clearfix">
+                                <p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
+                                <p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h45</p>
+                                <p class="time pull-right hidden">15/05/2015, à 22h45</p>
+                                <p class="comment col-md-12 col-sm-12 col-xs-12">test</p>
+                            </div>
+                            <div class="like-box clearfix">
+                            <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button> 
+                            <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button></div>
+                        </div>
+                        <div class="like-form col-md-10 col-md-offset-1">
+                            <p id="id-com" value="203" class="hidden">Id</p>
+                            <p id="id-art" value="2" class="hidden">Id</p>
+                            <div class="comment-box clearfix">
+                                <p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
+                                <p class="time col-md-8 col-sm-8 col-xs-8">mardi 12 mai 2015, à 10h28</p>
+                                <p class="time pull-right hidden">12/05/2015, à 10h28</p>
+                                <p class="comment col-md-12 col-sm-12 col-xs-12">aa</p>
+                            </div>
+                            <div class="like-box clearfix">
+                            <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button> 
+                            <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button></div>
+                        </div>
+                        <div class="like-form col-md-10 col-md-offset-1">
+                            <p id="id-com" value="202" class="hidden">Id</p>
+                            <p id="id-art" value="2" class="hidden">Id</p>
+                            <div class="comment-box clearfix">
+                                <p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
+                                <p class="time col-md-8 col-sm-8 col-xs-8">lundi 11 mai 2015, à 21h45</p>
+                                <p class="time pull-right hidden">11/05/2015, à 21h45</p>
+                                <p class="comment col-md-12 col-sm-12 col-xs-12">test 2</p>
+                            </div>
+                            <div class="like-box clearfix">
+                            <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button> 
+                            <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button></div>
+                        </div>
+                        <div class="like-form col-md-10 col-md-offset-1">
+                            <p id="id-com" value="46" class="hidden">Id</p>
+                            <p id="id-art" value="2" class="hidden">Id</p>
+                            <div class="comment-box clearfix">
+                                <p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
+                                <p class="time col-md-8 col-sm-8 col-xs-8">mardi 28 avril 2015, à 08h57</p>
+                                <p class="time pull-right hidden">28/04/2015, à 08h57</p>
+                                <p class="comment col-md-12 col-sm-12 col-xs-12">test toto</p>
+                            </div>
+                            <div class="like-box clearfix">
+                            <button class="btn-dislike btn btn-danger pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button> 
+                            <button class="btn-like btn btn-success pull-right" style="margin-left:10px;">
+                                <span class="count">0</span>
+                            </button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-	
-	
-	
-    <div class='section clearfix' id='resultats' style='min-height: 214px;'>
-		<div class="left-content col-md-3">
-			<nav id="calendar" class="navbar navbar-default" role="navigation">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Calendrier</a>
-				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-calendar">
-					<ul class="nav navbar-nav">
-						<li class="active"><a value="idcalendar">Link</a></li>
-						<li><a href="#">Link</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</nav>
-		</div>
-		<div class="right-content col-md-9 col-sm-12 col-xs-12"> <!-- ii le panel qui va se remplir en ajax ! -->
-			<div class="pres-panel"> <!-- panel info calendrier pour l'instant on touche pas trop -->
-				<div class='pres-box' style='background-image:url(../../../../img/articles/cyclisme/demare_deg.jpg)'>
-					<div class='pres-content'>
-						<div class='pres-button col-md-12 col-sm-12 col-xs-12'>
-							<a class='btn btn-primary btn-lg bcr-rugby'
-							href='lien pari' disabled="disabled">Parier</a>
-						</div>
-						<div class='pres-text col-md-9 col-sm-9 hidden-xs'>
-							<div class='jumbotron bcr-rugby'>
-								<p>Attention à la cuiller de bois !</p>
-							</div>
-						</div>
-						<div class='pres-stat col-md-3 col-sm-3 hidden-xs'>
-							<div class='stat-box stat-inline'>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="result-panel"> <!-- panel resultat: soit rien, soit la row-later, soit les deux rows player-result et other-result-->
-				<div class="row later">
-					<div class="table-box col-md-6 col-sm-6 col-xs-12">
-						<div class="sectionSide">
-							<p class="section-highlight">Mon Top 10</p>
-						</div>	 
-						<table class="table table-hover">
-							<tr class="goodbet"> <!-- classe pou les tout piles -->
-								<th class="table-place col-md-2">1.</th> <!-- on definit ici les tailles des colonnes du tableau -->
-								<td class="table-name col-md-6">Fabio ARU</td>
-								<td class="table-point col-md-4">625</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">2.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">3.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">4.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="goodbet">
-								<th class="table-place">5.</th>
-								<td class="table-name">Alberto Contador</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">6.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="goodbet">
-								<th class="table-place">7.</th>
-								<td class="table-name">Richie Porte</td>
-								<td class="table-point">130</td>
-							</tr>
-							<tr class="almostbet"> <!-- classe pour les mal placés -->
-								<th class="table-place">8.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">9.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">5</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">10.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-						</table>
-					</div>
-					<div class="stat-box col-md-6 col-sm-6 col-xs-12">
-						<!-- zone pour des stats -->
-					</div>
-				</div>
-				<div class="row player-result">
-					<div class="table-box col-md-6 col-sm-6 col-xs-12">
-						<div class="sectionSide">
-							<p class="section-highlight">Résultat</p>
-						</div>	
-						<table class="table table-hover">
-							<tr>
-								<th class="table-place col-md-2">1.</th>
-								<td class="table-name col-md-10">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">2.</th>
-								<td class="table-name">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">3.</th>
-								<td class="table-name">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">4.</th>
-								<td class="table-name">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">5.</th>
-								<td class="table-name">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">6.</th>
-								<td class="table-name">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">7.</th>
-								<td class="table-name">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">8.</th>
-								<td class="table-name">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">9.</th>
-								<td class="table-name">...</td>
-							</tr>
-							<tr>
-								<th class="table-place">10.</th>
-								<td class="table-name">...</td>
-							</tr>
-						</table>
-					</div>
-					<div class="table-stat-box col-md-6 col-sm-6 col-xs-12">
-						<div class="sectionSide">
-							<p class="section-highlight">Mon Top 10</p>
-						</div>	
-						<table class="table table-hover">
-							<tr class="goodbet">
-								<th class="table-place col-md-2">1.</th>
-								<td class="table-name col-md-6">Fabio ARU</td>
-								<td class="table-point col-md-4">625</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">2.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">3.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">4.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="goodbet">
-								<th class="table-place">5.</th>
-								<td class="table-name">Alberto Contador</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">6.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="goodbet">
-								<th class="table-place">7.</th>
-								<td class="table-name">Richie Porte</td>
-								<td class="table-point">130</td>
-							</tr>
-							<tr class="almostbet">
-								<th class="table-place">8.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">9.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">5</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">10.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-				<div class="row other-result">
-					<div class="table-box col-md-6 col-sm-6 col-xs-12">
-						<div class="sectionSide">
-							<p class="section-highlight">Scores</p>
-						</div>	
-						<table id="id cal !!!!" class="table table-hover scores"><!-- ne pas oublier l'id et la classe scores -->
-							<tr class="">
-								<th class="table-place col-md-2">1.</th>
-								<td class="table-name col-md-6">Camomito</td>
-								<td class="table-point col-md-4">625</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">2.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">3.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">4.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">5.</th>
-								<td class="table-name">Kevin</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">6.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">7.</th>
-								<td class="table-name">Toto</td>
-								<td class="table-point">130</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">8.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">9.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">125</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">10.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-						</table>
-					</div>
-					<div class="table-stat-box col-md-6 col-sm-6 col-xs-12">
-						<div class="sectionSide">
-							<p class="section-highlight">Son Top 10</p>
-						</div>	
-						<table class="table table-hover">
-							<tr class="goodbet">
-								<th class="table-place col-md-2">1.</th>
-								<td class="table-name col-md-6">Fabio ARU</td>
-								<td class="table-point col-md-4">625</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">2.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">3.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">4.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="goodbet">
-								<th class="table-place">5.</th>
-								<td class="table-name">Alberto Contador</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">6.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="goodbet">
-								<th class="table-place">7.</th>
-								<td class="table-name">Richie Porte</td>
-								<td class="table-point">130</td>
-							</tr>
-							<tr class="almostbet">
-								<th class="table-place">8.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">9.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">5</td>
-							</tr>
-							<tr class="">
-								<th class="table-place">10.</th>
-								<td class="table-name">...</td>
-								<td class="table-point">...</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="comment-panel"> <!-- panel commentaire on insere exactement la meme chose que pour les articles -->
-				<div class="" id="commentaires">
-					<div class="sectionSide">
-						<h2 class="section-heading">Commentaires</h2>
-						<p class="section-highlight">Connectez-vous pour participer au débat !</p>
-						<input name="id_article" id="id_article" type="text" class="hidden" required="" value="2">
-					</div>	    
-					<div class="row com-container">
-						<div class="like-form col-md-10 col-md-offset-1">
-							<p id="id-com" value="216" class="hidden">Id</p>
-							<p id="id-art" value="2" class="hidden">Id</p>
-							<div class="comment-box clearfix">
-								<p class="user col-md-4 col-sm-4 col-xs-4">Toto</p>
-								<p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h51</p>
-								<p class="time pull-right hidden">15/05/2015, à 22h51</p>
-								<p class="comment col-md-12 col-sm-12 col-xs-12">test</p>
-							</div>
-							<div class="like-box clearfix">
-								<button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;">
-									<span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-									<span class="count">0</span>
-								</button>
-								<button class="btn-like btn btn-success pull-right " style="margin-left:10px;">
-									<span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span>
-									<span class="count">0</span>
-								</button>
-							</div>
-						</div>
-						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="215" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h49</p><p class="time pull-right hidden">15/05/2015, à 22h49</p><p class="comment col-md-12 col-sm-12 col-xs-12">test</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
-						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="214" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h47</p><p class="time pull-right hidden">15/05/2015, à 22h47</p><p class="comment col-md-12 col-sm-12 col-xs-12">test</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
-						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="212" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">vendredi 15 mai 2015, à 22h45</p><p class="time pull-right hidden">15/05/2015, à 22h45</p><p class="comment col-md-12 col-sm-12 col-xs-12">test</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
-						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="203" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">mardi 12 mai 2015, à 10h28</p><p class="time pull-right hidden">12/05/2015, à 10h28</p><p class="comment col-md-12 col-sm-12 col-xs-12">aa</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
-						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="202" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">lundi 11 mai 2015, à 21h45</p><p class="time pull-right hidden">11/05/2015, à 21h45</p><p class="comment col-md-12 col-sm-12 col-xs-12">test 2</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
-						<div class="like-form col-md-10 col-md-offset-1"><p id="id-com" value="46" class="hidden">Id</p><p id="id-art" value="2" class="hidden">Id</p><div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">Toto</p><p class="time col-md-8 col-sm-8 col-xs-8">mardi 28 avril 2015, à 08h57</p><p class="time pull-right hidden">28/04/2015, à 08h57</p><p class="comment col-md-12 col-sm-12 col-xs-12">test toto</p></div><div class="like-box clearfix"><button class="btn-dislike btn btn-danger pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-down" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button><button class="btn-like btn btn-success pull-right " style="margin-left:10px;"><span class="glyphicon glyphicon-thumbs-up" style="float:left;padding: 0 10px 0 0;font-size:1em;"></span><span class="count">0</span></button></div></div>
-					</div>
-				</div>
-			</div>
-		</div>
-    </div>
-    
-    
     <footer>
         <div class="container">
             <p>© 2015 Parions Potes</p>
         </div>
     </footer>
- 
     <script src="../../../../js/pagination.js"></script> 
     <script src="../../../../js/jquery.min.js"></script> 
     <script src="../../../../js/bootstrap.min.js"></script> 
-     
     <script src="../../../../js/classie.js"></script> 
     <script src="../../../../js/jquery.scrollTo.min.js"></script> 
     <script src="../../../../js/jqBootstrapValidation.js"></script> 
-    
     <script src="../../../../js/imagesloaded.pkgd.min.js"></script> 
-	<script src="../../../../js/d3.min.js"></script> 
-	
-	<script src="js/tdf2015.js"></script>
+    <script src="../../../../js/d3.min.js"></script> 
+    <script src="js/tdf2015.js"></script> 
     <script type="text/javascript">
     
 
     jQuery(document).ready(function ($) {
-		$(function () {$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();} );
+        $(function ()
+				{$("input,select,textarea").not("[type=submit]").jqBootstrapValidation();} );
 
-		Init_Forms_Cyclisme();
-		//initPagination();
+                Init_Forms_Cyclisme();
+                //initPagination();
                 
-        //$('body').scrollspy({ target:'#navbar-main',offset:250 }) ///lign qui 'spy' le scrollde la page et surligne les menusp
-		//pageSection();
-		$(window).resize(function() {
-				//pageSection();
-				 $('body').scrollspy("refresh");
-		});
-		$('#archive-toggle').click(function() {
-				$('[data-spy="scroll"]').each(function ()
-{
-				  setTimeout(function(){ $(this).scrollspy('refresh');}, 1000);           
-				});
-		});
-		//$.scrollTo( 0 );
+        //$('body').scrollspy({ target:'#navbar-main',offset:250 }) ///lign qui'spy' le scrollde la pageet surligne les menusp
+                //pageSection();
+                $(window).resize(function() {
+                                //pageSection();
+                                 $('body').scrollspy("refresh");
+                });
+               
                 
         //$('.nav-tabs').tab();
         $('a[data-action="scrollTo"]').click(function(e)
-		{
-			e.preventDefault();
-			scrollX = $('.header').height();
-			$('.menu').toggleClass('active');
-			if(this.hash == "#myCarousel") {
-					$('body').scrollTo(0,500,null);
-						   
-					$(".section").removeClass("inactiveSection");
-			} else {
-					$('body').scrollTo(this.hash, 500, {offset: -scrollX});
-			}
+                {
+                        e.preventDefault();
+                        scrollX = $('.header').height();
+                        $('.menu').toggleClass('active');
+                        if(this.hash == "#myCarousel") {
+                                        $('body').scrollTo(0,500,null);
+                                                   
+                                        $(".section").removeClass("inactiveSection");
+                        } else {
+                                        $('body').scrollTo(this.hash, 500, {offset: -scrollX});
+                        }
                 $('.navbar-collapse').removeClass('in');
-		});
+                });
                 
-		$('[data-toggle=dropdown]').dropdown();
+                $('[data-toggle=dropdown]').dropdown();
         
-		// cache the window object
-	    $window = $(window);
+                // cache the window object
+            $window = $(window);
                 
-               
-	/*	$('section[data-type="background"]').each(function(){
-			 // declare the variable to affect the defined data-type
-			 var $scroll = $(this);
-											 
-			  $(window).scroll(function() {
-					if($(window).width() > 768){
-						// HTML5 proves useful for helping with creating JS functions!
-						// also, negative value because we're scrolling upwards                             
-						var yPos = -($window.scrollTop() / $scroll.data('speed')); 
+             autocollapse(); // when document first loads
 
-						// background position
-						var coords = '50% '+ yPos + 'px';
-
-						// move the background
-						$scroll.css({ backgroundPosition: coords });
-					}   
-			  }); // end window scroll
-        });  // end section function*/
-               
-                
-		$(function(){
-		   $("#archive-toggle").click(function () {
-				  $(this).text(function(i, text){
-						  return text === "Archives" ? "Réduire" : "Archives";
-				  })
-		   });
-		})
+			$(window).on('resize', autocollapse); // when window is resized  
+ 
+            
                 
     });
     var cbpAnimatedHeader = (function() {
  
-		var docElem = document.documentElement,
-				header = document.querySelector( 'header' ),
-				didScroll = false,
-				changeHeaderOn = 98;
+                var docElem = document.documentElement,
+                                header = document.querySelector( 'header' ),
+                                didScroll = false,
+                                changeHeaderOn = 98;
                         
          
-		function init() {
-				window.addEventListener( 'scroll', function( event ) {
-						if( !didScroll ) {
-								didScroll = true;
-								setTimeout( scrollPage, 250 );
-						}
-				}, false );
-		}
+                function init() {
+                                window.addEventListener( 'scroll', function( event ) {
+                                                if( !didScroll ) {
+                                                                didScroll = true;
+                                                                setTimeout( scrollPage, 250 );
+                                                }
+                                }, false );
+                }
                 
-		function scrollPage() {
-			var sy = scrollY();
-			if ( sy >= changeHeaderOn ) {
-					classie.add( header, 'small' );
-			}
-			else {
-					classie.remove( header, 'small' );
-			}
-			didScroll = false;
-			
-			var activeTarget = $("#navbar-main li.active a").attr("href");
-			//alert(activeTarget);
-		   
-			$(".activeSection").removeClass("activeSection");
-			if(sy > 650) {
-		   
-				$(".section").addClass("inactiveSection");
-			
-				$(activeTarget).addClass("activeSection");
-			} else {
-		   
-				$(".section").removeClass("inactiveSection");
-			}
-				
-		}
+                function scrollPage() {
+                        var sy = scrollY();
+                        if ( sy >= changeHeaderOn ) {
+                                        classie.add( header, 'small' );
+                        }
+                        else {
+                                        classie.remove( header, 'small' );
+                        }
+                        didScroll = false;
+                        
+                        var activeTarget = $("#navbar-main li.active a").attr("href");
+                        //alert(activeTarget);
+                   
+                        $(".activeSection").removeClass("activeSection");
+                        if(sy > 650) {
+                   
+                                $(".section").addClass("inactiveSection");
+                        
+                                $(activeTarget).addClass("activeSection");
+                        } else {
+                   
+                                $(".section").removeClass("inactiveSection");
+                        }
+                                
+                }
          
-			function scrollY() {
-					return window.pageYOffset || docElem.scrollTop;
-			}
-	 
-			init();
+                        function scrollY() {
+                                        return window.pageYOffset || docElem.scrollTop;
+                        }
+         
+                        init();
          
         })();
 

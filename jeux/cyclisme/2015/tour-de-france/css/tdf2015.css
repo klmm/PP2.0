@@ -42,27 +42,31 @@
   text-align: center;
 }
 
-.tabs .nav ul {
+.tabs >.nav >ul {
   padding: 0;
   margin: 0;
   list-style: none;
   display: inline-block;
 }
 
-.tabs .nav li.active a{
+.tabs> .nav >li.active >a{
   border-top: 4px solid;
 }
 
-.tabs .nav li {
+.tabs >.nav >li {
   margin: -1px 0.25em;
 
 }
-.tabs .nav a {
+.tabs> .nav >li >a {
 
   font-size: 1.45em;
   line-height: 2.5;
   padding: 0 1.25em;
   //white-space: nowrap;
+}
+.tabs #collapsed {
+ border : none;
+ min-width:initial;
 }
 
 

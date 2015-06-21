@@ -265,6 +265,38 @@ function updateNums(){
 		
 }
 
+function autocollapse() {
+  
+  var tabs = $('#tab-list');
+  var tabsHeight = tabs.innerHeight();
+  
+   if (tabsHeight >= 60) {
+    while(tabsHeight > 60) {
+      //console.log("new"+tabsHeight);
+      
+      var children = tabs.children('li:not(:last-child)');
+      var count = children.size();
+      $(children[count-1]).prependTo('#collapsed');
+      
+      tabsHeight = tabs.innerHeight();
+    }
+  }
+  else {
+  	while(tabsHeight < 60 && ($('#collapsed').children('li').size()>0)) {
+      
+      var collapsed = $('#collapsed').children('li');
+      var count = collapsed.size();
+      $(collapsed[0]).insertBefore(tabs.children('li:last-child'));
+      tabsHeight = tabs.innerHeight();
+    }
+    if (tabsHeight>60) { // double chk height again
+    	autocollapse();
+    }
+  } 
+  
+};
+
+
 function Build_Chart(el, result){
 	
 	var width = 960,

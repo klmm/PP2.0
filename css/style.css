@@ -323,7 +323,7 @@ right:0;
 .navbar-toggle {
 background: #333;
 }
-.navbar-toggle .icon-bar {
+.navbar-toggle .icon-bar ,.navbar-default .navbar-toggle .icon-bar {
 background: #FFF;
 }
 

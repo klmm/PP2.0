@@ -417,7 +417,7 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 				</ul>
 			    </div>
 			</nav>
-		    </div>
+		   
 		</div>';   
     }
 //---------------------------------------------CALENDRIER------------------------------------------------------//
@@ -432,6 +432,7 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 		    <div id="result-panel" class="result-panel" >
 		    
 		    </div>
+			 </div>
 		</div>';
     
     

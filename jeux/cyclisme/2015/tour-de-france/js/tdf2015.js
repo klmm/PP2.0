@@ -189,8 +189,8 @@ function render_pres_panel(id_cal){
 		    var result = $.parseJSON(data);
 		    var html = result.html;
 		    var premier = result.premier;
-		    $( ".test" ).empty();
-		    $( ".test" ).append(html);
+		    $( "#cal-container" ).empty();
+		    $( "#cal-container" ).append(html);
 		    if (premier != null){
 			render_prono_autre(id_cal,premier);
 		    }

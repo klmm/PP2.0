@@ -454,7 +454,7 @@ $cr = array(
         echo " 
                 <div class='actualGames'>
                     <ul class='gamesList' style='padding:0;'>";
-        for ($i = 0; $i < $nb_jeux_encours; $i++) {
+        for ($i=0; $i<$nb_jeux_encours; $i++) {
             $jeu_sport = $arr_jeux_encours[$i]['sport'];
             echo "
                         <li class='game-item'>
@@ -473,16 +473,10 @@ $cr = array(
                             </section>
                         </li>";
         }
-        echo " 
-                    </ul>
-                </div>";
     }
     
     if ($nb_jeux_avenir > 0){
-        echo " 
-                <div class='actualGames'>
-                    <ul class='gamesList' style='padding:0;'>";
-        for ($i = 0; $i < $nb_jeux_avenir; $i++) {
+        for ($i=0; $i<$nb_jeux_avenir; $i++) {
             $jeu_sport = $arr_jeux[$i]['sport'];
             echo "
                         <li class='game-item'>

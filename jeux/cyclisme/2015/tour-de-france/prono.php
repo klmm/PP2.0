@@ -292,7 +292,7 @@
     if($calendrier['profil_equipe']){
 	foreach($equipes as $id => $equipe){
 	    if($equipe['pos_prono'] === 0){
-		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
+		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden-xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$equipe['etoiles']; $z++){
 		    echo '	<span class="glyphicon glyphicon-star"></span>';
@@ -304,7 +304,7 @@
     else{
 	foreach($cyclistes as $id => $cycliste){
 	    if($cycliste['pos_prono'] === 0 || $mise_resultat == true){
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden xs" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$cycliste['etoiles']; $z++){
 		    echo '	<span class="glyphicon glyphicon-star"></span>';
@@ -341,7 +341,7 @@
 	    if($calendrier['profil_equipe']){
 		$equipe = $prono['equipes_prono'][$i];
 		if ($equipe['id_cyclisme_equipe']){
-		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
 		    for($z=0; $z<$cycliste['etoiles']; $z++){
 			echo '	<span class="glyphicon glyphicon-star"></span>';
 		    }
@@ -349,7 +349,7 @@
 	    }
 	    else{
 		$cycliste = $prono['cyclistes_prono'][$i];
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$cycliste['etoiles']; $z++){
 		    echo '	<span class="glyphicon glyphicon-star"></span>';

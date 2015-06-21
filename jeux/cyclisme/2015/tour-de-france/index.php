@@ -240,14 +240,11 @@
             </header>';
 //---------------------------------------------FIN HEADER------------------------------------------------------//';
 
-echo '  <div id="test" class="section test" style="background-color: white;">
-    
-	</div>';
 
 //---------------------------------------------BREVES------------------------------------------------------//	
     echo '  <div id="news" class="section" style="background-color: white;">
 		<div class="container">
-		    <div class="col-md-8 col-sm-8">
+		    <div class="col-md-8 col-sm-8 col-xs-8 col-xs-offset-2">
 			<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
 			    <h1 class="section-heading">News</h1>
 			</div>
@@ -290,43 +287,44 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 	    </div>';
 		
 //---------------------------------------------BREVES------------------------------------------------------//	    
- 
-    
-    
+
 //---------------------------------------------CLASSEMENTS------------------------------------------------------//	
     if($nb_classements > 0){
-	echo '  <div class="section " id="classements" style="margin-bottom:120px;">
+	echo '  <div class="section" id="classements" style="margin-bottom:120px;">
 		    <div class="sectionSide">
 			<h2 class="section-heading">Classements</h2>
 			<p class="section-highlight">Venez parier et vous amuser avec notre panel de sports.</p>
 		    </div>
-		    <div class="navbar" role="navigation">
-			<div class="navbar-header">
-			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#tabs">
-				<span class="sr-only">Toggle navigation</span>';
-
+		    <div id="tabs" class="tabs nav-center">
+			<ul class="nav nav-tabs" role="tablist" id="tab-list">';
 
 	for ($i=0;$i<$nb_classements;$i++){
-	    echo '		<span class="icon-bar"></span>';
+	    if($i == 0){
+		 echo '	    <li role="presentation" class="active">';
+	    }
+	    else{
+		echo '	    <li role="presentation" class="">';
+	    }
+	    
+	    echo '		<a href="#section-' . $i . '" class="icon-shop" role="tab" data-toggle="tab">
+				    <span>' . $classements[$i]['titre'] . '</span>
+				</a>
+			    </li>';
 	}
 
-	echo '		    </button>
-			</div>
-			<div id="tabs" class="tabs collapse navbar-collapse nav-center">
-			    <ul class="nav nav-tabs" role="tablist">';
+	echo '		    <li id="lastTab" class="dropdown">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" >
+				    Plus <span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" id="collapsed">
 
-	echo '			<li role="presentation" class="active"><a href="#section-0" class="icon-shop" role="tab" data-toggle="tab"><span>' . $classements[0]['titre'] . '</span></a></li>';
-
-	for ($i=1;$i<$nb_classements;$i++){
-	    echo '		<li role="presentation" class=""><a href="#section-' . $i . '" class="icon-shop" role="tab" data-toggle="tab"><span>' . $classements[$i]['titre'] . '</span></a></li>';
-	}
-
-	echo '		    </ul>
-			</div>
+				</ul>
+			    </li>
+			</ul>
 		    </div>
 		    <div class="tab-content">';
 
-	for ($i=0;$i<$nb_classements;$i++){
+	for ($i=0;$i<$nb_classements-1;$i++){
 	    if($i == 0){
 		 echo '	<div id="section-' . $i . '" role="tabpanel" class="tab-pane active">';
 	    }
@@ -334,24 +332,25 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 		echo '	<div id="section-' . $i . '" role="tabpanel" class="tab-pane">';
 	    }
 	    
-	    echo '	    <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+	    echo '	    <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
 				<div class="sectionSide">
 				    <p class="section-highlight">' . $classements[$i]['description'] . '</p>
 				</div>
 				<div class="classement-table">
-				    <table class="table">';   
+				    <table class="table">
+					<tbody>';   
 
 	    // TITRES DE COLONNES
-	    echo '			<tr class="">';
+	    echo '			    <tr class="">';
 
 	    for($j=0;$j<sizeof($classements[$i]['titre_colonnes']);$j++){
-		echo '			    <th class="col-md-' . $classements[$i]['largeur_colonnes'][$j] . '">' . $classements[$i]['titre_colonnes'][$j] . '</th>';
+		echo '				<th class="col-md-' . $classements[$i]['largeur_colonnes'][$j] . '">' . $classements[$i]['titre_colonnes'][$j] . '</th>';
 	    }
 
-	    echo '			</tr>';
-	     // TITRES DE COLONNES
+	    echo '			    </tr>';
 	    
 	    
+	    // AUTRES LIGNES
 	    for($j=0;$j<sizeof($classements[$i]['classement']);$j++){
 		if($classements[$i]['classement'][$j][1] == $loginjoueur){
 		    $class_surlign_joueur = 'goodbet';
@@ -359,19 +358,19 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 		else{
 		    $class_surlign_joueur = '';
 		}
-		echo '			<tr class="' . $class_surlign_joueur . '">';
+		echo '			    <tr class="' . $class_surlign_joueur . '">';
 		for($k=0;$k<sizeof($classements[$i]['classement'][$j]);$k++){
-		    echo '		    <td class="">' . $classements[$i]['classement'][$j][$k] . '</th>';
+		    echo '			<td class="">' . $classements[$i]['classement'][$j][$k] . '</th>';
 		}
-		echo '			</tr>';
+		echo '			    </tr>';
 	    }
 
-	    echo '		    </table>
+	    echo '			</tbody>
+				    </table>
 				</div>
 			    </div>
 			</div>';
 	}
-
 	echo '	    </div>
 		</div>';
     }
@@ -379,12 +378,15 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 //---------------------------------------------CLASSEMENTS------------------------------------------------------//	  
 
     
-    
+
     
     
 //---------------------------------------------CALENDRIER------------------------------------------------------//	
     if($nb_calendrier > 0){
 	echo '	<div class="section clearfix" id="resultats" style="min-height: 214px;">
+		    <div class="sectionSide">
+			<h2 class="section-heading">Calendrier</h2>
+		    </div>
 		    <div class="left-content col-md-3">
 			<nav id="calendar" class="navbar navbar-default" role="navigation">
 			    <div class="navbar-header">
@@ -396,7 +398,6 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 	}
 	
 	echo '			</button>
-				<a class="navbar-brand" href="#">Calendrier</a>
 			    </div>
 
 			    <div class="collapse navbar-collapse navbar-calendar">
@@ -417,24 +418,22 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 				</ul>
 			    </div>
 			</nav>
-		   
+		    </div>
 		</div>';   
     }
 //---------------------------------------------CALENDRIER------------------------------------------------------//
    
    
-    
-// -- ZONE AJAX ---
-    echo '	<div class="cal-container right-content col-md-9 col-sm-12 col-xs-12">
-		    <div id="pres-panel" class="pres-panel">
+    /*		    <div id="pres-panel" class="pres-panel">
 
 		    </div>
 		    <div id="result-panel" class="result-panel" >
 		    
-		    </div>
-			 </div>
+		    </div>*/
+// -- ZONE AJAX ---
+    echo '	<div class="cal-container right-content col-md-9 col-sm-12 col-xs-12">
+
 		</div>';
-    
     
 // 
 //---------------------------------------------COMMENTAIRES------------------------------------------------------//	
@@ -523,97 +522,90 @@ echo '  <div id="test" class="section test" style="background-color: white;">
 		Init_Forms();
 		Init_Forms_Cyclisme();
 		
-		$(window).resize(function() {		
-                    $(\'body\').scrollspy("refresh");
-		});
-		//$.scrollTo( 0 );
-		$(\'body\').scrollspy({ target: \'#navbar-main\',offset:250 })
-                $(\'.nav-tabs\').tab();
-		$(\'a[data-action="scrollTo"]\').click(function(e) {
-			e.preventDefault();
-			scrollX = $(\'.header\').height();
-			$(\'.menu\').toggleClass(\'active\');
-			if(this.hash == "#image") {
-				$(\'body\').scrollTo(0,500,null);
-					$(".section").removeClass("inactiveSection");
-			} else {
-				$(\'body\').scrollTo(this.hash, 500, {offset: -scrollX});
-			}
-			$(\'.navbar-collapse\').removeClass(\'in\');
-		});
-		
-		$(\'[data-toggle=dropdown]\').dropdown();
-	
-		// cache the window object
-	   $window = $(window);
-	 
-	   /*$(\'section[data-type="background"]\').each(function(){
-		 // declare the variable to affect the defined data-type
-		 var $scroll = $(this);
-						 
-		  $(window).scroll(function() {
-			// HTML5 proves useful for helping with creating JS functions!
-			// also, negative value because we\'re scrolling upwards                             
-			var yPos = -($window.scrollTop() / $scroll.data(\'speed\')) + 100; 
-			 
-			// background position
-			var coords = \'50% \'+ yPos + \'px\';
-	 
-			// move the background
-			$scroll.css({ backgroundPosition: coords });    
-		  }); // end window scroll
-	   });  // end section function*/
-		
+		$(window).resize(function() {
+                                //pageSection();
+                                 $(\'body\').scrollspy("refresh");
+                });
+               
+                
+        //$(\'.nav-tabs\').tab();
+        $(\'a[data-action="scrollTo"]\').click(function(e)
+                {
+                        e.preventDefault();
+                        scrollX = $(\'.header\').height();
+                        $(\'.menu\').toggleClass(\'active\');
+                        if(this.hash == "#myCarousel") {
+                                        $(\'body\').scrollTo(0,500,null);
+                                                   
+                                        $(".section").removeClass("inactiveSection");
+                        } else {
+                                        $(\'body\').scrollTo(this.hash, 500, {offset: -scrollX});
+                        }
+                $(\'.navbar-collapse\').removeClass(\'in\');
+                });
+                
+                $(\'[data-toggle=dropdown]\').dropdown();
+        
+                // cache the window object
+            $window = $(window);
+                
+             autocollapse(); // when document first loads
+
+			$(window).on(\'resize\', autocollapse); // when window is resized  
+ 
+            
+                
     });
-	var cbpAnimatedHeader = (function() {
+    var cbpAnimatedHeader = (function() {
  
-    var docElem = document.documentElement,
-        header = document.querySelector( \'header\' ),
-        didScroll = false,
-        changeHeaderOn = 98;
-		
- 
-    function init() {
-        window.addEventListener( \'scroll\', function( event ) {
-            if( !didScroll ) {
-                didScroll = true;
-                setTimeout( scrollPage, 250 );
-            }
-        }, false );
-    }
-	function stickyMenu(element,nextelement) {
-		
-	}
-    function scrollPage() {
-        var sy = scrollY();
-        if ( sy >= changeHeaderOn ) {
-            classie.add( header, \'small\' );
-        }
-        else {
-            classie.remove( header, \'small\' );
-        }
-        didScroll = false;
-		
-		var activeTarget = $("#navbar-main li.active a").attr("href");
-		//alert(activeTarget);
-		$(".activeSection").removeClass("activeSection");
-		if(sy > 650) {
-		$(".section").addClass("inactiveSection");
-		
-		$(activeTarget).addClass("activeSection");
-		} else {
-		$(".section").removeClass("inactiveSection");
-		}
-		
-    }
- 
-    function scrollY() {
-        return window.pageYOffset || docElem.scrollTop;
-    }
- 
-    init();
- 
-})();
+                var docElem = document.documentElement,
+                                header = document.querySelector( \'header\' ),
+                                didScroll = false,
+                                changeHeaderOn = 98;
+                        
+         
+                function init() {
+                                window.addEventListener( \'scroll\', function( event ) {
+                                                if( !didScroll ) {
+                                                                didScroll = true;
+                                                                setTimeout( scrollPage, 250 );
+                                                }
+                                }, false );
+                }
+                
+                function scrollPage() {
+                        var sy = scrollY();
+                        if ( sy >= changeHeaderOn ) {
+                                        classie.add( header, \'small\' );
+                        }
+                        else {
+                                        classie.remove( header, \'small\' );
+                        }
+                        didScroll = false;
+                        
+                        var activeTarget = $("#navbar-main li.active a").attr("href");
+                        //alert(activeTarget);
+                   
+                        $(".activeSection").removeClass("activeSection");
+                        if(sy > 650) {
+                   
+                                $(".section").addClass("inactiveSection");
+                        
+                                $(activeTarget).addClass("activeSection");
+                        } else {
+                   
+                                $(".section").removeClass("inactiveSection");
+                        }
+                                
+                }
+         
+                        function scrollY() {
+                                        return window.pageYOffset || docElem.scrollTop;
+                        }
+         
+                        init();
+         
+        })();
 
 
 	</script>

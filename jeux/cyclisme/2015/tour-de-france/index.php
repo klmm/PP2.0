@@ -255,7 +255,7 @@
 //---------------------------------------------BREVES------------------------------------------------------//	
     echo '  <div id="news" class="section" style="background-color: white;">
 		<div class="container">
-		    <div class="col-md-8 col-sm-8 col-xs-8 col-xs-offset-2">
+		    <div class="col-md-8 col-md-offset-0 col-sm-8 col-sm-offset-0 col-xs-8 col-xs-offset-2">
 			<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
 			    <h1 class="section-heading">News</h1>
 			</div>
@@ -329,7 +329,7 @@
 		echo '	    <li role="presentation" class="">';
 	    }
 	    
-	    echo '		<a href="#section-' . $i . '" class="icon-shop" role="tab" data-toggle="tab">
+	    echo '		<a href="#section-' . $i . '" class="" role="tab" data-toggle="tab">
 				    <span>' . $classements[$i]['titre'] . '</span>
 				</a>
 			    </li>';

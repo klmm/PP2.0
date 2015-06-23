@@ -8,6 +8,7 @@ function Init_Forms_Cyclisme()
 		var id = $(this).attr("value");	
 		render_pres_panel(id);
 		getAllComs(0,id_jeu,id,0);
+		document.location.href='#resultats';
 	});
 	
 	$(document).on('mouseover', '#calendar a', function(e)

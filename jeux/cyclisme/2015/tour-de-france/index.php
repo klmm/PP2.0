@@ -263,7 +263,7 @@
     
     if($nb_breves > 0){
 	for ($i=0;$i<$nb_breves;$i++){
-	    echo '	    <p class="article-text bold">' . $arr_breves[$i]['titre'] . '</p>';
+	    echo '	    <p class="article-text bold">' . $arr_breves[$i]['datepub_fr'] . ' : ' . $arr_breves[$i]['titre'] . '</p>';
 	    echo '	    <p class="article-text">' . $arr_breves[$i]['contenu'] . '</p>';
 	}
     }
@@ -347,7 +347,7 @@
 		    </div>
 		    <div class="tab-content">';
 
-	for ($i=0;$i<$nb_classements-1;$i++){
+	for ($i=0;$i<$nb_classements;$i++){
 	    if($i == 0){
 		 echo '	<div id="section-' . $i . '" role="tabpanel" class="tab-pane active">';
 	    }
@@ -430,13 +430,22 @@
 	
 	for($i=0;$i<$nb_calendrier;$i++){
 	    $calendrier = $arr_calendrier[$i];
-	    $id = $calendrier['id_cyclisme_calendrier'];
+	    $id = $calendrier['id_cal'];
 	    if($id == $id_cal){
-		echo '		    <li class="active"><a value="' . $id . '">' . $calendrier['nom_complet'] . '</a></li>';
+		$tmp_class = 'active';
+		$tmp_date = '';
 	    }
 	    else{
-		echo '		    <li class=""><a value="' . $id . '">' . $calendrier['nom_complet'] . '</a></li>';
+		$tmp_class = '';
+		$tmp_date = '';
 	    }
+	    if(!$calendrier['commence']){
+		$tmp_date = $calendrier['date_debut_fr_tcourt'] . ' : ';
+	    }
+	    else{
+		$tmp_date = '';
+	    }
+	    echo '		    <li class="' . $tmp_class . '"><a value="' . $id . '">' . $tmp_date . $calendrier['nom_complet'] . '</a></li>';
 	}
 					    
 	echo '
@@ -444,9 +453,22 @@
 			    </div>
 			</nav>
 		    </div>
+		    
+
+
+
+
+
+	<!-- CONTENU -->
      		    <div id="cal-container" class="right-content col-md-9 col-sm-12 col-xs-12">	
 		
 		    </div>
+		    
+
+
+
+
+	<!-- COMMENTAIRES -->
 		    <div class="comment-panel">
 			<div class="" id="commentaires">';
 	

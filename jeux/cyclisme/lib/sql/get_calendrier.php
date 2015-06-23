@@ -27,12 +27,14 @@
 	    $arr['date_debut'] = $enregistrement->date_debut;
 	    $arr_date = dateheure_sql_to_fr($arr['date_debut']);
 	    $arr['date_debut_fr_court'] = $arr_date['date_court'];
+	    $arr['date_debut_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
 	    $arr['date_debut_fr'] = $arr_date['date'];
 	    $arr['heure_debut_fr'] = $arr_date['heure'];
 	    
 	    $arr['date_fin'] = $enregistrement->date_fin;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
 	    $arr['date_fin_fr_court'] = $arr_date['date_court'];
+	    $arr['date_fin_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
 	    $arr['date_fin_fr'] = $arr_date['date'];
 	    $arr['heure_fin_fr'] = $arr_date['heure'];
 	    
@@ -91,7 +93,7 @@
 	$i = 0;
 	while( $enregistrement = $prep->fetch() )
 	{
-	    $id_cal = $enregistrement->id_cyclisme_calendrier;
+	    $id_cal = $enregistrement->id_cal;
 	    $arr[$id_cal]['id_cyclisme_calendrier'] = $enregistrement->id_cyclisme_calendrier;
 	    $arr[$id_cal]['id_jeu'] = $enregistrement->id_jeu;
 	    $arr[$id_cal]['id_cal'] = $enregistrement->id_cal;
@@ -102,12 +104,14 @@
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
 	    $arr[$id_cal]['date_debut_fr'] = $arr_date['date'];
 	    $arr[$id_cal]['date_debut_fr_court'] = $arr_date['date_court'];
+	    $arr[$id_cal]['date_debut_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
 	    $arr[$id_cal]['heure_debut_fr'] = $arr_date['heure'];
 	    
 	    
 	    $arr[$id_cal]['date_fin'] = $enregistrement->date_fin;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
 	    $arr[$id_cal]['date_fin_fr_court'] = $arr_date['date_court'];
+	    $arr[$id_cal]['date_fin_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
 	    $arr[$id_cal]['date_fin_fr'] = $arr_date['date'];
 	    $arr[$id_cal]['heure_fin_fr'] = $arr_date['heure'];
 	    
@@ -169,7 +173,7 @@
 	$i = 0;
 	while( $enregistrement = $prep->fetch() )
 	{
-	    $id_cal = $enregistrement->id_cyclisme_calendrier;
+	    $id_cal = $enregistrement->id_cal;
 	    $arr[$id_cal]['id_cyclisme_calendrier'] = $enregistrement->id_cyclisme_calendrier;
 	    $arr[$id_cal]['id_jeu'] = $enregistrement->id_jeu;
 	    $arr[$id_cal]['id_cal'] = $enregistrement->id_cal;
@@ -180,12 +184,14 @@
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
 	    $arr[$id_cal]['date_debut_fr'] = $arr_date['date'];
 	    $arr[$id_cal]['date_debut_fr_court'] = $arr_date['date_court'];
+	    $arr[$id_cal]['date_debut_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
 	    $arr[$id_cal]['heure_debut_fr'] = $arr_date['heure'];
 	    
 	    
 	    $arr[$id_cal]['date_fin'] = $enregistrement->date_fin;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
 	    $arr[$id_cal]['date_fin_fr_court'] = $arr_date['date_court'];
+	    $arr[$id_cal]['date_fin_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
 	    $arr[$id_cal]['date_fin_fr'] = $arr_date['date'];
 	    $arr[$id_cal]['heure_fin_fr'] = $arr_date['heure'];
 	    
@@ -247,7 +253,7 @@
 	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND LEFT(date_debut,8)=? AND LEFT(date_fin,8)=? ORDER BY date_debut ASC LIMIT 1";
+	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? ORDER BY date_debut ASC LIMIT 1";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 	$prep->bindValue(2,$date_seule,PDO::PARAM_STR);

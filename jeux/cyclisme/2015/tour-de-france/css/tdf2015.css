@@ -4,6 +4,7 @@
 }
 #news{
 	margin-bottom: 100px;
+	padding-top: 0;
 }
 #zone-news{
 	max-height: 500px;
@@ -13,6 +14,20 @@
 }
 #zone-news p{
 	font-size: 15px;
+}
+
+.game-header{
+	text-align: center;
+	margin-bottom: 50px;
+}
+.game-header h1{
+	font-size: 52px;
+}
+.game-header h2{
+	
+}
+.tdf2015{
+	  color: rgb(255, 227, 0);
 }
 
 /* tab-panel */
@@ -71,6 +86,23 @@
 
 
 /* pres-panel */
+.pres-panel{
+	background-color: rgb(47, 47, 47);
+}
+
+.pres-panel .name{
+	font-size: 30px;
+	color: white;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+.pres-panel .date{
+	font-size: 20px;
+	color: white;
+	text-align: center;
+}
+
 .pres-box{ 
 	height: 300px;
     background:  50% 0;  
@@ -128,14 +160,14 @@
 .pres-button{ 
 	//padding: 20px;
 	text-align: center;
-	height: 130px;
+	height: 100px;
 }
 
 .pres-button a{ 
   //background-color: rgb(115, 50, 130);
   padding: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -280,6 +312,25 @@ float:left;
 }
 .almostbet{
 	background-color: #F9ECA3;
+}
+
+/** footer **/
+.copyright p{
+	line-height: 40px;
+	text-align: left;
+}
+.rules button{
+	padding:0;
+	width:200px;
+	float:right;
+}
+.rules span{
+	display:block;
+	padding: 0 8px 0 8px;
+	height:40px;
+	line-height:40px;
+	margin-right: 60px
+	;float: right;
 }
 
 /* graph */

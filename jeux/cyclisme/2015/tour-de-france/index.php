@@ -255,7 +255,11 @@
 //---------------------------------------------BREVES------------------------------------------------------//	
     echo '  <div id="news" class="section" style="background-color: white;">
 		<div class="container">
-		    <div class="col-md-8 col-md-offset-0 col-sm-8 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+		    <div class="game-header tdf2015">
+				 <h1>Tour de France 2015</h1>
+				 <h2>du 4 Juillet au 26 Juillet</h2>
+			</div>
+			<div class="col-md-8 col-md-offset-0 col-sm-8 col-sm-offset-0 col-xs-8 col-xs-offset-2">
 			<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
 			    <h1 class="section-heading">News</h1>
 			</div>
@@ -409,7 +413,7 @@
 //---------------------------------------------CALENDRIER------------------------------------------------------//	
     if($nb_calendrier > 0){
 	echo '	<div class="section clearfix" id="resultats" style="min-height: 214px;">
-		    <div class="sectionSide">
+		    <div class="sectionSide" style="margin-bottom:50px;">
 			<h2 class="section-heading">Calendrier</h2>
 		    </div>
 		    <div class="left-content col-md-3">
@@ -418,7 +422,7 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
 				    <span class="sr-only">Toggle navigation</span>';
 
-	for ($i=0;$i<$nb_calendrier;$i++){
+	for ($i=0;$i<4;$i++){
 	    echo '		    <span class="icon-bar"></span>';
 	}
 	
@@ -461,7 +465,7 @@
 
 	<!-- CONTENU -->
      		    <div id="cal-container" class="right-content col-md-9 col-sm-12 col-xs-12">	
-		
+			<!-- ajouter la classe clearfix a pres-panel -->
 		    </div>
 		    
 
@@ -521,9 +525,14 @@
 //---------------------------------------------FOOTER------------------------------------------------------//	
     echo '
         <footer>
-            <div class="container ">
-                <p>© 2015 Parions Potes </p>
-            </div>
+            <div class="copyright col-md-6 col-sm-6 col-xs-12">
+				<p>© 2015 Parions Potes</p>
+			</div>
+			<div class="rules col-md-6 col-sm-6 col-xs-12">
+				<button href="" class="btn btn-primary">
+					<span>Règlement</span>
+                </button>
+			</div>
 	</footer>
 	
 	<script src="' . $js . '"></script>

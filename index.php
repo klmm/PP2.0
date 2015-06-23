@@ -793,7 +793,7 @@ $cr = array(
 		// cache the window object
 	   $window = $(window);
 		
-		$(\'section[data-type="background"]\').each(function(){
+		/*$(\'section[data-type="background"]\').each(function(){
 		 // declare the variable to affect the defined data-type
 		 var $scroll = $(this);
 						 
@@ -810,7 +810,7 @@ $cr = array(
 			    $scroll.css({ backgroundPosition: coords });
 			}   
 		  }); // end window scroll
-	   });  // end section function
+	   });  // end section function*/
 		
 		var $container = $(\'.list-articles\');
 		$container.imagesLoaded( function () {

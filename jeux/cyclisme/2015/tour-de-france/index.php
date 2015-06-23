@@ -464,9 +464,10 @@
 
 
 	<!-- CONTENU -->
-     		    <div id="cal-container" class="right-content col-md-9 col-sm-12 col-xs-12">	
-			<!-- ajouter la classe clearfix a pres-panel -->
-		    </div>
+     	<div class="right-content col-md-9 col-sm-12 col-xs-12">	
+			<div id="cal-container">	
+			
+			</div>
 		    
 
 
@@ -501,6 +502,7 @@
 	
 			    </div>
 			</div>
+			</div>
 		    </div>
 		</div>'; 
     }
@@ -525,7 +527,8 @@
 //---------------------------------------------FOOTER------------------------------------------------------//	
     echo '
         <footer>
-            <div class="copyright col-md-6 col-sm-6 col-xs-12">
+            <div class="container">
+			<div class="copyright col-md-6 col-sm-6 col-xs-12">
 				<p>© 2015 Parions Potes</p>
 			</div>
 			<div class="rules col-md-6 col-sm-6 col-xs-12">
@@ -533,6 +536,7 @@
 					<span>Règlement</span>
                 </button>
 			</div>
+        </div>
 	</footer>
 	
 	<script src="' . $js . '"></script>

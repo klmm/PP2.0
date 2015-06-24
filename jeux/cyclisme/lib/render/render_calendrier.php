@@ -158,7 +158,7 @@
     $res = '	    
 		<div class="pres-panel clearfix">
 		    <p class="name section-highlight">' . $calendrier['nom_complet'] . $distance . '</p>
-			<p class="date">' . $calendrier['date'] . $calendrier['date'] . '</p>
+			<p class="date">' . $calendrier['date_debut_fr'] . ' - ' . $calendrier['heure_debut_fr'] . '</p>
 		    <div class="pres-button col-md-12 col-sm-12 col-xs-12">
 			<a class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
 		    </div>

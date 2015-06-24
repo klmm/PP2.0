@@ -148,7 +148,25 @@
 		if( $enregistrement ){
 			$arr['id_jeu'] = $enregistrement->id_jeu;
 			$arr['date_debut'] = $enregistrement->date_debut;
+			$now   = time();
+			$dh_debut = strtotime($arr['date_debut']);
+
+			if($now > $dh_debut){
+			    $arr['commence'] = "1";
+			}
+			else{
+			    $arr['commence'] = "0";
+			}
+			
 			$arr['date_fin'] = $enregistrement->date_fin;
+			$dh_fin = strtotime($arr['date_fin']);
+			if($now > $dh_fin){
+			    $arr['termine'] = "1";
+			}
+			else{
+			    $arr['termine'] = "0";
+			}
+			
 			$arr['sport'] = $enregistrement->sport;
 			$arr['competition'] = $enregistrement->competition;
 			$arr['url'] = $enregistrement->url;

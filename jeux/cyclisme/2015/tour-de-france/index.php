@@ -3,6 +3,8 @@
     $js = '/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js';
     $css = '/jeux/cyclisme/2015/tour-de-france/css/tdf2015.css';
     $titre = 'Parions Potes - Tour de France 2015';
+    $competition = 'Tour de France 2015';
+    $sous_titre = 'du 4 au 26 juillet 2015';
     $logo = '/img/logos/2015/tdf.png';
     $description = 'Pronostics gratuits sur le Tour de France 2015.';
     $keywords = 'pronostics paris gratuits sport cyclisme tdf tourdefrance 2015';
@@ -74,13 +76,10 @@
     
     
     //---------------------------------JEU COMMENCE ?---------------------------//
-    /*$now = time();
-    $dh_debut = strtotime($jeu['date_debut']);
-
-    if($now < $dh_debut && $admin != true){
-	header('Location: /redirect/erreur404.php');
+    if(!$jeu['commmence'] && $admin == false){
+	header('Location: /redirect/erreur404.html');
 	return;
-    }*/
+    }
     //---------------------------------JEU COMMENCE ?---------------------------//
     
     
@@ -161,7 +160,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button> 
-                                    <a class="navbar-brand logosmall" href="#image" id="logosmall" data-action="scrollTo"></a>
+                                    <a class="navbar-brand logosmall" href="#news" id="logosmall" data-action="scrollTo"></a>
                                     <ul class="nav nav-pills">';
 
     
@@ -226,10 +225,14 @@
                                 </div>
                                 <div class="navbar-collapse collapse" id="navbar-main">
                                     <ul class="nav navbar-nav pull-right" style="">
-                                        <li class="active"><a href="#news" data-action="scrollTo">Actualité</a></li>
-                                        <li class=""><a href="#classements" data-action="scrollTo">Classements</a></li>
+                                        <li class="active"><a href="#news" data-action="scrollTo">Actualité</a></li>';
+    
+    if($nb_classements > 0){
+	echo '				<li class=""><a href="#classements" data-action="scrollTo">Classements</a></li>';
+    }					
+						
+    echo '
 					<li class=""><a href="#resultats" data-action="scrollTo">Pronostics</a></li>
-					<li class=""><a href="#commentaires" data-action="scrollTo">Commentaires</a></li>
                                     </ul>  
                                 </div>
                             </div>
@@ -256,8 +259,8 @@
     echo '  <div id="news" class="section" style="background-color: white;">
 		<div class="container">
 		    <div class="game-header tdf2015">
-				 <h1>Tour de France 2015</h1>
-				 <h2>du 4 Juillet au 26 Juillet</h2>
+				 <h1>' . $competition . '</h1>
+				 <h2>' . $sous_titre . '</h2>
 			</div>
 			<div class="col-md-8 col-md-offset-0 col-sm-8 col-sm-offset-0 col-xs-8 col-xs-offset-2">
 			<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
@@ -532,9 +535,11 @@
 				<p>© 2015 Parions Potes</p>
 			</div>
 			<div class="rules col-md-6 col-sm-6 col-xs-12">
-				<button href="" class="btn btn-primary">
-					<span>Règlement</span>
-                </button>
+				<a href="reglement.htm" class="btn btn-primary">
+					<span>
+					    Règlement
+					</span>
+				</a>
 			</div>
         </div>
 	</footer>

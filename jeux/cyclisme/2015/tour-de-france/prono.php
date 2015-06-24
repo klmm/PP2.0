@@ -56,6 +56,12 @@
 	$jeu = get_jeu_id($ID_JEU);
 	$calendrier = get_calendrier($ID_JEU,$ID_CAL);
 	$liste_calendrier = get_calendrier_jeu_avenir($ID_JEU);
+	
+	if(!$jeu['commmence']){
+	    header('Location: /redirect/erreur404.html');
+	    return;
+	}
+	
 	if ($calendrier == null){
 	    header('Location: /redirect/erreur404.html');
 	    return;
@@ -169,7 +175,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button> 
-                                    <a class="navbar-brand logosmall" href="#image" id="logosmall" data-action="scrollTo"></a>
+                                    <a class="navbar-brand logosmall" href="#pari-panel" id="logosmall" data-action="scrollTo"></a>
                                     <ul class="nav nav-pills">';
 
     

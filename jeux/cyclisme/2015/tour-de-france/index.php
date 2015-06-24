@@ -419,7 +419,7 @@
 		    <div class="sectionSide" style="margin-bottom:50px;">
 			<h2 class="section-heading">Calendrier</h2>
 		    </div>
-		    <div class="left-content col-md-3">
+		    <div class="left-content col-md-3 col-sm-3">
 			<nav id="calendar" class="navbar navbar-default" role="navigation">
 			    <div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
@@ -467,7 +467,8 @@
 
 
 	<!-- CONTENU -->
-     	<div class="right-content col-md-9 col-sm-12 col-xs-12">	
+     	<div class="right-content col-md-9 col-sm-9 col-xs-12">	
+		<div class="scroll-content">
 			<div id="cal-container">	
 			
 			</div>
@@ -504,6 +505,7 @@
     echo '		    <div class="row com-container">
 	
 			    </div>
+			</div>
 			</div>
 			</div>
 		    </div>
@@ -570,10 +572,20 @@
 		Init_Forms_Cyclisme();
 		
 		$(window).resize(function() {
-                                //pageSection();
-                                 $(\'body\').scrollspy("refresh");
-                });
-               
+			//pageSection();
+			 $(\'body\').scrollspy("refresh");
+			if($(window).width() > 768){
+				$(".right-content").height($(".left-content").height());
+			} else {
+				$(".right-content").height("inherits");
+			}
+		});
+         
+		if($(window).width() > 768){
+			$(".right-content").height($(".left-content").height());
+		} else {
+			$(".right-content").height("inherits");
+		}
                 
         //$(\'.nav-tabs\').tab();
         $(\'a[data-action="scrollTo"]\').click(function(e)

@@ -15,6 +15,9 @@
 #zone-news p{
 	font-size: 15px;
 }
+#resultats{
+	margin-bottom: 0;
+}
 
 .game-header{
 	text-align: center;
@@ -86,6 +89,11 @@
 
 
 /* pres-panel */
+.scroll-content{
+	overflow: auto;
+	height: 100%;
+}
+
 .pres-panel{
 	background-color: rgb(47, 47, 47);
 }
@@ -319,7 +327,7 @@ float:left;
 	line-height: 40px;
 	text-align: left;
 }
-.rules button{
+.rules a{
 	padding:0;
 	width:200px;
 	float:right;
@@ -390,9 +398,9 @@ float:left;
 @media (min-width: 768px) {
 	#calendar{
 		//max-width:300px;
-		margin-right: 0;
-		margin-left: 0;
+		margin: 0;
 		border:none;
+		
 	}
 	
 	#calendar .navbar-header{

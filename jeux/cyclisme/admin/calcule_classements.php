@@ -93,7 +93,7 @@
 	
 	$nom_fichier = '00-General.txt';
 	
-	$titre = 'Classement général';
+	$titre = 'Général';
 	$descr = 'Récompense le meilleur pronostiqueur du jeu';
 	$colonnes = ';;Score;Pronos';
 	$taille_colonnes = '2;6;2;2';
@@ -136,7 +136,7 @@
 	
 	$nom_fichier = '01-Par points.txt';
 	
-	$titre = 'Classement par points';
+	$titre = 'Points';
 	$descr = 'Récompense le pronostiqueur le plus régulier';
 	$colonnes = ';;Score;Pronos';
 	$taille_colonnes = '2;6;2;2';
@@ -181,7 +181,7 @@
 	
 	$nom_fichier = '03-Victoires.txt';
 	
-	$titre = 'Nombre de victoires';
+	$titre = 'Victoires';
 	$descr = 'Récompense les vainqueurs d\'étape';
 	$colonnes = ';;Victoires;Pronos';
 	$taille_colonnes = '2;6;2;2';
@@ -226,7 +226,7 @@
 	
 	$nom_fichier = '04-Podiums.txt';
 	
-	$titre = 'Nombre de podiums';
+	$titre = 'Podiums';
 	$descr = 'Récompense les trusteurs de podiums';
 	$colonnes = ';;Podiums;Pronos';
 	$taille_colonnes = '2;6;2;2';
@@ -271,7 +271,7 @@
 	
 	$nom_fichier = '05-Top10.txt';
 	
-	$titre = 'Nombre de top 10';
+	$titre = 'Top 10';
 	$descr = 'Récompense les habitués aux Top 10';
 	$colonnes = ';;Top 10;Pronos';
 	$taille_colonnes = '2;6;2;2';
@@ -358,7 +358,7 @@
 	
 	$nom_fichier = '07-Regularite.txt';
 	
-	$titre = 'Tir groupé';
+	$titre = 'Régularité';
 	$descr = 'Récompense les plus réguliers';
 	$colonnes = ';;Moyenne corrects;Pronos';
 	$taille_colonnes = '2;5;3;2';

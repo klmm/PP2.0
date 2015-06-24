@@ -76,7 +76,7 @@
     
     
     //---------------------------------JEU COMMENCE ?---------------------------//
-    if(!$jeu['commmence'] && $admin == false){
+    if($jeu['commmence'] == "0" && $admin == false){
 	header('Location: /redirect/erreur404.html');
 	return;
     }
@@ -363,9 +363,9 @@
 	    }
 	    
 	    echo '	    <div class="table-box col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-				<div class="sectionSide">
+				<!--<div class="sectionSide">
 				    <p class="section-highlight">' . $classements[$i]['description'] . '</p>
-				</div>
+				</div>-->
 				<div class="classement-table">
 				    <table class="table">
 					<tbody>';   

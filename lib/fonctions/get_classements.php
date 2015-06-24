@@ -45,7 +45,7 @@
 	}
 	$url = $_SERVER['DOCUMENT_ROOT'] . $url;
     
-	$file = array_diff(scandir($url), array('..', '.'));
+	$file = array_diff(scandir($url), array('..', '.','archives'));
 	
 	foreach ($file as $key => $dir) 
 	{

@@ -446,17 +446,33 @@
 		$tmp_class = '';
 		$tmp_date = '';
 	    }
-	    if(!$calendrier['commence']){
+	    if(!$calendrier['commence'] == "1"){
 		$tmp_date = $calendrier['date_debut_fr_tcourt'];
+		if($calendrier['disponible'] == "1"){
+		    $tmp_ico = '';
+		}
+		else{
+		    $tmp_ico = 'glyphicon-lock';
+		}
 	    }
 	    else{
 		$tmp_date = '';
+
+		if($calendrier['traite'] == "0"){
+		    $tmp_ico = 'glyphicon-hourglass';
+		}
+		else{
+		    $tmp_ico = 'glyphicon-stats';
+		}
 	    }//ajouter une classe dans le <a> suivant si a venir ou en cours ou passé et de meme avec glyphicon-lock ou glyphicon-hourglass ou  glyphicon-stats
-	    echo '		    <li class="' . $tmp_class . '"><a class="clearfix" value="' . $id . '">
-						<span class="title col-md-12">' . $calendrier['nom_complet'] . '</span>
-						<span class="date col-md-6">' . $tmp_date . '</span>
-						<span class="glyphicon glyphicon-lock col-md-6"></span>
-						</a></li>';
+	    	    
+	    echo '		    <li class="' . $tmp_class . '">
+					<a class="clearfix" value="' . $id . '">
+					    <span class="title col-md-12">' . $calendrier['nom_complet'] . '</span>
+					    <span class="date col-md-6">' . $tmp_date . '</span>
+					    <span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
+					</a>
+				    </li>';
 	}
 					    
 	echo '

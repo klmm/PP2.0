@@ -447,12 +447,16 @@
 		$tmp_date = '';
 	    }
 	    if(!$calendrier['commence']){
-		$tmp_date = $calendrier['date_debut_fr_tcourt'] . ' : ';
+		$tmp_date = $calendrier['date_debut_fr_tcourt'];
 	    }
 	    else{
 		$tmp_date = '';
-	    }
-	    echo '		    <li class="' . $tmp_class . '"><a value="' . $id . '">' . $tmp_date . $calendrier['nom_complet'] . '</a></li>';
+	    }//ajouter une classe dans le <a> suivant si a venir ou en cours ou passé et de meme avec glyphicon-lock ou glyphicon-hourglass ou  glyphicon-stats
+	    echo '		    <li class="' . $tmp_class . '"><a class="clearfix" value="' . $id . '">
+						<span class="title col-md-12">' . $calendrier['nom_complet'] . '</span>
+						<span class="date col-md-6">' . $tmp_date . '</span>
+						<span class="glyphicon glyphicon-lock col-md-6"></span>
+						</a></li>';
 	}
 					    
 	echo '

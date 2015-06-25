@@ -424,9 +424,22 @@ float:left;
 	#calendar .navbar-nav>li>a {
 		background-color: rgb(67, 67, 67);
 		color: white;
-		height: 50px;
-		line-height: 40px;
+		//height: 50px;
+		//line-height: 40px;
 		font-size: 16px;
+	}
+	#calendar .navbar-nav>li>a>span {
+		line-height: 30px;
+	}
+	#calendar .navbar-nav>li>a>.title {
+		text-align: left;
+		font-weight: bold;
+	}
+	#calendar .navbar-nav>li>a>.date {
+		text-align: left;
+	}
+	#calendar .navbar-nav>li>a>.glyphicon {
+		text-align: right;
 	}
 	#calendar .navbar-nav>li.ative>a, #calendar .navbar-nav>li>a:hover {
 		background-color: rgb(200, 200, 200);

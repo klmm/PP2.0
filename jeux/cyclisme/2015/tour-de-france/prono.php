@@ -57,10 +57,10 @@
 	$calendrier = get_calendrier($ID_JEU,$ID_CAL);
 	$liste_calendrier = get_calendrier_jeu_avenir($ID_JEU);
 	
-	if(!$jeu['commmence']){
+	/*if(!$jeu['commmence']){
 	    header('Location: /redirect/erreur404.html');
 	    return;
-	}
+	}*/
 	
 	if ($calendrier == null){
 	    header('Location: /redirect/erreur404.html');

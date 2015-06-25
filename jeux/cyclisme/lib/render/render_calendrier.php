@@ -142,17 +142,26 @@
     
     // AFFICHAGE PARTIE CALENDRIER
     
+    
+    // Terminé
     if($calendrier['commence'] && $calendrier['traite']){
 	$tmp = 'disabled';
 	$txt = 'Terminé';
     }
+    // En cours
     elseif($calendrier['commence'] && !$calendrier['traite']){
 	$tmp = 'disabled';
 	$txt = 'En cours';
     }
-    else{
+    // Dispo
+    elseif($calendrier['disponible']){
 	$tmp = '';
 	$txt = 'Parier';
+    }
+    // Pas dispo
+    else{
+	$tmp = 'disabled';
+	$txt = 'Bientôt';
     }
 
     $res = '	    

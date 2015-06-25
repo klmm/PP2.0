@@ -446,7 +446,7 @@
 		$tmp_class = '';
 		$tmp_date = '';
 	    }
-	    if(!$calendrier['commence'] == "1"){
+	    if($calendrier['commence'] == "0"){
 		$tmp_date = $calendrier['date_debut_fr_tcourt'];
 		if($calendrier['disponible'] == "1"){
 		    $tmp_ico = '';

@@ -560,7 +560,6 @@
         <script src="/bower_components/velocity/velocity.js"></script>
         <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
         <script src="/bower_components/angular/angular.js"></script>
-        <!-- <script src="/js/toucheffects.js"></script> -->
 	<script src="/js/social-buttons.js"></script>
 	
 	

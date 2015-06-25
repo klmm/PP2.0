@@ -438,6 +438,7 @@
 	    <script src="/js/social-buttons.js"></script>
 	    <script src="/js/pagination.js"></script>
 	    <script src="/js/imagesloaded.pkgd.min.js"></script>
+		<script src="/js/jquery.ui.touch-punch.min.js"></script>
 	    <script src="/js/d3.min.js"></script>
 	    
 	    <script>

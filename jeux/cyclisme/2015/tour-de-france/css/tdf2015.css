@@ -3,7 +3,7 @@
 	padding-left: 0;
 }
 #news{
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 	padding-top: 0;
 }
 #zone-news{
@@ -181,6 +181,10 @@
   transform: translate(-50%, -50%);
   position: absolute;
   border: none;
+}
+
+.comment-panel{
+	margin-bottom: 50px;
 }
 /*pari-panel pres+combo*/
 .calendar-combo{

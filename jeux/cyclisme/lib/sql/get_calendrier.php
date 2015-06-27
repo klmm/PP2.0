@@ -136,6 +136,7 @@
 	    
 	    if($now > $dh_debut){
 		$arr[$id_cal]['commence'] = "1";
+		$arr[$id_cal]['date_debut'] = $arr[$id_cal]['date_fin'];
 	    }
 	    else{
 		$arr[$id_cal]['commence'] = "0";

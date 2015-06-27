@@ -234,6 +234,7 @@
 						
     echo '
 					<li class=""><a href="#resultats" data-action="scrollTo">Pronostics</a></li>
+					<li class="home"><a href="/" class="glyphicon glyphicon-home" aria-label="home"><span> Retour au site</span></a></li>
                                     </ul>  
                                 </div>
                             </div>
@@ -555,7 +556,7 @@
 				<p>© 2015 Parions Potes</p>
 			</div>
 			<div class="rules col-md-6 col-sm-6 col-xs-12">
-				<a href="reglement.htm" class="btn btn-primary">
+				<a href="reglement.htm" target="_blank" class="btn btn-primary">
 					<span>
 					    Règlement
 					</span>

@@ -3,8 +3,8 @@
     
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
-    $login_base = 'test';
-    $NB_PRONOS = 200;
+    $login_base = 'Testtest0';
+    $NB_PRONOS = 500;
     
     $cyclistes = get_cyclistes_jeu($id_jeu, $id_cal);
     $nb_cyclistes = sizeof($cyclistes);

@@ -67,7 +67,7 @@
     $res = '	    <div class="sectionSide">
 			<p class="section-highlight">Top 10 de ' . $joueur . '</p>
 		    </div>	
-		    <table class="table table-hover">';
+		    <table class="table">';
     
     for($i=0;$i<10;$i++){
 	

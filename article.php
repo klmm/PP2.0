@@ -282,7 +282,7 @@ $cr = array(
     echo '
             <section id="article" data-speed="4" data-type="background">
                 <div id="reuters" class="credits">
-                    <p>' . $photo_credits . '</p>
+                    <p>&copy; ' . $photo_credits . '</p>
                 </div>
                 <div class="container">
                     <div class="col-md-8 col-sm-8">

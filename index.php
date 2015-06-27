@@ -317,7 +317,7 @@ $cr = array(
                                         <div class="container">
                                             <div class="carousel-caption">
 						<div class="credits">
-						    <p>' . $arr_unes[$i]['photo_credits'] . '</p>
+						    <p>&copy; ' . $arr_unes[$i]['photo_credits'] . '</p>
 						</div>
                                                 <div class="col-md-9">
                                                     <h1>'. $arr_unes[$i]['titre'] . '</h1>

@@ -256,13 +256,13 @@
     
  
 //---------------------------------------------BREVES------------------------------------------------------//	
-    echo '  <div id="news" class="section" style="background-color: white;">
-		<div class="container">
-		    <div class="game-header tdf2015">
+    echo '  <div class="game-header tdf2015 section">
 				 <h1>' . $competition . '</h1>
 				 <h2>' . $sous_titre . '</h2>
 			</div>
-			<div class="col-md-8 col-md-offset-0 col-sm-8 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+	<div id="news" class="section" style="background-color: white;">
+		<div class="container">
+			<div class="col-md-8 col-md-offset-0 col-sm-8 col-sm-offset-0 col-xs-12 col-xs-offset-0">
 			<div class="sectionSide" style="padding-bottom: 15px; color:black;text-align:center;">
 			    <h1 class="section-heading">News</h1>
 			</div>
@@ -467,7 +467,7 @@
 	    }//ajouter une classe dans le <a> suivant si a venir ou en cours ou passé et de meme avec glyphicon-lock ou glyphicon-hourglass ou  glyphicon-stats
 	    	    
 	    echo '		    <li class="' . $tmp_class . '">
-					<a class="clearfix" value="' . $id . '">
+					<a class="clearfix" value="' . $id . '" data-action="goTo">
 					    <span class="title col-md-12">' . $calendrier['nom_complet'] . '</span>
 					    <span class="date col-md-6">' . $tmp_date . '</span>
 					    <span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
@@ -611,7 +611,7 @@
                 {
                         e.preventDefault();
                         scrollX = $(\'.header\').height();
-                        $(\'.menu\').toggleClass(\'active\');
+                       // $(\'.menu\').toggleClass(\'active\');
                         if(this.hash == "#myCarousel") {
                                         $(\'body\').scrollTo(0,500,null);
                                                    
@@ -621,6 +621,14 @@
                         }
                 $(\'.navbar-collapse\').removeClass(\'in\');
                 });
+				
+		 $(\'a[data-action="goTo"]\').click(function(e)
+		{
+				e.preventDefault();
+				//$(\'.menu\').toggleClass(\'active\');
+				
+				$(\'.navbar-collapse\').removeClass(\'in\');
+		});
                 
                 $(\'[data-toggle=dropdown]\').dropdown();
         

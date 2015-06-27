@@ -4,16 +4,19 @@
 }
 #news{
 	margin-bottom: 50px;
-	padding-top: 0;
+	//padding-top: 0;
 }
 #zone-news{
-	max-height: 500px;
+	max-height: 800px;
 	overflow: auto;
 	padding: 0 15px;
 
 }
 #zone-news p{
-	font-size: 15px;
+	font-size: 1.3em;
+}
+#zone-news p.bold{
+	padding-top: 10px;
 }
 #resultats{
 	margin-bottom: 0;
@@ -21,7 +24,8 @@
 
 .game-header{
 	text-align: center;
-	margin-bottom: 50px;
+	margin-bottom: 0;
+	padding-top: 10px;
 }
 .game-header h1{
 	font-size: 52px;
@@ -82,9 +86,12 @@
   padding: 0 1.25em;
   //white-space: nowrap;
 }
-.tabs #collapsed {
+#lastTab #collapsed {
  border : none;
- min-width:initial;
+ min-width:200px;
+}
+#lastTab > a{
+ min-width:200px;
 }
 
 
@@ -445,10 +452,13 @@ float:left;
 	#calendar .navbar-nav>li>a>.glyphicon {
 		text-align: right;
 	}
-	#calendar .navbar-nav>li.ative>a, #calendar .navbar-nav>li>a:hover {
+	#calendar .navbar-nav>li>a:hover {
 		background-color: rgb(200, 200, 200);
 		color: black;
-	}
+	} 
+	#calendar .navbar-nav>li.active>a {
+		background-color: rgb(66, 139, 202);
+	} 
 	#calendar .navbar-collapse.collapse {
 		display: block !important;
 		width: auto !important;

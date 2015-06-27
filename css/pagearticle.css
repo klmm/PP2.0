@@ -114,7 +114,7 @@
 	font-size: 15px;
 }
 .badge {
-	border-radius:5px;
+	border-radius:0 0 0 5px;
 	background-color:rgb(115, 50, 130);
 	font-size: 14px;
 }

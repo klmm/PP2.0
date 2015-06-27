@@ -2,7 +2,7 @@
 	$ID_JEU = 1;
 	$js = '/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js';
 	$css = '/jeux/cyclisme/2015/tour-de-france/css/tdf2015.css';
-	$logo = '/img/logos/2015/tdf.png';
+	$logo = '/img/logos/logo_share.jpg';
 	$description = 'Pronostics gratuits sur le Tour de France 2015.';
 	
     //--------------------------------------FONCTIONS--------------------------------------//
@@ -117,13 +117,14 @@
 	<meta name="content-language" content="fr"/>
 	<meta name="description" content="' . $description . '"/>
 	<meta name="keywords" content="' . $titre . '"/>
-	<meta name="subject" content=""/>
-	<meta name="copyright" content="Parions Potes 2015"/>
-	<meta name="identifier-url" content="www.parions-potes.fr"/>
+	<meta name="subject" content="" />
+	<meta name="copyright" content="Parions Potes 2015" />
+	<meta name="identifier-url" content="http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . '" />
 	<meta property="og:title" content="' . $titre . '" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="www.parions-potes.fr" />
-	<meta property="og:image" content="' . $logo . '"/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . '" />
+	<meta property="og:image" content="http://www.parions-potes.fr' . $logo . '" />
+	<meta property="og:description" content="' . $description . '" />
 	
         <link rel="shortcut icon" href="/img/logos/icone.ico"/>';
 

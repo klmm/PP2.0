@@ -5,7 +5,7 @@
     $titre = 'Parions Potes - Tour de France 2015';
     $competition = 'Tour de France 2015';
     $sous_titre = 'du 4 au 26 juillet 2015';
-    $logo = '/img/logos/2015/tdf.png';
+    $logo = '/img/logos/logo_share.jpg';
     $description = 'Pronostics gratuits sur le Tour de France 2015.';
     $keywords = 'pronostics paris gratuits sport cyclisme tdf tourdefrance 2015';
     
@@ -99,16 +99,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="" />
 
-	<meta name="content-language" content="fr"/>
-	<meta name="description" content="' . $description . '"/>
-	<meta name="keywords" content="' . $keywords . '"/>
-	<meta name="subject" content=""/>
-	<meta name="copyright" content="Parions Potes 2015"/>
-	<meta name="identifier-url" content="www.parions-potes.fr"/>
+	<meta name="content-language" content="fr" />
+	<meta name="description" content="' . $description . '" />
+	<meta name="keywords" content="' . $keywords . '" />
+	<meta name="subject" content="" />
+	<meta name="copyright" content="Parions Potes 2015" />
+	<meta name="identifier-url" content="http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . '" />
 	<meta property="og:title" content="' . $titre . '" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="www.parions-potes.fr" />
-	<meta property="og:image" content="' . $logo . '"/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . '" />
+	<meta property="og:image" content="http://www.parions-potes.fr' . $logo . '" />
+	<meta property="og:description" content="' . $description . '" />
 	
         <link rel="shortcut icon" href="/img/logos/icone.ico"/>';
 
@@ -437,29 +438,26 @@
 	
 	for($i=0;$i<$nb_calendrier;$i++){
 	    $calendrier = $arr_calendrier[$i];
+	    $tmp_date = $calendrier['date_debut_fr_tcourt'];
 	    $id = $calendrier['id_cal'];
 	    if($id == $id_cal){
 		$tmp_class = 'active';
-		$tmp_date = '';
 	    }
 	    else{
 		$tmp_class = '';
-		$tmp_date = '';
 	    }
 	    if($calendrier['commence'] == "0"){
-		$tmp_date = $calendrier['date_debut_fr_tcourt'];
+		
 		if($calendrier['disponible'] == "1"){
-		    $tmp_ico = '';
+		    $tmp_ico = 'glyphicon-play';
 		}
 		else{
 		    $tmp_ico = 'glyphicon-lock';
 		}
 	    }
 	    else{
-		$tmp_date = '';
-
 		if($calendrier['traite'] == "0"){
-		    $tmp_ico = 'glyphicon-hourglass';
+		    $tmp_ico = 'glyphicon-refresh';
 		}
 		else{
 		    $tmp_ico = 'glyphicon-stats';

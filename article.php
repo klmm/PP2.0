@@ -112,16 +112,17 @@ $cr = array(
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="" />
-	<meta property="og:title" content="' . $titre . '" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="www.parions-potes.fr" />
-	<meta property="og:image" content="' . $photo_chemin . '">
 	<meta name="content-language" content="fr"/>
 	<meta name="keywords" content="pronostics paris gratuits ' . $titre . '"/>
 	<meta name="subject" content=""/>
 	<meta name="copyright" content="Parions Potes 2015"/>
-	<meta name="identifier-url" content="www.parions-potes.fr"/>
+	<meta name="identifier-url" content="http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . '"/>
 	<meta name="description" content="' . $debut_article . '" />
+	<meta property="og:title" content="' . $titre . '" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] . '" />
+	<meta property="og:image" content="http://www.parions-potes.fr' . $photo_chemin_deg . '" />
+	<meta property="og:description" content="' . $debut_article . '" />
 	
         <link rel="shortcut icon" href="/img/logos/icone.ico"/>';
 

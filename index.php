@@ -61,6 +61,9 @@ $cr = array(
     else{
         $bConnected = false;
     }
+    
+    $description = 'Parions Potes est un site de pronostics gratuits sur les principaux événements sportifs de l’année. '
+	    . 'Multisport, Parions Potes met surtout en avant trois sports peu ouverts aux pronostics : le cyclisme, le ski alpin et le biathlon.';
 //------------------------------------------------------------------------------------------------//
 
 /*
@@ -83,16 +86,17 @@ $cr = array(
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Parions Potes" />
 
-	<meta name="content-language" content="fr"/>
-	<meta name="description" content="Parions Potes est un site de pronostics gratuits sur les principaux événements sportifs de l’année. Multisport, Parions Potes met surtout en avant trois sports peu ouverts aux pronostics : le cyclisme, le ski alpin et le biathlon."/>
-	<meta name="keywords" content="pronostics paris gratuits sport cyclisme ski biathlon amis"/>
-	<meta name="subject" content=""/>
-	<meta name="copyright" content="Parions Potes 2015"/>
-	<meta name="identifier-url" content="www.parions-potes.fr"/>
+	<meta name="content-language" content="fr" />
+	<meta name="description" content="' . $description . '" />
+	<meta name="keywords" content="pronostics paris gratuits sport cyclisme ski biathlon amis" />
+	<meta name="subject" content="" />
+	<meta name="copyright" content="Parions Potes 2015" />
+	<meta name="identifier-url" content="http://www.parions-potes.fr" />
 	<meta property="og:title" content="' . $titre . '" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="www.parions-potes.fr" />
-	<meta property="og:image" content="/img/logos/logo_share.jpg">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.parions-potes.fr" />
+	<meta property="og:image" content="http://www.parions-potes.fr/img/logos/logo_share.jpg" />
+	<meta property="og:description" content="' . $description . '" />
 	    
         <link rel="shortcut icon" href="/img/logos/icone.ico"/>';
 		

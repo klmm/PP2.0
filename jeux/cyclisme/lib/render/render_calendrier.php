@@ -186,7 +186,7 @@
 			    <div class="sectionSide">
 				<p class="section-highlight">Résultat</p>
 			    </div>	
-			    <table class="table table-hover">';
+			    <table class="table">';
 	
 	for ($i=0;$i<10;$i++){
 	    $id_entite_res = $calendrier['classement'][$i];
@@ -209,7 +209,7 @@
 			    <div class="sectionSide">
 				<p class="section-highlight">Mon Top 10</p>
 			    </div>
-			    <table class="table table-hover">';
+			    <table class="table">';
 	
 	for ($i=0;$i<10;$i++){
 	    $id_entite_prono = $prono_joueur['prono'][$i];
@@ -278,7 +278,7 @@
 			<div class="sectionSide">
 			    <p class="section-highlight">Mon Top 10</p>
 			</div>
-			<table class="table table-hover">';
+			<table class="table">';
 	
 	for ($i=0;$i<10;$i++){
 	    $id_entite_prono = $prono_joueur['prono'][$i];

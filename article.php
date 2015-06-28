@@ -491,7 +491,7 @@ $cr = array(
 		  $(window).scroll(function() {
 			// HTML5 proves useful for helping with creating JS functions!
 			// also, negative value because we\'re scrolling upwards                             
-			var yPos = -($window.scrollTop() / $scroll.data(\'speed\')) + 100; 
+			var yPos = -($window.scrollTop() / $scroll.data(\'speed\')) + 60; 
 			 
 			// background position
 			var coords = \'50% \'+ yPos + \'px\';

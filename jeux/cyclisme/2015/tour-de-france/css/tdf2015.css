@@ -294,7 +294,9 @@ margin-left: 5%;
 line-height: 27px;
 color: rgb(255, 232, 0);
 }
-  
+#pari-panel li .item-rating>span {
+position: inherit;
+} 
 
 #canvas-holder{
 width:15%;

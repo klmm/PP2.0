@@ -270,8 +270,8 @@
 			<p class="section-highlight" style="margin-bottom:50px">' . $calendrier['date_debut_fr'] . ' - '. $calendrier['heure_debut_fr'] . '</p>
 			
 			<div class="btn-group calendar-combo">
-			    <button type="button" class="btn btn-default">' . $calendrier['nom_complet'] . '</button>
-			    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			    <button type="button" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $calendrier['nom_complet'] . '</button>
+			    <button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 				<span class="caret"></span>
 				<span class="sr-only">Toggle Dropdown</span>
 			    </button>
@@ -291,8 +291,14 @@
 
    
 //---------------------------------------------ZONE PRONO------------------------------------------------------//	
-    echo '
-		    <div class="col-xs-6">
+    if(!$bConnected){
+		echo '<div class="alert alert-info alert-dismissible" style="margin-bottom:15px;" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<strong>Attention!  </strong>Vous n\'êtes pas connecté, vous ne pourrez pas valider votre pari.</div>';
+	}
+	
+	echo '
+		    <div class="col-xs-6" style="position: inherit;">
 			<input id="item-search" type="text" placeholder="Recherche" name="nom" class="form-control" style="margin-bottom:25px;"/>
 			<ul id="sortable1" class="connectedSortable ui-sortable">';
     
@@ -325,7 +331,7 @@
 			</ul>
 			<div id="bottom-list"></div>
 		    </div>
-		    <div class="col-xs-6">
+		    <div class="col-xs-6" style="position: inherit;">
 			<div class="result-area clearfix" data-spy="affix">
 			    <div id="msg-container"> </div>
 			    <input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>';

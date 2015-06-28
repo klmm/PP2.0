@@ -1,6 +1,6 @@
-/* BODY */
+
 #image { 
-    background:  50% 100px fixed; 
+    background:  50% 60px fixed; 
     height: 100%;  
     margin: 0 auto; 
     width: 100%; 
@@ -65,13 +65,21 @@
   font-size: 13px;
   color: grey;
 }
+.insert-youtube{
+	text-align: center;
+}
 
 .social-sharing{  
 	margin-top: 100px;
 	text-align: center;
 }
 
-
+.article-table{ 
+  font-family: 'Verdana';
+  line-height: 1.5em;
+  font-size: 1.5em;
+  color: rgb(65, 148, 184);
+}
 #list-right{
 	 //box-shadow: 0 0 15px rgba(150,150,150,0.8);
 }
@@ -179,4 +187,8 @@ span.dislike-status{
 	margin-top : 15px;
 }
 
-
+@media (max-width: 500px) {
+	.article-text {
+		text-align: left;
+	}
+}

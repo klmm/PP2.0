@@ -57,7 +57,7 @@
     }
     
     if ($login == ''){
-	$msg = 'Vous n\'êtes pas connecté';
+	$msg = 'Vous n\'êtes pas connecté !';
 	$rafr = false;
 	$res = false;
 	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
@@ -67,10 +67,10 @@
     
     if (sizeof($arr_prono) != 10){
 	if($calendrier['profil_equipe']){
-	    $msg = 'Vous n\'avez pas sélectionné dix équipes';
+	    $msg = 'Vous n\'avez pas sélectionné dix équipes !';
 	}
 	else{
-	    $msg =  'Vous n\'avez pas sélectionné dix coureurs';
+	    $msg =  'Vous n\'avez pas sélectionné dix coureurs !';
 	}	
 	$rafr = false;
 	$res = false;

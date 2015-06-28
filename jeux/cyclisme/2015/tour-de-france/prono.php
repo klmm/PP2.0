@@ -290,17 +290,24 @@
 //---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//
 
    
-//---------------------------------------------ZONE PRONO------------------------------------------------------//	
+//---------------------------------------------ZONE PRONO------------------------------------------------------//
+    echo '	    <div class="alert-msg-prono">';
+    
     if(!$bConnected){
-		echo '<div class="alert alert-info alert-dismissible" style="margin-bottom:15px;" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong>Attention!  </strong>Vous n\'êtes pas connecté, vous ne pourrez pas valider votre pari.</div>';
-	}
-	
-	echo '
-		    <div class="col-xs-6" style="position: inherit;">
-			<input id="item-search" type="text" placeholder="Recherche" name="nom" class="form-control" style="margin-bottom:25px;"/>
-			<ul id="sortable1" class="connectedSortable ui-sortable">';
+	echo '		<div class="alert alert-info alert-dismissible" style="margin-bottom:15px;" role="alert">
+			    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			    </button>
+			    <strong>Attention !</strong> Vous n\'êtes pas connecté, vous ne pourrez pas valider votre pari.
+			</div>';
+    }
+    
+    echo '	    </div>';
+    
+    echo '
+		<div class="col-xs-6" style="position: inherit;">
+		    <input id="item-search" type="text" placeholder="Recherche" name="nom" class="form-control" style="margin-bottom:25px;"/>
+		    <ul id="sortable1" class="connectedSortable ui-sortable">';
     
     if($calendrier['profil_equipe']){
 	foreach($equipes as $id => $equipe){
@@ -333,7 +340,6 @@
 		    </div>
 		    <div class="col-xs-6" style="position: inherit;">
 			<div class="result-area clearfix" data-spy="affix">
-			    <div id="msg-container"> </div>
 			    <input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>';
     
     

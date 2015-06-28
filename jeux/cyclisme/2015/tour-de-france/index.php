@@ -435,7 +435,7 @@
 			    </div>
 
 			    <div class="collapse navbar-collapse navbar-calendar">
-				<ul class="nav navbar-nav">';
+				<ul id="list-cal" class="nav navbar-nav">';
 	
 	for($i=0;$i<$nb_calendrier;$i++){
 	    $calendrier = $arr_calendrier[$i];

@@ -200,6 +200,11 @@
 }
 #calendar-list{
 	font-size:18px;
+	
+}
+
+#calendar:hover, #calendar:focus{
+    cursor:pointer;
 }
 
 /*pari-panel */

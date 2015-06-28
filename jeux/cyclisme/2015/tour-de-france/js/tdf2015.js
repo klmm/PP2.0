@@ -4,11 +4,18 @@ var id_jeu = 1;
 function Init_Forms_Cyclisme()
 {
 	$(document).on('click', '#calendar a', function(e)
-	{
-		var id = $(this).attr("value");	
-		render_pres_panel(id);
-		getAllComs(0,id_jeu,id,0);
-		document.location.href='#resultats';
+	{    
+	    $('#list-cal li').each(function() {
+		$(this).removeClass("active");
+	    });
+	    
+	    $(this).parent().addClass("active");
+	    
+	    var id = $(this).attr("value");	
+	    render_pres_panel(id);
+	    getAllComs(0,id_jeu,id,0);
+	    
+	    document.location.href='#resultats';
 	});
 	
 	$(document).on('mouseover', '#calendar a', function(e)
@@ -119,12 +126,19 @@ function Init_Zone_Paris()
 		    var result = $.parseJSON(data);
 		    var msg = result.msg;
 		    var rafr = result.rafr;
+		    var msg_final;
 		    var res = result.resultat;
 		        
-		    if(msg != null && res != null){
-			alert(msg);
-			$( "#msg-container" ).empty();
-			$( "#msg-container" ).append(msg);
+		    if(msg != null && res != null && (rafr != null || rafr == false)){
+			$( ".alert-msg-prono" ).empty();
+			
+			msg_final = '<div class="alert alert-info alert-dismissible" style="margin-bottom:15px;" role="alert">' +
+				    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+					'<span aria-hidden="true">&times;</span>' +
+				    '</button>' + msg +
+				    '</div>';
+			
+			$( ".alert-msg-prono" ).append(msg_final);
 		    }
 		    else{
 			location.reload();
@@ -186,8 +200,7 @@ function render_pres_panel(id_cal){
 		type: "POST",
 		data : postData,
 		success:function(data, textStatus, jqXHR) 
-		{	    
-		    
+		{	    		    
 		    var result = $.parseJSON(data);
 		    var html = result.html;
 		    var premier = result.premier;

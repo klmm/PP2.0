@@ -66,7 +66,8 @@
     
     $res = '	    <div class="sectionSide">
 			<p class="section-highlight">Top 10 de ' . $joueur . '</p>
-		    </div>	
+		    </div>
+			<div class="col-md-9 col-sm-9 col-xs-9">
 		    <table class="table">';
     
     for($i=0;$i<10;$i++){
@@ -87,7 +88,24 @@
 	$res .= '	</tr>';
     }
     
-    $res .= '	    </table>';
+    $res .= '	    </table>
+				</div>
+				<div class="stat-box col-md-3 col-sm-3 col-xs-3">
+					<ul>
+						<li class="score">
+							<p class="stat-item">Score</p>
+							<p class="stat-value">'. $prono['score_total'] .'</p>
+						</li>
+						<li class="risk">
+							<p class="stat-item">Risques</p>
+							<p class="stat-value">'. $prono['bonus_risque'] .'%</p>
+						</li>
+						<li class="number">
+							<p class="stat-item">Bonus</p>
+							<p class="stat-value">'. $prono['bonus_nombre'] .'</p>
+						</li>
+					</ul>
+				</div>';
     
     
     echo $res;

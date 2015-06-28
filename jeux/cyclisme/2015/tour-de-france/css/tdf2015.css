@@ -193,6 +193,68 @@
 .comment-panel{
 	margin-bottom: 50px;
 }
+
+/* stats box */
+.stat-box ul {
+	list-style: none;
+	margin: 0;
+	padding:0;
+	height: 370px;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+.later .stat-box ul {
+	margin-top: 74px;
+}
+.stat-box ul li{
+	text-align: center;
+}
+/* .stat-box ul li:hover{
+	background-color:grey;
+} */
+.stat-box ul li p{
+	text-align: center;
+	margin: 0;
+}
+.stat-box .stat-item{
+	height: 30%;
+	font-size: 1.8em;
+}
+.stat-box .stat-value{
+	height: 70%;
+	font-size: 3.5em;
+}
+.stat-box .risk{
+	color: #D82F2F;
+}
+.stat-box .time-out{
+	color: #31A9E9;
+}
+.stat-box .score{
+	color: #31A9E9;
+}
+.stat-box .number{
+	color: #31E93B;
+}
+.later .stat-box .stat-item{
+	font-size: 1.8em;
+}
+.later .stat-box .stat-value{
+	font-size: 3.5em;
+}
+.player-result .stat-box .stat-item, .other-result .stat-box .stat-item{
+	font-size: 1.4em;
+}
+.player-result .stat-box .stat-value, .other-result .stat-box .stat-value{
+	font-size: 2.5em;
+}
+.later .stat-box ul li{
+	height: 50%;
+}
+.player-result .stat-box ul li, .other-result .stat-box ul li{
+	height: 33%;
+}
+
 /*pari-panel pres+combo*/
 .calendar-combo{
 	left: 50%;
@@ -411,6 +473,9 @@ float:left;
 		margin:0;
 	}
 
+	.later .stat-box ul {
+		margin-top: 0;
+	}
 }
 
 @media (min-width: 768px) {

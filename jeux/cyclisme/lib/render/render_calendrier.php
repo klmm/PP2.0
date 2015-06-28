@@ -209,6 +209,7 @@
 			    <div class="sectionSide">
 				<p class="section-highlight">Mon Top 10</p>
 			    </div>
+				<div class="col-md-9 col-sm-9 col-xs-9">
 			    <table class="table">';
 	
 	for ($i=0;$i<10;$i++){
@@ -228,8 +229,26 @@
 	}
 	
 	$res .= '	    </table>
+				</div>
+				<div class="stat-box col-md-3 col-sm-3 col-xs-3">
+					<ul>
+						<li class="score">
+							<p class="stat-item">Score</p>
+							<p class="stat-value">'. $prono_joueur['score_total'] .'</p>
+						</li>
+						<li class="risk">
+							<p class="stat-item">Risques</p>
+							<p class="stat-value">'. $prono_joueur['bonus_risque'] .'%</p>
+						</li>
+						<li class="number">
+							<p class="stat-item">Bonus</p>
+							<p class="stat-value">'. $prono_joueur['bonus_nombre'] .'</p>
+						</li>
+					</ul>
+				</div>
 			</div>
-		    </div>';
+			
+		</div>';
 	
 	
 	
@@ -265,7 +284,7 @@
 	$res .= '		</table>
 			    </div>
 			</div>
-			<div id="son_prono" class="table-stat-box col-md-6 col-sm-6 col-xs-12 hidden-xs">
+			<div id="son_prono" class="table-stat-box col-md-6 col-sm-6 col-xs-12">
 
 			</div>
 		    </div>';
@@ -299,7 +318,16 @@
 	$res .= '	</table>
 		    </div>
 		    <div class="stat-box col-md-6 col-sm-6 col-xs-12">
-
+				<ul>
+					<li class="risk">
+						<p class="stat-item">Prise de risque</p>
+						<p class="stat-value">'. $prono_joueur['bonus_risque'] .'</p>
+					</li>
+					<li class="time-out">
+						<p class="stat-item">Temps restant</p>
+						<p class="stat-value">25\' / Over</p>
+					</li>
+				</ul>
 		    </div>
 		</div>';
     }

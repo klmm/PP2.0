@@ -70,7 +70,7 @@
       // CALCUL DES MOYENNES DES CYCLISTES ET DES EQUIPES
 	$moy_max = 0;
 	foreach($all_cyclistes as $id => $cycliste){
-	    if($b_jeunes == false || intval(substr($cycliste['date_naissance'],0,4)) > $annee_course-25){
+	    if($b_jeunes == false || intval(substr($cycliste['date_naissance'],0,4)) >= $annee_course-25){
 		$moy = ($cycliste['note_paves']*$calendrier['profil_paves'] + $cycliste['note_vallons']*$calendrier['profil_vallons'] + 
 			$cycliste['note_montagne']*$calendrier['profil_montagne'] + $cycliste['note_sprint']*$calendrier['profil_sprint'] +
 			$cycliste['note_baroudeur']*$calendrier['profil_baroudeurs'] +

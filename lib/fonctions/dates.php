@@ -5,6 +5,32 @@
 	
 	return $arr[2] . '/' . $arr[1] . '/' . $arr[0];
     }
+    
+    function dateheure_sql_to_temps_restant($date){
+	$now   = time();
+	$date2 = strtotime($date);
+	$diff  = abs($date2 - $now);
+
+	//X minutes
+	if($diff < 3600){
+	    return floor($diff/60) . ' minutes';
+	}
+
+	//1 heure
+	if($diff < 7200){
+	    return '1 heure';
+	}
+
+	//X heures
+	if($diff < 86400){
+	    return floor($diff/3600) . ' heures';
+	}
+	
+	$date = substr($date,0,10) . ' 23:59:59';
+	$date2 = strtotime($date);
+	$diff  = abs($date2 - $now);
+	return floor($diff/86400) . ' jours';
+    }
 
 
     function dateheure_sql_to_fr($date){

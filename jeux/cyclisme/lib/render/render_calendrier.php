@@ -175,9 +175,7 @@
 		<div class="result-panel">';
     
     // AFFICHAGE PARTIE CALENDRIER
-    
-    
-    
+        
     if($calendrier['commence']){
 	
 	// RESULTAT
@@ -228,26 +226,35 @@
 	    $res .= '		</tr>';
 	}
 	
+	if(sizeof($prono_joueur['prono']) == 1){
+	    $tmp_risque = '	<li class="risk">
+				    <p class="stat-item">Pas de prono</p>
+				</li>';
+	}
+	else{
+	    $tmp_risque = '	<li class="score">
+				    <p class="stat-item">Score</p>
+				    <p class="stat-value">'. $prono_joueur['score_total'] .'</p>
+				</li>
+				<li class="risk">
+				    <p class="stat-item">Risques</p>
+				    <p class="stat-value">'. $prono_joueur['bonus_risque'] .'%</p>
+				</li>
+				<li class="number">
+				    <p class="stat-item">Bonus</p>
+				    <p class="stat-value">'. $prono_joueur['bonus_nombre'] .'</p>
+				</li>';
+	}
+	
+	
+	
 	$res .= '	    </table>
-				</div>
-				<div class="stat-box col-md-3 col-sm-3 col-xs-3">
-					<ul>
-						<li class="score">
-							<p class="stat-item">Score</p>
-							<p class="stat-value">'. $prono_joueur['score_total'] .'</p>
-						</li>
-						<li class="risk">
-							<p class="stat-item">Risques</p>
-							<p class="stat-value">'. $prono_joueur['bonus_risque'] .'%</p>
-						</li>
-						<li class="number">
-							<p class="stat-item">Bonus</p>
-							<p class="stat-value">'. $prono_joueur['bonus_nombre'] .'</p>
-						</li>
-					</ul>
-				</div>
 			</div>
-			
+			<div class="stat-box col-md-3 col-sm-3 col-xs-3">
+			    <ul>' . $tmp_risque . '	
+			    </ul>
+			</div>
+		    </div>	
 		</div>';
 	
 	
@@ -315,17 +322,25 @@
 	   $res .= '	     </tr>';
 	}
 	
+	if(sizeof($prono_joueur['prono']) > 1){
+	    $tmp_risque = '		<li class="risk">
+					    <p class="stat-item">Prise de risque</p>
+					    <p class="stat-value">'. $prono_joueur['bonus_risque'] .'%</p>
+					</li>';
+	}
+	else{
+	    $tmp_risque = '		<li class="risk">
+					    <p class="stat-item">Pas de prono</p>
+					</li>';
+	}
+	
 	$res .= '	</table>
 		    </div>
 		    <div class="stat-box col-md-6 col-sm-6 col-xs-12">
-				<ul>
-					<li class="risk">
-						<p class="stat-item">Prise de risque</p>
-						<p class="stat-value">'. $prono_joueur['bonus_risque'] .'</p>
-					</li>
+				<ul>' . $tmp_risque . '		
 					<li class="time-out">
 						<p class="stat-item">Temps restant</p>
-						<p class="stat-value">25\' / Over</p>
+						<p class="stat-value">' . $calendrier['temps_restant'] . '</p>
 					</li>
 				</ul>
 		    </div>

@@ -60,6 +60,7 @@
 	    }
 	    else{
 		$arr['commence'] = "0";
+		$arr['temps_restant'] = dateheure_sql_to_temps_restant($arr['date_debut']);
 	    }
 	    
 	    $dh_fin = $arr['date_fin'];

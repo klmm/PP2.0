@@ -88,22 +88,30 @@
 	$res .= '	</tr>';
     }
     
+    if(sizeof($prono['prono']) > 1){
+	$tmp_risque = '	    <li class="score">
+				    <p class="stat-item">Score</p>
+				    <p class="stat-value">'. $prono['score_total'] .'</p>
+			    </li>
+			    <li class="risk">
+				    <p class="stat-item">Risques</p>
+				    <p class="stat-value">'. $prono['bonus_risque'] .'%</p>
+			    </li>
+			    <li class="number">
+				    <p class="stat-item">Bonus</p>
+				    <p class="stat-value">'. $prono['bonus_nombre'] .'</p>
+			    </li>';
+    }
+    else{
+	$tmp_risque = '	    <li class="risk">
+				    <p class="stat-item">Pas de prono</p>
+			    </li>';
+    }
+    
     $res .= '	    </table>
 				</div>
 				<div class="stat-box col-md-3 col-sm-3 col-xs-3">
-					<ul>
-						<li class="score">
-							<p class="stat-item">Score</p>
-							<p class="stat-value">'. $prono['score_total'] .'</p>
-						</li>
-						<li class="risk">
-							<p class="stat-item">Risques</p>
-							<p class="stat-value">'. $prono['bonus_risque'] .'%</p>
-						</li>
-						<li class="number">
-							<p class="stat-item">Bonus</p>
-							<p class="stat-value">'. $prono['bonus_nombre'] .'</p>
-						</li>
+					<ul>' . $tmp_risque . '
 					</ul>
 				</div>';
     

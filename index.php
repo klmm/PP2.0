@@ -226,7 +226,7 @@ $cr = array(
 							
 	echo '
                                     <li class=""><a href="#presentation" data-action="scrollTo">Présentation</a></li>
-                                    <li class=""><a href="#contacts" data-action="scrollTo">Contacts</a></li>
+                                    <li class=""><a href="#contacts" data-action="scrollTo">Contact</a></li>
                                 </ul>  
                             </div>
                         </div>

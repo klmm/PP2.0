@@ -4,7 +4,7 @@
 	$contenu = $_POST["contenu"];
 	$sujet = $_POST["objet"];
 
-	$contenu_html = htmlentities(nl2br($contenu));
+	$contenu_html = nl2br(htmlentities($contenu));
 	
 	$passage_ligne = "\r\n";
 	

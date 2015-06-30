@@ -116,6 +116,9 @@
 	}
 	
       // CALCUL DES ETOILES CYCLISTES
+	$SEUIL_3 = 5;
+	$SEUIL_2 = 8;
+	$SEUIL_1 = 13;
 	foreach($all_cyclistes as $id => $cycliste){
 	    $moy = $cycliste['moyenne'];
 
@@ -143,13 +146,13 @@
 		    case 0:
 			$nb_etoiles = 3;
 			break;
-		    case $diff <= 7 :
+		    case $diff <= $SEUIL_3 :
 			$nb_etoiles = 3;
 			break;
-		    case $diff > 7 && $diff <= 10 :
+		    case $diff > $SEUIL_3 && $diff <= $SEUIL_2 :
 			$nb_etoiles = 2;
 			break;
-		    case $diff > 10 && $diff <= 18 :
+		    case $diff > $SEUIL_2 && $diff <= $SEUIL_1 :
 			$nb_etoiles = 1;
 			break;
 		    default :

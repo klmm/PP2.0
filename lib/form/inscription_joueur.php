@@ -73,7 +73,7 @@
 	$enregistrement = $prep2->fetch();
 
 	if( $enregistrement ){
-		echo 'Cette adresse mail a déjà été utilisée par un autre joueur...';
+		echo 'Cette adresse mail est déjà utilisée par un autre joueur...';
 		return;
 	}
 	
@@ -101,11 +101,13 @@
 	$prep3->execute();
 	
 	$objet = "Bienvenue sur Parions Potes !";
-	$contenu_txt = 'Merci pour ton inscription sur Parions Potes ! Viens vite sur parions-potes.fr !
+	$contenu_txt = 'Merci pour votre inscription sur Parions Potes ! Rendez-vous sur www.parions-potes.fr !
+	    
+Votre login : ' . $login . '
 
-Ton mot de passe : ' . $newpass . '
+Votre mot de passe : ' . $newpass . '
 
-Pense bien à le changer après t\'être connecté la première fois.';
+Pensez bien à changer de mot de passe après vous être connecté la première fois.';
 
 	envoi_mail($login, $mail, $objet, $contenu_txt);
 	echo ('success;Félicitations, vous êtes maintenant inscrit sur Parions Potes !

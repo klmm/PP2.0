@@ -316,7 +316,7 @@
 	
 	$nom_fichier = '06-Risque.txt';
 	
-	$titre = 'Baroudeurs';
+	$titre = 'Risque';
 	$descr = 'Récompense les preneurs de risque';
 	$colonnes = ';;Moy;Pronos';
 	$taille_colonnes = '2;5;3;2';

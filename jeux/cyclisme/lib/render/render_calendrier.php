@@ -94,14 +94,8 @@
     
     
     //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
+    $tab_equipes = get_equipes_inscrites($ID_JEU, $ID_CAL);
     if($b_equipe){
-	$chaine_id_equipes = $prono_joueur['prono'];
-	if($b_traite){
-	    $chaine_id_equipes .= $calendrier['classement'];
-	}
-
-	$tab_id_equipes = array_unique(explode(";", $chaine_id_equipes));
-	$tab_equipes = get_equipes_tab_id($tab_id_equipes);
 	$tab_cyclistes = null;
     }
     else{
@@ -111,15 +105,11 @@
 	}
 	
 	$tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));
-	$tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$tab_id_cyclistes);
-	$tab_equipes = null;
+	$tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$chaine_id_cyclistes);
     }
     //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
     
-  
-    
-    
-    
+
     
     
     
@@ -209,6 +199,8 @@
 			    </div>
 				<div class="col-md-9 col-sm-9 col-xs-9">
 			    <table class="table">';
+	
+	
 	
 	for ($i=0;$i<10;$i++){
 	    $id_entite_prono = $prono_joueur['prono'][$i];

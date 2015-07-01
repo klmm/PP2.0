@@ -234,7 +234,6 @@
 	    );
 
 	return $res;
-    //echo json_encode($res);
     }
     
     function compare_nom($a, $b)

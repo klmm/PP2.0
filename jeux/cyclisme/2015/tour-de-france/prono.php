@@ -11,6 +11,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_commentaires.php'; 
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_pays.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/render/render_zone_prono.php';
@@ -94,6 +95,8 @@
 	$cyclistes = $res['cyclistes'];
 	$prono = $res['prono'];
 	$equipes = $res['equipes'];
+	
+	$pays = get_pays_tous();
     //------------------------------------------------------------------------------------------------//
 
 
@@ -324,7 +327,7 @@
     else{
 	foreach($cyclistes as $id => $cycliste){
 	    if($cycliste['pos_prono'] === 0 || $mise_resultat == true){
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$cycliste['etoiles']; $z++){
 		    echo '	<span class="glyphicon glyphicon-star"></span>';
@@ -368,7 +371,7 @@
 	    }
 	    else{
 		$cycliste = $prono['cyclistes_prono'][$i];
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $cycliste['pays_drapeau_petit'] . '" alt=""/><div class="item-rating">';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$cycliste['etoiles']; $z++){
 		    echo '	<span class="glyphicon glyphicon-star"></span>';
@@ -377,7 +380,8 @@
 	    }
 	}
     }
-
+    
+    
     echo '
 			    </ul>		
 			    <button id="register" type="button" class="btn btn-primary btn-block hidden" >Enregistrer</button>

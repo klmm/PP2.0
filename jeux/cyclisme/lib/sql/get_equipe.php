@@ -107,39 +107,32 @@
 		return $arr;
 	}
 	
-	function get_equipes_tab_id($tab_id){
+	function get_equipes_tab_id($chaine_id){
 		// On �tablit la connexion avec la base de donn�es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
-
+		
+		$chaine_id = str_replace(";",",",$chaine_id);
+		
 		//On pr�pare la requ�te pour aller chercher les articles
 		$sql = "SELECT *
 				FROM cyclisme_equipe
-				WHERE id_cyclisme_equipe=?";
+				WHERE id_cyclisme_equipe IN (?)";
 		$prep = $db->prepare($sql);
 		$prep->setFetchMode(PDO::FETCH_OBJ);
+		$prep->bindValue(1,$chaine_id,PDO::PARAM_STR);
+		$prep->execute();
 		
-		$nb_equipes = sizeof($tab_id);
-
-		for( $i=0; $i<$nb_equipes; $i++ )
-		{   
-		   
-			$id_equipe = $tab_id[$i];
-			$prep->bindValue(1,$id_equipe,PDO::PARAM_INT);
-			$prep->execute();
-
-			$enregistrement = $prep->fetch();
-			
-			if($enregistrement){
-			    $arr[$id_equipe]['id_cyclisme_equipe'] = $id_equipe;
-			    $arr[$id_equipe]['niveau'] = $enregistrement->niveau;
-			    $arr[$id_equipe]['nom_complet'] = $enregistrement->nom_complet;
-			    $arr[$id_equipe]['nom_courant'] = $enregistrement->nom_courant;
-			    $arr[$id_equipe]['nom_court'] = $enregistrement->nom_court;
-			    $arr[$id_equipe]['photo'] = $enregistrement->photo;
-			    $arr[$id_equipe]['saison'] = $enregistrement->saison;
-			}
+		while($enregistrement = $prep->fetch()){	
+		    $id_equipe = $enregistrement->id_cyclisme_equipe;
+		    $arr[$id_equipe]['id_cyclisme_equipe'] = $id_equipe;
+		    $arr[$id_equipe]['niveau'] = $enregistrement->niveau;
+		    $arr[$id_equipe]['nom_complet'] = $enregistrement->nom_complet;
+		    $arr[$id_equipe]['nom_courant'] = $enregistrement->nom_courant;
+		    $arr[$id_equipe]['nom_court'] = $enregistrement->nom_court;
+		    $arr[$id_equipe]['photo'] = $enregistrement->photo;
+		    $arr[$id_equipe]['saison'] = $enregistrement->saison;
 		}
 		
 		return $arr;

@@ -139,6 +139,7 @@ function Init_Zone_Paris()
 				    '</div>';
 			
 			$( ".alert-msg-prono" ).append(msg_final);
+			document.location.href='#pari-panel';
 		    }
 		    else{
 			location.reload();

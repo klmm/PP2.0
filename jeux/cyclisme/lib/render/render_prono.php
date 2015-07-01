@@ -43,14 +43,14 @@
 	    $chaine_id_equipes = $prono['prono'];
 
 	    $tab_id_equipes = array_unique(explode(";", $chaine_id_equipes));
-	    $tab_equipes = get_equipes_tab_id($tab_id_equipes);
+	    $tab_equipes = get_equipes_tab_id($chaine_id_equipes);
 	    $tab_cyclistes = null;
 	}
 	else{
 	    $chaine_id_cyclistes = $prono['prono'];
 
 	    $tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));
-	    $tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$tab_id_cyclistes);
+	    $tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$chaine_id_cyclistes);
 	    $tab_equipes = null;
 	}
 	//-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//

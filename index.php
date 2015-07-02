@@ -62,8 +62,8 @@ $cr = array(
         $bConnected = false;
     }
     
-    $description = 'Parions Potes est un site de pronostics gratuits sur les principaux événements sportifs de l’année. '
-	    . 'Multisport, Parions Potes met surtout en avant trois sports peu ouverts aux pronostics : le cyclisme, le ski alpin et le biathlon.';
+    $description = 'Parions Potes est un site de pronostics gratuits sur les principaux événements sportifs de l’année. 
+	    Multisport, Parions Potes met surtout en avant trois sports peu ouverts aux pronostics : le cyclisme, le ski alpin et le biathlon.';
 //------------------------------------------------------------------------------------------------//
 
 /*

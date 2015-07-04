@@ -73,7 +73,7 @@
 		$arr['termine'] = "0";
 	    }
 	}
-
+	$db = null;
 	return $arr;
     }
     
@@ -155,6 +155,7 @@
 	}
 	
 	usort($arr, 'compare_date_debut');
+	$db = null;
 	return $arr;
     }
     
@@ -235,6 +236,7 @@
 	}
 	
 	usort($arr, 'compare_date_debut');
+	$db = null;
 	return $arr;
     }
     
@@ -280,6 +282,7 @@
 	    $enregistrement2 = $prep2->fetch();
 
 	    if( $enregistrement2 ){
+		$db = null;
 		return $enregistrement2->id_cal; // PROCHAINE DISPO
 	    }
 	    else{
@@ -292,9 +295,11 @@
 		$enregistrement3 = $prep3->fetch();
 
 		if( $enregistrement3 ){
+		    $db = null;
 		    return $enregistrement3->id_cal; // DERNIERE TRAITEE
 		}
 		else{
+		    $db = null;
 		    return 1;
 		}
 	    }

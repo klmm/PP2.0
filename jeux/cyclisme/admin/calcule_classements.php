@@ -66,6 +66,8 @@
 	    $tab_classements[$joueur]['risque'] += $bonus_risque;
 	}
 	
+	$db = null;
+	
 	// MOYENNES
 	foreach($tab_classements as $key => $value){
 	    $tab_classements[$key]['risque'] = round($tab_classements[$key]['risque']/$tab_classements[$key]['nb_pronos'],2);

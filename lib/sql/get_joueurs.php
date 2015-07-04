@@ -23,7 +23,7 @@
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
 		$i++;
 	}
-
+	$db = null;
 	return $arr;
     }
 	
@@ -51,7 +51,7 @@
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
 		$i++;
 	}
-
+	$db = null;
 	return $arr;
     }
 	
@@ -85,7 +85,7 @@
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
 		$i++;
 	}
-
+	$db = null;
 	return $arr;
     }	
 ?>

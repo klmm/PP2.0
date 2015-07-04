@@ -20,7 +20,7 @@
 	    $arr[$enregistrement->IDComm] = $enregistrement->bLike + 1;
 	    $i++;
 	}
-
+	$db = null;
 	return $arr;
     }
       
@@ -46,7 +46,7 @@
 	    $arr[$enregistrement->IDComm] = $enregistrement->bLike + 1;
 	    $i++;
 	}
-
+	$db = null;
 	return $arr;
     }
 ?>

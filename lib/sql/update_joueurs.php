@@ -14,6 +14,8 @@
 		$prep->bindValue(1,$joueur,PDO::PARAM_INT);
 		$prep->execute();
 		
+		$db = null;
+		
 		return true;
 	}
 	

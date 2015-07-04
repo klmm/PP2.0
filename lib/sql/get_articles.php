@@ -44,6 +44,8 @@
 		    $arr[$j]['photo_chemin_deg'] = $tab_img[$id_img]['chemin_degrade'];
 		}
 		
+		$db = null;
+		
 		return $arr;
 	}
 	
@@ -56,6 +58,8 @@
 		//On fait la requete sur le login
 		$sql = "SELECT COUNT(*) FROM Articles";
 		$nRows = $db->query($sql)->fetchColumn();
+		
+		$db = null;
 		
 		return $nRows;
 	}
@@ -100,6 +104,8 @@
 		    $arr[$j]['photo_chemin'] = $tab_img[$id_img]['chemin'];	//chemin
 		    $arr[$j]['photo_chemin_deg'] = $tab_img[$id_img]['chemin_degrade'];
 		}
+		
+		$db = null;
 		
 		return $arr;
 	}
@@ -146,6 +152,7 @@
 		    $arr[$j]['photo_chemin_deg'] = $tab_img[$id_img]['chemin_degrade'];
 		}
 		
+		$db = null;
 		return $arr;
 	}
 
@@ -191,7 +198,7 @@
 		    $arr[$j]['photo_chemin'] = $tab_img[$id_img]['chemin'];	//chemin
 		    $arr[$j]['photo_chemin_deg'] = $tab_img[$id_img]['chemin_degrade'];
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -239,7 +246,7 @@
 		    $arr[$j]['photo_chemin'] = $tab_img[$id_img]['chemin'];	//chemin
 		    $arr[$j]['photo_chemin_deg'] = $tab_img[$id_img]['chemin_degrade'];
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -279,7 +286,7 @@
 		    $arr['photo_chemin'] = $tab_img[$id_img]['chemin'];	//chemin
 		    $arr['photo_chemin_deg'] = $tab_img[$id_img]['chemin_degrade'];
 		}
-		
+		$db = null;
 		return $arr;
 	}
 		
@@ -328,7 +335,7 @@
 		    $arr[$j]['photo_chemin'] = $tab_img[$id_img]['chemin'];	//chemin
 		    $arr[$j]['photo_chemin_deg'] = $tab_img[$id_img]['chemin_degrade'];
 	    }
-	    
+	    $db = null;
 	    return $arr;
 	}
 	

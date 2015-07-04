@@ -32,7 +32,7 @@
 
 	    $i++;
 	}
-
+	$db = null;
 	return $arr;
     }
 

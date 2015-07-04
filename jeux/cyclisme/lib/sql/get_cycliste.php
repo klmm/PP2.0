@@ -70,7 +70,7 @@
 			
 			$i++;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -135,7 +135,7 @@
 			$arr[$id_cycliste]['id_equipe_course'] = $enregistrement2->id_equipe;
 			$arr[$id_cycliste]['abandon'] = $enregistrement2->abandon;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -197,10 +197,11 @@
 			$arr[$id_cycliste]['inscrit'] = 1;
 			$arr[$id_cycliste]['forme'] = $enregistrement2->forme;
 		    }
-		    		    
+		    $db = null;
 		return $arr;
 	    }
 	    else{
+		$db = null;
 		return null;
 	    }
 	}
@@ -270,8 +271,8 @@
 		    
 		    $arr[$id_cycliste]['pos_prono'] = 0;
 		}
-
-	    return $arr;
+		$db = null;
+		return $arr;
 	}
 	
 	function get_cyclistes_equipe($ID_JEU, $ID_CAL, $id_equipe){
@@ -327,7 +328,7 @@
 		    $arr[$id_cycliste]['note_baroudeur'] = $enregistrement2->note_baroudeur;
 		}
 	    }
-
+	    $db = null;
 	    return $arr;
 	}
 ?>

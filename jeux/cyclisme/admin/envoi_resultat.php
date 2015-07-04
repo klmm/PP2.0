@@ -33,6 +33,7 @@
 	$res = false;
 	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
 	echo json_encode($rep);
+	$db = null;
 	return;
     }
     
@@ -43,6 +44,7 @@
 	    $res = false;
 	    $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
 	    echo json_encode($rep);
+	    $db = null;
 	    return;
 	}
     }
@@ -53,6 +55,7 @@
 	$res = false;
 	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
 	echo json_encode($rep);
+	$db = null;
 	return;
     }
     
@@ -62,6 +65,7 @@
 	$res = false;
 	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
 	echo json_encode($rep);
+	$db = null;
 	return;
     }
     
@@ -76,6 +80,7 @@
 	$res = false;
 	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
 	echo json_encode($rep);
+	$db = null;
 	return;
     }
     // ------------ VERIFICATION DES PARAMETRES ----------//
@@ -89,6 +94,7 @@
 	$msg = 'Le pronostic n\'a pas encore commencé !!!';
 	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
 	echo json_encode($rep);
+	$db = null;
 	return;
     }
     // ------------ PRONO DISPONIBLE ? ----------//
@@ -278,6 +284,7 @@
     $rafr = true;
     $res = true;
     $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+    $db = null;
     echo json_encode($rep);
     // ------------ ENVOI DU PRONO ----------//
  

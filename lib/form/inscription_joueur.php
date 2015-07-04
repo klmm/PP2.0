@@ -18,6 +18,7 @@
 	$taille = strlen($login);
 	if ($taille < 3 or $taille > 12){
 	    echo 'Le login doit contenir entre 3 et 12 caractères.';
+	    $db = null;
 	    return;
 	}
 	
@@ -46,6 +47,7 @@
 	$new_string = ereg_replace("[^A-Za-z0-9_-]", "", $login);
 	if ( $new_string != $login){
 		echo 'Le login doit uniquement contenir : des lettres, des chiffres et les caractères "-" et "_" !';
+		$db = null;
 		return;
 	}
 
@@ -60,6 +62,7 @@
 
 	if( $enregistrement ){
 		echo 'Ce login est déjà utilisé par un autre joueur...';
+		$db = null;
 		return;
 	}
 	
@@ -74,6 +77,7 @@
 
 	if( $enregistrement ){
 		echo 'Cette adresse mail est déjà utilisée par un autre joueur...';
+		$db = null;
 		return;
 	}
 	
@@ -108,7 +112,7 @@ Votre login : ' . $login . '
 Votre mot de passe : ' . $newpass . '
 
 Pensez bien à changer de mot de passe après vous être connecté la première fois.';
-
+	$db = null;
 	envoi_mail($login, $mail, $objet, $contenu_txt);
 	echo ('success;Félicitations, vous êtes maintenant inscrit sur Parions Potes !
 	Un mail vient de vous être envoyé à l\'adresse ' . $mail . ' avec votre mot de passe. Pensez bien à le changer après votre première connexion.');

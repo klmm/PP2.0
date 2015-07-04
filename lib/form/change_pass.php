@@ -72,7 +72,7 @@
 	$prep3->bindValue(1,$new_pass,PDO::PARAM_STR);
 	$prep3->bindValue(2,$login,PDO::PARAM_STR);
 	$prep3->execute();
-	
+	$db = null;
 	echo ('success;Mot de passe changé avec succès. Veuillez vous reconnecter.');
 
 ?>

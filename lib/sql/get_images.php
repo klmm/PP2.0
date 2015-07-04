@@ -23,7 +23,7 @@
                         $arr[$i]['chemin_degrade'] = $enregistrement->chemin_degrade;
 			$i++;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 
@@ -64,6 +64,7 @@
 		$arr[$id_image]['chemin'] = $enregistrement->Chemin;
 		$arr[$id_image]['chemin_degrade'] = $enregistrement->chemin_degrade;
 	    }
+	    $db = null;
 	    return $arr;
 	}
 

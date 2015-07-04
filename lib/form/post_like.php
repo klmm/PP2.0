@@ -29,6 +29,7 @@
 	if( $enregistrement = $prep->fetch() )
 	{
 	    echo 'Vous aviez déjà aimé ce commentaire...';
+	    $db = null;
 	    return;
 	}
 
@@ -60,6 +61,7 @@
 	if( $res == false )
 	{
 	    echo 'Erreur...';
+	    $db = null;
 	    return;
 	}
 	
@@ -82,8 +84,10 @@
 	if( $res == false )
 	{
 	    echo 'Erreur incr...';
+	    $db = null;
 	    return;
 	}
 	
+	$db = null;	
 	echo 'success';
 ?>

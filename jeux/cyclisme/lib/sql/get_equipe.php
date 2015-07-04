@@ -33,7 +33,7 @@
 			$arr[$id_equipe]['saison'] = $enregistrement->saison;
 			$i++;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -73,7 +73,7 @@
 		    $arr[$id_equipe]['nb_coureurs'] = 0;
 		    $i++;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -104,6 +104,7 @@
                 $arr['saison'] = $enregistrement->saison;
 		$i++;
 		
+		$db = null;
 		return $arr;
 	}
 	
@@ -134,7 +135,7 @@
 		    $arr[$id_equipe]['photo'] = $enregistrement->photo;
 		    $arr[$id_equipe]['saison'] = $enregistrement->saison;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 ?>

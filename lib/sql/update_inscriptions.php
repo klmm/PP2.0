@@ -27,6 +27,8 @@
 	    $prep->setFetchMode(PDO::FETCH_OBJ);
 	    $prep->execute();
 	}
+	
+	$db = null;
     }
 
 ?>

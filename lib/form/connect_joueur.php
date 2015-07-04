@@ -44,16 +44,18 @@
             // MAJ dernière connexion
             require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php');
             update_derniere_visite();
-
+	    $db = null;
             return;
         }
         else{
             echo "Mot de passe incorrect";
+	    $db = null;
             return;
         }
     }
     else{
         echo "Ce login n'existe pas... Êtes-vous inscrit ?";
+	$db = null;
         return;
     }
 ?>

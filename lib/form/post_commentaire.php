@@ -43,8 +43,9 @@
     
     if( $res_req == false){
 	echo 'Erreur lors de l\'envoi du commentaire...';
+	$db = null;
 	return;
     }
-    
+    $db = null;
     echo 'success;' . $b_article . ';' . $id_art_jeu . ';' . $id_cal . ';';
 ?>

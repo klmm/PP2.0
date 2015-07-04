@@ -22,7 +22,7 @@
 		    $arr[$id_pays]['drapeau_moyen'] = $enregistrement->drapeau_moyen;
 		    $arr[$id_pays]['drapeau_grand'] = $enregistrement->drapeau_grand;    
 		}
-		
+		$db = null;
 		return $arr;
 	}
 ?>

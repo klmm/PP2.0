@@ -19,6 +19,7 @@
     
     if (!$enregistrement ){
 	echo 'Ce mail n\'a jamais été utilisé pour une inscription sur Parions Potes...';
+	$db = null;
 	return;
     }
     $login = $enregistrement->Login;
@@ -46,6 +47,7 @@
 
     if ($res == false){
 	echo 'Erreur lors de la réinitialisation du mot de passe...';
+	$db = null;
 	return;
     }
 
@@ -58,6 +60,6 @@
     
     
     envoi_mail($login, $mail, $sujet, $contenu);
-	    
+    $db = null;
     echo('success;Un mail vient de vous être envoyé avec un nouveau de mot de passe.');
 ?>

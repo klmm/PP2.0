@@ -34,7 +34,7 @@
 
 	    $i++;
 	}
-
+	$db = null;
 	return $arr;
     }
     
@@ -75,7 +75,7 @@
 
 	    $i++;
 	}
-
+	$db = null;
 	return $arr;
     }
     
@@ -112,7 +112,7 @@
 
 	    $i++;
 	}
-
+	$db = null;
 	return $arr;
     }
 ?>

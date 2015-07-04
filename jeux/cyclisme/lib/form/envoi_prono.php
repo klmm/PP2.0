@@ -181,6 +181,7 @@
     $rafr = false;
     $res = true;
     $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+    $db = null;
     echo json_encode($rep);
     // ------------ ENVOI DU PRONO ----------//
     

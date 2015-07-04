@@ -27,7 +27,7 @@
 
 			$i++;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -59,7 +59,7 @@
 			$arr[$i]['description'] = $enregistrement->description;
 			$i++;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -91,7 +91,7 @@
 			$arr[$i]['description'] = $enregistrement->description;
 			$i++;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 	
@@ -124,7 +124,7 @@
 			$arr[$i]['description'] = $enregistrement->description;
 			$i++;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 			
@@ -173,7 +173,7 @@
 			$arr['image'] = $enregistrement->image;
 			$arr['description'] = $enregistrement->description;
 		}
-		
+		$db = null;
 		return $arr;
 	}
 ?>

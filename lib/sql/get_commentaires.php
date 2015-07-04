@@ -47,7 +47,7 @@
 		$i++;
 
 	}
-
+	$db = null;
 	return $arr;
     }
     
@@ -92,7 +92,7 @@
 		$i++;
 
 	}
-
+	$db = null;
 	return $arr;
     }
     
@@ -108,7 +108,7 @@
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	$prep->bindValue(1,$id,PDO::PARAM_INT);
 	$prep->execute();
-	
+	$db = null;
 	return $prep->fetchColumn();
     }
     
@@ -124,7 +124,7 @@
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
 	$prep->execute();
-	
+	$db = null;
 	return $prep->fetchColumn();
     }
 ?>

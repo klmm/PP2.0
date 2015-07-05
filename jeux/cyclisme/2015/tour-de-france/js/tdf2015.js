@@ -70,16 +70,15 @@ function Init_Zone_Paris()
 		cursor : "move",
 		over: function( event, ui ) {  
 		    updateNums();
-		    if($("#sortable2 li").size() == 11) {
-			$( "#sortable1" ).sortable( "cancel" );
-			updateNums();
-			calcrisk();
-		    }
 		},
 		update: function( event, ui ) {  
 		    updateNums();
 		},
 		receive: function( event, ui ) {
+		    if($("#sortable2 li").size() == 11) {
+			$( "#sortable1" ).sortable( "cancel" );
+		    }
+		    updateNums();
 		    calcrisk();
 		}
 	}).disableSelection();

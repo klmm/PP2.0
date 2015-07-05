@@ -101,7 +101,10 @@
     else{
 	$chaine_id_cyclistes = $prono_joueur['prono'];
 	if($b_traite){
-	    $chaine_id_cyclistes .= ';' . $calendrier['classement'];
+	    if(strlen($chaine_id_cyclistes) > 0){
+		$chaine_id_cyclistes .= ';';
+	    }
+	    $chaine_id_cyclistes .= $calendrier['classement'];
 	}
 	
 	$tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));

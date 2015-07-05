@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/joueurs/get_joueurs.php';
+	include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_joueurs.php';
 	include $_SERVER['DOCUMENT_ROOT'] . '/lib/mail/envoi_mails.php';
 	
 	$id_jeu = $_POST["id_jeu"];
@@ -28,7 +28,7 @@
 		break;	*/
 	}
 	
-	print_r($joueurs);
+	//print_r($joueurs);
 
 // -----------------------------------
     envoi_mails($joueurs, $objet, $contenu);

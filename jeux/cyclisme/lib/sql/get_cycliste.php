@@ -229,7 +229,7 @@
 			    WHERE EXISTS (
 					SELECT id_athlete
 					FROM cyclisme_inscription_athlete
-					WHERE (id_cyclisme_athlete=id_athlete AND (id_cal=0 OR id_cal=?) AND id_jeu=?)
+					WHERE (abandon=0 AND id_cyclisme_athlete=id_athlete AND (id_cal=0 OR id_cal=?) AND id_jeu=?)
 				    )";
 		$prep2 = $db->prepare($sql2);
 		$prep2->setFetchMode(PDO::FETCH_OBJ);

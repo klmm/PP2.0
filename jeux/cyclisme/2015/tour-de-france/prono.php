@@ -359,7 +359,7 @@
 			    <ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">';
     
     if($bConnected && $mise_resultat == false){
-	for($i=0;$i<sizeof($prono['cyclistes_prono']);$i++){
+	for($i=0;$i<10;$i++){
 	    if($calendrier['profil_equipe']){
 		$equipe = $prono['cyclistes_prono'][$i];
 		if ($equipe['id_cyclisme_equipe']){
@@ -367,16 +367,19 @@
 		    for($z=0; $z<$equipe['etoiles']; $z++){
 			echo '	<span class="glyphicon glyphicon-star"></span>';
 		    }
-		    echo '	    </div></li>';}
+		    echo '	    </div></li>';
+		}
 	    }
 	    else{
 		$cycliste = $prono['cyclistes_prono'][$i];
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
-	    
-		for($z=0; $z<$cycliste['etoiles']; $z++){
-		    echo '	<span class="glyphicon glyphicon-star"></span>';
+		if ($cycliste['id_cyclisme_athlete']){
+		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+
+		    for($z=0; $z<$cycliste['etoiles']; $z++){
+			echo '	<span class="glyphicon glyphicon-star"></span>';
+		    }
+		    echo '	    </div></li>';
 		}
-		echo '	    </div></li>';
 	    }
 	}
     }

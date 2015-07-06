@@ -23,14 +23,13 @@
 			$joueurs = get_joueurs_inscrits($id_jeu);
 		break;
 		
-		/*case "oubli":
+		case "oubli":
 			$joueurs = get_joueurs_oubli_paris($id_jeu, $id_cal);
-		break;	*/
+		break;
 	}
 	
-	//print_r($joueurs);
+	print_r($joueurs);
 
 // -----------------------------------
     envoi_mails($joueurs, $objet, $contenu);
-    echo 'ok';
 ?>

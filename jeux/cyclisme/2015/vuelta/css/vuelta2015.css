@@ -1,0 +1,588 @@
+.right-content, .left-content{
+	padding-right: 0;
+	padding-left: 0;
+}
+#news{
+	margin-bottom: 50px;
+	//padding-top: 0;
+}
+#zone-news{
+	max-height: 800px;
+	overflow: auto;
+	padding: 0 15px;
+
+}
+#zone-news p{
+	font-size: 1.3em;
+}
+#zone-news p.bold{
+	padding-top: 10px;
+}
+#resultats{
+	margin-bottom: 0;
+}
+
+.game-header{
+	text-align: center;
+	margin-bottom: 0;
+	padding-top: 10px;
+}
+.game-header h1{
+	font-size: 52px;
+}
+.game-header h2{
+	
+}
+.tdf2015{
+	  color: rgb(255, 227, 0);
+}
+
+/* tab-panel */
+#classements {
+	//background-color: #808285;
+}
+
+.nav-center {  
+  text-align: center;
+}
+.nav-center ul.nav {
+    display: inline-block;
+}
+.nav-center li {
+    display: inline
+}
+.nav-center a {
+    float: left
+}
+
+
+.classement-table {
+	max-height: 370px;
+	overflow: auto;
+}
+.tabs  {
+  text-align: center;
+}
+
+.tabs >.nav >ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+}
+
+.tabs> .nav >li.active >a{
+  border-top: 4px solid;
+}
+
+.tabs >.nav >li {
+  margin: -1px 0.25em;
+
+}
+.tabs> .nav >li >a {
+
+  font-size: 1.45em;
+  line-height: 2.5;
+  padding: 0 1.25em;
+  //white-space: nowrap;
+}
+#lastTab #collapsed {
+ border : none;
+ min-width:200px;
+}
+#lastTab > a{
+ min-width:200px;
+}
+
+
+/* pres-panel */
+.scroll-content{
+	overflow: auto;
+	height: 100%;
+}
+
+.pres-panel{
+	background-color: rgb(47, 47, 47);
+}
+
+.pres-panel .name{
+	font-size: 30px;
+	color: white;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+.pres-panel .date{
+	font-size: 20px;
+	color: white;
+	text-align: center;
+}
+
+.pres-box{ 
+	height: 300px;
+    background:  50% 0;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	
+
+}
+
+.pres-content{ 
+	opacity:0;
+	background: rgba(0, 0, 0, 0.85);
+	height: 100%;
+    width: 100%;
+	padding: 20px;
+}
+
+.pres-content:hover{ 
+	visibility:visible;
+	opacity:1;
+	
+	-webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease;
+    -o-transition: opacity 1s ease;
+    transition: opacity 1s ease;
+}
+
+.pres-text{ 
+	text-align: center;
+	height: 130px;
+}
+
+.pres-text .jumbotron{ 
+  padding: 20px;
+  //background-color: rgb(115, 50, 130);
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  color: white;
+  width: 60%;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.pres-text .jumbotron p{ 
+	font-size: 14px;
+	margin:0;
+ }
+
+.pres-button{ 
+	//padding: 20px;
+	text-align: center;
+	height: 100px;
+}
+
+.pres-button a{ 
+  //background-color: rgb(115, 50, 130);
+  padding: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border: none;
+}
+
+.comment-panel{
+	margin-bottom: 50px;
+}
+
+/* stats box */
+.stat-box ul {
+	list-style: none;
+	margin: 0;
+	padding:0;
+	height: 370px;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+.later .stat-box ul {
+	margin-top: 74px;
+}
+.stat-box ul li{
+	text-align: center;
+}
+/* .stat-box ul li:hover{
+	background-color:grey;
+} */
+.stat-box ul li p{
+	text-align: center;
+	margin: 0;
+}
+.stat-box .stat-item{
+	height: 30%;
+	font-size: 1.8em;
+}
+.stat-box .stat-value{
+	height: 70%;
+	font-size: 3.5em;
+}
+.stat-box .risk{
+	color: #D82F2F;
+}
+.stat-box .time-out{
+	color: #31A9E9;
+}
+.stat-box .score{
+	color: #31A9E9;
+}
+.stat-box .number{
+	color: #31E93B;
+}
+.later .stat-box .stat-item{
+	font-size: 1.8em;
+}
+.later .stat-box .stat-value{
+	font-size: 3.5em;
+}
+.player-result .stat-box .stat-item, .other-result .stat-box .stat-item{
+	font-size: 1.4em;
+}
+.player-result .stat-box .stat-value, .other-result .stat-box .stat-value{
+	font-size: 2.5em;
+}
+.later .stat-box ul li{
+	height: 50%;
+}
+.player-result .stat-box ul li, .other-result .stat-box ul li{
+	height: 33%;
+}
+
+/*pari-panel pres+combo*/
+.calendar-combo{
+	left: 50%;
+	transform : translateX(-50%);
+}
+#calendar-list{
+	font-size:18px;
+	
+}
+
+#calendar:hover, #calendar:focus{
+    cursor:pointer;
+}
+
+/*pari-panel */
+#validate {
+	height: 40px;
+	margin-bottom: 25px;
+}
+
+.hidden-num{
+transition : all 0.6s;
+visibility:hidden;
+transform: rotateY(180deg);
+opacity:0;
+}
+.visible-num{
+transition : all 0.6s;
+visibility:visible;
+transform: rotateY(360deg);
+opacity : 1;
+}
+#sortable1, #sortable2 {
+
+min-height: 400px;
+list-style-type: none;
+margin: 0;
+padding: 5px 0 0 0;
+}
+#sortable1 {
+min-height: 700px;
+}
+#sortable2 {
+width: 100%;
+background-color: rgb(239, 240, 241);;
+border: grey dashed 3px;
+ // float: left;
+}
+#sortable1 li, #sortable2 li{
+margin: 0 5px 5px 5px;
+padding: 5px;
+font-size: 1.2em;
+}
+#sortable1 li, #sortable2 li {
+border: 1px solid #A2A8B2;
+font-weight: normal;
+background-color: #A2A8B2;
+color: white;
+}
+#sortable1 li:hover, #sortable2 li:hover {
+
+background-color: lightgrey;
+border: 1px solid #d3d3d3;
+}
+#numero li {
+margin: 0 5px 5px 5px;
+padding: 5px;
+width: 20px;
+border: 1px solid #C00000;
+font-size: 1.2em;
+background-color: #C00000;
+color: white;
+margin-left : 40%;
+}
+#pari-panel li .item-flag {
+height: 23px;
+width: 32px;
+vertical-align: middle;
+float : right;
+}
+#pari-panel li .item-team {
+height: 24px;
+//width: 30px;
+vertical-align: middle;
+float : right;
+margin-right: 10px;
+}
+#pari-panel li .item-note {
+float: right;
+margin-right: 10px;
+margin-left: 5%;
+padding-left: 10px;
+padding-right: 10px;
+color: white;
+background-color: black;
+}
+#pari-panel li .item-name {
+margin-left: 5px;
+}
+#pari-panel li .item-rating {
+float: right;
+margin-right: 10px;
+margin-left: 5%;
+line-height: 27px;
+color: rgb(255, 232, 0);
+}
+#pari-panel li .item-rating>span {
+position: inherit;
+} 
+
+#canvas-holder{
+width:15%;
+height:15%;
+float:left;
+}
+
+.result-panel .section-highlight{
+	color: black;
+}
+.table-place{
+
+}
+.affix{
+ top:100px;
+ width: 540px;
+}
+.affix-bottom{
+	position: relative;
+}
+.progress{
+	width: 100%;
+	margin-top: 5px;
+}
+.progress-title{
+	position: absolute;
+	right: 20px;
+	color: lightgrey;
+}
+
+/** color **/
+.goodbet{
+	background-color: #AFF592;
+}
+.almostbet{
+	background-color: #F9ECA3;
+}
+
+/** footer **/
+.copyright p{
+	line-height: 40px;
+	text-align: left;
+}
+.rules a{
+	padding:0;
+	width:200px;
+	float:right;
+}
+.rules span{
+	display:block;
+	padding: 0 8px 0 8px;
+	height:40px;
+	line-height:40px;
+	margin-right: 60px
+	;float: right;
+}
+
+/* graph */
+.arc path {
+  stroke: #fff;
+}
+
+
+@media (max-width: 1200px) {
+	.affix{
+		width: 440px;
+	}
+}
+
+@media (max-width: 992px) {
+	.affix{
+		width: 330px;
+	}
+}
+
+@media (max-width: 768px) {
+	.pres-box{ 
+		background:  50% 50% scroll;  
+	 }
+	 .tabs .nav li.active a{
+	  border: none;
+	}
+	.tabs .nav a {
+	  border: none;
+	}
+	.tabs .nav li{
+	  margin: 0;
+	}
+	.affix{
+		width: 43%;
+	}
+	
+	.calendar-combo .btn{
+		font-size:15px;
+	}
+	#calendar-list{
+		font-size:15px;
+	}
+	#sortable1 li, #sortable2 li{
+		font-size: 1em;
+	}
+	#pari-panel li .item-rating {
+		line-height: normal;
+		margin:0;
+	}
+	#pari-panel li .item-name {
+		margin:0;
+	}
+
+	.later .stat-box ul {
+		margin-top: 0;
+	}
+}
+
+@media (min-width: 768px) {
+	#calendar{
+		//max-width:300px;
+		margin: 0;
+		border:none;
+		
+	}
+	
+	#calendar .navbar-header{
+		background-color: rgb(67, 67, 67);
+		color: white;
+		font-size: 16px;
+	}
+	#calendar .navbar-brand{
+		color: white;
+		width: 100%;
+	}
+
+	#calendar .navbar-collapse {
+		height: auto;
+		border-top: 0;
+		box-shadow: none;
+		max-height: none;
+		padding-left:0;
+		padding-right:0;
+	}
+	#calendar .navbar-nav>li>a {
+		background-color: rgb(67, 67, 67);
+		color: white;
+		//height: 50px;
+		//line-height: 40px;
+		font-size: 16px;
+	}
+	#calendar .navbar-nav>li>a>span {
+		line-height: 30px;
+	}
+	#calendar .navbar-nav>li>a>.title {
+		text-align: left;
+		font-weight: bold;
+	}
+	#calendar .navbar-nav>li>a>.date {
+		text-align: left;
+	}
+	#calendar .navbar-nav>li>a>.glyphicon {
+		text-align: right;
+	}
+	#calendar .navbar-nav>li>a:hover {
+		background-color: rgb(200, 200, 200);
+		color: black;
+	} 
+	#calendar .navbar-nav>li.active>a {
+		background-color: rgb(66, 139, 202);
+	} 
+	#calendar .navbar-collapse.collapse {
+		display: block !important;
+		width: auto !important;
+		padding-bottom: 0;
+		overflow: visible !important;
+	}
+	
+	#calendar .navbar-collapse.in {
+		overflow-x: visible;
+	}	
+
+	#calendar .navbar-nav, #calendar .navbar-nav > li, #calendar .navbar-left, #calendar .navbar-right, #calendar .navbar-header {
+		float:none !important;
+	}
+
+	#calendar .navbar-right .dropdown-menu {
+		left:0;right:auto;
+	}
+	
+	#calendar .navbar-collapse .navbar-nav.navbar-right:last-child {
+		margin-right: 0;
+	}
+	
+	
+}
+@media (max-width: 650px) {
+	
+	#sortable1 li, #sortable2 li{
+		font-size: 0.8em;
+	}
+}
+
+@media (max-width: 500px) {
+	.calendar-combo .btn{
+		font-size:12px;
+	}
+	#calendar-list{
+		font-size:12px;
+	}
+	#sortable1 li, #sortable2 li{
+		font-size: 0.6em;
+	}
+}
+
+@media (max-width: 370px) {
+	.calendar-combo .btn{
+		font-size:9px;
+	}
+	#calendar-list{
+		font-size:9px;
+	}
+	#sortable1 li, #sortable2 li{
+		font-size: 0.5em;
+	}
+}

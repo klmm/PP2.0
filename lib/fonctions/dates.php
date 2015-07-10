@@ -40,7 +40,7 @@
 	
 	$arr = array(
 	    'date_court' => strftime('%d/%m/%Y', $unix),
-	    'date' => strftime('%A %d %B %Y', $unix),
+	    'date' => utf8_encode(strftime('%A %d %B %Y', $unix)),
 	    'heure' => strftime('%Hh%M', $unix)
 	);
 	
@@ -80,7 +80,7 @@
 	setlocale(LC_TIME, 'fr_FR');
 	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
 
-	return strftime('%A %d %B %Y, à %Hh%M', $unix);
+	return utf8_encode(strftime('%A %d %B %Y, %Hh%M', $unix));
     }
     
     function date_to_duration_court($date){

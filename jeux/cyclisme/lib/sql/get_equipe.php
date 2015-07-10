@@ -119,7 +119,7 @@
 		//On pr�pare la requ�te pour aller chercher les articles
 		$sql = "SELECT *
 				FROM cyclisme_equipe
-				WHERE id_cyclisme_equipe IN (?)";
+				WHERE id_cyclisme_equipe IN (" . $chaine_id . ")";
 		$prep = $db->prepare($sql);
 		$prep->setFetchMode(PDO::FETCH_OBJ);
 		$prep->bindValue(1,$chaine_id,PDO::PARAM_STR);

@@ -81,6 +81,14 @@
 	calcule_classement_top10($tab_classements,$url);
 	calcule_classement_risque($tab_classements,$url);
 	calcule_classement_regularite($tab_classements,$url);
+	
+
+	// ------------ ARCHIVE CLASSEMENTS ----------//
+	/*$old_path = getcwd();
+	chdir($_SERVER['DOCUMENT_ROOT'] . '/admin/scripts/');
+	$message=shell_exec('./archive_classements.sh ' . $_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements' . ' etape');
+	chdir($old_path);*/
+	// ------------ ARCHIVE CLASSEMENTS ----------//
     }
     
     function compare_score_total($a, $b)

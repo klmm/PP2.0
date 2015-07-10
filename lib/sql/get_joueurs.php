@@ -64,9 +64,9 @@
 	//On fait la requete sur le login
 	$sql = "SELECT *
 			FROM Joueurs
-			WHERE EXISTS(	SELECT joueur 
+			WHERE EXISTS(	SELECT * 
 					FROM joueurs_inscriptions
-					WHERE (joueurs_inscriptions.joueur=joueurs.login AND id_jeu=?)
+					WHERE (joueurs_inscriptions.joueur=Joueurs.Login AND id_jeu=?)
 				)";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);

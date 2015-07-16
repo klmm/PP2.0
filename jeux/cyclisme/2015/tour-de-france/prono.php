@@ -314,7 +314,7 @@
     
     if($calendrier['profil_equipe']){
 	foreach($equipes as $id => $equipe){
-	    if($equipe['pos_prono'] === 0){
+	    if($equipe['pos_prono'] === 0 || $mise_resultat == true){
 		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden-xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$equipe['etoiles']; $z++){

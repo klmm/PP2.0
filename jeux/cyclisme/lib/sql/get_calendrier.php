@@ -257,50 +257,62 @@
 	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? ORDER BY date_debut ASC LIMIT 1";
-	$prep = $db->prepare($sql);
-	$prep->bindValue(1,$ID_JEU,PDO::PARAM_INT);
-	$prep->bindValue(2,$date_seule,PDO::PARAM_STR);
-	$prep->bindValue(3,$date_seule,PDO::PARAM_STR);
-	$prep->execute();
-	$prep->setFetchMode(PDO::FETCH_OBJ);
-	
-	$enregistrement = $prep->fetch();
+	$sql4 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND CAST(date_fin AS DATE)=? AND date_debut>NOW()";
+	$prep4 = $db->prepare($sql4);
+	$prep4->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+	$prep4->bindValue(2,$date_seule,PDO::PARAM_STR);
+	$prep4->bindValue(3,$date_seule,PDO::PARAM_STR);
+	$prep4->execute();
+	$prep4->setFetchMode(PDO::FETCH_OBJ);
 
+	$enregistrement4 = $prep4->fetch();
 	
-	if( $enregistrement ){
-	    return $enregistrement->id_cal; // ETAPE DU JOUR
+	if( $enregistrement4 ){
+	    return $enregistrement4->id_cal; // ETAPE EN COURS
 	}
 	else{
+	    $sql = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? ORDER BY date_debut ASC LIMIT 1";
+	    $prep = $db->prepare($sql);
+	    $prep->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+	    $prep->bindValue(2,$date_seule,PDO::PARAM_STR);
+	    $prep->execute();
+	    $prep->setFetchMode(PDO::FETCH_OBJ);
 	    
-	    $sql2 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND date_debut>? AND disponible=1 ORDER BY date_debut ASC LIMIT 1";
-	    $prep2 = $db->prepare($sql2);
-	    $prep2->bindValue(1,$ID_JEU,PDO::PARAM_INT);
-	    $prep2->bindValue(2,$date_heure,PDO::PARAM_STR);
-	    $prep2->execute();
-	    $prep2->setFetchMode(PDO::FETCH_OBJ);
-	    $enregistrement2 = $prep2->fetch();
-
-	    if( $enregistrement2 ){
-		$db = null;
-		return $enregistrement2->id_cal; // PROCHAINE DISPO
+	    $enregistrement = $prep->fetch();
+	
+	    if( $enregistrement ){
+		return $enregistrement->id_cal; // ETAPE DU JOUR
 	    }
 	    else{
-		$sql3 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND traite=1 ORDER BY date_fin DESC LIMIT 1";
-		$prep3 = $db->prepare($sql3);
-		$prep3->bindValue(1,$ID_JEU,PDO::PARAM_INT);
-		$prep3->execute();
-		$prep3->setFetchMode(PDO::FETCH_OBJ);
+		$sql2 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND date_debut>? AND disponible=1 ORDER BY date_debut ASC LIMIT 1";
+		$prep2 = $db->prepare($sql2);
+		$prep2->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+		$prep2->bindValue(2,$date_heure,PDO::PARAM_STR);
+		$prep2->execute();
+		$prep2->setFetchMode(PDO::FETCH_OBJ);
+		$enregistrement2 = $prep2->fetch();
 
-		$enregistrement3 = $prep3->fetch();
-
-		if( $enregistrement3 ){
+		if( $enregistrement2 ){
 		    $db = null;
-		    return $enregistrement3->id_cal; // DERNIERE TRAITEE
+		    return $enregistrement2->id_cal; // PROCHAINE DISPO
 		}
 		else{
-		    $db = null;
-		    return 1;
+		    $sql3 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND traite=1 ORDER BY date_fin DESC LIMIT 1";
+		    $prep3 = $db->prepare($sql3);
+		    $prep3->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+		    $prep3->execute();
+		    $prep3->setFetchMode(PDO::FETCH_OBJ);
+
+		    $enregistrement3 = $prep3->fetch();
+
+		    if( $enregistrement3 ){
+			$db = null;
+			return $enregistrement3->id_cal; // DERNIERE TRAITEE
+		    }
+		    else{
+			$db = null;
+			return 1;
+		    }
 		}
 	    }
 	}

@@ -208,15 +208,23 @@
 	for ($i=0;$i<10;$i++){
 	    $id_entite_prono = $prono_joueur['prono'][$i];
 	    $res .= '		<tr class="">';
+	    if($calendrier['traite']){
+		$pts_prono = $prono_joueur['points_prono'][$i];
+	    }
+	    else{
+		$pts_prono = '';
+	    }
+	    
 	    if(!$calendrier['profil_equipe']){
+		
 		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
 				    <td class="table-name col-md-6">' .  $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
-				    <td class="table-point col-md-4">' . $prono_joueur['points_prono'][$i] . '</td>';
+				    <td class="table-point col-md-4">' . $pts_prono . '</td>';
 	    }
 	    else{
 		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
 				    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
-				    <td class="table-point col-md-4">' . $prono_joueur['points_prono'][$i] . '</td>';
+				    <td class="table-point col-md-4">' . $pts_prono . '</td>';
 	    }
 	    $res .= '		</tr>';
 	}
@@ -227,9 +235,17 @@
 				</li>';
 	}
 	else{
+	    if($calendrier['traite']){
+		$score_total = $prono_joueur['score_total'];
+		$bonus_reg = $prono_joueur['bonus_nombre'];
+	    }
+	    else{
+		$score_total = '-';
+		$bonus_reg = '-';
+	    }
 	    $tmp_risque = '	<li class="score">
 				    <p class="stat-item">Score</p>
-				    <p class="stat-value">'. $prono_joueur['score_total'] .'</p>
+				    <p class="stat-value">'. $score_total .'</p>
 				</li>
 				<li class="risk">
 				    <p class="stat-item">Risques</p>
@@ -237,7 +253,7 @@
 				</li>
 				<li class="number">
 				    <p class="stat-item">Bonus</p>
-				    <p class="stat-value">'. $prono_joueur['bonus_nombre'] .'</p>
+				    <p class="stat-value">'. $bonus_reg .'</p>
 				</li>';
 	}
 	
@@ -276,10 +292,20 @@
 	    else{
 		$class_surlign_joueur = '';
 	    }
+	    
+	    if($calendrier['traite']){
+		$pos = $value['classement'];
+		$pts_joueur = $value['score_total'];
+	    }
+	    else{
+		$pos = '';
+		$pts_joueur = '';
+	    }
+	    
 	    $res .= '		    <tr class="' . $class_surlign_joueur . '">
-					<th class="table-place col-md-2">' . $value['classement'] . '</th>
+					<th class="table-place col-md-2">' . $pos . '</th>
 					<td class="table-name col-md-6">' . $value['joueur'] . '</td>
-					<td class="table-point col-md-4">' . $value['score_total'] . '</td>
+					<td class="table-point col-md-4">' . $pts_joueur . '</td>
 				    </tr>';
 	}
 	

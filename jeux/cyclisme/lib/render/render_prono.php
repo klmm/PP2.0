@@ -74,24 +74,39 @@
 	
 	$id_entite_prono = $prono['prono'][$i];
 	$res .= '	<tr class "">';
+	if($b_traite){
+	    $pts_prono = $prono['points_prono'][$i];
+	}
+	else{
+	    $pts_prono = '';
+	}
 	
 	if(!$b_equipe){
 	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
 			    <td class="table-name col-md-6">' .  $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
-			    <td class="table-point col-md-4">' . $prono['points_prono'][$i] . '</td>';
+			    <td class="table-point col-md-4">' . $pts_prono . '</td>';
 	}
 	else{
 	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
 			    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
-			    <td class="table-point col-md-4">' . $prono['points_prono'][$i] . '</td>';
+			    <td class="table-point col-md-4">' . $pts_prono . '</td>';
 	}
 	$res .= '	</tr>';
     }
     
     if(sizeof($prono['prono']) > 1){
+	if($b_traite){
+	    $score_total = $prono['score_total'];
+	    $bonus_reg = $prono['bonus_nombre'];
+	}
+	else{
+	    $score_total = '-';
+	    $bonus_reg = '-';
+	}
+	    
 	$tmp_risque = '	    <li class="score">
 				    <p class="stat-item">Score</p>
-				    <p class="stat-value">'. $prono['score_total'] .'</p>
+				    <p class="stat-value">'. $score_total .'</p>
 			    </li>
 			    <li class="risk">
 				    <p class="stat-item">Risques</p>
@@ -99,7 +114,7 @@
 			    </li>
 			    <li class="number">
 				    <p class="stat-item">Bonus</p>
-				    <p class="stat-value">'. $prono['bonus_nombre'] .'</p>
+				    <p class="stat-value">'. $bonus_reg .'</p>
 			    </li>';
     }
     else{

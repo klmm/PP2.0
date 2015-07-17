@@ -439,7 +439,6 @@
 	
 	for($i=0;$i<$nb_calendrier;$i++){
 	    $calendrier = $arr_calendrier[$i];
-	    $tmp_date = $calendrier['date_debut_fr_tcourt'];
 	    $id = $calendrier['id_cal'];
 	    if($id == $id_cal){
 		$tmp_class = 'active';
@@ -447,8 +446,9 @@
 	    else{
 		$tmp_class = '';
 	    }
+	    
 	    if($calendrier['commence'] == "0"){
-		
+		$tmp_date = $calendrier['date_debut_fr_tcourt'];
 		if($calendrier['disponible'] == "1"){
 		    $tmp_ico = 'glyphicon-play';
 		}
@@ -459,9 +459,11 @@
 	    else{
 		if($calendrier['traite'] == "0"){
 		    $tmp_ico = 'glyphicon-refresh';
+		    $tmp_date = 'En cours';
 		}
 		else{
 		    $tmp_ico = 'glyphicon-stats';
+		    $tmp_date = 'Terminé';
 		}
 	    }//ajouter une classe dans le <a> suivant si a venir ou en cours ou passé et de meme avec glyphicon-lock ou glyphicon-hourglass ou  glyphicon-stats
 	    	    

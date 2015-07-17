@@ -110,11 +110,14 @@
 
 	//On fait la requete sur le login
 	$sql = "SELECT * FROM Joueurs WHERE NOT EXISTS (
-			    SELECT * FROM " . $table_prono . " WHERE Joueurs.Login = cyclisme_prono.joueur AND id_calendrier=? AND id_jeu=?)";
+			    SELECT * FROM " . $table_prono . " WHERE Joueurs.Login = " . $table_prono . ".joueur AND id_calendrier=? AND id_jeu=?
+					    )
+					    AND EXISTS (SELECT * FROM joueurs_inscriptions WHERE (joueurs_inscriptions.joueur=Joueurs.Login AND id_jeu=?))";
 	echo $sql;
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_cal,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_jeu,PDO::PARAM_INT);
+	$prep->bindValue(3,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 

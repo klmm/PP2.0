@@ -7,7 +7,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND joueur=?";
+	$sql = "SELECT * FROM rugby_prono WHERE id_jeu=? AND joueur=?";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$joueur,PDO::PARAM_STR);
@@ -15,24 +15,21 @@
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 
 	//On fait le test si un enrengistrement a �t� trouv�
-	$i = 0;
 	while( $enregistrement = $prep->fetch() )
 	{
 	    $id_cal = $enregistrement->id_calendrier;
-	    $arr[$id_cal]['id_cyclisme_prono'] = $enregistrement->id_cyclisme_prono;
+	    $arr[$id_cal]['id_rugby_prono'] = $enregistrement->id;
+	    $arr[$id_cal]['id_cal'] = $enregistrement->id_calendrier;
 	    $arr[$id_cal]['id_jeu'] = $enregistrement->id_jeu;
 	    $arr[$id_cal]['joueur'] = $enregistrement->joueur;
-	    $arr[$id_cal]['id_cal'] = $enregistrement->id_calendrier;
-	    $arr[$id_cal]['prono'] = $enregistrement->prono;
-	    $arr[$id_cal]['points_prono'] = $enregistrement->points_prono;
-	    $arr[$id_cal]['score_base'] = $enregistrement->score_base;
-	    $arr[$id_cal]['bonus_nombre'] = $enregistrement->bonus_nombre;
-	    $arr[$id_cal]['bonus_risque'] = $enregistrement->bonus_risque;
+	    $arr[$id_cal]['prono_vainqueur'] = $enregistrement->prono_vainqueur;
+	    $arr[$id_cal]['prono_points1'] = $enregistrement->prono_points1;
+	    $arr[$id_cal]['prono_points2'] = $enregistrement->prono_points2;
+	    $arr[$id_cal]['score_points1'] = $enregistrement->score_points1;
+	    $arr[$id_cal]['score_points2'] = $enregistrement->score_points2;
+	    $arr[$id_cal]['score_ecart'] = $enregistrement->score_ecart;
 	    $arr[$id_cal]['score_total'] = $enregistrement->score_total;
 	    $arr[$id_cal]['classement'] = $enregistrement->classement;
-	    $arr[$id_cal]['nb_trouves'] = $enregistrement->nb_trouves;
-
-	    $i++;
 	}
 	$db = null;
 	return $arr;
@@ -45,7 +42,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? AND joueur=?";
+	$sql = "SELECT * FROM rugby_prono WHERE id_jeu=? AND id_calendrier=? AND joueur=?";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
@@ -56,24 +53,20 @@
 	//On fait le test si un enrengistrement a �t� trouv�
 	$enregistrement = $prep->fetch();
 	if($enregistrement)
-	{
-	   
+	{ 
 	    $id_cal = $enregistrement->id_calendrier;
-	    $arr['id_cyclisme_prono'] = $enregistrement->id_cyclisme_prono;
+	    $arr['id_rugby_prono'] = $enregistrement->id;
+	    $arr['id_cal'] = $enregistrement->id_calendrier;
 	    $arr['id_jeu'] = $enregistrement->id_jeu;
 	    $arr['joueur'] = $enregistrement->joueur;
-	    
-	    $arr['id_cal'] = $id_cal;
-	    $arr['prono'] = $enregistrement->prono;
-	    $arr['points_prono'] = $enregistrement->points_prono;
-	    $arr['score_base'] = $enregistrement->score_base;
-	    $arr['bonus_nombre'] = $enregistrement->bonus_nombre;
-	    $arr['bonus_risque'] = $enregistrement->bonus_risque;
+	    $arr['prono_vainqueur'] = $enregistrement->prono_vainqueur;
+	    $arr['prono_points1'] = $enregistrement->prono_points1;
+	    $arr['prono_points2'] = $enregistrement->prono_points2;
+	    $arr['score_points1'] = $enregistrement->score_points1;
+	    $arr['score_points2'] = $enregistrement->score_points2;
+	    $arr['score_ecart'] = $enregistrement->score_ecart;
 	    $arr['score_total'] = $enregistrement->score_total;
 	    $arr['classement'] = $enregistrement->classement;
-	    $arr['nb_trouves'] = $enregistrement->nb_trouves;
-
-	    $i++;
 	}
 	$db = null;
 	return $arr;
@@ -86,7 +79,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY classement ASC";
+	$sql = "SELECT * FROM rugby_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY classement ASC, score_total DESC, joueur ASC";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
@@ -97,20 +90,18 @@
 	while ($enregistrement = $prep->fetch())
 	{
 	    $joueur = $enregistrement->joueur;
-	    $arr[$joueur]['id_cyclisme_prono'] = $enregistrement->id_cyclisme_prono;
-	    $arr[$joueur]['id_jeu'] = $enregistrement->id_jeu;
-	    $arr[$joueur]['joueur'] = $joueur;
+	    $arr[$joueur]['id_rugby_prono'] = $enregistrement->id;
 	    $arr[$joueur]['id_cal'] = $enregistrement->id_calendrier;
-	    $arr[$joueur]['prono'] = $enregistrement->prono;
-	    $arr[$joueur]['points_prono'] = $enregistrement->points_prono;
-	    $arr[$joueur]['score_base'] = $enregistrement->score_base;
-	    $arr[$joueur]['bonus_nombre'] = $enregistrement->bonus_nombre;
-	    $arr[$joueur]['bonus_risque'] = $enregistrement->bonus_risque;
+	    $arr[$joueur]['id_jeu'] = $enregistrement->id_jeu;
+	    $arr[$joueur]['joueur'] = $enregistrement->joueur;
+	    $arr[$joueur]['prono_vainqueur'] = $enregistrement->prono_vainqueur;
+	    $arr[$joueur]['prono_points1'] = $enregistrement->prono_points1;
+	    $arr[$joueur]['prono_points2'] = $enregistrement->prono_points2;
+	    $arr[$joueur]['score_points1'] = $enregistrement->score_points1;
+	    $arr[$joueur]['score_points2'] = $enregistrement->score_points2;
+	    $arr[$joueur]['score_ecart'] = $enregistrement->score_ecart;
 	    $arr[$joueur]['score_total'] = $enregistrement->score_total;
 	    $arr[$joueur]['classement'] = $enregistrement->classement;
-	    $arr[$joueur]['nb_trouves'] = $enregistrement->nb_trouves;
-
-	    $i++;
 	}
 	$db = null;
 	return $arr;

@@ -16,22 +16,21 @@
 	$jeu = get_jeu_id($id_jeu);
 	$url = $jeu['url'];
 	
-	$sql = "SELECT * FROM cyclisme_prono WHERE EXISTS (
-				    SELECT id_cyclisme_calendrier 
-				    FROM cyclisme_calendrier 
-				    WHERE cyclisme_prono.id_calendrier=cyclisme_calendrier.id_cal AND id_jeu=? AND traite=1)";
+	$sql = "SELECT * FROM rugby_prono WHERE EXISTS (
+				    SELECT id
+				    FROM rugby_calendrier 
+				    WHERE rugby_prono.id_calendrier=rugby_calendrier.id AND id_jeu=? AND traite=1)";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 
 	while($enregistrement = $prep->fetch()){
-	    $id_prono = $enregistrement->id_cyclisme_prono;
+	    $id_prono = $enregistrement->id;
 	    $pos = $enregistrement->classement;
 	    $score = $enregistrement->score_total;
-	    $nb_trouves = $enregistrement->nb_trouves;
 	    $joueur = $enregistrement->joueur;
-	    $bonus_risque = $enregistrement->bonus_risque;
+	    $score_vainqueur = $enregistrement->score_vainqueur;
 	    
 	    // CLASSEMENT GENERAL
 	    $tab_classements[$joueur]['joueur'] = $joueur;
@@ -39,11 +38,13 @@
 	    // CLASSEMENT GENERAL
 	    $tab_classements[$joueur]['score_total'] += $score;
 	    
-	    // NOMBRE DE COUREURS TROUVES
-	    $tab_classements[$joueur]['nb_trouves'] += $nb_trouves;
-	    
 	    // NOMBRE DE PRONOS
 	    $tab_classements[$joueur]['nb_pronos'] += 1;
+	    
+	    // VAINQUEUR
+	    if($score_vainqueur != 0){
+		$tab_classements[$joueur]['vainqueur'] += 1;
+	    }
 	    
 	    // NOMBRE DE VICTOIRES
 	    if($pos == 1){
@@ -64,22 +65,13 @@
 	    if($pos <= $nb_classements_par_points){
 	       $tab_classements[$joueur]['par_points'] += $POINTS_CLASSEMENTS_PAR_POINTS[$pos];
 	    }
-	    
-	    // RISQUE
-	    $tab_classements[$joueur]['risque'] += $bonus_risque;
-	    
-	    // SCORE MINIMAL SUR UNE ETAPE
-	    if($tab_classements[$joueur]['score_min'] == null || $score < $tab_classements[$joueur]['score_min']){
-		$tab_classements[$joueur]['score_min'] = $score;
-	    }
 	}
 	
 	$db = null;
 	
 	// MOYENNES
 	foreach($tab_classements as $key => $value){
-	    $tab_classements[$key]['risque'] = round($tab_classements[$key]['risque']/$tab_classements[$key]['nb_pronos'],2);
-	    $tab_classements[$key]['nb_trouves'] = round($tab_classements[$key]['nb_trouves']/$tab_classements[$key]['nb_pronos'],2);
+	    $tab_classements[$key]['vainqueur'] = round($tab_classements[$key]['vainqueur']/$tab_classements[$key]['nb_pronos'],2);
 	    
 	    $nb_paris = $value['nb_pronos'];
 	    if($nb_paris > $nb_paris_max){
@@ -88,23 +80,11 @@
 	}
 	
 	calcule_classement_general($id_jeu,$tab_classements,$url);
-	if ($nb_paris_max > 2){
-	    calcule_classement_une_erreur($id_jeu,$tab_classements,$url);
-	}
 	calcule_classement_par_points($tab_classements,$url);
 	calcule_classement_victoires($tab_classements,$url);
 	calcule_classement_podiums($tab_classements,$url);
 	calcule_classement_top10($tab_classements,$url);
-	calcule_classement_risque($tab_classements,$url);
-	calcule_classement_regularite($tab_classements,$url);
-	
-
-	// ------------ ARCHIVE CLASSEMENTS ----------//
-	/*$old_path = getcwd();
-	chdir($_SERVER['DOCUMENT_ROOT'] . '/admin/scripts/');
-	$message=shell_exec('./archive_classements.sh ' . $_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements' . ' etape');
-	chdir($old_path);*/
-	// ------------ ARCHIVE CLASSEMENTS ----------//
+	calcule_classement_taux_vainqueur($tab_classements,$url);
     }
     
     function compare_score_total($a, $b)
@@ -150,60 +130,7 @@
 	}
 
 	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
-    }
-    
-    
-    function calcule_classement_une_erreur($id_jeu,$tab,$url){
-	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_inscriptions.php');
-	global $nb_paris_max;
-
-	$nom_fichier = '02-Une_erreur.txt';
-	
-	$titre = 'Général joker';
-	$descr = 'Général avec une erreur permise';
-	$colonnes = ';;Score;Pronos';
-	$taille_colonnes = '2;5;3;2';
-	
-			
-	foreach($tab as $key => $joueur){
-	    $score = $joueur['score_total'];
-	    $score_min = $joueur['score_min'];
-	    $nb_paris = $joueur['nb_pronos'];
-	    if($nb_paris == $nb_paris_max){
-		$tab[$key]['nb_pronos']--;
-		$tab[$key]['score_total'] -= $score_min;
-	    }
-	}
-	
-	usort($tab, 'compare_score_total');
-	
-	$score_actuel = -1;
-	$pos_actuel = 1;
-	$pos_cpt = 1;
-	foreach($tab as $key => $joueur){
-	    $score = $joueur['score_total'];
-	    $login = $joueur['joueur'];
-	    $nb_paris = $joueur['nb_pronos'];
-	    if($score != $score_actuel){
-		$pos_actuel = $pos_cpt;
-		$pos = $pos_cpt;
-	    }
-	    else{
-		$pos = $pos_actuel;
-	    }
-	    $line[] = $pos . ';' . $login . ';' . $score . ';' . $nb_paris;
-	    $pos_cpt++;
-	    $score_actuel = $score;
-	}
-	
-	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
-	foreach($line as $key => $ligne){
-	    $contenu .= $ligne . PHP_EOL;
-	}
-
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
-    }
-    
+    }  
     
     function compare_par_points($a, $b)
     {
@@ -213,7 +140,7 @@
     function calcule_classement_par_points($tab,$url){
 	usort($tab, 'compare_par_points');
 	
-	$nom_fichier = '01-Par points.txt';
+	$nom_fichier = '05-Par points.txt';
 	
 	$titre = 'Points';
 	$descr = 'Récompense le pronostiqueur le plus régulier';
@@ -258,7 +185,7 @@
     function calcule_classement_victoires($tab,$url){
 	usort($tab, 'compare_victoires');
 	
-	$nom_fichier = '03-Victoires.txt';
+	$nom_fichier = '10-Victoires.txt';
 	
 	$titre = 'Victoires';
 	$descr = 'Récompense les vainqueurs d\'étape';
@@ -303,7 +230,7 @@
     function calcule_classement_podiums($tab,$url){
 	usort($tab, 'compare_podiums');
 	
-	$nom_fichier = '05-Podiums.txt';
+	$nom_fichier = '15-Podiums.txt';
 	
 	$titre = 'Podiums';
 	$descr = 'Récompense les trusteurs de podiums';
@@ -348,7 +275,7 @@
     function calcule_classement_top10($tab,$url){
 	usort($tab, 'compare_top10');
 	
-	$nom_fichier = '06-Top10.txt';
+	$nom_fichier = '20-Top10.txt';
 	
 	$titre = 'Top 10';
 	$descr = 'Récompense les habitués aux Top 10';
@@ -385,9 +312,9 @@
 	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
     }
     
-    function compare_risque($a, $b)
+    function compare_vainqueur($a, $b)
     {
-	if (floatval($b['risque']) < floatval($a['risque'])){
+	if (intval($b['vainqueur']) < intval($a['vainqueur'])){
 	    return -1;
 	}
 	else{
@@ -395,14 +322,14 @@
 	}
     }
     
-    function calcule_classement_risque($tab,$url){
+    function calcule_classement_vainqueur($tab,$url){
 	global $nb_paris_max;
-	usort($tab, 'compare_risque');
+	usort($tab, 'compare_vainqueur');
 	
-	$nom_fichier = '07-Risque.txt';
+	$nom_fichier = '25-Vainqueur.txt';
 	
-	$titre = 'Risque';
-	$descr = 'Récompense les preneurs de risque';
+	$titre = 'Réussite';
+	$descr = '';
 	$colonnes = ';;Moy;Pronos';
 	$taille_colonnes = '2;5;3;2';
 	
@@ -410,7 +337,7 @@
 	$pos_actuel = 1;
 	$pos_cpt = 1;
 	foreach($tab as $key => $joueur){
-	    $score = $joueur['risque'];
+	    $score = $joueur['vainqueur'];
 	    $login = $joueur['joueur'];
 	    $nb_paris = $joueur['nb_pronos'];
 	    
@@ -425,60 +352,7 @@
 	    else{
 		$pos = $pos_actuel;
 	    }
-	    $line[] = $pos . ';' . $login . ';' . $score . '%;' . $nb_paris;
-	    $pos_cpt++;
-	    $score_actuel = $score;
-	}
-	
-	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
-	foreach($line as $key => $ligne){
-	    $contenu .= $ligne . PHP_EOL;
-	}
-
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
-    }
-    
-    function compare_regularite($a, $b)
-    {
-	if (floatval($b['nb_trouves']) < floatval($a['nb_trouves'])){
-	    return -1;
-	}
-	else{
-	    return 1;
-	}
-	//return strnatcmp($b['nb_trouves'], $a['nb_trouves']);
-    }
-    
-    function calcule_classement_regularite($tab,$url){
-	global $nb_paris_max;
-	usort($tab, 'compare_regularite');
-	
-	$nom_fichier = '08-Regularite.txt';
-	
-	$titre = 'Régularité';
-	$descr = 'Récompense les plus réguliers';
-	$colonnes = ';;Moy;Pronos';
-	$taille_colonnes = '2;5;3;2';
-	
-	$score_actuel = -1;
-	$pos_actuel = 1;
-	$pos_cpt = 1;
-	foreach($tab as $key => $joueur){
-	    $score = $joueur['nb_trouves'];
-	    $login = $joueur['joueur'];
-	    $nb_paris = $joueur['nb_pronos'];
-	    if($nb_paris < 0.5*$nb_paris_max){
-		continue;
-	    }
-	    
-	    if($score != $score_actuel){
-		$pos_actuel = $pos_cpt;
-		$pos = $pos_cpt;
-	    }
-	    else{
-		$pos = $pos_actuel;
-	    }
-	    $line[] = $pos . ';' . $login . ';' . $score . ';' . $nb_paris;
+	    $line[] = $pos . ';' . $login . ';' . $score . ' %;' . $nb_paris;
 	    $pos_cpt++;
 	    $score_actuel = $score;
 	}

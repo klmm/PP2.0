@@ -19,6 +19,16 @@
 	{
 	    $arr['id'] = $enregistrement->id;
 	    $arr['id_jeu'] = $enregistrement->id_jeu;
+	    $arr['tour'] = $enregistrement->tour;
+	    $arr['id_equipe1'] = $enregistrement->id_equipe1;
+	    $arr['id_equipe2'] = $enregistrement->id_equipe2;
+	    $arr['ville'] = $enregistrement->ville;
+	    $arr['stade'] = $enregistrement->stade;
+	    $arr['score1'] = $enregistrement->score1;
+	    $arr['score2'] = $enregistrement->score2;
+	    $arr['essais1'] = $enregistrement->essais1;
+	    $arr['essais2'] = $enregistrement->essais2;
+	    $arr['coefficient'] = $enregistrement->coefficient;
 	    
 	    $arr['date_debut'] = $enregistrement->date_debut;
 	    $arr_date = dateheure_sql_to_fr($arr['date_debut']);
@@ -60,44 +70,31 @@
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 
 	//On fait le test si un enrengistrement a �t� trouv�
-	$i = 0;
 	while( $enregistrement = $prep->fetch() )
 	{
 	    $id_cal = $enregistrement->id;
+	    $arr[$id_cal]['id'] = $enregistrement->id;
 	    $arr[$id_cal]['id_jeu'] = $enregistrement->id_jeu;
-	    $arr[$id_cal]['id_cal'] = $enregistrement->id;
-	    $arr[$id_cal]['nom_complet'] = $enregistrement->nom_complet;
-	    $arr[$id_cal]['distance'] = $enregistrement->distance;
+	    $arr[$id_cal]['tour'] = $enregistrement->tour;
+	    $arr[$id_cal]['id_equipe1'] = $enregistrement->id_equipe1;
+	    $arr[$id_cal]['id_equipe2'] = $enregistrement->id_equipe2;
+	    $arr[$id_cal]['ville'] = $enregistrement->ville;
+	    $arr[$id_cal]['stade'] = $enregistrement->stade;
+	    $arr[$id_cal]['score1'] = $enregistrement->score1;
+	    $arr[$id_cal]['score2'] = $enregistrement->score2;
+	    $arr[$id_cal]['essais1'] = $enregistrement->essais1;
+	    $arr[$id_cal]['essais2'] = $enregistrement->essais2;
+	    $arr[$id_cal]['coefficient'] = $enregistrement->coefficient;
 	    
 	    $arr[$id_cal]['date_debut'] = $enregistrement->date_debut;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
-	    $arr[$id_cal]['date_debut_fr'] = $arr_date['date'];
 	    $arr[$id_cal]['date_debut_fr_court'] = $arr_date['date_court'];
 	    $arr[$id_cal]['date_debut_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
+	    $arr[$id_cal]['date_debut_fr'] = $arr_date['date'];
 	    $arr[$id_cal]['heure_debut_fr'] = $arr_date['heure'];
 	    
-	    
-	    $arr[$id_cal]['date_fin'] = $enregistrement->date_fin;
-	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
-	    $arr[$id_cal]['date_fin_fr_court'] = $arr_date['date_court'];
-	    $arr[$id_cal]['date_fin_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
-	    $arr[$id_cal]['date_fin_fr'] = $arr_date['date'];
-	    $arr[$id_cal]['heure_fin_fr'] = $arr_date['heure'];
-	    
-	    $arr[$id_cal]['profil_clm'] = $enregistrement->profil_clm;
-	    $arr[$id_cal]['profil_paves'] = $enregistrement->profil_paves;
-	    $arr[$id_cal]['profil_montagne'] = $enregistrement->profil_montagne;
-	    $arr[$id_cal]['profil_sprint'] = $enregistrement->profil_sprint;
-	    $arr[$id_cal]['profil_vallons'] = $enregistrement->profil_vallons;
-	    $arr[$id_cal]['profil_baroudeurs'] = $enregistrement->profil_baroudeurs;
-	    $arr[$id_cal]['profil_equipe'] = $enregistrement->profil_equipe;
-	    $arr[$id_cal]['profil_jeunes'] = $enregistrement->profil_jeunes;
-	    $arr[$id_cal]['classement'] = $enregistrement->classement;
 	    $arr[$id_cal]['traite'] = $enregistrement->traite;
 	    $arr[$id_cal]['disponible'] = $enregistrement->disponible;
-	    $arr[$id_cal]['image'] = $enregistrement->image;
-
-	    $i++;
 	    
 	    $dh_debut = $arr[$id_cal]['date_debut'];
 	    $now   = time();
@@ -105,24 +102,13 @@
 	    
 	    if($now > $dh_debut){
 		$arr[$id_cal]['commence'] = "1";
-		$arr[$id_cal]['date_debut'] = $arr[$id_cal]['date_fin'];
 	    }
 	    else{
 		$arr[$id_cal]['commence'] = "0";
-	    }
-	    
-	    $dh_fin = $arr[$id_cal]['date_fin'];
-	    $dh_fin = strtotime($dh_fin);
-	    
-	    if($now > $dh_fin){
-		$arr[$id_cal]['termine'] = "1";
-	    }
-	    else{
-		$arr[$id_cal]['termine'] = "0";
+		$arr[$id_cal]['temps_restant'] = dateheure_sql_to_temps_restant($arr[$id_cal]['date_debut']);
 	    }
 	}
 	
-	usort($arr, 'compare_date_debut');
 	$db = null;
 	return $arr;
     }
@@ -141,44 +127,31 @@
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 
 	//On fait le test si un enrengistrement a �t� trouv�
-	$i = 0;
 	while( $enregistrement = $prep->fetch() )
 	{
 	    $id_cal = $enregistrement->id;
+	    $arr[$id_cal]['id'] = $enregistrement->id;
 	    $arr[$id_cal]['id_jeu'] = $enregistrement->id_jeu;
-	    $arr[$id_cal]['id_cal'] = $enregistrement->id;
-	    $arr[$id_cal]['nom_complet'] = $enregistrement->nom_complet;
-	    $arr[$id_cal]['distance'] = $enregistrement->distance;
+	    $arr[$id_cal]['tour'] = $enregistrement->tour;
+	    $arr[$id_cal]['id_equipe1'] = $enregistrement->id_equipe1;
+	    $arr[$id_cal]['id_equipe2'] = $enregistrement->id_equipe2;
+	    $arr[$id_cal]['ville'] = $enregistrement->ville;
+	    $arr[$id_cal]['stade'] = $enregistrement->stade;
+	    $arr[$id_cal]['score1'] = $enregistrement->score1;
+	    $arr[$id_cal]['score2'] = $enregistrement->score2;
+	    $arr[$id_cal]['essais1'] = $enregistrement->essais1;
+	    $arr[$id_cal]['essais2'] = $enregistrement->essais2;
+	    $arr[$id_cal]['coefficient'] = $enregistrement->coefficient;
 	    
 	    $arr[$id_cal]['date_debut'] = $enregistrement->date_debut;
 	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_debut']);
-	    $arr[$id_cal]['date_debut_fr'] = $arr_date['date'];
 	    $arr[$id_cal]['date_debut_fr_court'] = $arr_date['date_court'];
 	    $arr[$id_cal]['date_debut_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
+	    $arr[$id_cal]['date_debut_fr'] = $arr_date['date'];
 	    $arr[$id_cal]['heure_debut_fr'] = $arr_date['heure'];
 	    
-	    
-	    $arr[$id_cal]['date_fin'] = $enregistrement->date_fin;
-	    $arr_date = dateheure_sql_to_fr($arr[$id_cal]['date_fin']);
-	    $arr[$id_cal]['date_fin_fr_court'] = $arr_date['date_court'];
-	    $arr[$id_cal]['date_fin_fr_tcourt'] = substr($arr_date['date_court'], 0, 5);
-	    $arr[$id_cal]['date_fin_fr'] = $arr_date['date'];
-	    $arr[$id_cal]['heure_fin_fr'] = $arr_date['heure'];
-	    
-	    $arr[$id_cal]['profil_clm'] = $enregistrement->profil_clm;
-	    $arr[$id_cal]['profil_paves'] = $enregistrement->profil_paves;
-	    $arr[$id_cal]['profil_montagne'] = $enregistrement->profil_montagne;
-	    $arr[$id_cal]['profil_sprint'] = $enregistrement->profil_sprint;
-	    $arr[$id_cal]['profil_vallons'] = $enregistrement->profil_vallons;
-	    $arr[$id_cal]['profil_baroudeurs'] = $enregistrement->profil_baroudeurs;
-	    $arr[$id_cal]['profil_equipe'] = $enregistrement->profil_equipe;
-	    $arr[$id_cal]['profil_jeunes'] = $enregistrement->profil_jeunes;
-	    $arr[$id_cal]['classement'] = $enregistrement->classement;
 	    $arr[$id_cal]['traite'] = $enregistrement->traite;
 	    $arr[$id_cal]['disponible'] = $enregistrement->disponible;
-	    $arr[$id_cal]['image'] = $enregistrement->image;
-
-	    $i++;
 	    
 	    $dh_debut = $arr[$id_cal]['date_debut'];
 	    $now   = time();
@@ -189,26 +162,82 @@
 	    }
 	    else{
 		$arr[$id_cal]['commence'] = "0";
-	    }
-	    
-	    $dh_fin = $arr[$id_cal]['date_fin'];
-	    $dh_fin = strtotime($dh_fin);
-	    
-	    if($now > $dh_fin){
-		$arr[$id_cal]['termine'] = "1";
-	    }
-	    else{
-		$arr[$id_cal]['termine'] = "0";
+		$arr[$id_cal]['temps_restant'] = dateheure_sql_to_temps_restant($arr[$id_cal]['date_debut']);
 	    }
 	}
 	
-	usort($arr, 'compare_date_debut');
 	$db = null;
 	return $arr;
     }
     
-    function compare_date_debut($a, $b)
-    {
-      return strnatcmp($a['date_debut'], $b['date_debut']);
+    function get_id_calendrier_actuel($ID_JEU){
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+	$bdd = new Connexion();
+	$db = $bdd->getDB();
+	
+	$now = time();
+	$unix = mktime(date('H',$now),date('i',$now),date('s',$now),date('n',$now),date('j',$now),date('Y',$now));
+
+	//$date_heure = strftime('%Y-%m-%d %H:%M:%S', $unix);
+	$date_seule = strftime('%Y-%m-%d', $unix);
+	
+	$sql = "SELECT * FROM rugby_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut>NOW() ORDER BY date_debut ASC LIMIT 1";
+	$prep = $db->prepare($sql);
+	$prep->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+	$prep->bindValue(2,$date_seule,PDO::PARAM_STR);
+	$prep->execute();
+	$prep->setFetchMode(PDO::FETCH_OBJ);
+
+	$enregistrement = $prep->fetch();
+
+	if( $enregistrement ){
+	    return $enregistrement->id_cal; // PROCHAIN PRONO DU JOUR
+	}
+	else{
+	    $sql2 = "SELECT * FROM rugby_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut<NOW() ORDER BY date_debut DESC LIMIT 1";
+	    $prep2 = $db->prepare($sql2);
+	    $prep2->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+	    $prep2->bindValue(2,$date_seule,PDO::PARAM_STR);
+	    $prep2->execute();
+	    $prep2->setFetchMode(PDO::FETCH_OBJ);
+	    $enregistrement2 = $prep2->fetch();
+
+	    if( $enregistrement2 ){
+		$db = null;
+		return $enregistrement2->id_cal; // DERNIER RESULTAT DU JOUE
+	    }
+	    else{
+		$sql3 = "SELECT * FROM rugby_calendrier WHERE id_jeu=? AND date_debut>NOW() ORDER BY date_debut ASC LIMIT 1";
+		$prep3 = $db->prepare($sql3);
+		$prep3->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+		$prep3->execute();
+		$prep3->setFetchMode(PDO::FETCH_OBJ);
+
+		$enregistrement3 = $prep3->fetch();
+
+		if( $enregistrement3 ){
+		    $db = null;
+		    return $enregistrement3->id_cal; // PROCHAIN PRONO
+		}
+		else{
+		    $sql4 = "SELECT * FROM rugby_calendrier WHERE id_jeu=? AND traite=1 ORDER BY date_debut DESC LIMIT 1";
+		    $prep4 = $db->prepare($sql4);
+		    $prep4->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+		    $prep4->execute();
+		    $prep4->setFetchMode(PDO::FETCH_OBJ);
+
+		    $enregistrement4 = $prep4->fetch();
+
+		    if( $enregistrement4 ){
+			$db = null;
+			return $enregistrement4->id_cal; // DERNIER RESULTAT (QUAND FINI)
+		    }
+		    else{
+			$db = null;
+			return 1;
+		    }
+		}
+	    }
+	}
     }
 ?>

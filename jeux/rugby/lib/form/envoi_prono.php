@@ -1,7 +1,7 @@
 <?php
 
     // ------------ INCLUDES ----------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_calendrier.php';
     // ------------ INCLUDES ----------//
     
     
@@ -17,17 +17,19 @@
     // ------------ RECUPERATION DES PARAMETRES ----------//
     session_start();
     $login = $_SESSION['LoginJoueur'];
-    //$login = $_POST['joueur'];
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
-    $arr_prono = $_POST['prono'];
-    $calendrier = get_calendrier($id_jeu, $id_cal);
+    $score1 = $_POST['score1'];
+    $score2 = $_POST['score2'];
+    $essais1 = $_POST['essais1'];
+    $essais2 = $_POST['essais2'];
+    $calendrier = get_calendrier($id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//
     
     
     
     // ------------ VERIFICATION DES PARAMETRES ----------//
-    if(!is_numeric($id_jeu) || !is_numeric($id_cal)){
+    if(!is_numeric($id_jeu) || !is_numeric($id_cal) || !is_numeric($score1) || !is_numeric($score2) || !is_numeric($essais1) || !is_numeric($essais2)){
 	$msg = 'Paramètre non numérique';
 	$rafr = true;
 	$res = false;
@@ -35,18 +37,7 @@
 	echo json_encode($rep);
 	return;
     }
-    
-    foreach($arr_prono as $key => $value){
-	if (!is_numeric($value)){
-	    $msg = 'Paramètre non numérique';
-	    $rafr = true;
-	    $res = false;
-	    $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
-	    echo json_encode($rep);
-	    return;
-	}
-    }
-    
+
     if($calendrier == null){
 	$msg = 'Cette épreuve n\'existe pas...';
 	$rafr = true;
@@ -64,35 +55,11 @@
 	echo json_encode($rep);
 	return;
     }
-    
-    if (sizeof($arr_prono) != 10){
-	if($calendrier['profil_equipe']){
-	    $msg = 'Vous n\'avez pas sélectionné dix équipes !';
-	}
-	else{
-	    $msg =  'Vous n\'avez pas sélectionné dix coureurs !';
-	}	
-	$rafr = false;
-	$res = false;
-	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
-	echo json_encode($rep);
-	return;
-    }
     // ------------ VERIFICATION DES PARAMETRES ----------//
 
     
     
     // ------------ PRONO DISPONIBLE ? ----------//
-    //$dateactuelle = time
-    if($calendrier['disponible'] == 0){
-	$rafr = true;
-	$res = false;
-	$msg = 'Vous ne pouvez pas encore pronostiquer sur cette épreuve...';
-	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
-	echo json_encode($rep);
-	return;
-    }
-    
     if($calendrier['commence'] == '1'){
 	$rafr = true;
 	$res = false;
@@ -101,13 +68,32 @@
 	echo json_encode($rep);
 	return;
     }
+    
+    if($calendrier['disponible'] == 0){
+	$rafr = true;
+	$res = false;
+	$msg = 'Vous ne pouvez pas encore pronostiquer sur cette épreuve...';
+	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
+	echo json_encode($rep);
+	return;
+    }
     // ------------ PRONO DISPONIBLE ? ----------//
     
     
-    
+    // ------------ CONSTRUCTION PRONO ----------//
+    if($score1 > $score2){
+	$vainqueur = '1';
+    } 
+    elseif($score2 > $score1){
+	$vainqueur = '2';
+    }
+    else{
+	$vainqueur = 'N';
+    }
+    // ------------ CONSTRUCTION PRONO ----------//
     
     // ------------ PRONO DEJA FAIT ? ----------//
-    $sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? AND joueur=?";
+    $sql = "SELECT * FROM rugby_prono WHERE id_jeu=? AND id_calendrier=? AND joueur=?";
 
     $prep = $db->prepare($sql);
     $prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
@@ -118,61 +104,41 @@
     $prep->setFetchMode(PDO::FETCH_OBJ);
     $enregistrement = $prep->fetch();
     if($enregistrement){
-	$idpronofait = $enregistrement->id_cyclisme_prono;
+	$idpronofait = $enregistrement->id;
     }
     else{
 	$idpronofait = 0;
     }
     // ------------ PRONO DEJA FAIT ? ----------//
     
-    
-    // ------------ CONSTRUCTION DU PRONO ----------//
-    $taille_prono = sizeof($arr_prono);
-    $nb_etoiles_prono = $_SESSION['cyclisme_notes'][$id_jeu][$id_cal]['etoiles_max'];;
-    for($i=0;$i<$taille_prono;$i++) {
-	if($i!=0){
-	    $prono .= ';';
-	}
-	$id_coureur_prono = $arr_prono[$i];
-	$prono .= $id_coureur_prono;
-	
-	$etoiles_coureur = $_SESSION['cyclisme_notes'][$id_jeu][$id_cal][$id_coureur_prono];
-	if($etoiles_coureur === null){
-	    $rafr = true;
-	    $res = false;
-	    $msg = 'Problème dans le pronostic...';
-	    $rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);
-	    echo json_encode($rep);
-	    return;
-	}
-	else{
-	    $nb_etoiles_prono -= $etoiles_coureur;
-	}
-    }
-    $bonus = $nb_etoiles_prono*2;
-    
-    // ------------ CONSTRUCTION DU PRONO ----------//
-    
     // ------------ ENVOI DU PRONO ----------//
     if ($idpronofait != 0){
-	$sql = "UPDATE cyclisme_prono SET prono=?, bonus_risque=? WHERE id_cyclisme_prono=?";
+	$sql = "UPDATE rugby_prono SET prono_vainqueur=?,prono_essais1=?,prono_essais2=?,prono_points1=?,prono_points2=? WHERE id=?";
 	$prep = $db->prepare($sql);
-	$prep->bindValue(1,$prono,PDO::PARAM_STR);
-	$prep->bindValue(2,$bonus,PDO::PARAM_INT);
-	$prep->bindValue(3,$idpronofait,PDO::PARAM_INT);
+	$prep->bindValue(1,$vainqueur,PDO::PARAM_STR);
+	$prep->bindValue(2,$essais1,PDO::PARAM_INT);
+	$prep->bindValue(3,$essais2,PDO::PARAM_INT);
+	$prep->bindValue(4,$score1,PDO::PARAM_INT);
+	$prep->bindValue(5,$score2,PDO::PARAM_INT);
+	$prep->bindValue(6,$idpronofait,PDO::PARAM_INT);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	
 	 $msg = 'Pronostic modifié !';
     }
     else{
-	$sql = "INSERT INTO cyclisme_prono(id_jeu,id_calendrier,joueur,prono,points_prono,score_base,bonus_nombre,bonus_risque,score_total,classement,nb_trouves) VALUES(?,?,?,?,'',0,0,?,0,0,0)";
+	$sql = "INSERT INTO rugby_prono(id_jeu, id_calendrier, joueur, prono_vainqueur, prono_essais1, prono_essais2, prono_points1,
+		prono_points2, score_vainqueur, score_essais1, score_essais2, score_points1, score_points2, score_ecart, score_total,
+		classement) VALUES (?,?,?,?,?,?,?,?,0,0,0,0,0,0,0,0)";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
 	$prep->bindValue(3,$login,PDO::PARAM_STR);
-	$prep->bindValue(4,$prono,PDO::PARAM_STR);
-	$prep->bindValue(5,$bonus,PDO::PARAM_INT);
+	$prep->bindValue(4,$vainqueur,PDO::PARAM_STR);
+	$prep->bindValue(5,$essais1,PDO::PARAM_INT);
+	$prep->bindValue(6,$essais2,PDO::PARAM_INT);
+	$prep->bindValue(7,$score1,PDO::PARAM_INT);
+	$prep->bindValue(8,$score2,PDO::PARAM_INT);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	

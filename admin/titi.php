@@ -5,7 +5,7 @@
 			$db = null;
 			try{
 			    $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION; 
-			    $db = new PDO('mysql:host=mysql51-113.bdb;dbname=parionspotes', 'parionspotes', 'thoke69pp',array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+			    $db = new PDO('mysql:host=parionsppriv.mysql.db;dbname=parionsppriv', 'parionsppriv', 'thoke69PP',array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 			}
 			catch (Exception $e){
 			    try{

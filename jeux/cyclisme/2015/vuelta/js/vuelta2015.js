@@ -201,7 +201,7 @@ function render_pres_panel(id_cal){
 		data : postData,
 		success:function(data, textStatus, jqXHR) 
 		{	    		    
-            var result = $.parseJSON(data);
+		    var result = $.parseJSON(data);
 		    var html = result.html;
 		    var premier = result.premier;
 		    $( "#cal-container" ).empty();

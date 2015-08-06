@@ -6,8 +6,8 @@
     $competition = 'Vuelta 2015';
     $sous_titre = 'du 22 août au 13 septembre 2015';
     $logo = '/img/logos/logo_share.jpg';
-    $description = 'Pronostics gratuits sur le Tour d\'Espagne 2015.';
-    $keywords = 'pronostics paris gratuits sport cyclisme vuelta 2015';
+    $description = 'Pronostics gratuits sur la Vuelta 2015.';
+    $keywords = 'pronostics paris gratuits sport cyclisme espagne vuelta 2015';
     
     //--------------------------------------FONCTIONS--------------------------------------//
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_breves.php';
@@ -439,7 +439,6 @@
 	
 	for($i=0;$i<$nb_calendrier;$i++){
 	    $calendrier = $arr_calendrier[$i];
-	    $tmp_date = $calendrier['date_debut_fr_tcourt'];
 	    $id = $calendrier['id_cal'];
 	    if($id == $id_cal){
 		$tmp_class = 'active';
@@ -447,8 +446,9 @@
 	    else{
 		$tmp_class = '';
 	    }
+	    
 	    if($calendrier['commence'] == "0"){
-		
+		$tmp_date = $calendrier['date_debut_fr_tcourt'];
 		if($calendrier['disponible'] == "1"){
 		    $tmp_ico = 'glyphicon-play';
 		}
@@ -459,9 +459,11 @@
 	    else{
 		if($calendrier['traite'] == "0"){
 		    $tmp_ico = 'glyphicon-refresh';
+		    $tmp_date = 'En cours';
 		}
 		else{
 		    $tmp_ico = 'glyphicon-stats';
+		    $tmp_date = 'Terminé';
 		}
 	    }//ajouter une classe dans le <a> suivant si a venir ou en cours ou passé et de meme avec glyphicon-lock ou glyphicon-hourglass ou  glyphicon-stats
 	    	    

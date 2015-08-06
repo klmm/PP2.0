@@ -19,9 +19,11 @@
 	$sql = "SELECT * FROM cyclisme_prono WHERE EXISTS (
 				    SELECT id_cyclisme_calendrier 
 				    FROM cyclisme_calendrier 
-				    WHERE cyclisme_prono.id_calendrier=cyclisme_calendrier.id_cal AND id_jeu=? AND traite=1)";
+				    WHERE cyclisme_prono.id_calendrier=cyclisme_calendrier.id_cal AND id_jeu=? AND traite=1)
+				AND id_jeu=?";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
+	$prep->bindValue(2,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 

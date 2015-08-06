@@ -35,7 +35,8 @@
 	//------------------------------------------------------------------------------------------------//
 
 
-
+	$all_cyclistes = get_cyclistes_jeu($ID_JEU,$ID_CAL);
+	$all_equipes = get_equipes_inscrites($ID_JEU,$ID_CAL);
 
 
 	//--------------------------------------PRONO--------------------------------------//
@@ -52,6 +53,7 @@
 		$chaine_id_cyclistes = $prono['prono'];
 
 		$tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));
+		$prono = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$tab_id_cyclistes);
 	    }
 	}
 	else{
@@ -64,8 +66,7 @@
 
 
 	//-----------------------------LISTE DE PRONO----------------------//
-	$all_cyclistes = get_cyclistes_jeu($ID_JEU,$ID_CAL);
-	$all_equipes = get_equipes_inscrites($ID_JEU,$ID_CAL);
+	
 
       // CALCUL DES MOYENNES DES CYCLISTES ET DES EQUIPES
 	$moy_max = 0;
@@ -94,17 +95,19 @@
 	}
 
 	$moy_max_equipe = 0;
-	foreach($all_equipes as $id => $equipe){
-	    if($equipe['nb_coureurs'] > 0){
-		$moy = round($equipe['moyenne']/$equipe['nb_coureurs'],1);
-		$all_equipes[$id]['moyenne'] = $moy;
+	if($b_equipe){
+	    foreach($all_equipes as $id => $equipe){
+		if($equipe['nb_coureurs'] > 0){
+		    $moy = round($equipe['moyenne']/$equipe['nb_coureurs'],1);
+		    $all_equipes[$id]['moyenne'] = $moy;
 
-		if($moy > $moy_max_equipe){
-		    $moy_max_equipe = $moy;
+		    if($moy > $moy_max_equipe){
+			$moy_max_equipe = $moy;
+		    }
 		}
-	    }
-	    else{
-		unset($all_equipes[$id]);
+		else{
+		    unset($all_equipes[$id]);
+		}
 	    }
 	}
 	

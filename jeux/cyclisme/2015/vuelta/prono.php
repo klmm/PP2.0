@@ -1,9 +1,9 @@
 <?php
-	$ID_JEU = 1;
-	$js = '/jeux/cyclisme/2015/tour-de-france/js/tdf2015.js';
-	$css = '/jeux/cyclisme/2015/tour-de-france/css/tdf2015.css';
+	$ID_JEU = 2;
+	$js = '/jeux/cyclisme/2015/vuelta/js/vuelta2015.js';
+	$css = '/jeux/cyclisme/2015/vuelta/css/vuelta2015.css';
 	$logo = '/img/logos/logo_share.jpg';
-	$description = 'Pronostics gratuits sur le Tour de France 2015.';
+	$description = 'Pronostics gratuits sur la Vuelta 2015.';
 	
     //--------------------------------------FONCTIONS--------------------------------------//
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
@@ -53,15 +53,10 @@
 	    header('Location: /redirect/erreur404.html');
 	    return;
 	}
-	// Infos sur l'article en lui-même
+
 	$jeu = get_jeu_id($ID_JEU);
 	$calendrier = get_calendrier($ID_JEU,$ID_CAL);
 	$liste_calendrier = get_calendrier_jeu_avenir($ID_JEU);
-	
-	/*if(!$jeu['commmence']){
-	    header('Location: /redirect/erreur404.html');
-	    return;
-	}*/
 	
 	if ($calendrier == null){
 	    header('Location: /redirect/erreur404.html');
@@ -314,7 +309,7 @@
     
     if($calendrier['profil_equipe']){
 	foreach($equipes as $id => $equipe){
-	    if($equipe['pos_prono'] === 0){
+	    if($equipe['pos_prono'] === 0 || $mise_resultat == true){
 		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden-xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$equipe['etoiles']; $z++){
@@ -327,7 +322,7 @@
     else{
 	foreach($cyclistes as $id => $cycliste){
 	    if($cycliste['pos_prono'] === 0 || $mise_resultat == true){
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . ' ('  . $equipes[$cycliste['id_equipe_course']]['nom_court'] . ')</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
 	    
 		for($z=0; $z<$cycliste['etoiles']; $z++){
 		    echo '	<span class="glyphicon glyphicon-star"></span>';
@@ -373,7 +368,7 @@
 	    else{
 		$cycliste = $prono['cyclistes_prono'][$i];
 		if ($cycliste['id_cyclisme_athlete']){
-		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom']. ' ('  . $equipes[$cycliste['id_equipe_course']]['nom_court'] . ')</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
 
 		    for($z=0; $z<$cycliste['etoiles']; $z++){
 			echo '	<span class="glyphicon glyphicon-star"></span>';

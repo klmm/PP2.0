@@ -276,7 +276,7 @@
 			    <ul id="calendar-list" class="dropdown-menu" role="menu">';
     
     foreach($liste_calendrier as $key => $value){
-	$url_cal = $value['id_cyclisme_calendrier'] . '-' . $value['nom_complet'];
+	$url_cal = $value['id_cal'] . '-' . $value['nom_complet'];
 	echo '			<li><a href="' . clean_url($url_cal) . '">' . $value['nom_complet'] . '</a></li>';
     }
     

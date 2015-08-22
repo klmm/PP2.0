@@ -247,7 +247,14 @@
 		    $arr[$j]['photo_chemin_deg'] = $tab_img[$id_img]['chemin_degrade'];
 		}
 		$db = null;
+		
+		usort($arr,'compare_dates');
 		return $arr;
+	}
+	
+	function compare_dates($a, $b)
+	{
+	  return strnatcmp($b['dateheurepub'], $a['dateheurepub']);
 	}
 	
 	function get_article_infos($id){

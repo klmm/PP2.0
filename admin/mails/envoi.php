@@ -26,6 +26,10 @@
 		case "oubli":
 			$joueurs = get_joueurs_oubli_paris($id_jeu, $id_cal);
 		break;
+	    
+		case "oubli_premier":
+			$joueurs = get_joueurs_oubli_premier_pari($id_jeu, $id_cal);
+		break;
 	}
 	
 	print_r($joueurs);

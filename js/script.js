@@ -453,7 +453,7 @@ function getAllComs(b_article, id_1, id_2, tri) {
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
-			alert('error');//do nothing
+			//nothing
 		}
 	});
 	

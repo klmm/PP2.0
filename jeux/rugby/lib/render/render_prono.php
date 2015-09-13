@@ -12,10 +12,8 @@
     ------------ OUTPUTS -------*/
 
     //--------------------------------------FONCTIONS--------------------------------------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_equipe.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_cycliste.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_calendrier.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_prono.php';
     //-------------------------------------------------------------------------------------//
     
     
@@ -28,107 +26,39 @@
     
     //--------------------------------------CALENDRIER--------------------------------------//
     $calendrier = get_calendrier($ID_JEU,$ID_CAL);
-    $b_equipe = $calendrier['profil_equipe'];
     $b_commence = $calendrier['commence'];
     $b_traite = $calendrier['traite'];
     //------------------------------------------------------------------------------------------------//
     
     if($b_commence){
-	//-------------------------PRONO DU JOUEUR-----------------------------------//
 	$prono = get_prono($ID_JEU,$ID_CAL,$joueur);
-	//----------------------------------------------------------------------------//
-
-	//-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
-	if($b_equipe){
-	    $chaine_id_equipes = $prono['prono'];
-
-	    $tab_id_equipes = array_unique(explode(";", $chaine_id_equipes));
-	    $tab_equipes = get_equipes_tab_id($chaine_id_equipes);
-	    $tab_cyclistes = null;
-	}
-	else{
-	    $chaine_id_cyclistes = $prono['prono'];
-
-	    $tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));
-	    $tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$chaine_id_cyclistes);
-	    $tab_equipes = null;
-	}
-	//-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
     }
     else{
 	$prono = null;
-	$tab_cyclistes = null;
-	$tab_equipes = null;
     }
     
-    $prono['prono'] = explode(";", $prono['prono']);
-    $prono['points_prono'] = explode(";", $prono['points_prono']);
+    $res = $prono;
     
-    $res = '	    <div class="sectionSide">
-			<p class="section-highlight">Top 10 de ' . $joueur . '</p>
-		    </div>
-			<div class="col-md-9 col-sm-9 col-xs-9">
-		    <table class="table">';
     
-    for($i=0;$i<10;$i++){
-	
-	$id_entite_prono = $prono['prono'][$i];
-	$res .= '	<tr class "">';
-	if($b_traite){
-	    $pts_prono = $prono['points_prono'][$i];
-	}
-	else{
-	    $pts_prono = '';
-	}
-	
-	if(!$b_equipe){
-	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-			    <td class="table-name col-md-6">' .  $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
-			    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	}
-	else{
-	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-			    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
-			    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	}
-	$res .= '	</tr>';
-    }
-    
-    if(sizeof($prono['prono']) > 1){
-	if($b_traite){
-	    $score_total = $prono['score_total'];
-	    $bonus_reg = $prono['bonus_nombre'];
-	}
-	else{
-	    $score_total = '-';
-	    $bonus_reg = '-';
-	}
-	    
-	$tmp_risque = '	    <li class="score">
-				    <p class="stat-item">Score</p>
-				    <p class="stat-value">'. $score_total .'</p>
-			    </li>
-			    <li class="risk">
-				    <p class="stat-item">Risques</p>
-				    <p class="stat-value">'. $prono['bonus_risque'] .'%</p>
-			    </li>
-			    <li class="number">
-				    <p class="stat-item">Bonus</p>
-				    <p class="stat-value">'. $bonus_reg .'</p>
-			    </li>';
-    }
-    else{
-	$tmp_risque = '	    <li class="risk">
-				    <p class="stat-item">Pas de prono</p>
-			    </li>';
-    }
-    
-    $res .= '	    </table>
-				</div>
-				<div class="stat-box col-md-3 col-sm-3 col-xs-3">
-					<ul>' . $tmp_risque . '
-					</ul>
-				</div>';
+    /*
+     $arr['id_rugby_prono'] = $enregistrement->id;
+	    $arr['id_cal'] = $enregistrement->id_calendrier;
+	    $arr['id_jeu'] = $enregistrement->id_jeu;
+	    $arr['joueur'] = $enregistrement->joueur;
+	    $arr['prono_vainqueur'] = $enregistrement->prono_vainqueur;
+	    $arr['prono_points1'] = $enregistrement->prono_points1;
+	    $arr['prono_points2'] = $enregistrement->prono_points2;
+	    $arr['prono_essais1'] = $enregistrement->prono_essais1;
+	    $arr['prono_essais2'] = $enregistrement->prono_essais2;
+	    $arr['score_vainqueur'] = $enregistrement->score_vainqueur;
+	    $arr['score_points1'] = $enregistrement->score_points1;
+	    $arr['score_points2'] = $enregistrement->score_points2;
+	    $arr['score_essais1'] = $enregistrement->score_essais1;
+	    $arr['score_essais2'] = $enregistrement->score_essais2;
+	    $arr['score_ecart'] = $enregistrement->score_ecart;
+	    $arr['score_total'] = $enregistrement->score_total;
+	    $arr['classement'] = $enregistrement->classement;
+     */
     
     
     echo $res;

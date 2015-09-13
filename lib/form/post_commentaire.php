@@ -18,6 +18,11 @@
 	echo 'Joueur non connecté';
 	return;
     }
+    
+    if ($contenu == ''){
+	echo 'Commentaire vide';
+	return;
+    }
 
     if($b_article){
 	$b_article = 1;

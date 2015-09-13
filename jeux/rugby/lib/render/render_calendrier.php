@@ -11,10 +11,10 @@
    
 
     //--------------------------------------FONCTIONS--------------------------------------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_equipe.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_cycliste.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_calendrier.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_prono.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_equipe.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_pays.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
     //-------------------------------------------------------------------------------------//
   
@@ -55,7 +55,6 @@
     
     //--------------------------------------CALENDRIER--------------------------------------//
     $calendrier = get_calendrier($ID_JEU,$ID_CAL);
-    $b_equipe = $calendrier['profil_equipe'];
     $b_commence = $calendrier['commence'];
     $b_traite = $calendrier['traite'];
     //------------------------------------------------------------------------------------------------//
@@ -93,41 +92,12 @@
     
     
     
-    //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
+    //-------------------------------PAYS/EQUIPES------------------------------------//
     $tab_equipes = get_equipes_inscrites($ID_JEU, $ID_CAL);
-    if($b_equipe){
-	$tab_cyclistes = null;
-    }
-    else{
-	$chaine_id_cyclistes = $prono_joueur['prono'];
-	if($b_traite){
-	    if(strlen($chaine_id_cyclistes) > 0){
-		$chaine_id_cyclistes .= ';';
-	    }
-	    $chaine_id_cyclistes .= $calendrier['classement'];
-	}
-	
-	$tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));
-	$tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$chaine_id_cyclistes);
-    }
-    //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
+    $pays = get_pays_tous();
+    //-------------------------------PAYS/EQUIPES------------------------------------//
     
-
-    
-    
-    
-    
-    if($calendrier['distance'] != 0){
-	$distance = ' (' . $calendrier['distance'] . ' km)';
-    }
-    else{
-	$distance = '';
-    }
-    
-    
-    
-    $calendrier['url'] = clean_url('pronostic/' . $ID_CAL . '-' . $calendrier['nom_complet']);
-    
+  
     $prono_joueur['prono'] = explode(';',$prono_joueur['prono']);
     $prono_joueur['points_prono'] = explode(';',$prono_joueur['points_prono']);
     $calendrier['classement'] = explode(';',$calendrier['classement']);

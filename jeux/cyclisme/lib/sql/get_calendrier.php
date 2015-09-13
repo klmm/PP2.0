@@ -257,7 +257,7 @@
 	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	//On fait la requete sur le login
-	$sql4 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND CAST(date_fin AS DATE)=? AND date_debut>NOW()";
+	$sql4 = "SELECT * FROM cyclisme_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND CAST(date_fin AS DATE)=? AND date_debut<NOW()";
 	$prep4 = $db->prepare($sql4);
 	$prep4->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 	$prep4->bindValue(2,$date_seule,PDO::PARAM_STR);

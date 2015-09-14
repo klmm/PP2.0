@@ -268,6 +268,7 @@
 	$enregistrement4 = $prep4->fetch();
 	
 	if( $enregistrement4 ){
+	    $db = null;
 	    return $enregistrement4->id_cal; // ETAPE EN COURS
 	}
 	else{
@@ -281,6 +282,7 @@
 	    $enregistrement = $prep->fetch();
 	
 	    if( $enregistrement ){
+		$db = null;
 		return $enregistrement->id_cal; // ETAPE DU JOUR
 	    }
 	    else{

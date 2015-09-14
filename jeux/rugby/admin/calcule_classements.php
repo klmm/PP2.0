@@ -4,12 +4,15 @@
 
     function calcule_classements($id_jeu){
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_calendrier.php';
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	global $nb_paris_max;
 	
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
       
+	$cal = get_calendrier_jeu($id_jeu);
+	
 	$jeu = get_jeu_id($id_jeu);
 	$url = $jeu['url'];
 	
@@ -26,6 +29,7 @@
 
 	while($enregistrement = $prep->fetch()){
 	    $id_prono = $enregistrement->id;
+	    $id_cal = $enregistrement->id_cal;
 	    $pos = $enregistrement->classement;
 	    $score = $enregistrement->score_total;
 	    $joueur = $enregistrement->joueur;
@@ -41,13 +45,15 @@
 	    // NOMBRE DE PRONOS
 	    $tab_classements[$joueur]['nb_pronos'] += 1;
 	    
+	    // COEFFICIENT DU MATCH
+	    $coeff_match = $cal[$id_cal]['coefficient'];
 	    
 	    // CLASSEMENT GENERAL
-	    $tab_classements[$joueur]['score_total'] += $score;
+	    $tab_classements[$joueur]['score_total'] += $score*$coeff_match;
 	    
 	    // PHASE FINALE
 	    if(substr($tour,0,5) != 'Poule'){
-		$tab_classements[$joueur]['phase_finale'] += $score;
+		$tab_classements[$joueur]['phase_finale'] += $score*$coeff_match;
 	    }
 	    
 	    // REUSSITE

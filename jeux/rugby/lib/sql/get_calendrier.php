@@ -171,6 +171,7 @@
     }
     
     function get_id_calendrier_actuel($ID_JEU){
+	
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
@@ -178,7 +179,6 @@
 	$now = time();
 	$unix = mktime(date('H',$now),date('i',$now),date('s',$now),date('n',$now),date('j',$now),date('Y',$now));
 
-	//$date_heure = strftime('%Y-%m-%d %H:%M:%S', $unix);
 	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	$sql = "SELECT * FROM rugby_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut>NOW() ORDER BY date_debut ASC LIMIT 1";
@@ -189,9 +189,10 @@
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 
 	$enregistrement = $prep->fetch();
-
+		
 	if( $enregistrement ){
-	    return $enregistrement->id_cal; // PROCHAIN PRONO DU JOUR
+	    $db = null;
+	    return $enregistrement->id; // PROCHAIN PRONO DU JOUR
 	}
 	else{
 	    $sql2 = "SELECT * FROM rugby_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut<NOW() ORDER BY date_debut DESC LIMIT 1";
@@ -204,7 +205,7 @@
 
 	    if( $enregistrement2 ){
 		$db = null;
-		return $enregistrement2->id_cal; // DERNIER RESULTAT DU JOUE
+		return $enregistrement2->id; // DERNIER RESULTAT DU JOUE
 	    }
 	    else{
 		$sql3 = "SELECT * FROM rugby_calendrier WHERE id_jeu=? AND date_debut>NOW() ORDER BY date_debut ASC LIMIT 1";
@@ -217,7 +218,7 @@
 
 		if( $enregistrement3 ){
 		    $db = null;
-		    return $enregistrement3->id_cal; // PROCHAIN PRONO
+		    return $enregistrement3->id; // PROCHAIN PRONO
 		}
 		else{
 		    $sql4 = "SELECT * FROM rugby_calendrier WHERE id_jeu=? AND traite=1 ORDER BY date_debut DESC LIMIT 1";
@@ -230,7 +231,7 @@
 
 		    if( $enregistrement4 ){
 			$db = null;
-			return $enregistrement4->id_cal; // DERNIER RESULTAT (QUAND FINI)
+			return $enregistrement4->id; // DERNIER RESULTAT (QUAND FINI)
 		    }
 		    else{
 			$db = null;

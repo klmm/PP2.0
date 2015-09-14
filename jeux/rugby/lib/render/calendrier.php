@@ -54,7 +54,7 @@
     
     
     //--------------------------------------CALENDRIER--------------------------------------//
-    $calendrier = get_calendrier($ID_JEU,$ID_CAL);
+    $calendrier = get_calendrier($ID_CAL);
     $b_commence = $calendrier['commence'];
     $b_traite = $calendrier['traite'];
     //------------------------------------------------------------------------------------------------//
@@ -93,7 +93,7 @@
     
     
     //-------------------------------PAYS/EQUIPES------------------------------------//
-    $tab_equipes = get_equipes_inscrites($ID_JEU, $ID_CAL);
+    $equipes = get_equipes_inscrites($ID_JEU, $ID_CAL);
     $pays = get_pays_tous();
     //-------------------------------PAYS/EQUIPES------------------------------------//
     
@@ -126,11 +126,23 @@
 	$tmp = 'disabled';
 	$txt = 'Bientôt';
     }
+    
+    $id_equipe1 = $calendrier['id_equipe1'];
+    $nom_equipe1 = $equipes[$id_equipe1]['nom'];
+    $id_pays1 = $equipes[$id_equipe1]['id_pays'];
+    $drapeau_equipe1 = $pays[$id_pays1]['drapeau_icone'];
 
+    $id_equipe2 = $calendrier['id_equipe2'];
+    $nom_equipe2 = $equipes[$id_equipe2]['nom'];
+    $id_pays2 = $equipes[$id_equipe2]['id_pays'];
+    $drapeau_equipe2 = $pays[$id_pays2]['drapeau_icone'];
+    
     $res = '	    
 		<div class="pres-panel clearfix">
-		    <p class="name section-highlight">' . $calendrier['nom_complet'] . $distance . '</p>
-			<p class="date">' . $calendrier['date_debut_fr'] . ' - ' . $calendrier['heure_debut_fr'] . '</p>
+		    <img class="item-flag hidden-xs" src="' . $pays[$id_pays1]['drapeau_icone'] . '"/>
+		    <p class="name section-highlight">' . $nom_equipe1 . ' - ' . $nom_equipe2 . '</p>
+		    <img class="item-flag hidden-xs" src="' . $pays[$id_pays2]['drapeau_icone'] . '"/>
+		    <p class="date">' . $calendrier['date_debut_fr'] . ' - ' . $calendrier['heure_debut_fr'] . '</p>
 		    <div class="pres-button col-md-12 col-sm-12 col-xs-12">
 			<a class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
 		    </div>
@@ -157,7 +169,7 @@
 				    <td class="table-place col-md-4">' . $tab_cyclistes[$id_entite_res]['prenom'] . ' ' . $tab_cyclistes[$id_entite_res]['nom'] .'</td>';	    }
 	    else{
 		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-place col-md-4">' . $tab_equipes[$id_entite_res]['nom_complet'] . '</td>';	   }
+				    <td class="table-place col-md-4">' . $equipes[$id_entite_res]['nom_complet'] . '</td>';	   }
 	   $res .= '		</tr>';
 	}
 	
@@ -193,7 +205,7 @@
 	    }
 	    else{
 		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
+				    <td class="table-name col-md-6">' . $equipes[$id_entite_prono]['nom_complet'] . '</td>
 				    <td class="table-point col-md-4">' . $pts_prono . '</td>';
 	    }
 	    $res .= '		</tr>';
@@ -307,7 +319,7 @@
 	    }
 	    else{
 		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
+				    <td class="table-name col-md-6">' . $equipes[$id_entite_prono]['nom_complet'] . '</td>
 				    <td class="table-point col-md-4">-</td>';
 	   }
 	   $res .= '	     </tr>';

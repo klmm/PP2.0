@@ -17,6 +17,7 @@
 		{
 		    $id_pays = $enregistrement->Id_Pays;
 		    $arr[$id_pays]['Abreviation'] = $enregistrement->Abreviation;
+		    $arr[$id_pays]['nom'] = $enregistrement->Nom;
 		    $arr[$id_pays]['drapeau_icone'] = $enregistrement->drapeau_icone;
 		    $arr[$id_pays]['drapeau_petit'] = $enregistrement->drapeau_petit;
 		    $arr[$id_pays]['drapeau_moyen'] = $enregistrement->drapeau_moyen;

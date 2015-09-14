@@ -2,11 +2,11 @@
     $ID_JEU = 3;
     $js = '/jeux/rugby/2015/coupe-du-monde/js/wc2015.js';
     $css = '/jeux/rugby/2015/coupe-du-monde/css/wc2015.css';
-    $titre = 'Parions Potes - Vuelta 2015';
-    $competition = 'Vuelta 2015';
-    $sous_titre = 'du 22 août au 13 septembre 2015';
+    $titre = 'Parions Potes - Coupe du Monde de Rugby 2015';
+    $competition = 'Coupe du Monde de Rugby 2015';
+    $sous_titre = 'du 18 septembre au 31 octobre 2015';
     $logo = '/img/logos/logo_share.jpg';
-    $description = 'Pronostics gratuits sur la Vuelta 2015.';
+    $description = 'Pronostics gratuits sur la Coupe du Monde de Rugby 2015.';
     $keywords = 'pronostics paris gratuits sport rugby coupe du monde 2015';
     
     //--------------------------------------FONCTIONS--------------------------------------//
@@ -16,9 +16,11 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/get_classements.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_pays.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_calendrier.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_prono.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_equipe.php';
     //-------------------------------------------------------------------------------------//
     
     $bcr = array(
@@ -67,6 +69,9 @@
     
     $arr_calendrier = get_calendrier_jeu($ID_JEU);
     $nb_calendrier = sizeof($arr_calendrier);
+    
+    $pays = get_pays_tous();
+    $equipes = get_equipes_inscrites($ID_JEU);
     
     $classements = get_classements($jeu['url'] . '/classements');
     $nb_classements = sizeof($classements);
@@ -415,7 +420,7 @@
     
 
     
-//---------------------------------------------CALENDRIER------------------------------------------------------//	
+//---------------------------------------------CALENDRIER------------------------------------------------------//
     if($nb_calendrier > 0){
 	echo '	<div class="section clearfix" id="resultats" style="min-height: 214px;">
 		    <div class="sectionSide" style="margin-bottom:50px;">
@@ -437,9 +442,18 @@
 			    <div class="collapse navbar-collapse navbar-calendar">
 				<ul id="list-cal" class="nav navbar-nav">';
 	
-	for($i=0;$i<$nb_calendrier;$i++){
-	    $calendrier = $arr_calendrier[$i];
-	    $id = $calendrier['id_cal'];
+	foreach($arr_calendrier as $key => $calendrier){
+	    $id_equipe1 = $calendrier['id_equipe1'];
+	    $nom_equipe1 = $equipes[$id_equipe1]['nom'];
+	    $id_pays1 = $equipes[$id_equipe1]['id_pays'];
+	    $drapeau_equipe1 = $pays[$id_pays1]['drapeau_icone'];
+	    
+	    $id_equipe2 = $calendrier['id_equipe2'];
+	    $nom_equipe2 = $equipes[$id_equipe2]['nom'];
+	    $id_pays2 = $equipes[$id_equipe2]['id_pays'];
+	    $drapeau_equipe2 = $pays[$id_pays2]['drapeau_icone'];
+	    
+	    $id = $calendrier['id'];
 	    if($id == $id_cal){
 		$tmp_class = 'active';
 	    }
@@ -448,7 +462,7 @@
 	    }
 	    
 	    if($calendrier['commence'] == "0"){
-		$tmp_date = $calendrier['date_debut_fr_tcourt'];
+		$tmp_date = $calendrier['date_debut_fr_tcourt'] . ' à ' . $calendrier['heure_debut_fr'];
 		if($calendrier['disponible'] == "1"){
 		    $tmp_ico = 'glyphicon-play';
 		}
@@ -465,11 +479,13 @@
 		    $tmp_ico = 'glyphicon-stats';
 		    $tmp_date = 'Terminé';
 		}
-	    }//ajouter une classe dans le <a> suivant si a venir ou en cours ou passé et de meme avec glyphicon-lock ou glyphicon-hourglass ou  glyphicon-stats
+	    }
 	    	    
 	    echo '		    <li class="' . $tmp_class . '">
-					<a class="clearfix" value="' . $id . '" data-action="goTo">
-					    <span class="title col-md-12">' . $calendrier['nom_complet'] . '</span>
+					<a class="clearfix" value="' . $calendrier['id'] . '" data-action="goTo">
+					    <img class="item-flag hidden-xs" src="' . $pays[$id_pays1]['drapeau_icone'] . '"/>
+					    <span class="title col-md-12">' . $nom_equipe1 . ' - ' . $nom_equipe2 . '</span>
+					    <img class="item-flag hidden-xs" src="' . $pays[$id_pays2]['drapeau_icone'] . '"/>
 					    <span class="date col-md-6">' . $tmp_date . '</span>
 					    <span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
 					</a>
@@ -602,10 +618,10 @@
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 				
 		getAllComs(0,' . $ID_JEU . ',' . $id_cal . ',0);
-		render_pres_panel(' . $id_cal . ');
+		render_calendrier(' . $id_cal . ');
 		    
 		Init_Forms();
-		Init_Forms_Cyclisme();
+		Init_Forms_Rugby();
 		
 		$(window).resize(function() {
 			//pageSection();

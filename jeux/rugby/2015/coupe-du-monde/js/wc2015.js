@@ -1,7 +1,7 @@
 // A CHANGER LORS DE LA CREATION D'UN JEU
 var id_jeu = 3;
 
-function Init_Forms_Cyclisme()
+function Init_Forms_Rugby()
 {
 	$(document).on('click', '#calendar a', function(e)
 	{    
@@ -12,17 +12,10 @@ function Init_Forms_Cyclisme()
 	    $(this).parent().addClass("active");
 	    
 	    var id = $(this).attr("value");	
-	    render_pres_panel(id);
+	    render_calendrier(id);
 	    getAllComs(0,id_jeu,id,0);
 	    
 	    document.location.href='#resultats';
-	});
-	
-	$(document).on('mouseover', '#calendar a', function(e)
-	{
-		var id = $(this).attr("value");
-		//alert(id);
-		//juste affichage de l'image...à voir
 	});
 	
 	$(document).on('click', '.scores tr', function(e)
@@ -32,89 +25,14 @@ function Init_Forms_Cyclisme()
 
 		render_prono_autre(id_cal,joueur);
 	});
-}
-
-function Init_Zone_Paris()
-{
-	var pari_valide = false;
-	if($("#sortable2 li").size() == 10) {
-		pari_valide = true;
-	}
-	
-	$('#calendar-list li').on('click', function(){
-		var href = $(this).find('a').attr('href');
-		var titre = "Avertissement !";
-		var texte = "Votre pari ne semble pas terminé. Voulez-vous continuer ?";
-		/*if (pari_valide){
-			return true;
-		} else {
-			dialog(href, titre, texte);
-			return false;
-		}*/
-		
-	});
-	
-	$( "#sortable1").sortable({
-		connectWith: ".connectedSortable",
-		scroll : true,
-		cursor : "move",
-		receive: function( event, ui ) {
-		    calcrisk();
-		    updateNums();
-		}
-	}).disableSelection();
-	
-	$( "#sortable2" ).sortable({
-		connectWith: ".connectedSortable",
-		scroll : true,
-		cursor : "move",
-		over: function( event, ui ) {  
-		    updateNums();
-		},
-		update: function( event, ui ) {  
-		    updateNums();
-		},
-		receive: function( event, ui ) {
-		    if($("#sortable2 li").size() == 11) {
-			$( "#sortable1" ).sortable( "cancel" );
-		    }
-		    updateNums();
-		    calcrisk();
-		}
-	}).disableSelection();
-	
-	$("#item-search").keyup(function(){
-		filterItems($("#item-search").val());
-	});
-	
-	$.expr[':'].icontains = function(obj, index, meta, stack){
-		return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
-	};
-	
-	$('a[data-confirm]').click(function(ev) {
-		var href = $(this).attr('href');
-		dialog(href);
-		return false;
-	});
-	$('button[data-alert]').click(function(ev) {
-		var titre = "";
-		var texte = "";
-		popup(titre, texte);
-		return false;
-	});
 	
 	$("#validate").click(function(ev){
 	   
 	    var formURL = $(this).attr("action");
 	    var id_cal =  $(this).parent().find("#id_cal").attr("value");;
 	    var i = 0;
-	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
-	   	    
-	    $('#sortable2 li').each(function() {
-		postData += "&prono[" + i + "]=" + $(this).attr("id");
-		i++;
-	    });
-	    //alert(postData);
+	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&essais1=" + essais1  + "&essais2=" + essais2  + "&score1=" + score1  + "&score2=" + score2;
+
 	    $.ajax(
 	    {
 		url : formURL,
@@ -143,8 +61,6 @@ function Init_Zone_Paris()
 		    else{
 			location.reload();
 		    }
-		    
-
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
@@ -155,44 +71,8 @@ function Init_Zone_Paris()
 	
 }
 
-function filterItems(search){
-	
-	$("#sortable1 li").css( "display", "none");
-	$("#sortable1 li:icontains("+search +")").css( "display", "block");
-	
-}
-	
-function dialog(href, titre, message){
-	if (!$('#dataConfirmModal').length) {
-		$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true">'+
-		'<div class="modal-dialog">'+
-		'<div class="modal-content">'+
-		'<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">'+ titre +'</h3></div>'+
-		'<div class="modal-body"><p>'+ message +'</p></div>'+
-		'<div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button><a class="btn btn-danger" id="dataConfirmOK">Confirmer</a></div></div></div></div>');
-	}
-	$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
-	$('#dataConfirmOK').attr('href', href);
-	$('#dataConfirmModal').modal({show:true});
-}
-
-function dialog(href, titre, message){
-	if (!$('#dataConfirmModal').length) {
-		$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true">'+
-		'<div class="modal-dialog">'+
-		'<div class="modal-content">'+
-		'<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">'+ titre +'</h3></div>'+
-		'<div class="modal-body"><p>'+ message +'</p></div>'+
-		'<div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Ok</button></div></div></div></div>');
-	}
-	$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
-	$('#dataConfirmModal').modal({show:true});
-}
-
-
-
-function render_pres_panel(id_cal){
-    	var formURL = "/jeux/cyclisme/lib/render/render_calendrier.php";
+function render_calendrier(id_cal){
+    	var formURL = "/jeux/rugby/lib/render/calendrier.php";
 	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
 	$.ajax(
 	{
@@ -219,7 +99,7 @@ function render_pres_panel(id_cal){
 }
 
 function render_prono_autre(id_cal,joueur){
-    	var formURL = "/jeux/cyclisme/lib/render/render_prono.php";
+    	var formURL = "/jeux/rugby/lib/render/prono_joueur.php";
 	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&joueur=" + joueur;
 	$.ajax(
 	{
@@ -238,46 +118,6 @@ function render_prono_autre(id_cal,joueur){
 			alert('error');//do nothing
 		}
 	});
-}
-
-function calcrisk(){
-	if($("#sortable2 li").size() > 10) {
-				return;
-	}
-	var jauge = $('.result-area').find('.progress-bar');
-	var total = 0;
-	
-	$('#sortable2 li').each(function() {
-		var rating = $(this).find('.item-rating .glyphicon-star').size();
-		if(rating == 0){
-			total += 6;
-		} else if(rating == 1) {
-			total += 4;
-		} else if(rating == 2) {
-			total += 2;
-		}
-		
-	});
-	
-//	var moyenne = total/$("#sortable2 li").size();
-	
-	$('.progress-bar').css('width', total+'%').attr('aria-valuenow', total);
-	jauge.text(total +'%');
-}
-
-function updateNums(){
-
-		var i = 1;
-		$('#sortable2 li').each(function() {
-			$(this).find('.item-place').text(i +'. ');
-
-			i += 1;
-		});
-		
-		$('#sortable1 li').each(function() {
-			$(this).find('.item-place').text('');
-		});
-		
 }
 
 function autocollapse() {

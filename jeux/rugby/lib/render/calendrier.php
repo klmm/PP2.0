@@ -103,7 +103,7 @@
     
     
     //-------------------------------PAYS/EQUIPES------------------------------------//
-    $equipes = get_equipes_inscrites($ID_JEU, $ID_CAL);
+    $equipes = get_equipes_inscrites($ID_JEU);
     $pays = get_pays_tous();
     //-------------------------------PAYS/EQUIPES------------------------------------//
     
@@ -208,6 +208,7 @@
 	$res .= '
 			    <div class="row later">
 				<div class="team-side col-md-6 col-sm-12 col-xs-12">
+				    <input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>
 				    <div class="team-flag col-md-2 col-sm-2 col-xs-2">
 					<img class="item-flag hidden-xs" src="' . $pays[$id_pays1]['drapeau_moyen'] . '" alt=""/>
 				    </div>

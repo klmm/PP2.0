@@ -80,6 +80,8 @@
 	
 	$db = null;
 	
+	print_r($tab_classements);
+	
 	calcule_classement_general($id_jeu,$tab_classements,$url);
 	calcule_classement_phase_finale($tab_classements,$url);
 	calcule_classement_reussite($tab_classements,$url);
@@ -101,7 +103,7 @@
       return strnatcmp($b['score_total'], $a['score_total']);
     }
     
-    function calcule_classement_score_total($id_jeu,$tab,$url){
+    function calcule_classement_general($id_jeu,$tab,$url){
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_inscriptions.php');
 
 	usort($tab, 'compare_score_total');
@@ -187,12 +189,14 @@
 	    }
 	}
     
-	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
-	foreach($line as $key => $ligne){
-	    $contenu .= $ligne . PHP_EOL;
-	}
+	if(sizeof($line) > 0){
+	    $contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
+	    foreach($line as $key => $ligne){
+		$contenu .= $ligne . PHP_EOL;
+	    }
 
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	}
     }
     
     
@@ -239,13 +243,15 @@
 		$score_actuel = $score;
 	    }
 	}
-    
-	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
-	foreach($line as $key => $ligne){
-	    $contenu .= $ligne . PHP_EOL;
-	}
+	
+	if(sizeof($line) > 0){
+	    $contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
+	    foreach($line as $key => $ligne){
+		$contenu .= $ligne . PHP_EOL;
+	    }
 
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	}
     }
     
     
@@ -258,12 +264,12 @@
       return strnatcmp($b['victoires'], $a['victoires']);
     }
     
-    function calcule_classement_victoires($tab,$url){
+    function calcule_classement_homme_match($tab,$url){
 	usort($tab, 'compare_victoires');
 	
 	$nom_fichier = '06-Homme du match.txt';
 	
-	$titre = 'Victoires';
+	$titre = 'Homme du match';
 	$descr = 'Récompense les hommes du match';
 	$colonnes = ';;HM;Pronos';
 	$taille_colonnes = '2;5;2;3';
@@ -290,12 +296,14 @@
 	    $score_actuel = $score;
 	}
 	
-	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
-	foreach($line as $key => $ligne){
-	    $contenu .= $ligne . PHP_EOL;
-	}
+	if(sizeof($line) > 0){
+	    $contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
+	    foreach($line as $key => $ligne){
+		$contenu .= $ligne . PHP_EOL;
+	    }
 
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	}
     }
     
     
@@ -309,7 +317,7 @@
       return strnatcmp($b['essais'], $a['essais']);
     }
     
-    function calcule_classement_essaise($tab,$url){
+    function calcule_classement_essais($tab,$url){
 	usort($tab, 'compare_essais');
 	
 	$nom_fichier = '08-Essais.txt';
@@ -343,13 +351,14 @@
 		$score_actuel = $score;
 	    }
 	}
-    
-	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
-	foreach($line as $key => $ligne){
-	    $contenu .= $ligne . PHP_EOL;
-	}
+	if(sizeof($line) > 0){
+	    $contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
+	    foreach($line as $key => $ligne){
+		$contenu .= $ligne . PHP_EOL;
+	    }
 
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	}
     }
     
  

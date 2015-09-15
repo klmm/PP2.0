@@ -97,11 +97,6 @@
     $pays = get_pays_tous();
     //-------------------------------PAYS/EQUIPES------------------------------------//
     
-  
-    $prono_joueur['prono'] = explode(';',$prono_joueur['prono']);
-    $prono_joueur['points_prono'] = explode(';',$prono_joueur['points_prono']);
-    $calendrier['classement'] = explode(';',$calendrier['classement']);
-   
     
     // AFFICHAGE PARTIE CALENDRIER
     
@@ -137,6 +132,10 @@
     $id_pays2 = $equipes[$id_equipe2]['id_pays'];
     $drapeau_equipe2 = $pays[$id_pays2]['drapeau_icone'];
     
+    
+    
+    // PRESENTATION MATCH
+    
     $res = '	    
 		<div class="pres-panel clearfix">
 		    <img class="item-flag hidden-xs" src="' . $pays[$id_pays1]['drapeau_icone'] . '"/>
@@ -149,118 +148,26 @@
 		</div>
 		<div class="result-panel">';
     
-    // AFFICHAGE PARTIE CALENDRIER
-        
+    
+    
+    
+    
+    // MATCH COMMENCE        
     if($calendrier['commence']){
 	
-	// RESULTAT
-	$res .= '   <div class="row player-result">
-			<div class="table-box col-md-6 col-sm-6 col-xs-12">
-			    <div class="sectionSide">
-				<p class="section-highlight">Résultat</p>
-			    </div>	
-			    <table class="table">';
-	
-	for ($i=0;$i<10;$i++){
-	    $id_entite_res = $calendrier['classement'][$i];
-	    $res .= '		<tr class="">';
-	    if(!$calendrier['profil_equipe']){
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-place col-md-4">' . $tab_cyclistes[$id_entite_res]['prenom'] . ' ' . $tab_cyclistes[$id_entite_res]['nom'] .'</td>';	    }
-	    else{
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-place col-md-4">' . $equipes[$id_entite_res]['nom_complet'] . '</td>';	   }
-	   $res .= '		</tr>';
-	}
-	
-	$res .= '	    </table>
-			</div>';
-	
-	
-	// PRONO JOUEUR
-	$res .= '	<div class="table-stat-box col-md-6 col-sm-6 col-xs-12">
-			    <div class="sectionSide">
-				<p class="section-highlight">Mon Top 10</p>
-			    </div>
-				<div class="col-md-9 col-sm-9 col-xs-9">
-			    <table class="table">';
-	
-	
-	
-	for ($i=0;$i<10;$i++){
-	    $id_entite_prono = $prono_joueur['prono'][$i];
-	    $res .= '		<tr class="">';
-	    if($calendrier['traite']){
-		$pts_prono = $prono_joueur['points_prono'][$i];
-	    }
-	    else{
-		$pts_prono = '';
-	    }
-	    
-	    if(!$calendrier['profil_equipe']){
-		
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' .  $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
-				    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	    }
-	    else{
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $equipes[$id_entite_prono]['nom_complet'] . '</td>
-				    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	    }
-	    $res .= '		</tr>';
-	}
-	
-	if(sizeof($prono_joueur['prono']) == 1){
-	    $tmp_risque = '	<li class="risk">
-				    <p class="stat-item">Pas de prono</p>
-				</li>';
+	if($prono_joueur == null){
+	    // PAS DE PRONO
 	}
 	else{
 	    if($calendrier['traite']){
-		$score_total = $prono_joueur['score_total'];
-		$bonus_reg = $prono_joueur['bonus_nombre'];
+		// MATCH TERMINE
 	    }
 	    else{
-		$score_total = '-';
-		$bonus_reg = '-';
+		// MATCH EN COURS
 	    }
-	    $tmp_risque = '	<li class="score">
-				    <p class="stat-item">Score</p>
-				    <p class="stat-value">'. $score_total .'</p>
-				</li>
-				<li class="risk">
-				    <p class="stat-item">Risques</p>
-				    <p class="stat-value">'. $prono_joueur['bonus_risque'] .'%</p>
-				</li>
-				<li class="number">
-				    <p class="stat-item">Bonus</p>
-				    <p class="stat-value">'. $bonus_reg .'</p>
-				</li>';
 	}
 	
-	
-	
-	$res .= '	    </table>
-			</div>
-			<div class="stat-box col-md-3 col-sm-3 col-xs-3">
-			    <ul>' . $tmp_risque . '	
-			    </ul>
-			</div>
-		    </div>	
-		</div>';
-	
-	
-	
 	// AUTRES JOUEURS
-	$res .= '   <div class="row other-result">
-			<div class="table-box col-md-6 col-sm-6 col-xs-12">
-			    <div class="sectionSide">
-				<p class="section-highlight">Scores</p>
-			    </div>
-			    <div class="classement-table">
-				<table id="' . $ID_CAL . '" class="table table-hover scores">';
-	
 	$count = 0;
 	$premier = '';
 	foreach($tab_pronos as $key => $value){
@@ -283,75 +190,14 @@
 		$pos = '';
 		$pts_joueur = '';
 	    }
-	    
-	    $res .= '		    <tr class="' . $class_surlign_joueur . '">
-					<th class="table-place col-md-2">' . $pos . '</th>
-					<td class="table-name col-md-6">' . $value['joueur'] . '</td>
-					<td class="table-point col-md-4">' . $pts_joueur . '</td>
-				    </tr>';
 	}
-	
-	$res .= '		</table>
-			    </div>
-			</div>
-			<div id="son_prono" class="table-stat-box col-md-6 col-sm-6 col-xs-12">
-
-			</div>
-		    </div>';
-	
     }
+    // MATCH NON COMMENCE
     else{
 	// PRONO JOUEUR UNIQUEMENT
-	$res .= '<div class="row later">
-		    <div class="table-box col-md-6 col-sm-6 col-xs-12">
-			<div class="sectionSide">
-			    <p class="section-highlight">Mon Top 10</p>
-			</div>
-			<table class="table">';
 	
-	for ($i=0;$i<10;$i++){
-	    $id_entite_prono = $prono_joueur['prono'][$i];
-	    $res .= '	     <tr class="">';
-	    if(!$calendrier['profil_equipe']){
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
-				    <td class="table-point col-md-4">-</td>';
-	    }
-	    else{
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $equipes[$id_entite_prono]['nom_complet'] . '</td>
-				    <td class="table-point col-md-4">-</td>';
-	   }
-	   $res .= '	     </tr>';
-	}
-	
-	if(sizeof($prono_joueur['prono']) > 1){
-	    $tmp_risque = '		<li class="risk">
-					    <p class="stat-item">Prise de risque</p>
-					    <p class="stat-value">'. $prono_joueur['bonus_risque'] .'%</p>
-					</li>';
-	}
-	else{
-	    $tmp_risque = '		<li class="risk">
-					    <p class="stat-item">Pas de prono</p>
-					</li>';
-	}
-	
-	$res .= '	</table>
-		    </div>
-		    <div class="stat-box col-md-6 col-sm-6 col-xs-12">
-				<ul>' . $tmp_risque . '		
-					<li class="time-out">
-						<p class="stat-item">Temps restant</p>
-						<p class="stat-value">' . $calendrier['temps_restant'] . '</p>
-					</li>
-				</ul>
-		    </div>
-		</div>';
     }
-    
-    $res .= '</div>';
-    
+        
     
     $envoi = array(
 	    'premier' => $premier,

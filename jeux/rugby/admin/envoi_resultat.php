@@ -25,13 +25,13 @@
     $score2 = $_POST['score2'];
     $essais1 = $_POST['essais1'];
     $essais2 = $_POST['essais2'];
-    $calendrier = get_calendrier($id_jeu, $id_cal);
+    $calendrier = get_calendrier($id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//
     
     
     
     // ------------ VERIFICATION DES PARAMETRES ----------//
-    if(!is_numeric($id_jeu) || !is_numeric($id_cal) || !is_numeric($score1) || !is_numeric($score2) || !is_numeric($essais1) || !is_numeric($essais2)){
+    if(!is_numeric($id_cal) || !is_numeric($score1) || !is_numeric($score2) || !is_numeric($essais1) || !is_numeric($essais2)){
 	$msg = 'Paramètre non numérique';
 	$rafr = true;
 	$res = false;
@@ -103,7 +103,7 @@
     
     
     // ------------ MAJ PRONOS ----------//
-    $arr_pronos = get_pronos_cal($id_jeu,$id_cal);
+    $arr_pronos = get_pronos_cal($id_cal);
     
     $sql2 = "UPDATE rugby_prono SET score_vainqueur=?, score_essais1=?, score_essais2=?, score_points1=?, score_points2=?, score_ecart=?, score_total=? WHERE id=?";
     $prep2 = $db->prepare($sql2);
@@ -112,39 +112,42 @@
     $nb_trouves_max = 0;
     
     foreach($arr_pronos as $key => $prono){
+	
 	$id_prono = $prono['id_rugby_prono'];
 	$score_vainqueur = 0;
 	$score_essais1 = 0;
 	$score_essais2 = 0;
 	
 	// VAINQUEUR
-	if($prono['vainqueur'] == $vainqueur){
+	if($prono['prono_vainqueur'] == $vainqueur){
 	    $score_vainqueur = $POINTS_VAINQUEUR;
 	}
 	
 	// ESSAIS 1
-	if($prono['essais1'] == $essais1){
+	if($prono['prono_essais1'] == $essais1){
 	    $score_essais1 = $POINTS_ESSAIS;
 	}
 	
 	// ESSAIS 2
-	if($prono['essais2'] == $essais2){
+	if($prono['prono_essais2'] == $essais2){
 	    $score_essais2 = $POINTS_ESSAIS;
 	}
 	
+	
+	
 	// POINTS 1
-	$score_points1 = max($POINTS_MAX_POINTS - $DELTA_POINTS*($prono['score1'] - $score1),0);
+	$score_points1 = max($POINTS_MAX_POINTS - $DELTA_POINTS*($prono['prono_points1'] - $score1),0);
 	
 	// POINTS 2
-	$score_points2 = max($POINTS_MAX_POINTS - $DELTA_POINTS*($prono['score2'] - $score2),0);
+	$score_points2 = max($POINTS_MAX_POINTS - $DELTA_POINTS*($prono['prono_points2'] - $score2),0);
 	
 	// ECART
-	$score_ecart = max($POINTS_MAX_ECART - $DELTA_ECART*(abs(($prono['score1'] - $prono['score2']) - ($score1 - $score2))),0);
+	$score_ecart = max($POINTS_MAX_ECART - $DELTA_ECART*(abs(($prono['prono_points1'] - $prono['prono_points2']) - ($score1 - $score2))),0);
 	
 	// TOTAL
 	$score_total = $score_vainqueur + $score_essais1 + $score_essais2 + $score_points1 + $score_points2 + $score_ecart;
 	
-	$prep2->bindValue(1,$score_vainqueur,PDO::PARAM_INR);
+	$prep2->bindValue(1,$score_vainqueur,PDO::PARAM_INT);
 	$prep2->bindValue(2,$score_essais1,PDO::PARAM_INT);
 	$prep2->bindValue(3,$score_essais2,PDO::PARAM_INT);
 	$prep2->bindValue(4,$score_points1,PDO::PARAM_INT);
@@ -154,9 +157,10 @@
 	$prep2->bindValue(8,$id_prono,PDO::PARAM_INT);
 	$prep2->execute();
 	$prep2->setFetchMode(PDO::FETCH_OBJ);
+	
     }
-    
-    $arr_pronos = get_pronos_cal($id_jeu,$id_cal);
+       
+    $arr_pronos = get_pronos_cal($id_cal);
     
     $sql7 = "UPDATE rugby_prono SET classement=? WHERE id=?";
     $prep7 = $db->prepare($sql7);
@@ -164,6 +168,7 @@
     $place_actuelle = 1;
     $place_cpt = 1;
     $score_actuel = -1;
+    
     foreach($arr_pronos as $key => $prono){
 	$id_prono = $prono['id_rugby_prono'];
 	$score_total_joueur = $prono['score_total'];

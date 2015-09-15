@@ -28,25 +28,27 @@ function Init_Forms_Rugby()
 	
 	$("#validate").click(function(ev){
 	   
-	    var formURL = $(this).attr("action");
 	    var id_cal =  $(this).parent().find("#id_cal").attr("value");;
-	    var i = 0;
-	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&essais1=" + essais1  + "&essais2=" + essais2  + "&score1=" + score1  + "&score2=" + score2;
+	    var e1 = 0;
+	    var e2 = 0;
+	    var p1 = 0;
+	    var p2 = 0;
+
+	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&essais1=" + e1  + "&essais2=" + e2  + "&score1=" + p1  + "&score2=" + p2;
 
 	    $.ajax(
 	    {
-		url : formURL,
+		url : "/jeux/rugby/lib/form/envoi_prono.php",
 		type: "POST",
 		data : postData,
 		success:function(data, textStatus, jqXHR) 
 		{	 
 		    var result = $.parseJSON(data);
 		    var msg = result.msg;
-		    var rafr = result.rafr;
 		    var msg_final;
 		    var res = result.resultat;
 		        
-		    if(msg != null && res != null && (rafr != null || rafr == false)){
+		    if(msg != null && res != null){
 			$( ".alert-msg-prono" ).empty();
 			
 			msg_final = '<div class="alert alert-info alert-dismissible" style="margin-bottom:15px;" role="alert">' +
@@ -56,7 +58,6 @@ function Init_Forms_Rugby()
 				    '</div>';
 			
 			$( ".alert-msg-prono" ).append(msg_final);
-			document.location.href='#pari-panel';
 		    }
 		    else{
 			location.reload();
@@ -69,6 +70,50 @@ function Init_Forms_Rugby()
 	    });
 	});
 	
+}
+
+function clicComboEssais(){
+	var e = 0;
+	var scores = getScoresPossibles(e);
+	
+	for each (var sc in scores) {
+		// Ajout dans le combo du score
+	}
+	
+	// Mettre le combo du score en visible
+	// Mettre le combo du score à "-"
+}
+
+function clicComboPoints(){
+	// Tests valeurs des deux combo points
+	// Si != - alors bouton validation visible
+}
+
+function getScoresPossibles(e){
+	var et, ent, p;
+	var scores = [];
+	var pmax = 10;
+	
+	for(ent=0;ent<=e;ent++)
+	{
+		et = e - ent;
+		for(p=0;p<pmax;p++){
+			scores.push(3*p + 5*ent + 7*et);
+		}
+	}
+	
+	// Enlever les doublons possibles
+	var uniqueScores = [];
+	$.each(scores, function(i, el){
+		if($.inArray(el, uniqueScores) === -1) uniqueScores.push(el);
+	});
+	
+	// Trier dans l'ordre croissant
+	uniqueScores.sort(function(a, b) {
+		return a - b;
+	});
+	
+	return uniqueScores;
 }
 
 function render_calendrier(id_cal){

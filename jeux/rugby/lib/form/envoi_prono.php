@@ -25,8 +25,7 @@
     $essais2 = $_POST['essais2'];
     $calendrier = get_calendrier($id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//
-    
-    
+
     
     // ------------ VERIFICATION DES PARAMETRES ----------//
     if(!is_numeric($id_jeu) || !is_numeric($id_cal) || !is_numeric($score1) || !is_numeric($score2) || !is_numeric($essais1) || !is_numeric($essais2)){

@@ -256,17 +256,65 @@
 }
 
 /*pari-panel pres+combo*/
-.calendar-combo{
-	left: 50%;
-	transform : translateX(-50%);
+.team-side{
+	margin:10px 0;
+	display: flex;
+	display: -webkit-flex;
+    align-items: center;
+	flex-direction: row;
+	-webkit-flex-direction: row;
+   // flex-direction: row-reverse;
+}
+
+.team-mirror{
+	margin:10px 0;
+	display: flex;
+	display: -webkit-flex;
+    align-items: center;
+	flex-direction: row-reverse;
+	-webkit-flex-direction: row-reverse;
+}
+
+.team-name{
+	vertical-align: middle;
+	text-align: center;
+}
+.team-flag img{
+	width: 100%;
+}
+
+.pari-combo{
+	//left: 50%;
+	//transform : translateX(-50%);
 }
 #calendar-list{
 	font-size:18px;
-	
+	text-align: center;
+    
+    min-width: 20px;
+    left: initial;
+}
+
+#calendar-list li{
+	cursor: pointer;
+	padding: 0 16px;
+}
+
+#calendar-list li:hover{
+	background-color : #68C3E2;
 }
 
 #calendar:hover, #calendar:focus{
     cursor:pointer;
+}
+
+.btn-group>.btn-lg.dropdown-toggle {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+.btn-group>.btn-md.dropdown-toggle {
+	padding-left: 6px;
+	padding-right: 6px;
 }
 
 /*pari-panel */
@@ -437,6 +485,10 @@ float:left;
 	.affix{
 		width: 330px;
 	}
+	.team-mirror{
+		flex-direction: row;
+		-webkit-flex-direction: row;
+	}
 }
 
 @media (max-width: 768px) {
@@ -456,7 +508,7 @@ float:left;
 		width: 43%;
 	}
 	
-	.calendar-combo .btn{
+	.pari-combo .btn{
 		font-size:15px;
 	}
 	#calendar-list{
@@ -472,7 +524,7 @@ float:left;
 	#pari-panel li .item-name {
 		margin:0;
 	}
-
+	
 	.later .stat-box ul {
 		margin-top: 0;
 	}
@@ -564,7 +616,7 @@ float:left;
 }
 
 @media (max-width: 500px) {
-	.calendar-combo .btn{
+	.pari-combo .btn{
 		font-size:12px;
 	}
 	#calendar-list{
@@ -576,7 +628,7 @@ float:left;
 }
 
 @media (max-width: 370px) {
-	.calendar-combo .btn{
+	.pari-combo .btn{
 		font-size:9px;
 	}
 	#calendar-list{

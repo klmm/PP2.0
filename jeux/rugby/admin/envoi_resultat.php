@@ -136,10 +136,10 @@
 	
 	
 	// POINTS 1
-	$score_points1 = max($POINTS_MAX_POINTS - $DELTA_POINTS*($prono['prono_points1'] - $score1),0);
+	$score_points1 = max($POINTS_MAX_POINTS - $DELTA_POINTS*(abs($prono['prono_points1'] - $score1)),0);
 	
 	// POINTS 2
-	$score_points2 = max($POINTS_MAX_POINTS - $DELTA_POINTS*($prono['prono_points2'] - $score2),0);
+	$score_points2 = max($POINTS_MAX_POINTS - $DELTA_POINTS*(abs($prono['prono_points2'] - $score2)),0);
 	
 	// ECART
 	$score_ecart = max($POINTS_MAX_ECART - $DELTA_ECART*(abs(($prono['prono_points1'] - $prono['prono_points2']) - ($score1 - $score2))),0);

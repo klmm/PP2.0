@@ -234,7 +234,7 @@
 									<li>9</li>
 								</ul>
 							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
+							<div id="combo-points-1" class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
 								<button type="button" id="score1" name="score1" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points1'] . '</button>
 								<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<span class="caret"></span>
@@ -272,7 +272,7 @@
 									<li>9</li>
 								</ul>
 							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
+							<div id="combo-points-2" class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
 								<button type="button" id="score2" name="score2" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points2'] . '</button>
 								<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<span class="caret"></span>
@@ -297,6 +297,8 @@
     
     
     $envoi = array(
+	    'essais1' => $prono_joueur['prono_essais1'],
+	    'essais2' => $prono_joueur['prono_essais2'],
 	    'premier' => $premier,
 	    'html' => $res);
     

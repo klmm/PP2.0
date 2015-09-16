@@ -620,10 +620,11 @@
 				
 		getAllComs(0,' . $ID_JEU . ',' . $id_cal . ',0);
 		render_calendrier(' . $id_cal . ');
+		
 		    
 		Init_Forms();
 		Init_Forms_Rugby();
-		
+				
 		$(window).resize(function() {
 			//pageSection();
 			 $(\'body\').scrollspy("refresh");
@@ -726,7 +727,6 @@
                         init();
          
         })();
-
 
 	</script>
  

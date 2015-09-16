@@ -93,6 +93,7 @@ function Init_Forms_Rugby()
 		var $points_list = $(this).parent().parent().parent().find('.points-combo').find('.points-list');
 		$tries.text($(this).text());
 		$points_list.empty();
+		alert('in');
 		if($(this).text()=="-"){
 			$points.addClass("disabled");
 			$points.addClass("disabled");
@@ -106,7 +107,12 @@ function Init_Forms_Rugby()
 	});
 }
 
-
+function initCombosPoints(ess1, ess2){
+    var e1 = $(document).find('#combo-points-1').find('.points-list');
+    var e2 = $(document).find('#combo-points-2').find('.points-list');
+    clicComboEssais(e1, ess1);
+    clicComboEssais(e2, ess2);
+}
 
 function clicComboEssais(el, nb){
 	//var e = 0;
@@ -170,18 +176,22 @@ function render_calendrier(id_cal){
 		    var result = $.parseJSON(data);
 		    var html = result.html;
 		    var premier = result.premier;
+		    var essais1 = result.essais1;
+		    var essais2 = result.essais2;
 		    $( "#cal-container" ).empty();
 		    $( "#cal-container" ).append(html);
 		    if (premier != null){
 			render_prono_autre(id_cal,premier);
 		    }
-		    
+		    initCombosPoints(essais1, essais2);
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
 			alert('error');//do nothing
 		}
 	});
+	
+	
 }
 
 function render_prono_autre(id_cal,joueur){

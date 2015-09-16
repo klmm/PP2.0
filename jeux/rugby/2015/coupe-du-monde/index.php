@@ -81,7 +81,8 @@
     
     
     //---------------------------------JEU COMMENCE ?---------------------------//
-    if($jeu['commmence'] == "0" && $admin == false){
+
+    if($jeu['commence'] == "0" && $admin == false){
 	header('Location: /redirect/erreur404.html');
 	return;
     }
@@ -446,10 +447,12 @@
 	    $id_equipe1 = $calendrier['id_equipe1'];
 	    $nom_equipe1 = $equipes[$id_equipe1]['nom'];
 	    $id_pays1 = $equipes[$id_equipe1]['id_pays'];
+	    $drapeau_equipe1 = $pays[$id_pays1]['drapeau_icone'];
 	    
 	    $id_equipe2 = $calendrier['id_equipe2'];
 	    $nom_equipe2 = $equipes[$id_equipe2]['nom'];
 	    $id_pays2 = $equipes[$id_equipe2]['id_pays'];
+	    $drapeau_equipe2 = $pays[$id_pays2]['drapeau_icone'];
 	    
 	    $id = $calendrier['id'];
 	    if($id == $id_cal){
@@ -481,9 +484,9 @@
 	    	    
 	    echo '		    <li class="' . $tmp_class . '">
 					<a class="clearfix" value="' . $calendrier['id'] . '" data-action="goTo">
-					    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays1]['drapeau_moyen'] . '"/>
+					    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays1]['drapeau_icone'] . '"/>
 					    <span class="title col-md-8 col-sm-8 col-xs-12">' . $nom_equipe1 . ' - ' . $nom_equipe2 . '</span>
-					    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays2]['drapeau_moyen'] . '"/>
+					    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays2]['drapeau_icone'] . '"/>
 					    <span class="date col-md-6">' . $tmp_date . '</span>
 					    <span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
 					</a>

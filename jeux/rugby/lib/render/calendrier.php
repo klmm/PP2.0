@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     
     /* --------- INPUTS -------
     id_jeu
@@ -205,7 +205,7 @@
 	// PRONO JOUEUR UNIQUEMENT
 	$res .= '
 			    <div class="row later">
-					<form id="pari-form" role="form" class="row" action="/jeux/rugby/lib/form/envoi_prono.php" method="POST">
+					<form id="pari-form" role="form" class="row" method="POST">
 						<input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>
 						<div class="team-side col-md-6 col-sm-12 col-xs-12">
 							<div class="team-flag col-md-2 col-sm-2 col-xs-2">
@@ -215,7 +215,7 @@
 								<span class="name section-highlight">' . $nom_equipe1 . '</span>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 btn-group tries-combo">
-								<button type="button" name="essais1" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_essais1'] . '</button>
+								<button type="button" id="essais1" name="essais1" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_essais1'] . '</button>
 								<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<span class="caret"></span>
 									<span class="sr-only">Toggle Dropdown</span>
@@ -235,7 +235,7 @@
 								</ul>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
-								<button type="button" name="score1" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points1'] . '</button>
+								<button type="button" id="score1" name="score1" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points1'] . '</button>
 								<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<span class="caret"></span>
 									<span class="sr-only">Toggle Dropdown</span>
@@ -253,12 +253,13 @@
 								<span class="name section-highlight">' . $nom_equipe2 . '</span>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 btn-group tries-combo">
-								<button type="button" name="essais2" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_essais2'] . '</button>
+								<button type="button" id="essais2" name="essais2" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_essais2'] . '</button>
 								<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<span class="caret"></span>
 									<span class="sr-only">Toggle Dropdown</span>
 								</button>
 								<ul class="dropdown-menu tries-list" role="menu">
+									<li>-</li>
 									<li>0</li>
 									<li>1</li>
 									<li>2</li>
@@ -272,7 +273,7 @@
 								</ul>
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
-								<button type="button" name="score2" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points2'] . '</button>
+								<button type="button" id="score2" name="score2" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points2'] . '</button>
 								<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<span class="caret"></span>
 									<span class="sr-only">Toggle Dropdown</span>
@@ -282,7 +283,7 @@
 							</div>
 						</div>
 						<div id="send-pari" class="pres-button col-md-12 col-sm-12 col-xs-12">
-						    <a type="submit" class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
+							<button type="submit" class="btn btn-primary btn-lg ' . $tmp . '" >' . $txt . '</button>
 						</div>
 					</div>';
 	

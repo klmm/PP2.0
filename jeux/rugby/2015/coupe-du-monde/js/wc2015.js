@@ -25,17 +25,16 @@ function Init_Forms_Rugby()
 
 		render_prono_autre(id_cal,joueur);
 	});
-	
-	$("#pari-form").submit(function(e){
+	$(document).on('submit', '#pari-form', function(e) {
 	   
 	    var id_cal =  $(this).find("#id_cal").attr("value");
 		
-	    var e1 = 0;
-	    var e2 = 0;
-	    var p1 = 0;
-	    var p2 = 0;
+	    var e1 = $(this).find("#essais1").text();
+	    var e2 = $(this).find("#essais2").text();
+	    var p1 = $(this).find("#score1").text();
+	    var p2 = $(this).find("#score2").text();
 
-	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&" + $(this).serializeArray();//"essais1=" + e1  + "&essais2=" + e2  + "&score1=" + p1  + "&score2=" + p2;
+	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&essais1=" + e1  + "&essais2=" + e2  + "&score1=" + p1  + "&score2=" + p2;
 
 	    $.ajax(
 	    {
@@ -84,10 +83,11 @@ function Init_Forms_Rugby()
 		var $points = $(this).parent().parent().parent().find('.points-combo').find('.btn-default');
 		var $points_list = $(this).parent().parent().parent().find('.points-combo').find('.points-list');
 		$tries.text($(this).text());
+		$points_list.empty();
 		if($(this).text()=="-"){
 			$points.addClass("disabled");
 			$points.addClass("disabled");
-			$points.text("-");
+			$points.text("-");						
 		} else {
 			$points.removeClass("disabled");
 			$points.removeClass("disabled");

@@ -210,7 +210,7 @@
 						<div class="label-side col-md-6 col-sm-12 col-xs-12">
 							<div class="col-md-6 col-sm-6 col-xs-6"></div>
 							<div class="tries-combo col-md-3 col-sm-3 col-xs-3">
-								<span class="">Nombre d\'éssais</span>
+								<span class="">Essais</span>
 							</div>
 							<div class="points-combo col-md-3 col-sm-3 col-xs-3">
 								<span class="">Points</span>
@@ -219,7 +219,7 @@
 						<div class="label-mirror col-md-6 col-sm-12 col-xs-12">
 							<div class="col-md-6 col-sm-6 col-xs-6"></div>
 							<div class="tries-combo col-md-3 col-sm-3 col-xs-3">
-								<span class="">Nombre d\'éssais</span>
+								<span class="">Essais</span>
 							</div>
 							<div class="points-combo col-md-3 col-sm-3 col-xs-3">
 								<span class="">Points</span>

@@ -135,12 +135,10 @@
     $id_equipe1 = $calendrier['id_equipe1'];
     $nom_equipe1 = $equipes[$id_equipe1]['nom'];
     $id_pays1 = $equipes[$id_equipe1]['id_pays'];
-    $drapeau_equipe1 = $pays[$id_pays1]['drapeau_icone'];
 
     $id_equipe2 = $calendrier['id_equipe2'];
     $nom_equipe2 = $equipes[$id_equipe2]['nom'];
     $id_pays2 = $equipes[$id_equipe2]['id_pays'];
-    $drapeau_equipe2 = $pays[$id_pays2]['drapeau_icone'];
     
     $res = '';
     
@@ -148,9 +146,9 @@
     
     $res .= '	    
 		<div class="pres-panel clearfix">
-		    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays1]['drapeau_moyen'] . '"/>
+		    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays1]['drapeau_grand'] . '"/>
 		    <p class="name section-highlight col-md-8 col-sm-8 col-xs-12">' . $nom_equipe1 . ' - ' . $nom_equipe2 . '</p>
-		    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays2]['drapeau_moyen'] . '"/>
+		    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays2]['drapeau_grand'] . '"/>
 		    <p class="date col-md-6 col-sm-6 col-xs-6">' . $calendrier['tour'] . '</p>
 			<p class="date col-md-6 col-sm-6 col-xs-6">Coefficient x' . $calendrier['coefficient'] . '</p>
 		    <p class="date col-md-6 col-sm-6 col-xs-6">' . $calendrier['stade'] . ' (' . $calendrier['ville'] . ')</p>
@@ -207,7 +205,7 @@
 	// PRONO JOUEUR UNIQUEMENT
 	$res .= '
 			    <div class="row later">
-					<form id="pari-form" role="form" class="row" action="/lib/form/envoi_prono.php" method="POST">
+					<form id="pari-form" role="form" class="row" action="/jeux/rugby/lib/form/envoi_prono.php" method="POST">
 						<input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>
 						<div class="team-side col-md-6 col-sm-12 col-xs-12">
 							<div class="team-flag col-md-2 col-sm-2 col-xs-2">
@@ -284,7 +282,7 @@
 							</div>
 						</div>
 						<div id="send-pari" class="pres-button col-md-12 col-sm-12 col-xs-12">
-							<a type="submit" class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
+						    <a type="submit" class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
 						</div>
 					</div>';
 	

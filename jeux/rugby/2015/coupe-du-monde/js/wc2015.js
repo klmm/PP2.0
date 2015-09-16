@@ -93,7 +93,6 @@ function Init_Forms_Rugby()
 		var $points_list = $(this).parent().parent().parent().find('.points-combo').find('.points-list');
 		$tries.text($(this).text());
 		$points_list.empty();
-		alert('in');
 		if($(this).text()=="-"){
 			$points.addClass("disabled");
 			$points.addClass("disabled");

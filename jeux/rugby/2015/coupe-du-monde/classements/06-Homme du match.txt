@@ -1,5 +1,0 @@
-Homme du match
-Récompense les hommes du match
-;;HM;Pronos
-2;5;2;3
-1;Toto;1;1

@@ -1,5 +1,0 @@
-Général
-Récompense le meilleur pronostiqueur du jeu
-;;Score;Pronos
-2;5;3;2
-1;Toto;0;1

@@ -74,7 +74,7 @@ function Init_Forms_Rugby()
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
-		    alert('error');//do nothing
+		    //alert('error');//do nothing
 		}
 	    });
 	});
@@ -186,7 +186,7 @@ function render_calendrier(id_cal){
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
-			alert('error');//do nothing
+			//alert('error');//do nothing
 		}
 	});
 	
@@ -210,7 +210,7 @@ function render_prono_autre(id_cal,joueur){
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
-			alert('error');//do nothing
+			//alert('error');//do nothing
 		}
 	});
 }

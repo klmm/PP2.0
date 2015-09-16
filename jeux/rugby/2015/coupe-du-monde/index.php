@@ -264,7 +264,7 @@
     
  
 //---------------------------------------------BREVES------------------------------------------------------//	
-    echo '  <div class="game-header tdf2015 section">
+    echo '  <div class="game-header wcrgb2015 section">
 				 <h1>' . $competition . '</h1>
 				 <h2>' . $sous_titre . '</h2>
 			</div>

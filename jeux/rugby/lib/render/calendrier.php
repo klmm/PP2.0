@@ -207,6 +207,24 @@
 			    <div class="row later">
 					<form id="pari-form" role="form" class="row" method="POST">
 						<input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>
+						<div class="label-side col-md-6 col-sm-12 col-xs-12">
+							<div class="col-md-6 col-sm-6 col-xs-6"></div>
+							<div class="tries-combo col-md-3 col-sm-3 col-xs-3">
+								<span class="">Nombre d\'éssais</span>
+							</div>
+							<div class="points-combo col-md-3 col-sm-3 col-xs-3">
+								<span class="">Points</span>
+							</div>
+						</div>
+						<div class="label-mirror col-md-6 col-sm-12 col-xs-12">
+							<div class="col-md-6 col-sm-6 col-xs-6"></div>
+							<div class="tries-combo col-md-3 col-sm-3 col-xs-3">
+								<span class="">Nombre d\'éssais</span>
+							</div>
+							<div class="points-combo col-md-3 col-sm-3 col-xs-3">
+								<span class="">Points</span>
+							</div>
+						</div>
 						<div class="team-side col-md-6 col-sm-12 col-xs-12">
 							<div class="team-flag col-md-2 col-sm-2 col-xs-2">
 								<img class="item-flag" src="' . $pays[$id_pays1]['drapeau_moyen'] . '" alt=""/>
@@ -285,7 +303,7 @@
 						<div id="send-pari" class="pres-button col-md-12 col-sm-12 col-xs-12">
 							<button type="button" id="envoi_pari" class="btn btn-primary btn-lg ' . $tmp . '" >' . $txt . '</button>
 						</div>
-						<div class="alert-msg-prono">
+						<div class="alert-msg-prono col-md-12 col-sm-12 col-xs-12">
 						
 						</div>
 					</div>';

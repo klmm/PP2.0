@@ -283,7 +283,10 @@
 							</div>
 						</div>
 						<div id="send-pari" class="pres-button col-md-12 col-sm-12 col-xs-12">
-							<button type="submit" class="btn btn-primary btn-lg ' . $tmp . '" >' . $txt . '</button>
+							<button type="button" id="envoi_pari" class="btn btn-primary btn-lg ' . $tmp . '" >' . $txt . '</button>
+						</div>
+						<div class="alert-msg-prono">
+						
 						</div>
 					</div>';
 	

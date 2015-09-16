@@ -25,19 +25,18 @@ function Init_Forms_Rugby()
 
 		render_prono_autre(id_cal,joueur);
 	});
-	$(document).on('submit', '#pari-form', function(e) {
+	$(document).on('click', '#envoi_pari', function(e) {
 	   
-	    var id_cal =  $(this).find("#id_cal").attr("value");
+	    var id_cal =  $(this).parent().parent().find("#id_cal").attr("value");
 		
-	    var e1 = $(this).find("#essais1").text();
-	    var e2 = $(this).find("#essais2").text();
-	    var p1 = $(this).find("#score1").text();
-	    var p2 = $(this).find("#score2").text();
-
+	    var e1 = $(this).parent().parent().find("#essais1").text();
+	    var e2 = $(this).parent().parent().find("#essais2").text();
+	    var p1 = $(this).parent().parent().find("#score1").text();
+	    var p2 = $(this).parent().parent().find("#score2").text();
 	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&essais1=" + e1  + "&essais2=" + e2  + "&score1=" + p1  + "&score2=" + p2;
-
 	    $.ajax(
 	    {
+		
 		url : "/jeux/rugby/lib/form/envoi_prono.php",
 		type: "POST",
 		data : postData,
@@ -47,15 +46,25 @@ function Init_Forms_Rugby()
 		    var msg = result.msg;
 		    var msg_final;
 		    var res = result.resultat;
-		        
+		    		        
 		    if(msg != null && res != null){
 			$( ".alert-msg-prono" ).empty();
 			
-			msg_final = '<div class="alert alert-info alert-dismissible" style="margin-bottom:15px;" role="alert">' +
+			if(res == false){
+			    msg_final = '<div class="alert alert-danger alert-dismissible" style="margin-bottom:15px;" role="alert">' +
 				    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
 					'<span aria-hidden="true">&times;</span>' +
 				    '</button>' + msg +
 				    '</div>';
+			}
+			else{
+			    msg_final = '<div class="alert alert-success alert-dismissible" style="margin-bottom:15px;" role="alert">' +
+				    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+					'<span aria-hidden="true">&times;</span>' +
+				    '</button>' + msg +
+				    '</div>';
+			}
+			
 			
 			$( ".alert-msg-prono" ).append(msg_final);
 		    }

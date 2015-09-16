@@ -352,8 +352,7 @@
 	max-width: 40px;
 }
 
-.send-pari button{ 
-  //background-color: rgb(115, 50, 130);
+#send-pari button{ 
   padding: 20px;
   padding-left: 100px;
   padding-right: 100px;

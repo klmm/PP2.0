@@ -289,6 +289,8 @@
 }
 .team-flag img{
 	width: 100%;
+	max-width: 60px;
+	box-shadow: 0 0 7px 1px #656565;
 }
 
 .pari-combo{

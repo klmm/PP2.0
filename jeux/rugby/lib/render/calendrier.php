@@ -148,13 +148,13 @@
     
     $res .= '	    
 		<div class="pres-panel clearfix">
-		    <img class="item-flag hidden-xs" src="' . $pays[$id_pays1]['drapeau_moyen'] . '"/>
-		    <p class="name section-highlight">' . $nom_equipe1 . ' - ' . $nom_equipe2 . '</p>
-		    <img class="item-flag hidden-xs" src="' . $pays[$id_pays2]['drapeau_moyen'] . '"/>
-		    <p class="date">' . $calendrier['tour'] . '</p>
-			<p class="date">Coefficient x' . $calendrier['coefficient'] . '</p>
-		    <p class="date">' . $calendrier['stade'] . ' (' . $calendrier['ville'] . ')</p>
-		    <p class="date">' . $calendrier['date_debut_fr'] . ' - ' . $calendrier['heure_debut_fr'] . '</p>
+		    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays1]['drapeau_moyen'] . '"/>
+		    <p class="name section-highlight col-md-8 col-sm-8 col-xs-12">' . $nom_equipe1 . ' - ' . $nom_equipe2 . '</p>
+		    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays2]['drapeau_moyen'] . '"/>
+		    <p class="date col-md-6 col-sm-6 col-xs-6">' . $calendrier['tour'] . '</p>
+			<p class="date col-md-6 col-sm-6 col-xs-6">Coefficient x' . $calendrier['coefficient'] . '</p>
+		    <p class="date col-md-6 col-sm-6 col-xs-6">' . $calendrier['stade'] . ' (' . $calendrier['ville'] . ')</p>
+		    <p class="date col-md-6 col-sm-6 col-xs-6">' . $calendrier['date_debut_fr'] . ' - ' . $calendrier['heure_debut_fr'] . '</p>
 		</div>
 		<div class="result-panel">';
     
@@ -207,84 +207,86 @@
 	// PRONO JOUEUR UNIQUEMENT
 	$res .= '
 			    <div class="row later">
-				<div class="team-side col-md-6 col-sm-12 col-xs-12">
-				    <input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>
-				    <div class="team-flag col-md-2 col-sm-2 col-xs-2">
-					<img class="item-flag hidden-xs" src="' . $pays[$id_pays1]['drapeau_moyen'] . '" alt=""/>
-				    </div>
-				    <div class="team-name col-md-4 col-sm-4 col-xs-4">
-					<span class="name section-highlight">' . $nom_equipe1 . '</span>
-				    </div>
-				    <div class="col-md-3 col-sm-3 col-xs-3 btn-group pari-combo">
-					    <button type="button" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_essais1'] . '</button>
-					    <button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						<span class="caret"></span>
-						<span class="sr-only">Toggle Dropdown</span>
-					    </button>
-					    <ul id="calendar-list" class="dropdown-menu" role="menu">
-						<li>0</li>
-						<li>1</li>
-						<li>2</li>
-						<li>3</li>
-						<li>4</li>
-						<li>5</li>
-						<li>6</li>
-						<li>7</li>
-						<li>8</li>
-						<li>9</li>
-					    </ul>
-				    </div>
-				    <div class="col-md-3 col-sm-3 col-xs-3 btn-group pari-combo">
-					<button type="button" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points1'] . '</button>
-					<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					    <span class="caret"></span>
-					    <span class="sr-only">Toggle Dropdown</span>
-					</button>
-					<ul id="calendar-list" class="dropdown-menu" role="menu">
-					</ul>
-				    </div>
-				</div>
+					<form id="pari-form" role="form" class="row" action="/lib/form/envoi_prono.php" method="POST">
+						<input name="id_cal" id="id_cal" type="text" class="hidden" required="" value="' . $ID_CAL . '"/>
+						<div class="team-side col-md-6 col-sm-12 col-xs-12">
+							<div class="team-flag col-md-2 col-sm-2 col-xs-2">
+								<img class="item-flag" src="' . $pays[$id_pays1]['drapeau_moyen'] . '" alt=""/>
+							</div>
+							<div class="team-name col-md-4 col-sm-4 col-xs-4">
+								<span class="name section-highlight">' . $nom_equipe1 . '</span>
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-3 btn-group tries-combo">
+								<button type="button" name="essais1" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_essais1'] . '</button>
+								<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<span class="caret"></span>
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<ul class="dropdown-menu tries-list" role="menu">
+									<li>-</li>
+									<li>0</li>
+									<li>1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+									<li>5</li>
+									<li>6</li>
+									<li>7</li>
+									<li>8</li>
+									<li>9</li>
+								</ul>
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
+								<button type="button" name="score1" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points1'] . '</button>
+								<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<span class="caret"></span>
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<ul class="dropdown-menu points-list" role="menu">
+								</ul>
+							</div>
+						</div>
 
-				<div class="team-mirror col-md-6 col-sm-12 col-xs-12">
-				    <div class="team-flag col-md-2 col-sm-2 col-xs-2">
-					<img class="item-flag hidden-xs" src="' . $pays[$id_pays2]['drapeau_moyen'] . '" alt=""/>
-				    </div>
-				    <div class="team-name col-md-4 col-sm-4 col-xs-4">
-					<span class="name section-highlight">' . $nom_equipe2 . '</span>
-				    </div>
-				    <div class="col-md-3 col-sm-3 col-xs-3 btn-group pari-combo">
-					<button type="button" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_essais2'] . '</button>
-					<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					    <span class="caret"></span>
-					    <span class="sr-only">Toggle Dropdown</span>
-					</button>
-					<ul id="calendar-list" class="dropdown-menu" role="menu">
-					    <li>0</li>
-					    <li>1</li>
-					    <li>2</li>
-					    <li>3</li>
-					    <li>4</li>
-					    <li>5</li>
-					    <li>6</li>
-					    <li>7</li>
-					    <li>8</li>
-					    <li>9</li>
-					</ul>
-				    </div>
-				    <div class="col-md-3 col-sm-3 col-xs-3 btn-group pari-combo">
-					<button type="button" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points2'] . '</button>
-					<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					    <span class="caret"></span>
-					    <span class="sr-only">Toggle Dropdown</span>
-					</button>
-					<ul id="calendar-list" class="dropdown-menu" role="menu">
-					</ul>
-				    </div>
-				</div>
-				<div class="pres-button col-md-12 col-sm-12 col-xs-12">
-				    <a class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
-				</div>
-			    </div>';
+						<div class="team-mirror col-md-6 col-sm-12 col-xs-12">
+							<div class="team-flag col-md-2 col-sm-2 col-xs-2">
+								<img class="item-flag" src="' . $pays[$id_pays2]['drapeau_moyen'] . '" alt=""/>
+							</div>
+							<div class="team-name col-md-4 col-sm-4 col-xs-4">
+								<span class="name section-highlight">' . $nom_equipe2 . '</span>
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-3 btn-group tries-combo">
+								<button type="button" name="essais2" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_essais2'] . '</button>
+								<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<span class="caret"></span>
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<ul class="dropdown-menu tries-list" role="menu">
+									<li>0</li>
+									<li>1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+									<li>5</li>
+									<li>6</li>
+									<li>7</li>
+									<li>8</li>
+									<li>9</li>
+								</ul>
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
+								<button type="button" name="score2" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_joueur['prono_points2'] . '</button>
+								<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<span class="caret"></span>
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<ul class="dropdown-menu points-list" role="menu">
+								</ul>
+							</div>
+						</div>
+						<div id="send-pari" class="pres-button col-md-12 col-sm-12 col-xs-12">
+							<a type="submit" class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
+						</div>
+					</div>';
 	
     }
         

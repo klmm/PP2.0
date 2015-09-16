@@ -26,15 +26,16 @@ function Init_Forms_Rugby()
 		render_prono_autre(id_cal,joueur);
 	});
 	
-	$("#validate").click(function(ev){
+	$("#pari-form").submit(function(e){
 	   
-	    var id_cal =  $(this).parent().find("#id_cal").attr("value");;
+	    var id_cal =  $(this).find("#id_cal").attr("value");
+		
 	    var e1 = 0;
 	    var e2 = 0;
 	    var p1 = 0;
 	    var p2 = 0;
 
-	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&essais1=" + e1  + "&essais2=" + e2  + "&score1=" + p1  + "&score2=" + p2;
+	    var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&" + $(this).serializeArray();//"essais1=" + e1  + "&essais2=" + e2  + "&score1=" + p1  + "&score2=" + p2;
 
 	    $.ajax(
 	    {
@@ -70,23 +71,54 @@ function Init_Forms_Rugby()
 	    });
 	});
 	
+	$(document).on('click', '.points-list>li', function(e)
+	{    
+		var $form = $(this).closest('#pari-form');
+		var $points_elems = $form.find('.points-combo').find('.btn-default');
+		$(this).parent().parent().find('.btn-default').text($(this).text());
+		clicComboPoints($points_elems);
+	});
+	$(document).on('click', '.tries-list>li', function(e)
+	{    
+		var $tries = $(this).parent().parent().find('.btn-default');
+		var $points = $(this).parent().parent().parent().find('.points-combo').find('.btn-default');
+		var $points_list = $(this).parent().parent().parent().find('.points-combo').find('.points-list');
+		$tries.text($(this).text());
+		if($(this).text()=="-"){
+			$points.addClass("disabled");
+			$points.addClass("disabled");
+			$points.text("-");
+		} else {
+			$points.removeClass("disabled");
+			$points.removeClass("disabled");
+			$points.text("-");
+			clicComboEssais($points_list, parseInt($(this).text()));
+		}
+	});
 }
 
-function clicComboEssais(){
-	var e = 0;
-	var scores = getScoresPossibles(e);
-	
-	for each (var sc in scores) {
+
+
+function clicComboEssais(el, nb){
+	//var e = 0;
+	var scores = getScoresPossibles(nb);
+	el.empty();
+	el.append($("<li>").text("-"));
+	for(var i=0; i<scores.length; i++) {
 		// Ajout dans le combo du score
+		el.append($("<li>").text(scores[i]));
 	}
-	
-	// Mettre le combo du score en visible
-	// Mettre le combo du score à "-"
+
 }
 
-function clicComboPoints(){
+function clicComboPoints(elems){
 	// Tests valeurs des deux combo points
 	// Si != - alors bouton validation visible
+	if($(elems[0]).text() != "-" && $(elems[1]).text() != "-"){
+		$("#send-pari a").removeClass("disabled");
+	} else {
+		$("#validate a").addClass("disabled");
+	}
 }
 
 function getScoresPossibles(e){

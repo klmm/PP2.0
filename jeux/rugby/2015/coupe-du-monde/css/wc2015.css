@@ -159,7 +159,11 @@
   padding: 20px;
   //background-color: rgb(115, 50, 130);
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform:    translateY(-50%);
+  -ms-transform:     translateY(-50%);
+  -o-transform:      translateY(-50%);
+  transform:		translateY(-50%);
   position: absolute;
   color: white;
   width: 60%;
@@ -185,7 +189,11 @@
   padding-right: 100px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform:    translate(-50%, -50%);
+  -ms-transform:     translate(-50%, -50%);
+  -o-transform:      translate(-50%, -50%);
+  transform:		 translate(-50%, -50%);
   position: absolute;
   border: none;
 }
@@ -287,7 +295,7 @@
 	//left: 50%;
 	//transform : translateX(-50%);
 }
-#calendar-list{
+.points-list, .tries-list{
 	font-size:18px;
 	text-align: center;
     
@@ -295,12 +303,12 @@
     left: initial;
 }
 
-#calendar-list li{
+.points-list li, .tries-list li{
 	cursor: pointer;
 	padding: 0 16px;
 }
 
-#calendar-list li:hover{
+.points-list li:hover, .tries-list li:hover{
 	background-color : #68C3E2;
 }
 
@@ -317,6 +325,9 @@
 	padding-right: 6px;
 }
 
+#list-cal .item-flag {
+padding: 0 7px;
+}
 /*pari-panel */
 #validate {
 	height: 40px;

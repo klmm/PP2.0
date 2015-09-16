@@ -33,8 +33,8 @@
 .game-header h2{
 	
 }
-.tdf2015{
-    color: rgb(255, 227, 0);
+.wcrgb2015{
+    color: #2EA448;
 }
 
 /* tab-panel */
@@ -264,7 +264,7 @@
 }
 
 /*pari-panel pres+combo*/
-.team-side{
+.team-side, .label-side{
 	margin:10px 0;
 	display: flex;
 	display: -webkit-flex;
@@ -274,7 +274,7 @@
    // flex-direction: row-reverse;
 }
 
-.team-mirror{
+.team-mirror, .label-mirror{
 	margin:10px 0;
 	display: flex;
 	display: -webkit-flex;
@@ -283,6 +283,12 @@
 	-webkit-flex-direction: row-reverse;
 }
 
+.label-side, .label-mirror{
+	text-align: center;
+}
+.label-side span, .label-mirror span{
+	font-size: 1.5em;
+}
 .team-name{
 	vertical-align: middle;
 	text-align: center;
@@ -293,10 +299,24 @@
 	box-shadow: 0 0 7px 1px #656565;
 }
 
-.pari-combo{
-	//left: 50%;
-	//transform : translateX(-50%);
+.tries-combo{
+	padding: 0 5px;
 }
+.points-combo{
+	padding: 0 5px;
+}
+
+/* .tries-combo button{
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform:    translateX(-50%);
+  -ms-transform:     translateX(-50%);
+  -o-transform:      translateX(-50%);
+  transform:		 translateX(-50%);
+}
+.points-combo{
+	padding: 0 5px;
+} */
 .points-list, .tries-list{
 	font-size:18px;
 	text-align: center;
@@ -328,7 +348,24 @@
 }
 
 #list-cal .item-flag {
-padding: 0 7px;
+	padding: 0 7px;
+	max-width: 40px;
+}
+
+.send-pari button{ 
+  //background-color: rgb(115, 50, 130);
+  padding: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform:    translate(-50%, -50%);
+  -ms-transform:     translate(-50%, -50%);
+  -o-transform:      translate(-50%, -50%);
+  transform:		 translate(-50%, -50%);
+  position: absolute;
+  border: none;
 }
 /*pari-panel */
 #validate {
@@ -501,6 +538,10 @@ float:left;
 	.team-mirror{
 		flex-direction: row;
 		-webkit-flex-direction: row;
+	}
+	
+	.label-mirror{
+		display: none;
 	}
 }
 

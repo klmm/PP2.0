@@ -224,6 +224,10 @@
 	text-align: center;
 	margin: 0;
 }
+.stat-box div p{
+	text-align: center;
+	margin: 0;
+}
 .stat-box .stat-item{
 	height: 30%;
 	font-size: 1.8em;
@@ -231,6 +235,14 @@
 .stat-box .stat-value{
 	height: 70%;
 	font-size: 3.5em;
+}
+.stat-box .stat-item-big{
+	height: 30%;
+	font-size: 2.8em;
+}
+.stat-box .stat-value-big{
+	height: 70%;
+	font-size: 4.5em;
 }
 .stat-box .risk{
 	color: #D82F2F;
@@ -240,9 +252,22 @@
 }
 .stat-box .score{
 	color: #31A9E9;
+	margin-top: 50px;
 }
 .stat-box .number{
 	color: #31E93B;
+}
+.stat-box .winners{
+	color: #2EA448;
+}
+.stat-box .gap{
+	color: #2EA448;
+}
+.stat-box .points{
+	color: #2EA448;
+}
+.stat-box .tries{
+	color: #2EA448;
 }
 .later .stat-box .stat-item{
 	font-size: 1.8em;
@@ -260,7 +285,7 @@
 	height: 50%;
 }
 .player-result .stat-box ul li, .other-result .stat-box ul li{
-	height: 33%;
+	height: 25%;
 }
 
 /*pari-panel pres+combo*/
@@ -271,7 +296,7 @@
     align-items: center;
 	flex-direction: row;
 	-webkit-flex-direction: row;
-   // flex-direction: row-reverse;
+   text-align: center;
 }
 
 .team-mirror, .label-mirror{
@@ -281,6 +306,7 @@
     align-items: center;
 	flex-direction: row-reverse;
 	-webkit-flex-direction: row-reverse;
+	text-align: center;
 }
 
 .label-side, .label-mirror{
@@ -292,6 +318,7 @@
 .team-name{
 	vertical-align: middle;
 	text-align: center;
+	font-size: 1.7em;
 }
 .team-flag img{
 	width: 100%;
@@ -305,8 +332,14 @@
 .points-combo{
 	padding: 0 5px;
 }
+.team-tries{
+	font-size: 1.6em;
+}
+.team-points{
+	font-size: 2.8em;
+}
 
-/* .tries-combo button{
+/* .tries-combo .btn-group{
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform:    translateX(-50%);
@@ -314,8 +347,13 @@
   -o-transform:      translateX(-50%);
   transform:		 translateX(-50%);
 }
-.points-combo{
-	padding: 0 5px;
+.points-combo .btn-group{
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform:    translateX(-50%);
+  -ms-transform:     translateX(-50%);
+  -o-transform:      translateX(-50%);
+  transform:		 translateX(-50%);
 } */
 .points-list, .tries-list{
 	font-size:18px;
@@ -366,130 +404,20 @@
   position: absolute;
   border: none;
 }
+
+
+
+
 /*pari-panel */
 #validate {
 	height: 40px;
 	margin-bottom: 25px;
 }
 
-.hidden-num{
-transition : all 0.6s;
-visibility:hidden;
-transform: rotateY(180deg);
-opacity:0;
-}
-.visible-num{
-transition : all 0.6s;
-visibility:visible;
-transform: rotateY(360deg);
-opacity : 1;
-}
-#sortable1, #sortable2 {
-
-min-height: 400px;
-list-style-type: none;
-margin: 0;
-padding: 5px 0 0 0;
-}
-#sortable1 {
-min-height: 700px;
-}
-#sortable2 {
-width: 100%;
-background-color: rgb(239, 240, 241);;
-border: grey dashed 3px;
- // float: left;
-}
-#sortable1 li, #sortable2 li{
-margin: 0 5px 5px 5px;
-padding: 5px;
-font-size: 1.2em;
-}
-#sortable1 li, #sortable2 li {
-border: 1px solid #A2A8B2;
-font-weight: normal;
-background-color: #A2A8B2;
-color: white;
-}
-#sortable1 li:hover, #sortable2 li:hover {
-
-background-color: lightgrey;
-border: 1px solid #d3d3d3;
-}
-#numero li {
-margin: 0 5px 5px 5px;
-padding: 5px;
-width: 20px;
-border: 1px solid #C00000;
-font-size: 1.2em;
-background-color: #C00000;
-color: white;
-margin-left : 40%;
-}
-#pari-panel li .item-flag {
-height: 23px;
-width: 32px;
-vertical-align: middle;
-float : right;
-}
-#pari-panel li .item-team {
-height: 24px;
-//width: 30px;
-vertical-align: middle;
-float : right;
-margin-right: 10px;
-}
-#pari-panel li .item-note {
-float: right;
-margin-right: 10px;
-margin-left: 5%;
-padding-left: 10px;
-padding-right: 10px;
-color: white;
-background-color: black;
-}
-#pari-panel li .item-name {
-margin-left: 5px;
-}
-#pari-panel li .item-rating {
-float: right;
-margin-right: 10px;
-margin-left: 5%;
-line-height: 27px;
-color: rgb(255, 232, 0);
-}
-#pari-panel li .item-rating>span {
-position: inherit;
-} 
-
-#canvas-holder{
-width:15%;
-height:15%;
-float:left;
-}
-
 .result-panel .section-highlight{
 	color: black;
 }
-.table-place{
 
-}
-.affix{
- top:100px;
- width: 540px;
-}
-.affix-bottom{
-	position: relative;
-}
-.progress{
-	width: 100%;
-	margin-top: 5px;
-}
-.progress-title{
-	position: absolute;
-	right: 20px;
-	color: lightgrey;
-}
 
 /** color **/
 .goodbet{
@@ -561,7 +489,7 @@ float:left;
 		width: 43%;
 	}
 	
-	.pari-combo .btn{
+	.points-combo .btn, .tries-combo .btn{
 		font-size:15px;
 	}
 	#calendar-list{
@@ -669,7 +597,7 @@ float:left;
 }
 
 @media (max-width: 500px) {
-	.pari-combo .btn{
+	.points-combo .btn, .tries-combo .btn{
 		font-size:12px;
 	}
 	#calendar-list{
@@ -681,8 +609,9 @@ float:left;
 }
 
 @media (max-width: 370px) {
-	.pari-combo .btn{
+	.points-combo .btn, .tries-combo .btn{
 		font-size:9px;
+		padding: 9px;
 	}
 	#calendar-list{
 		font-size:9px;

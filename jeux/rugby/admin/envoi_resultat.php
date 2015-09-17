@@ -91,10 +91,10 @@
     
     // ---------- POINTS ATTRIBUES -------------//
     $POINTS_VAINQUEUR = 100;
-    $POINTS_ESSAIS = 10;
+    $POINTS_ESSAIS = 15;
     $POINTS_MAX_ECART = 40;
-    $DELTA_ECART = 1;
-    $POINTS_MAX_POINTS = 20;
+    $DELTA_ECART = 3;
+    $POINTS_MAX_POINTS = 15;
     $DELTA_POINTS = 1;
     // ---------- POINTS ATTRIBUES -------------//
     

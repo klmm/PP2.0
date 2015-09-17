@@ -11,9 +11,11 @@
     
     ------------ OUTPUTS -------*/
 
+
     //--------------------------------------FONCTIONS--------------------------------------//
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_calendrier.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_prono.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/lib/sql/get_equipe.php';
     //-------------------------------------------------------------------------------------//
     
     
@@ -25,42 +27,111 @@
     //------------------------------------------------------------------------------------------------//
     
     //--------------------------------------CALENDRIER--------------------------------------//
-    $calendrier = get_calendrier($ID_JEU,$ID_CAL);
+    $equipes = get_equipes_inscrites($ID_JEU);
+    $calendrier = get_calendrier($ID_CAL);
     $b_commence = $calendrier['commence'];
     $b_traite = $calendrier['traite'];
     //------------------------------------------------------------------------------------------------//
     
-    if($b_commence){
-	$prono = get_prono($ID_JEU,$ID_CAL,$joueur);
+    $id_equipe1 = $calendrier['id_equipe1'];
+    $nom_equipe1 = $equipes[$id_equipe1]['nom'];
+    $id_pays1 = $equipes[$id_equipe1]['id_pays'];
+
+    $id_equipe2 = $calendrier['id_equipe2'];
+    $nom_equipe2 = $equipes[$id_equipe2]['nom'];
+    $id_pays2 = $equipes[$id_equipe2]['id_pays'];
+    
+    $prono_joueur = get_prono($ID_CAL,$joueur);
+ 	    
+    if($prono_joueur == null){
+	// PAS DE PRONO
+	$prono_points_equipe1 = '-';
+	$prono_points_equipe2 = '-';
+	$prono_essais_equipe1 = '-';
+	$prono_essais_equipe2 = '-';
+	$score_points = '-';
+	$score_essais = '-';
+	$score_vainqueur = '-';
+	$score_total = '-';
+	$score_ecart = '-';
     }
     else{
-	$prono = null;
+	$prono_points_equipe1 = $prono_joueur['prono_points1'];
+	$prono_points_equipe2 = $prono_joueur['prono_points2'];
+	$prono_essais_equipe1 = $prono_joueur['prono_essais1'];
+	$prono_essais_equipe2 = $prono_joueur['prono_essais2'];
+	
+	if($calendrier['traite']){
+	    $score_points = $prono_joueur['score_points1'] + $prono_joueur['score_points2'] . ' pts';
+	    $score_essais = $prono_joueur['score_essais1'] + $prono_joueur['score_essais2'] . ' pts';
+	    $score_vainqueur = $prono_joueur['score_vainqueur'] . ' pts';
+	    $score_total = $prono_joueur['score_total'] . ' pts';
+	    $score_ecart = $prono_joueur['score_ecart'] . ' pts';
+	}
+	else{
+	    $score_points = '-';
+	    $score_essais = '-';
+	    $score_vainqueur = '-';
+	    $score_total = '-';
+	    $score_ecart = '-';
+	}
     }
     
-    $res = $prono;
     
     
-    /*
-     $arr['id_rugby_prono'] = $enregistrement->id;
-	    $arr['id_cal'] = $enregistrement->id_calendrier;
-	    $arr['id_jeu'] = $enregistrement->id_jeu;
-	    $arr['joueur'] = $enregistrement->joueur;
-	    $arr['prono_vainqueur'] = $enregistrement->prono_vainqueur;
-	    $arr['prono_points1'] = $enregistrement->prono_points1;
-	    $arr['prono_points2'] = $enregistrement->prono_points2;
-	    $arr['prono_essais1'] = $enregistrement->prono_essais1;
-	    $arr['prono_essais2'] = $enregistrement->prono_essais2;
-	    $arr['score_vainqueur'] = $enregistrement->score_vainqueur;
-	    $arr['score_points1'] = $enregistrement->score_points1;
-	    $arr['score_points2'] = $enregistrement->score_points2;
-	    $arr['score_essais1'] = $enregistrement->score_essais1;
-	    $arr['score_essais2'] = $enregistrement->score_essais2;
-	    $arr['score_ecart'] = $enregistrement->score_ecart;
-	    $arr['score_total'] = $enregistrement->score_total;
-	    $arr['classement'] = $enregistrement->classement;
-     */
-    
-    
+    $res = '
+	    <div class="sectionSide">
+		<p class="section-highlight">Le pari de ' . $joueur . '</p>
+	    </div>
+	    <div class="stat-box col-md-9 col-sm-9 col-xs-9">
+		<div class="team-side col-md-12 col-sm-12 col-xs-12">
+		    <div class="team-name col-md-6 col-sm-6 col-xs-6">
+			<span>' . $nom_equipe1 . '</span>
+		    </div>
+		    <div class="col-md-3 col-sm-3 col-xs-3 team-tries">
+			<span>' . $prono_essais_equipe1 . '</span>
+		    </div>
+		    <div class="col-md-3 col-sm-3  col-xs-3 team-points">
+			<span>' . $prono_points_equipe1 . '</span>
+		    </div>
+		</div>
+		<div class="team-side col-md-12 col-sm-12 col-xs-12">
+		    <div class="team-name col-md-6 col-sm-6 col-xs-6">
+			<span>' . $nom_equipe2 . '</span>
+		    </div>
+		    <div class="col-md-3 col-sm-3 col-xs-3 team-tries">
+			<span>' . $prono_essais_equipe2 . '</span>
+		    </div>
+		    <div class="col-md-3 col-sm-3  col-xs-3 team-points">
+			<span>' . $prono_points_equipe2 . '</span>
+		    </div>
+		</div>
+		<div class="score col-md-12 col-sm-12 col-xs-12">
+		    <p class="stat-item-big">Score total</p>
+		    <p class="stat-value-big">' . $score_total . '</p>
+		</div>
+	    </div>
+	    <div class="stat-box col-md-3 col-sm-3 col-xs-3">
+		<ul>	
+		    <li class="winners">
+			    <p class="stat-item">Vainqueur</p>
+			    <p class="stat-value">' . $score_vainqueur . '</p>
+		    </li>
+		    <li class="tries">
+			    <p class="stat-item">Essais</p>
+			    <p class="stat-value">' . $score_essais . '</p>
+		    </li>
+		    <li class="gap">
+			    <p class="stat-item">Ecart</p>
+			    <p class="stat-value">' . $score_ecart . '</p>
+		    </li>	
+		    <li class="points">
+			    <p class="stat-item">Points</p>
+			    <p class="stat-value">' . $score_points . '</p>
+		    </li>
+		</ul>
+	    </div>';    
+   
     echo $res;
 	
 ?>

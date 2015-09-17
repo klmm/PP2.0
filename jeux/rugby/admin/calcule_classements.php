@@ -29,7 +29,7 @@
 
 	while($enregistrement = $prep->fetch()){
 	    $id_prono = $enregistrement->id;
-	    $id_cal = $enregistrement->id_cal;
+	    $id_cal = $enregistrement->id_calendrier;
 	    $pos = $enregistrement->classement;
 	    $score = $enregistrement->score_total;
 	    $joueur = $enregistrement->joueur;
@@ -37,7 +37,7 @@
 	    $score_essais1 = $enregistrement->score_essais1;
 	    $score_essais2 = $enregistrement->score_essais2;
 	    
-	    $tour = $enregistrement->tour;
+	    $tour = $cal[$id_cal]['tour'];
 	    
 	    // JOUEUR
 	    $tab_classements[$joueur]['joueur'] = $joueur;

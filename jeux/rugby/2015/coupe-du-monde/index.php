@@ -462,6 +462,7 @@
 		$tmp_class = '';
 	    }
 	    
+	    $aff_match = $nom_equipe1 . ' - ' . $nom_equipe2;
 	    if($calendrier['commence'] == "0"){
 		$tmp_date = $calendrier['date_debut_fr_tcourt'] . ' à ' . $calendrier['heure_debut_fr'];
 		if($calendrier['disponible'] == "1"){
@@ -477,15 +478,16 @@
 		    $tmp_date = 'En cours';
 		}
 		else{
+		    $aff_match = $nom_equipe1 . ' ' . $calendrier['score1'] . ' - ' . $calendrier['score2'] . ' ' . $nom_equipe2;
 		    $tmp_ico = 'glyphicon-stats';
 		    $tmp_date = 'Terminé';
 		}
 	    }
-	    	    
+	        
 	    echo '		    <li class="' . $tmp_class . '">
 					<a class="clearfix" value="' . $calendrier['id'] . '" data-action="goTo">
 					    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays1]['drapeau_icone'] . '"/>
-					    <span class="title col-md-8 col-sm-8 col-xs-12">' . $nom_equipe1 . ' - ' . $nom_equipe2 . '</span>
+					    <span class="title col-md-8 col-sm-8 col-xs-12">' . $aff_match . '</span>
 					    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$id_pays2]['drapeau_icone'] . '"/>
 					    <span class="date col-md-6">' . $tmp_date . '</span>
 					    <span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>

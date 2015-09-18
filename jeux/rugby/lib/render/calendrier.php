@@ -401,28 +401,30 @@
 						<div class="team-name col-md-4 col-sm-4 col-xs-4">
 							<span class="name section-highlight">' . $nom_equipe1 . '</span>
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3 btn-group tries-combo">
-							<button type="button" id="essais1" name="essais1" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_essais_equipe1 . '</button>
-							<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<span class="caret"></span>
-								<span class="sr-only">Toggle Dropdown</span>
-							</button>
-							<ul class="dropdown-menu tries-list" role="menu">
-								<li>-</li>
-								<li>0</li>
-								<li>1</li>
-								<li>2</li>
-								<li>3</li>
-								<li>4</li>
-								<li>5</li>
-								<li>6</li>
-								<li>7</li>
-								<li>8</li>
-								<li>9</li>
-							</ul>
+						<div class="col-md-3 col-sm-3 col-xs-3 tries-combo">
+							<div class="btn-group">
+								<button type="button" id="essais1" name="essais1" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_essais_equipe1 . '</button>
+								<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<span class="caret"></span>
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<ul class="dropdown-menu tries-list" role="menu">
+									<li>-</li>
+									<li>0</li>
+									<li>1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+									<li>5</li>
+									<li>6</li>
+									<li>7</li>
+									<li>8</li>
+									<li>9</li>
+								</ul>
+							</div>
 						</div>
 						<div id="combo-points-1" class="col-md-3 col-sm-3 col-xs-3 points-combo">
-						    <div class="div-center">
+						
 							<div class="btn-group">
 							    <button type="button" id="score1" name="score1" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_points_equipe1 . '</button>
 							    <button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -432,7 +434,7 @@
 							    <ul class="dropdown-menu points-list" role="menu">
 							    </ul>
 							</div>
-						    </div>
+						    
 						</div>
 					</div>
 
@@ -443,34 +445,38 @@
 						<div class="team-name col-md-4 col-sm-4 col-xs-4">
 							<span class="name section-highlight">' . $nom_equipe2 . '</span>
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3 btn-group tries-combo">
-							<button type="button" id="essais2" name="essais2" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_essais_equipe2 . '</button>
-							<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<span class="caret"></span>
-								<span class="sr-only">Toggle Dropdown</span>
-							</button>
-							<ul class="dropdown-menu tries-list" role="menu">
-								<li>-</li>
-								<li>0</li>
-								<li>1</li>
-								<li>2</li>
-								<li>3</li>
-								<li>4</li>
-								<li>5</li>
-								<li>6</li>
-								<li>7</li>
-								<li>8</li>
-								<li>9</li>
-							</ul>
+						<div class="col-md-3 col-sm-3 col-xs-3 tries-combo">
+							<div class="btn-group">
+								<button type="button" id="essais2" name="essais2" class="btn btn-md btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_essais_equipe2 . '</button>
+								<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<span class="caret"></span>
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<ul class="dropdown-menu tries-list" role="menu">
+									<li>-</li>
+									<li>0</li>
+									<li>1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+									<li>5</li>
+									<li>6</li>
+									<li>7</li>
+									<li>8</li>
+									<li>9</li>
+								</ul>
+							</div>
 						</div>
-						<div id="combo-points-2" class="col-md-3 col-sm-3 col-xs-3 btn-group points-combo">
-							<button type="button" id="score2" name="score2" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_points_equipe2 . '</button>
-							<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<span class="caret"></span>
-								<span class="sr-only">Toggle Dropdown</span>
-							</button>
-							<ul class="dropdown-menu points-list" role="menu">
-							</ul>
+						<div id="combo-points-2" class="col-md-3 col-sm-3 col-xs-3 points-combo">
+							<div class="btn-group">
+								<button type="button" id="score2" name="score2" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $prono_points_equipe2 . '</button>
+								<button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<span class="caret"></span>
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<ul class="dropdown-menu points-list" role="menu">
+								</ul>
+							</div>	
 						</div>
 					</div>
 					<div id="send-pari" class="pres-button col-md-12 col-sm-12 col-xs-12">

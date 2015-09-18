@@ -89,8 +89,8 @@ function Init_Forms_Rugby()
 	$(document).on('click', '.tries-list>li', function(e)
 	{    
 		var $tries = $(this).parent().parent().find('.btn-default');
-		var $points = $(this).parent().parent().parent().find('.points-combo').find('.btn-default');
-		var $points_list = $(this).parent().parent().parent().find('.points-combo').find('.points-list');
+		var $points = $(this).parent().parent().parent().parent().find('.points-combo').find('.btn-default');
+		var $points_list = $(this).parent().parent().parent().parent().find('.points-combo').find('.points-list');
 		$tries.text($(this).text());
 		$points_list.empty();
 		if($(this).text()=="-"){
@@ -109,16 +109,23 @@ function Init_Forms_Rugby()
 function initCombosPoints(ess1, ess2){
     var e1 = $(document).find('#combo-points-1').find('.points-list');
     var e2 = $(document).find('#combo-points-2').find('.points-list');
-    clicComboEssais(e1, ess1);
+    
     clicComboEssais(e2, ess2);
+    clicComboEssais(e1, ess1);    
 }
 
 function clicComboEssais(el, nb){
 	//var e = 0;
-	var scores = getScoresPossibles(nb);
+	var scores;;
+	var nb_scores = 0;
+	
+	if(nb != null){
+	    scores = getScoresPossibles(nb);
+	    nb_scores = scores.length;
+	}
 	el.empty();
 	el.append($("<li>").text("-"));
-	for(var i=0; i<scores.length; i++) {
+	for(var i=0; i<nb_scores; i++) {
 		// Ajout dans le combo du score
 		el.append($("<li>").text(scores[i]));
 	}
@@ -129,9 +136,9 @@ function clicComboPoints(elems){
 	// Tests valeurs des deux combo points
 	// Si != - alors bouton validation visible
 	if($(elems[0]).text() != "-" && $(elems[1]).text() != "-"){
-		$("#send-pari a").removeClass("disabled");
+		$("#send-pari button").removeClass("disabled");
 	} else {
-		$("#validate a").addClass("disabled");
+		$("#validate button").addClass("disabled");
 	}
 }
 

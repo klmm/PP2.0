@@ -127,7 +127,7 @@
 	$prep3->execute();
 	$prep3->setFetchMode(PDO::FETCH_OBJ);
 	
-	 $msg = 'Pronostic modifié !';
+	 $msg = 'Pronostic modifié ! Il sera mis à jour dans la liste de gauche après actualisation de la page.';
     }
     else{
 	$sql2 = "INSERT INTO rugby_prono(id_jeu, id_calendrier, joueur, prono_vainqueur, prono_essais1, prono_essais2, prono_points1,
@@ -145,7 +145,7 @@
 	$prep2->execute();
 	$prep2->setFetchMode(PDO::FETCH_OBJ);
 	
-	$msg = 'Pronostic enregistré !';
+	$msg = 'Pronostic enregistré ! Il sera affiché dans la liste de gauche après actualisation de la page.';
     }
 
     $rafr = false;

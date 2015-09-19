@@ -1,6 +1,6 @@
 <?php
     
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/admin/calcule_classements.php');
-    calcule_classements(1);
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/jeux/rugby/admin/calcule_classements.php');
+    calcule_classements(3);
 
 ?>

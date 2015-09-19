@@ -10,6 +10,9 @@
 	
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
+	
+	$POINTS_CLASSEMENTS_PAR_POINTS = [0,25,20,16,12,10,7,5,3,2,1];
+	$nb_classements_par_points = sizeof($POINTS_CLASSEMENTS_PAR_POINTS) - 1;
       
 	$cal = get_calendrier_jeu($id_jeu);
 	
@@ -56,6 +59,11 @@
 		$tab_classements[$joueur]['phase_finale'] += $score*$coeff_match;
 	    }
 	    
+	    // CLASSEMENT PAR POINTS
+	    if($pos <= $nb_classements_par_points){
+	       $tab_classements[$joueur]['par_points'] += $POINTS_CLASSEMENTS_PAR_POINTS[$pos];
+	    }
+	    
 	    // REUSSITE
 	    if($score_vainqueur != 0){
 		$tab_classements[$joueur]['vainqueur'] += 1;
@@ -83,6 +91,7 @@
 	print_r($tab_classements);
 	
 	calcule_classement_general($id_jeu,$tab_classements,$url);
+	calcule_classement_par_points($tab_classements,$url);
 	calcule_classement_phase_finale($tab_classements,$url);
 	calcule_classement_reussite($tab_classements,$url);
 	calcule_classement_essais($tab_classements,$url);
@@ -199,6 +208,53 @@
 	}
     }
     
+    
+    // 03 PAR POINTS
+    
+    function compare_par_points($a, $b)
+    {
+      return strnatcmp($b['par_points'], $a['par_points']);
+    }
+    
+    function calcule_classement_par_points($tab,$url){
+	usort($tab, 'compare_par_points');
+	
+	$nom_fichier = '03-Par points.txt';
+	
+	$titre = 'Points';
+	$descr = 'Récompense le pronostiqueur le plus régulier';
+	$colonnes = ';;Score;Pronos';
+	$taille_colonnes = '2;5;3;2';
+	
+	$score_actuel = -1;
+	$pos_actuel = 1;
+	$pos_cpt = 1;
+	foreach($tab as $key => $joueur){
+	    $score = $joueur['par_points'];
+	    $login = $joueur['joueur'];
+	    $nb_paris = $joueur['nb_pronos'];
+	    if($score != $score_actuel){
+		$pos_actuel = $pos_cpt;
+		$pos = $pos_cpt;
+	    }
+	    else{
+		$pos = $pos_actuel;
+	    }
+	    if($score == ''){
+		break;
+	    }
+	    $line[] = $pos . ';' . $login . ';' . $score . ';' . $nb_paris;
+	    $pos_cpt++;
+	    $score_actuel = $score;
+	}
+	
+	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
+	foreach($line as $key => $ligne){
+	    $contenu .= $ligne . PHP_EOL;
+	}
+
+	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+    }
     
     
     

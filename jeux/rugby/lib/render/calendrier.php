@@ -399,7 +399,7 @@
 							<img class="item-flag" src="' . $pays[$id_pays1]['drapeau_moyen'] . '" alt=""/>
 						</div>
 						<div class="team-name col-md-4 col-sm-4 col-xs-4">
-							<span class="name section-highlight">' . $nom_equipe1 . '</span>
+							<span class="name">' . $nom_equipe1 . '</span>
 						</div>
 						<div class="col-md-3 col-sm-3 col-xs-3 tries-combo">
 							<div class="btn-group">
@@ -443,7 +443,7 @@
 							<img class="item-flag" src="' . $pays[$id_pays2]['drapeau_moyen'] . '" alt=""/>
 						</div>
 						<div class="team-name col-md-4 col-sm-4 col-xs-4">
-							<span class="name section-highlight">' . $nom_equipe2 . '</span>
+							<span class="name">' . $nom_equipe2 . '</span>
 						</div>
 						<div class="col-md-3 col-sm-3 col-xs-3 tries-combo">
 							<div class="btn-group">

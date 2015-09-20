@@ -628,6 +628,9 @@
 	.points-list, .tries-list{
 		font-size:14px;
 	}
+	.team-side, .team-mirror, .stat-box{
+		padding: 0;
+	}
 }
 
 @media (max-width: 370px) {

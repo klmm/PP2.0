@@ -339,22 +339,6 @@
 	font-size: 2.8em;
 }
 
-/* .tries-combo .btn-group{
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform:    translateX(-50%);
-  -ms-transform:     translateX(-50%);
-  -o-transform:      translateX(-50%);
-  transform:		 translateX(-50%);
-}
-.points-combo .btn-group{
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform:    translateX(-50%);
-  -ms-transform:     translateX(-50%);
-  -o-transform:      translateX(-50%);
-  transform:		 translateX(-50%);
-} */
 .points-list, .tries-list{
 	font-size:18px;
 	text-align: center;
@@ -415,7 +399,9 @@
 }
 
 .result-panel .section-highlight{
-	color: black;
+	color: white;
+    background-color: rgb(47, 47, 47);
+    font-size: 26px;
 }
 
 
@@ -509,6 +495,8 @@
 	.later .stat-box ul {
 		margin-top: 0;
 	}
+	
+
 }
 
 @media (min-width: 768px) {
@@ -605,6 +593,40 @@
 	}
 	#sortable1 li, #sortable2 li{
 		font-size: 0.6em;
+	}
+	
+	.stat-box .stat-item-big{
+		font-size: 2em;
+	}
+	.stat-box .stat-value-big{
+		font-size: 3em;
+	}
+	.later .stat-box .stat-item{
+		font-size: 1.8em;
+	}
+	.later .stat-box .stat-value{
+		font-size: 3.5em;
+	}
+	.player-result .stat-box .stat-item, .other-result .stat-box .stat-item{
+		font-size: 1em;
+	}
+	.player-result .stat-box .stat-value, .other-result .stat-box .stat-value{
+		font-size: 1.5em;
+	}
+	.label-side span, .label-mirror span{
+		font-size: 1.1em;
+	}
+	.team-name{
+		font-size: 1.3em;
+	}
+	.team-tries{
+		font-size: 1.2em;
+	}
+	.team-points{
+		font-size: 2em;
+	}
+	.points-list, .tries-list{
+		font-size:14px;
 	}
 }
 

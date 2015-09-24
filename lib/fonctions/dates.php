@@ -31,6 +31,14 @@
 	$diff  = abs($date2 - $now);
 	return floor($diff/86400) . ' jours';
     }
+    
+    function dateheure_sql_to_jours_passes($date){
+	$now   = time();
+	$date2 = strtotime($date);
+	$diff  = abs($date2 - $now);
+
+	return floor($diff/86400);
+    }
 
 
     function dateheure_sql_to_fr($date){

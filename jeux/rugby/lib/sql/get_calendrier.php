@@ -68,10 +68,14 @@
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
+	
+	$cpt = 0;
 
 	//On fait le test si un enrengistrement a �t� trouv�
 	while( $enregistrement = $prep->fetch() )
 	{
+	    $cpt++;
+	    
 	    $id_cal = $enregistrement->id;
 	    $arr[$id_cal]['id'] = $enregistrement->id;
 	    $arr[$id_cal]['id_jeu'] = $enregistrement->id_jeu;
@@ -107,10 +111,29 @@
 		$arr[$id_cal]['commence'] = "0";
 		$arr[$id_cal]['temps_restant'] = dateheure_sql_to_temps_restant($arr[$id_cal]['date_debut']);
 	    }
+	    
+	    if($arr[$id_cal]['traite'] && dateheure_sql_to_jours_passes($arr[$id_cal]['date_debut']) > 3){
+		$arr[$id_cal]['tri'] = 1000 - $cpt;
+	    }
+	    else{
+		$arr[$id_cal]['tri'] = $cpt;
+	    }
 	}
+	
+	usort($arr,'compare_tri');
 	
 	$db = null;
 	return $arr;
+    }
+    
+    function compare_tri($a, $b)
+    {
+	if (floatval($b['tri']) < floatval($a['tri'])){
+	    return 1;
+	}
+	else{
+	    return -1;
+	}
     }
     
     function get_calendrier_jeu_avenir($id_jeu){

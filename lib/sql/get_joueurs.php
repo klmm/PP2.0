@@ -21,6 +21,7 @@
 		$arr[$i]['prenom'] = $enregistrement->Prenom;
 		$arr[$i]['admin'] = $enregistrement->Admin;
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
+		$arr[$i]['no_mail'] = $enregistrement->no_mail;
 		$i++;
 	}
 	$db = null;
@@ -49,25 +50,31 @@
 		$arr[$i]['prenom'] = $enregistrement->Prenom;
 		$arr[$i]['admin'] = $enregistrement->Admin;
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
+		$arr[$i]['no_mail'] = $enregistrement->no_mail;
 		$i++;
 	}
 	$db = null;
 	return $arr;
     }
 	
-    function get_joueurs_inscrits($id_jeu){
+    function get_joueurs_inscrits($id_jeu,$no_mail){
 	// On �tablit la connexion avec la base de donn�es
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
+	
+	$req_mail = '';
+	if($no_mail){
+	    $req_mail = ' AND no_mail=0';
+	}
 
 	//On fait la requete sur le login
 	$sql = "SELECT *
 			FROM Joueurs
 			WHERE EXISTS(	SELECT * 
 					FROM joueurs_inscriptions
-					WHERE (joueurs_inscriptions.joueur=Joueurs.Login AND id_jeu=?)
-				)";
+					WHERE (joueurs_inscriptions.joueur=Joueurs.Login AND id_jeu=?" . $req_mail . ")
+				    )";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
@@ -83,6 +90,7 @@
 		$arr[$i]['prenom'] = $enregistrement->Prenom;
 		$arr[$i]['admin'] = $enregistrement->Admin;
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
+		$arr[$i]['no_mail'] = $enregistrement->no_mail;
 		$i++;
 	}
 	$db = null;
@@ -116,8 +124,9 @@
 	$sql = "SELECT * FROM Joueurs WHERE NOT EXISTS (
 			    SELECT * FROM " . $table_prono . " WHERE Joueurs.Login = " . $table_prono . ".joueur AND id_calendrier=? AND id_jeu=?
 					    )
-					    AND EXISTS (SELECT * FROM joueurs_inscriptions WHERE (joueurs_inscriptions.joueur=Joueurs.Login AND id_jeu=?))";
-	echo $sql;
+					    AND EXISTS (SELECT * FROM joueurs_inscriptions WHERE (joueurs_inscriptions.joueur=Joueurs.Login AND id_jeu=? AND no_mail=0))
+					    AND no_mail=0";
+
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_cal,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_jeu,PDO::PARAM_INT);
@@ -135,6 +144,7 @@
 	    $arr[$i]['prenom'] = $enregistrement->Prenom;
 	    $arr[$i]['admin'] = $enregistrement->Admin;
 	    $arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
+	    $arr[$i]['no_mail'] = $enregistrement->no_mail;
 	    $i++;
 	}
 	
@@ -167,8 +177,9 @@
 
 	//On fait la requete sur le login
 	$sql = "SELECT * FROM Joueurs WHERE NOT EXISTS (
-			    SELECT * FROM " . $table_prono . " WHERE Joueurs.Login = " . $table_prono . ".joueur AND id_calendrier=? AND id_jeu=?)";
-	echo $sql;
+			    SELECT * FROM " . $table_prono . " WHERE Joueurs.Login = " . $table_prono . ".joueur AND id_calendrier=? AND id_jeu=?)
+				AND no_mail=0";
+
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_cal,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_jeu,PDO::PARAM_INT);
@@ -185,6 +196,7 @@
 	    $arr[$i]['prenom'] = $enregistrement->Prenom;
 	    $arr[$i]['admin'] = $enregistrement->Admin;
 	    $arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
+	    $arr[$i]['no_mail'] = $enregistrement->no_mail;
 	    $i++;
 	}
 	

@@ -4,8 +4,10 @@
 	    foreach ($joueurs as $joueur) {
 		$login_joueur = $joueur['login'];
 		$mail_joueur = $joueur['mail'];
-
-		envoi_mail($login_joueur, $mail_joueur, $sujet, $contenu);
+		
+		if($joueur['no_mail'] == 0){
+		    envoi_mail($login_joueur, $mail_joueur, $sujet, $contenu);
+		}		
 	    }
 	}
 	

@@ -29,6 +29,12 @@
 	$prep->bindValue(2,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
+	
+	foreach($cal as $key => $value){
+	    $cal_trie[$value['id']] = $value;
+	}
+	
+	print_r($cal_trie);
 
 	while($enregistrement = $prep->fetch()){
 	    $id_prono = $enregistrement->id;
@@ -38,9 +44,9 @@
 	    $joueur = $enregistrement->joueur;
 	    $score_vainqueur = $enregistrement->score_vainqueur;
 	    $score_essais1 = $enregistrement->score_essais1;
-	    $score_essais2 = $enregistrement->score_essais2;
+	    $score_essais2 = $enregistrement->score_essais2;   
 	    
-	    $tour = $cal[$id_cal]['tour'];
+	    $tour = $cal_trie[$id_cal]['tour'];
 	    
 	    // JOUEUR
 	    $tab_classements[$joueur]['joueur'] = $joueur;
@@ -49,13 +55,14 @@
 	    $tab_classements[$joueur]['nb_pronos'] += 1;
 	    
 	    // COEFFICIENT DU MATCH
-	    $coeff_match = $cal[$id_cal]['coefficient'];
-	    
+	    $coeff_match = $cal_trie[$id_cal]['coefficient'];
+	    	    
 	    // CLASSEMENT GENERAL
 	    $tab_classements[$joueur]['score_total'] += $score*$coeff_match;
 	    
 	    // PHASE FINALE
 	    if(substr($tour,0,5) != 'Poule'){
+		$tab_classements[$joueur]['nb_pronos_phase_finale'] += 1;
 		$tab_classements[$joueur]['phase_finale'] += $score*$coeff_match;
 	    }
 	    
@@ -81,9 +88,6 @@
 	    if($pos == 1){
 		$tab_classements[$joueur]['victoires'] += 1;
 	    }
-	    
-	    
-
 	}
 	
 	$db = null;
@@ -181,7 +185,7 @@
 	    foreach($tab as $key => $joueur){
 		$score = $joueur['phase_finale'];
 		$login = $joueur['joueur'];
-		$nb_paris = $joueur['nb_pronos'];
+		$nb_paris = $joueur['nb_pronos_phase_finale'];
 		if($score != $score_actuel){
 		    $pos_actuel = $pos_cpt;
 		    $pos = $pos_cpt;

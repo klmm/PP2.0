@@ -91,8 +91,32 @@
         <script>
 	    
             jQuery(document).ready(function ($) {
-
-                
+				$(document).on('click', '.overlay', function(e)
+				{
+					$("#panelUpload").click();
+				});
+                $('#panelUpload').change(function(click) {
+					//alert(this.files[0]);
+					var postData = '';
+		
+					//côté back, checker si c'est un fichier de type jpg ou png puis l'enregistrer sur le serveur + path dans bdd
+					$.ajax(
+					{
+						url : "/lib/form/get_avatar.php",
+						type: "POST",
+						data : postData,
+						success:function(data, textStatus, jqXHR) 
+						{
+							if (data == 'success'){
+								//afficher l'image
+							}
+						},
+						error: function(jqXHR, textStatus, errorThrown) 
+						{
+						}
+					});
+					e.preventDefault(); //STOP default action
+				});
 			});
     
 		</script>

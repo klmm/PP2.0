@@ -510,6 +510,99 @@ footer  p {
 	text-align: center;
 }
 
+/* ______________________________ my config ___________________________________*/
+
+.section-config {
+	background:#D2D2D2;
+	padding:60px 0;
+	margin-bottom:0;
+	color: black;
+}
+
+.inter-section-highlight {
+	font-size:20px;
+	color:black;
+	//font-family: 'Nova Square', cursive;
+	margin-top:20px;
+	margin-bottom:20px;
+	text-align:left;
+	font-style: italic;
+}
+
+.private-info{
+	font-size: 1.8em;
+	color: rgb(86, 84, 84);
+	display: inline-block;
+	padding-left: 30px;
+}
+
+#playerInfo-form{
+	text-align: center;
+}
+
+.panelIcon {
+   position: absolute;
+   margin: 10px;
+   top:40px;
+   right: 0; 
+}
+
+.overlay {  
+	background:rgba(0, 0, 0, .75);
+	text-align:center;
+	opacity:0;    
+	color:white;
+	width:100%;height:100%; 
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.avatar:hover {
+	border:1px solid #555;
+	border-radius:5px;
+}
+.avatar:hover .overlay {
+	opacity:1;
+}
+
+.lblIcon {
+	width: 50px;
+	margin : 0;
+}
+.overlayImage {  
+	height: 24px;
+	width: 24px;
+}
+
+.upload {
+	line-height: 30px;
+	margin-left: 0px;
+	width: 50px;
+	visibility: hidden;
+}
+.avatar {
+	border: 1px solid;
+	float: left;
+	height: 100px;
+	margin-left: 10px;
+	width: 100px;
+	text-align: center;
+	line-height: 100px;
+	border-radius:5px;
+	background-size: cover;
+}
+
+/* ______________________________ my dashboard ___________________________________*/
+
+.section-dashboard {
+	background:#FFFFFF;
+	padding:60px 0;
+	margin-bottom:0;
+	color: black;
+}
+
 /* __________________________________________media________________________________________________*/
 @media (min-width: 992px) and  (max-width:1200px) {
 	

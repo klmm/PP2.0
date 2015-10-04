@@ -1,13 +1,13 @@
 <?php
-    $ID_JEU = 2;
-    $js = '/jeux/cyclisme/2015/vuelta/js/vuelta2015.js';
-    $css = '/jeux/cyclisme/2015/vuelta/css/vuelta2015.css';
-    $titre = 'Parions Potes - Vuelta 2015';
-    $competition = 'Vuelta 2015';
-    $sous_titre = 'du 22 août au 13 septembre 2015';
+    $ID_JEU = 4;
+    $js = '/jeux/ski-alpin/saison-2015-2016/js/ski20152016.js';
+    $css = '/jeux/ski-alpin/saison-2015-2016/css/ski20152016.css';
+    $titre = 'Parions Potes - Saison de ski alpin 2015/2016';
+    $competition = 'Saison de ski alpin 2015/2016';
+    $sous_titre = 'du 24 octobre 2015 au 20 mars 2016';
     $logo = '/img/logos/logo_share.jpg';
-    $description = 'Pronostics gratuits sur la Vuelta 2015.';
-    $keywords = 'pronostics paris gratuits sport cyclisme espagne vuelta 2015';
+    $description = 'Pronostics gratuits sur la Saison de ski alpin 2015/2016';
+    $keywords = 'pronostics paris gratuits sport ski alpin 2015 2016';
     
     //--------------------------------------FONCTIONS--------------------------------------//
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_breves.php';
@@ -16,9 +16,10 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/get_classements.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_pays.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_prono.php';
     //-------------------------------------------------------------------------------------//
     
     $bcr = array(
@@ -70,6 +71,8 @@
     
     $classements = get_classements($jeu['url'] . '/classements');
     $nb_classements = sizeof($classements);
+    
+    $pays = get_pays_tous();
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
 
     
@@ -258,7 +261,7 @@
     
  
 //---------------------------------------------BREVES------------------------------------------------------//	
-    echo '  <div class="game-header tdf2015 section">
+    echo '  <div class="game-header ski20152016 section">
 				 <h1>' . $competition . '</h1>
 				 <h2>' . $sous_titre . '</h2>
 			</div>
@@ -440,6 +443,7 @@
 	for($i=0;$i<$nb_calendrier;$i++){
 	    $calendrier = $arr_calendrier[$i];
 	    $id = $calendrier['id_cal'];
+	    
 	    if($id == $id_cal){
 		$tmp_class = 'active';
 	    }
@@ -447,29 +451,36 @@
 		$tmp_class = '';
 	    }
 	    
-	    if($calendrier['commence'] == "0"){
-		$tmp_date = $calendrier['date_debut_fr_tcourt'];
-		if($calendrier['disponible'] == "1"){
-		    $tmp_ico = 'glyphicon-play';
+	    if($calendrier['annule'] == "0"){
+		if($calendrier['commence'] == "0"){
+		    $tmp_date = $calendrier['date_debut_fr_tcourt'] . ', à ' . $calendrier['heure_debut_fr'];
+		    if($calendrier['disponible'] == "1"){
+			$tmp_ico = 'glyphicon-play';
+		    }
+		    else{
+			$tmp_ico = 'glyphicon-lock';
+		    }
 		}
 		else{
-		    $tmp_ico = 'glyphicon-lock';
+		    if($calendrier['traite'] == "0"){
+			$tmp_ico = 'glyphicon-refresh';
+			$tmp_date = 'En cours';
+		    }
+		    else{
+			$tmp_ico = 'glyphicon-stats';
+			$tmp_date = 'Terminé';
+		    }
 		}
 	    }
 	    else{
-		if($calendrier['traite'] == "0"){
-		    $tmp_ico = 'glyphicon-refresh';
-		    $tmp_date = 'En cours';
-		}
-		else{
-		    $tmp_ico = 'glyphicon-stats';
-		    $tmp_date = 'Terminé';
-		}
-	    }//ajouter une classe dans le <a> suivant si a venir ou en cours ou passé et de meme avec glyphicon-lock ou glyphicon-hourglass ou  glyphicon-stats
+		$tmp_ico = 'glyphicon-stats';
+		$tmp_date = 'Annulé';
+	    }
 	    	    
 	    echo '		    <li class="' . $tmp_class . '">
 					<a class="clearfix" value="' . $id . '" data-action="goTo">
-					    <span class="title col-md-12">' . $calendrier['nom_complet'] . '</span>
+					    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$calendrier['id_pays']]['drapeau_icone'] . '"/>
+					    <span class="title col-md-12">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</span>
 					    <span class="date col-md-6">' . $tmp_date . '</span>
 					    <span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
 					</a>

@@ -20,7 +20,7 @@
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
     $arr_prono = $_POST['prono'];
-    $calendrier = get_calendrier($id_jeu, $id_cal);
+    $calendrier = get_calendrier($id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//
     
     
@@ -65,7 +65,7 @@
     }
     
     if (sizeof($arr_prono) != 10){
-	$msg =  'Vous n\'avez pas sélectionné dix coureurs !';
+	$msg =  'Vous n\'avez pas sélectionné dix athlètes !';
 	$rafr = false;
 	$res = false;
 	$rep = array('resultat' => $res, 'rafr' => $rafr, 'msg' => $msg);

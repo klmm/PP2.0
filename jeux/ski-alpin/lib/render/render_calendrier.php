@@ -11,10 +11,9 @@
    
 
     //--------------------------------------FONCTIONS--------------------------------------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_equipe.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_cycliste.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_prono.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_athlete.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
     //-------------------------------------------------------------------------------------//
   
@@ -54,8 +53,7 @@
     
     
     //--------------------------------------CALENDRIER--------------------------------------//
-    $calendrier = get_calendrier($ID_JEU,$ID_CAL);
-    $b_equipe = $calendrier['profil_equipe'];
+    $calendrier = get_calendrier($ID_CAL);
     $b_commence = $calendrier['commence'];
     $b_traite = $calendrier['traite'];
     //------------------------------------------------------------------------------------------------//
@@ -63,7 +61,7 @@
     
     
     //--------------------------------------PRONOS DES JOUEURS------------------------------------------------//
-    $tab_pronos = get_pronos_cal($ID_JEU, $ID_CAL);
+    $tab_pronos = get_pronos_cal($ID_CAL);
     $nb_pronos = sizeof($tab_pronos);
     //--------------------------------------------------------------------------------------------------------//
     
@@ -76,7 +74,7 @@
     
     //--------------------------------------MON PRONO------------------------------------------------//
     if($bConnected){
-	$prono_joueur = get_prono($ID_JEU,$ID_CAL,$loginjoueur);
+	$prono_joueur = get_prono($ID_CAL,$loginjoueur);
     }
     else{
 	$prono_joueur = null;
@@ -93,40 +91,19 @@
     
     
     
-    //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
-    $tab_equipes = get_equipes_inscrites($ID_JEU, $ID_CAL);
-    if($b_equipe){
-	$tab_cyclistes = null;
-    }
-    else{
-	$chaine_id_cyclistes = $prono_joueur['prono'];
-	if($b_traite){
-	    if(strlen($chaine_id_cyclistes) > 0){
-		$chaine_id_cyclistes .= ';';
-	    }
-	    $chaine_id_cyclistes .= $calendrier['classement'];
+    //-------------------------------ATHLETES UTILES------------------------------------//
+    $chaine_id_athletes = $prono_joueur['prono'];
+    if($b_traite){
+	if(strlen($chaine_id_athletes) > 0){
+	    $chaine_id_athletes .= ';';
 	}
-	
-	$tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));
-	$tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$chaine_id_cyclistes);
+	$chaine_id_athletes .= $calendrier['classement'];
     }
+
+    $tab_athletes = get_athletes_tab_id($chaine_id_athletes);
     //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
     
-
-    
-    
-    
-    
-    if($calendrier['distance'] != 0){
-	$distance = ' (' . $calendrier['distance'] . ' km)';
-    }
-    else{
-	$distance = '';
-    }
-    
-    
-    
-    $calendrier['url'] = clean_url('pronostic/' . $ID_CAL . '-' . $calendrier['nom_complet']);
+    $calendrier['url'] = clean_url('pronostic/' . $ID_CAL . '-' . $calendrier['lieu'] . '-' . $calendrier['specialite'] . '-' . $calendrier['genre_fr']);
     
     $prono_joueur['prono'] = explode(';',$prono_joueur['prono']);
     $prono_joueur['points_prono'] = explode(';',$prono_joueur['points_prono']);
@@ -135,9 +112,13 @@
     
     // AFFICHAGE PARTIE CALENDRIER
     
-    
+    // Annulé
+    if($calendrier['annule']){
+	$tmp = 'disabled';
+	$txt = 'Annulé';
+    }
     // Terminé
-    if($calendrier['commence'] && $calendrier['traite']){
+    elseif($calendrier['commence'] && $calendrier['traite']){
 	$tmp = 'disabled';
 	$txt = 'Terminé';
     }
@@ -159,7 +140,7 @@
 
     $res = '	    
 		<div class="pres-panel clearfix">
-		    <p class="name section-highlight">' . $calendrier['nom_complet'] . $distance . '</p>
+		    <p class="name section-highlight">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' .  $calendrier['genre_fr'] . '</p>
 			<p class="date">' . $calendrier['date_debut_fr'] . ' - ' . $calendrier['heure_debut_fr'] . '</p>
 		    <div class="pres-button col-md-12 col-sm-12 col-xs-12">
 			<a class="btn btn-primary btn-lg ' . $tmp . '" href="' . $calendrier['url'] . '">' . $txt . '</a>
@@ -182,12 +163,8 @@
 	for ($i=0;$i<10;$i++){
 	    $id_entite_res = $calendrier['classement'][$i];
 	    $res .= '		<tr class="">';
-	    if(!$calendrier['profil_equipe']){
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-place col-md-4">' . $tab_cyclistes[$id_entite_res]['prenom'] . ' ' . $tab_cyclistes[$id_entite_res]['nom'] .'</td>';	    }
-	    else{
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-place col-md-4">' . $tab_equipes[$id_entite_res]['nom_complet'] . '</td>';	   }
+	    $res .= '		 <th class="table-place col-md-2">' . ($i+1) .'</th>
+				    <td class="table-place col-md-4">' . $tab_athletes[$id_entite_res]['prenom'] . ' ' . $tab_athletes[$id_entite_res]['nom'] .'</td>';
 	   $res .= '		</tr>';
 	}
 	
@@ -214,18 +191,10 @@
 	    else{
 		$pts_prono = '';
 	    }
-	    
-	    if(!$calendrier['profil_equipe']){
-		
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' .  $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
+	    		
+	    $res .= '		<th class="table-place col-md-2">' . ($i+1) .'</th>
+				    <td class="table-name col-md-6">' .  $tab_athletes[$id_entite_prono]['prenom'] . ' ' . $tab_athletes[$id_entite_prono]['nom'] .'</td>
 				    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	    }
-	    else{
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
-				    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	    }
 	    $res .= '		</tr>';
 	}
 	
@@ -286,6 +255,7 @@
 		$count++;
 		$premier = $key;
 	    }
+	    
 	    if($key == $loginjoueur){
 		$class_surlign_joueur = 'goodbet';
 	    }
@@ -315,8 +285,7 @@
 			<div id="son_prono" class="table-stat-box col-md-6 col-sm-6 col-xs-12">
 
 			</div>
-		    </div>';
-	
+		    </div>';	
     }
     else{
 	// PRONO JOUEUR UNIQUEMENT
@@ -330,16 +299,9 @@
 	for ($i=0;$i<10;$i++){
 	    $id_entite_prono = $prono_joueur['prono'][$i];
 	    $res .= '	     <tr class="">';
-	    if(!$calendrier['profil_equipe']){
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
+	    $res .= '		    <th class="table-place col-md-2">' . ($i+1) .'</th>
+				    <td class="table-name col-md-6">' . $tab_athletes[$id_entite_prono]['prenom'] . ' ' . $tab_athletes[$id_entite_prono]['nom'] .'</td>
 				    <td class="table-point col-md-4">-</td>';
-	    }
-	    else{
-		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
-				    <td class="table-point col-md-4">-</td>';
-	   }
 	   $res .= '	     </tr>';
 	}
 	

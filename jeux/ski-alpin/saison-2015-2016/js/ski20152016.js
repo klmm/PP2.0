@@ -1,7 +1,7 @@
 // A CHANGER LORS DE LA CREATION D'UN JEU
-var id_jeu = 2;
+var id_jeu = 4;
 
-function Init_Forms_Cyclisme()
+function Init_Forms_Ski()
 {
 	$(document).on('click', '#calendar a', function(e)
 	{    
@@ -192,7 +192,7 @@ function dialog(href, titre, message){
 
 
 function render_pres_panel(id_cal){
-    	var formURL = "/jeux/cyclisme/lib/render/render_calendrier.php";
+    	var formURL = "/jeux/ski-alpin/lib/render/render_calendrier.php";
 	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
 	$.ajax(
 	{
@@ -219,7 +219,7 @@ function render_pres_panel(id_cal){
 }
 
 function render_prono_autre(id_cal,joueur){
-    	var formURL = "/jeux/cyclisme/lib/render/render_prono.php";
+    	var formURL = "/jeux/ski-alpin/lib/render/render_prono.php";
 	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal + "&joueur=" + joueur;
 	$.ajax(
 	{

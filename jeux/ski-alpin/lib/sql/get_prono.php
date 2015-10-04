@@ -7,7 +7,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND joueur=?";
+	$sql = "SELECT * FROM ski_alpin_prono WHERE id_jeu=? AND joueur=?";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$joueur,PDO::PARAM_STR);
@@ -19,7 +19,7 @@
 	while( $enregistrement = $prep->fetch() )
 	{
 	    $id_cal = $enregistrement->id_calendrier;
-	    $arr[$id_cal]['id_cyclisme_prono'] = $enregistrement->id_cyclisme_prono;
+	    $arr[$id_cal]['id_ski_alpin_prono'] = $enregistrement->id_ski_alpin_prono;
 	    $arr[$id_cal]['id_jeu'] = $enregistrement->id_jeu;
 	    $arr[$id_cal]['joueur'] = $enregistrement->joueur;
 	    $arr[$id_cal]['id_cal'] = $enregistrement->id_calendrier;
@@ -38,18 +38,17 @@
 	return $arr;
     }
     
-    function get_prono($id_jeu,$id_cal,$joueur){
+    function get_prono($id_cal,$joueur){
 	// On �tablit la connexion avec la base de donn�es
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? AND joueur=?";
+	$sql = "SELECT * FROM ski_alpin_prono WHERE id_calendrier=? AND joueur=?";
 	$prep = $db->prepare($sql);
-	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
-	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
-	$prep->bindValue(3,$joueur,PDO::PARAM_STR);
+	$prep->bindValue(1,$id_cal,PDO::PARAM_INT);
+	$prep->bindValue(2,$joueur,PDO::PARAM_STR);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 	
@@ -59,10 +58,9 @@
 	{
 	   
 	    $id_cal = $enregistrement->id_calendrier;
-	    $arr['id_cyclisme_prono'] = $enregistrement->id_cyclisme_prono;
+	    $arr['id_ski_alpin_prono'] = $enregistrement->id_ski_alpin_prono;
 	    $arr['id_jeu'] = $enregistrement->id_jeu;
-	    $arr['joueur'] = $enregistrement->joueur;
-	    
+	    $arr['joueur'] = $enregistrement->joueur;  
 	    $arr['id_cal'] = $id_cal;
 	    $arr['prono'] = $enregistrement->prono;
 	    $arr['points_prono'] = $enregistrement->points_prono;
@@ -86,7 +84,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM cyclisme_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY classement ASC";
+	$sql = "SELECT * FROM ski_alpin_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY classement ASC";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
@@ -97,7 +95,7 @@
 	while ($enregistrement = $prep->fetch())
 	{
 	    $joueur = $enregistrement->joueur;
-	    $arr[$joueur]['id_cyclisme_prono'] = $enregistrement->id_cyclisme_prono;
+	    $arr[$joueur]['id_ski_alpin_prono'] = $enregistrement->id_ski_alpin_prono;
 	    $arr[$joueur]['id_jeu'] = $enregistrement->id_jeu;
 	    $arr[$joueur]['joueur'] = $joueur;
 	    $arr[$joueur]['id_cal'] = $enregistrement->id_calendrier;

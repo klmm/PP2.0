@@ -33,7 +33,7 @@
 .game-header h2{
 	
 }
-.tdf2015{
+.ski20152016{
     color: rgb(255, 227, 0);
 }
 
@@ -94,6 +94,10 @@
  min-width:200px;
 }
 
+#list-cal .item-flag {
+	padding: 0 7px;
+	max-width: 40px;
+}
 
 /* pres-panel */
 .scroll-content{

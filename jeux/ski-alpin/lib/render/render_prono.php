@@ -12,10 +12,9 @@
     ------------ OUTPUTS -------*/
 
     //--------------------------------------FONCTIONS--------------------------------------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_equipe.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_cycliste.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_prono.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_athlete.php';
     //-------------------------------------------------------------------------------------//
     
     
@@ -28,37 +27,23 @@
     
     //--------------------------------------CALENDRIER--------------------------------------//
     $calendrier = get_calendrier($ID_JEU,$ID_CAL);
-    $b_equipe = $calendrier['profil_equipe'];
     $b_commence = $calendrier['commence'];
     $b_traite = $calendrier['traite'];
     //------------------------------------------------------------------------------------------------//
     
     if($b_commence){
 	//-------------------------PRONO DU JOUEUR-----------------------------------//
-	$prono = get_prono($ID_JEU,$ID_CAL,$joueur);
+	$prono = get_prono($joueur);
 	//----------------------------------------------------------------------------//
 
 	//-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
-	if($b_equipe){
-	    $chaine_id_equipes = $prono['prono'];
-
-	    $tab_id_equipes = array_unique(explode(";", $chaine_id_equipes));
-	    $tab_equipes = get_equipes_tab_id($chaine_id_equipes);
-	    $tab_cyclistes = null;
-	}
-	else{
-	    $chaine_id_cyclistes = $prono['prono'];
-
-	    $tab_id_cyclistes = array_unique(explode(";", $chaine_id_cyclistes));
-	    $tab_cyclistes = get_cyclistes_jeu_tab_id($ID_JEU,$ID_CAL,$chaine_id_cyclistes);
-	    $tab_equipes = null;
-	}
+	$chaine_id_athletes = $prono['prono'];
+	$tab_athletes = get_athletes_tab_id($chaine_id_athletes);
 	//-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
     }
     else{
 	$prono = null;
-	$tab_cyclistes = null;
-	$tab_equipes = null;
+	$tab_athletes = null;
     }
     
     $prono['prono'] = explode(";", $prono['prono']);
@@ -81,16 +66,9 @@
 	    $pts_prono = '';
 	}
 	
-	if(!$b_equipe){
 	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-			    <td class="table-name col-md-6">' .  $tab_cyclistes[$id_entite_prono]['prenom'] . ' ' . $tab_cyclistes[$id_entite_prono]['nom'] .'</td>
+			    <td class="table-name col-md-6">' .  $tab_athletes[$id_entite_prono]['prenom'] . ' ' . $tab_athletes[$id_entite_prono]['nom'] .'</td>
 			    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	}
-	else{
-	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
-			    <td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom_complet'] . '</td>
-			    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	}
 	$res .= '	</tr>';
     }
     

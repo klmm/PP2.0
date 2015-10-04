@@ -1,9 +1,9 @@
 <?php
-	$ID_JEU = 2;
-	$js = '/jeux/cyclisme/2015/vuelta/js/vuelta2015.js';
-	$css = '/jeux/cyclisme/2015/vuelta/css/vuelta2015.css';
+	$ID_JEU = 4;
+	$js = '/jeux/ski-alpin/saison-2015-2016/js/ski20152016.js';
+	$css = '/jeux/ski-alpin/saison-2015-2016/css/ski20152016.css';
 	$logo = '/img/logos/logo_share.jpg';
-	$description = 'Pronostics gratuits sur la Vuelta 2015.';
+	$description = 'Pronostics gratuits sur la saison de ski alpin 2015/2016.';
 	
     //--------------------------------------FONCTIONS--------------------------------------//
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
@@ -13,8 +13,8 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_pays.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/render/render_zone_prono.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/render/render_zone_prono.php';
     //-------------------------------------------------------------------------------------//
 
 
@@ -87,9 +87,8 @@
 	$titre = $calendrier['nom_complet'];
 		
 	$res = get_zone_prono($ID_JEU, $ID_CAL);
-	$cyclistes = $res['cyclistes'];
+	$athletes = $res['cyclistes'];
 	$prono = $res['prono'];
-	$equipes = $res['equipes'];
 	
 	$pays = get_pays_tous();
     //------------------------------------------------------------------------------------------------//
@@ -253,22 +252,15 @@
 
 
 //---------------------------------------------PRENSENTATION ETAPE------------------------------------------------------//	
-    if($calendrier['distance'] != 0){
-	$distance = ' (' . $calendrier['distance'] . ' km)';
-    }
-    else{
-	$distance = '';
-    }
-    
     echo '
             <div id="pari-panel" class="section" style="background-color: white;">
                 <div class="container" id="presentation-etape">
 		    <div class="sectionSide">
-			<h2 class="section-heading">' . $calendrier['nom_complet'] . $distance . '</h2>
+			<h2 class="section-heading">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</h2>
 			<p class="section-highlight" style="margin-bottom:50px">' . $calendrier['date_debut_fr'] . ' - '. $calendrier['heure_debut_fr'] . '</p>
 			
 			<div class="btn-group calendar-combo">
-			    <button type="button" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $calendrier['nom_complet'] . '</button>
+			    <button type="button" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</button>
 			    <button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 				<span class="caret"></span>
 				<span class="sr-only">Toggle Dropdown</span>
@@ -276,8 +268,8 @@
 			    <ul id="calendar-list" class="dropdown-menu" role="menu">';
     
     foreach($liste_calendrier as $key => $value){
-	$url_cal = $value['id_cal'] . '-' . $value['nom_complet'];
-	echo '			<li><a href="' . clean_url($url_cal) . '">' . $value['nom_complet'] . '</a></li>';
+	$url_cal = $value['id_cal'] . '-' . $calendrier['lieu'] . '-' . $calendrier['specialite'] . '-' . $calendrier['genre_fr'];
+	echo '			<li><a href="' . clean_url($url_cal) . '">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</a></li>';
     }
     
     echo '
@@ -307,30 +299,16 @@
 		    <input id="item-search" type="text" placeholder="Recherche" name="nom" class="form-control" style="margin-bottom:25px;"/>
 		    <ul id="sortable1" class="connectedSortable ui-sortable">';
     
-    if($calendrier['profil_equipe']){
-	foreach($equipes as $id => $equipe){
-	    if($equipe['pos_prono'] === 0 || $mise_resultat == true){
-		echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden-xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
-	    
-		for($z=0; $z<$equipe['etoiles']; $z++){
-		    echo '	<span class="glyphicon glyphicon-star"></span>';
-		}
-		echo '	    </div></li>';
+    foreach($athletes as $id => $cycliste){
+	if($cycliste['pos_prono'] === 0 || $mise_resultat == true){
+	    echo '	    <li id="' . $cycliste['id_ski-alpin_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . ' ('  . $equipes[$cycliste['id_equipe_course']]['nom_court'] . ')</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+
+	    for($z=0; $z<$cycliste['etoiles']; $z++){
+		echo '	<span class="glyphicon glyphicon-star"></span>';
 	    }
+	    echo '	    </div></li>';
 	}
     }
-    else{
-	foreach($cyclistes as $id => $cycliste){
-	    if($cycliste['pos_prono'] === 0 || $mise_resultat == true){
-		echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom'] . ' ('  . $equipes[$cycliste['id_equipe_course']]['nom_court'] . ')</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
-	    
-		for($z=0; $z<$cycliste['etoiles']; $z++){
-		    echo '	<span class="glyphicon glyphicon-star"></span>';
-		}
-		echo '	    </div></li>';
-	    }
-	}
-    }	
 			
     echo '
 			</ul>
@@ -342,11 +320,11 @@
     
     
     if($bConnected && $mise_resultat == false){
-	echo '		    <button id="validate" type="button" class="btn btn-primary btn-block" action="/jeux/cyclisme/lib/form/envoi_prono.php">Valider</button>';
+	echo '		    <button id="validate" type="button" class="btn btn-primary btn-block" action="/jeux/ski-alpin/lib/form/envoi_prono.php">Valider</button>';
     }
     else{
 	if($mise_resultat == true){
-	    echo '	    <button id="validate" type="button" class="btn btn-primary btn-block" action="/jeux/cyclisme/admin/envoi_resultat.php">Enregistrer</button>';
+	    echo '	    <button id="validate" type="button" class="btn btn-primary btn-block" action="/jeux/ski-alpin/admin/envoi_resultat.php">Enregistrer</button>';
 	}
     }
 				    
@@ -357,8 +335,8 @@
 	for($i=0;$i<10;$i++){
 	    if($calendrier['profil_equipe']){
 		$equipe = $prono['cyclistes_prono'][$i];
-		if ($equipe['id_cyclisme_equipe']){
-		    echo '	    <li id="' . $equipe['id_cyclisme_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden-xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
+		if ($equipe['id_ski-alpin_equipe']){
+		    echo '	    <li id="' . $equipe['id_ski-alpin_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom_complet'] . '</span><img class="item-flag hidden-xs" src="' . $equipe['photo'] . '" alt=""/><div class="item-rating">';
 		    for($z=0; $z<$equipe['etoiles']; $z++){
 			echo '	<span class="glyphicon glyphicon-star"></span>';
 		    }
@@ -367,8 +345,8 @@
 	    }
 	    else{
 		$cycliste = $prono['cyclistes_prono'][$i];
-		if ($cycliste['id_cyclisme_athlete']){
-		    echo '	    <li id="' . $cycliste['id_cyclisme_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom']. ' ('  . $equipes[$cycliste['id_equipe_course']]['nom_court'] . ')</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+		if ($cycliste['id_ski-alpin_athlete']){
+		    echo '	    <li id="' . $cycliste['id_ski-alpin_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $cycliste['prenom'] . ' ' . $cycliste['nom']. ' ('  . $equipes[$cycliste['id_equipe_course']]['nom_court'] . ')</span><img class="item-flag hidden-xs" src="' . $pays[$cycliste['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
 
 		    for($z=0; $z<$cycliste['etoiles']; $z++){
 			echo '	<span class="glyphicon glyphicon-star"></span>';

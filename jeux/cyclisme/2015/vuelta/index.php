@@ -42,7 +42,7 @@
     $admin = $_SESSION['Admin'];
 
     if($loginjoueur != ""){
-        update_derniere_visite($joueur);
+        update_derniere_visite($loginjoueur);
         $bConnected = true;
     }
     else{

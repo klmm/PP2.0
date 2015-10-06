@@ -77,17 +77,16 @@
 	return $arr;
     }
     
-    function get_pronos_cal($id_jeu,$id_cal){
+    function get_pronos_cal($id_cal){
 	// On �tablit la connexion avec la base de donn�es
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM ski_alpin_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY classement ASC";
+	$sql = "SELECT * FROM ski_alpin_prono WHERE id_calendrier=? ORDER BY classement ASC";
 	$prep = $db->prepare($sql);
-	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
-	$prep->bindValue(2,$id_cal,PDO::PARAM_INT);
+	$prep->bindValue(1,$id_cal,PDO::PARAM_INT);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 

@@ -5,13 +5,14 @@ function Init_Forms_Ski()
 {
 	$(document).on('click', '#calendar a', function(e)
 	{    
+	    
 	    $('#list-cal li').each(function() {
 		$(this).removeClass("active");
 	    });
 	    
 	    $(this).parent().addClass("active");
 	    
-	    var id = $(this).attr("value");	
+	    var id = $(this).attr("value");
 	    render_pres_panel(id);
 	    getAllComs(0,id_jeu,id,0);
 	    

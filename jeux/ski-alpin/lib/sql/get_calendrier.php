@@ -121,12 +121,11 @@
 	    $i++;
 	}
 	
-	usort($arr, 'compare_date_debut');
 	$db = null;
 	return $arr;
     }
     
-    function get_calendrier_jeu_mois_filtre($id_jeu,$mois,$filtre){
+    function get_calendrier_jeu_filtre($id_jeu,$filtre){
 	$epreuves = filtre_to_epreuves($filtre);
 	
 	for($i=0; $i<sizeof($epreuves); $i++){
@@ -143,15 +142,14 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND LEFT(date_debut,7)=? AND (' . $sql_epreuve . ') ORDER BY date_debut ASC';
+	$sql = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND (' . $sql_epreuve . ') ORDER BY date_debut ASC';
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
-	$prep->bindValue(2,$mois,PDO::PARAM_STR);
 	$prep->execute();
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 
 	//On fait le test si un enrengistrement a �t� trouv�
-	$i = 0;
+	$j = 0;
 	while( $enregistrement = $prep->fetch() )
 	{
 	    $id_cal = $enregistrement->id_ski_alpin_calendrier;
@@ -196,18 +194,16 @@
 	    }
 	    
 	    if($arr[$id_cal]['traite'] && dateheure_sql_to_jours_passes($arr[$id_cal]['date_debut']) > 7){
-		$arr[$id_cal]['tri'] = 1000 - $cpt;
+		$arr[$id_cal]['tri'] = 1000 - $j;
 	    }
 	    else{
-		$arr[$id_cal]['tri'] = $cpt;
+		$arr[$id_cal]['tri'] = $j;
 	    }
 	    
-	    $i++;
+	    $j++;
 	}
 	
 	usort($arr,'compare_tri');
-	
-	usort($arr, 'compare_date_debut');
 	$db = null;
 	return $arr;
     }
@@ -229,7 +225,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND date_debut>NOW() AND disponible=1 AND ' . $sql_epreuve . ' ORDER BY date_debut ASC';
+	$sql = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND date_debut>NOW() AND disponible=1 AND ' . $sql_epreuve . ' ORDER BY date_debut ASC LIMIT 20';
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
@@ -314,7 +310,7 @@
 	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	//On fait la requete sur le login
-	$sql4 = "SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut>NOW() AND ' . $sql_epreuve . ' ORDER BY date_debut ASC LIMIT 1";
+	$sql4 = "SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut>NOW() AND ' . $sql_epreuve . ' ORDER BY date_debut ASC LIMIT 1"; // ETAPE DU JOUR A VENIR
 	$prep4 = $db->prepare($sql4);
 	$prep4->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 	$prep4->bindValue(2,$date_seule,PDO::PARAM_STR);
@@ -329,7 +325,7 @@
 	    return $enregistrement4->id_ski_alpin_calendrier; // ETAPE DU JOUR A VENIR
 	}
 	else{
-	    $sql = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND (' . $sql_epreuve . ') ORDER BY date_debut DESC LIMIT 1';
+	    $sql = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND (' . $sql_epreuve . ') ORDER BY date_debut DESC LIMIT 1'; // DERNIERE ETAPE DU JOUR
 	    $prep = $db->prepare($sql);
 	    $prep->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 	    $prep->bindValue(2,$date_seule,PDO::PARAM_STR);
@@ -343,7 +339,7 @@
 		return $enregistrement->id_ski_alpin_calendrier; // DERNIERE ETAPE DU JOUR
 	    }
 	    else{
-		$sql2 = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND date_debut>? AND disponible=1 AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 1';
+		$sql2 = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND date_debut>? AND disponible=1 AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 1'; // PROCHAINE DISPO
 		$prep2 = $db->prepare($sql2);
 		$prep2->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 		$prep2->bindValue(2,$date_heure,PDO::PARAM_STR);
@@ -356,7 +352,7 @@
 		    return $enregistrement2->id_ski_alpin_calendrier; // PROCHAINE DISPO
 		}
 		else{
-		    $sql3 = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND traite=1 AND (' . $sql_epreuve . ') ORDER BY date_debut DESC LIMIT 1';
+		    $sql3 = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND traite=1 AND (' . $sql_epreuve . ') ORDER BY date_debut DESC LIMIT 1'; // DERNIERE TRAITEE
 		    $prep3 = $db->prepare($sql3);
 		    $prep3->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 		    $prep3->execute();

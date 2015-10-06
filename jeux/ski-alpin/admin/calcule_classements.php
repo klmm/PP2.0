@@ -4,11 +4,14 @@
 
     function calcule_classements($id_jeu){
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	global $nb_paris_max;
 	
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
+	
+	$calendrier_tous = get_calendrier_jeu($id_jeu);
     
 	$POINTS_CLASSEMENTS_PAR_POINTS = [0,25,20,16,12,10,7,5,3,2,1];
 	$nb_classements_par_points = sizeof($POINTS_CLASSEMENTS_PAR_POINTS) - 1;
@@ -19,7 +22,7 @@
 	$sql = "SELECT * FROM ski_alpin_prono WHERE EXISTS (
 				    SELECT id_ski_alpin_calendrier 
 				    FROM ski_alpin_calendrier 
-				    WHERE ski_alpin_prono.id_calendrier=ski_alpin_calendrier.id_cal AND id_jeu=? AND traite=1)
+				    WHERE ski_alpin_prono.id_calendrier=ski_alpin_calendrier.id_ski_alpin_calendrier AND id_jeu=? AND traite=1)
 				AND id_jeu=?";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
@@ -28,51 +31,61 @@
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 
 	while($enregistrement = $prep->fetch()){
-	    $id_prono = $enregistrement->id_cyclisme_prono;
+	    $id_prono = $enregistrement->id_ski_alpin_prono;
+	    $id_cal = $enregistrement->id_calendrier;
 	    $pos = $enregistrement->classement;
 	    $score = $enregistrement->score_total;
 	    $nb_trouves = $enregistrement->nb_trouves;
 	    $joueur = $enregistrement->joueur;
 	    $bonus_risque = $enregistrement->bonus_risque;
 	    
+	    // INFOS CALENDRIER
+	    $specialite = $calendrier_tous[$id_cal]['specialite'];
+	    $genre = $calendrier_tous[$id_cal]['genre'];
+	    $spec_genre = $specialite . '' . $genre;
+	    	    
 	    // CLASSEMENT GENERAL
-	    $tab_classements[$joueur]['joueur'] = $joueur;
-	    
-	    // CLASSEMENT GENERAL
-	    $tab_classements[$joueur]['score_total'] += $score;
-	    
-	    // NOMBRE DE COUREURS TROUVES
-	    $tab_classements[$joueur]['nb_trouves'] += $nb_trouves;
-	    
-	    // NOMBRE DE PRONOS
-	    $tab_classements[$joueur]['nb_pronos'] += 1;
-	    
-	    // NOMBRE DE VICTOIRES
+	    $tab_classements[$joueur]['général']['joueur'] = $joueur;
+	    $tab_classements[$joueur]['général']['score_total'] += $score;
+	    $tab_classements[$joueur]['général']['nb_trouves'] += $nb_trouves;
+	    $tab_classements[$joueur]['général']['nb_pronos'] += 1;
 	    if($pos == 1){
-		$tab_classements[$joueur]['victoires'] += 1;
+		$tab_classements[$joueur]['général']['victoires'] += 1;
 	    }
-	    
-	    // NOMBRE DE PODIUMS
 	    if($pos <= 3 && $pos > 0){
-	       $tab_classements[$joueur]['podiums'] += 1;
+	       $tab_classements[$joueur]['général']['podiums'] += 1;
 	    }
-	    
-	    // NOMBRE DE TOP 10
 	    if($pos <= 10 && $pos > 0){
-	       $tab_classements[$joueur]['top10'] += 1;
+	       $tab_classements[$joueur]['général']['top10'] += 1;
 	    }
-	    
-	    // CLASSEMENT PAR POINTS
 	    if($pos <= $nb_classements_par_points){
-	       $tab_classements[$joueur]['par_points'] += $POINTS_CLASSEMENTS_PAR_POINTS[$pos];
+	       $tab_classements[$joueur]['général']['par_points'] += $POINTS_CLASSEMENTS_PAR_POINTS[$pos];
+	    }
+	    $tab_classements[$joueur]['général']['risque'] += $bonus_risque;
+	    if($tab_classements[$joueur]['général']['score_min'] == null || $score < $tab_classements[$joueur]['score_min']){
+		$tab_classements[$joueur]['général']['score_min'] = $score;
 	    }
 	    
-	    // RISQUE
-	    $tab_classements[$joueur]['risque'] += $bonus_risque;
-	    
-	    // SCORE MINIMAL SUR UNE ETAPE
-	    if($tab_classements[$joueur]['score_min'] == null || $score < $tab_classements[$joueur]['score_min']){
-		$tab_classements[$joueur]['score_min'] = $score;
+	    // SPECIALITE
+	    $tab_classements[$joueur][$spec_genre]['genre'] = $genre;
+	    $tab_classements[$joueur][$spec_genre]['score_total'] += $score;
+	    $tab_classements[$joueur][$spec_genre]['nb_trouves'] += $nb_trouves;
+	    $tab_classements[$joueur][$spec_genre]['nb_pronos'] += 1;
+	    if($pos == 1){
+		$tab_classements[$joueur][$spec_genre]['victoires'] += 1;
+	    }
+	    if($pos <= 3 && $pos > 0){
+	       $tab_classements[$joueur][$spec_genre]['podiums'] += 1;
+	    }
+	    if($pos <= 10 && $pos > 0){
+	       $tab_classements[$joueur][$spec_genre]['top10'] += 1;
+	    }
+	    if($pos <= $nb_classements_par_points){
+	       $tab_classements[$joueur][$spec_genre]['par_points'] += $POINTS_CLASSEMENTS_PAR_POINTS[$pos];
+	    }
+	    $tab_classements[$joueur][$spec_genre]['risque'] += $bonus_risque;
+	    if($tab_classements[$joueur][$spec_genre]['score_min'] == null || $score < $tab_classements[$joueur]['score_min']){
+		$tab_classements[$joueur][$spec_genre]['score_min'] = $score;
 	    }
 	}
 	
@@ -90,9 +103,6 @@
 	}
 	
 	calcule_classement_general($id_jeu,$tab_classements,$url);
-	if ($nb_paris_max > 2){
-	    calcule_classement_une_erreur($id_jeu,$tab_classements,$url);
-	}
 	calcule_classement_par_points($tab_classements,$url);
 	calcule_classement_victoires($tab_classements,$url);
 	calcule_classement_podiums($tab_classements,$url);
@@ -144,58 +154,6 @@
 	    $pos_cpt++;
 	    $score_actuel = $score;
 	    update_inscription($id_jeu,$login,$pos);
-	}
-	
-	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
-	foreach($line as $key => $ligne){
-	    $contenu .= $ligne . PHP_EOL;
-	}
-
-	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
-    }
-    
-    
-    function calcule_classement_une_erreur($id_jeu,$tab,$url){
-	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_inscriptions.php');
-	global $nb_paris_max;
-
-	$nom_fichier = '02-Une_erreur.txt';
-	
-	$titre = 'Général joker';
-	$descr = 'Général avec une erreur permise';
-	$colonnes = ';;Score;Pronos';
-	$taille_colonnes = '2;5;3;2';
-	
-			
-	foreach($tab as $key => $joueur){
-	    $score = $joueur['score_total'];
-	    $score_min = $joueur['score_min'];
-	    $nb_paris = $joueur['nb_pronos'];
-	    if($nb_paris == $nb_paris_max){
-		$tab[$key]['nb_pronos']--;
-		$tab[$key]['score_total'] -= $score_min;
-	    }
-	}
-	
-	usort($tab, 'compare_score_total');
-	
-	$score_actuel = -1;
-	$pos_actuel = 1;
-	$pos_cpt = 1;
-	foreach($tab as $key => $joueur){
-	    $score = $joueur['score_total'];
-	    $login = $joueur['joueur'];
-	    $nb_paris = $joueur['nb_pronos'];
-	    if($score != $score_actuel){
-		$pos_actuel = $pos_cpt;
-		$pos = $pos_cpt;
-	    }
-	    else{
-		$pos = $pos_actuel;
-	    }
-	    $line[] = $pos . ';' . $login . ';' . $score . ';' . $nb_paris;
-	    $pos_cpt++;
-	    $score_actuel = $score;
 	}
 	
 	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;

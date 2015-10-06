@@ -21,9 +21,7 @@
     $id_cal = $_POST['id_cal'];
     $arr_prono = $_POST['prono'];
     $calendrier = get_calendrier($id_cal);
-    // ------------ RECUPERATION DES PARAMETRES ----------//
-    
-    
+    // ------------ RECUPERATION DES PARAMETRES ----------//    
     
     // ------------ VERIFICATION DES PARAMETRES ----------//
     if(!is_numeric($id_jeu) || !is_numeric($id_cal)){
@@ -101,12 +99,11 @@
     
     
     // ------------ PRONO DEJA FAIT ? ----------//
-    $sql = "SELECT * FROM ski_alpin_prono WHERE id_jeu=? AND id_calendrier=? AND joueur=?";
+    $sql = "SELECT * FROM ski_alpin_prono WHERE id_calendrier=? AND joueur=?";
 
     $prep = $db->prepare($sql);
-    $prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
-    $prep->bindValue(2,$id_cal,PDO::PARAM_INT);
-    $prep->bindValue(3,$login,PDO::PARAM_STR);
+    $prep->bindValue(1,$id_cal,PDO::PARAM_INT);
+    $prep->bindValue(2,$login,PDO::PARAM_STR);
     
     $prep->execute();
     $prep->setFetchMode(PDO::FETCH_OBJ);

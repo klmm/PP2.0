@@ -24,7 +24,6 @@
 
 	$all_athletes = get_athletes_activite_genre($calendrier['genre']);
 
-
 	//--------------------------------------PRONO--------------------------------------//
 	if($loginjoueur != ""){
 	    $prono = get_prono($ID_CAL,$loginjoueur);    }
@@ -66,13 +65,16 @@
 	    if($moy > $moy_max){
 		$moy_max = $moy;
 	    }
+	    
+	    $all_athletes[$id]['moyenne'] = $moy;
+	    $all_athletes[$id]['pos_prono'] = 0;
 	}
-	$_SESSION['ski-alpin_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 30;
+	$_SESSION['ski_alpin_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 30;
 	
       // CALCUL DES ETOILES ATHLETES
-	$SEUIL_3 = 5;
-	$SEUIL_2 = 8;
-	$SEUIL_1 = 13;
+	$SEUIL_3 = 10;
+	$SEUIL_2 = 20;
+	$SEUIL_1 = 30;
 	foreach($all_athletes as $id => $athlete){
 	    $moy = $athlete['moyenne'];
 
@@ -96,8 +98,8 @@
 	    }
 	    
 	    $all_athletes[$id]['etoiles'] = $nb_etoiles;
-	    
-	    $_SESSION['ski-alpin_notes'][$ID_JEU][$ID_CAL][$id] = $nb_etoiles;
+	     
+	    $_SESSION['ski_alpin_notes'][$ID_JEU][$ID_CAL][$id] = $nb_etoiles;
 	}
 
 	$tab_id_athletes = explode(";", $prono['prono']);

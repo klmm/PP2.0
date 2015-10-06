@@ -1,8 +1,8 @@
 <?php
 
     // ------------ INCLUDES ----------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski_alpin/lib/sql/get_calendrier.php';
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski_alpin/admin/calcule_classements.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/admin/calcule_classements.php';
     // ------------ INCLUDES ----------//
     
     
@@ -21,7 +21,7 @@
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
     $arr_resultat = $_POST['prono'];
-    $calendrier = get_calendrier($id_jeu, $id_cal);
+    $calendrier = get_calendrier($id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//
     
     
@@ -122,10 +122,9 @@
     
     
     // ------------ MAJ PRONOS ----------//
-    $sql = "SELECT * FROM ski_alpin_prono WHERE id_jeu=? AND id_calendrier=?";
+    $sql = "SELECT * FROM ski_alpin_prono WHERE id_calendrier=?";
     $prep = $db->prepare($sql);
-    $prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
-    $prep->bindValue(2,$id_cal,PDO::PARAM_INT);
+    $prep->bindValue(1,$id_cal,PDO::PARAM_INT);
     $prep->execute();
     $prep->setFetchMode(PDO::FETCH_OBJ);
     
@@ -179,10 +178,9 @@
 	$prep2->setFetchMode(PDO::FETCH_OBJ);
     }
 
-    $sql4 = "SELECT * FROM ski_alpin_prono WHERE id_jeu=? AND id_calendrier=?";
+    $sql4 = "SELECT * FROM ski_alpin_prono WHERE id_calendrier=?";
     $prep4 = $db->prepare($sql4);
-    $prep4->bindValue(1,$id_jeu,PDO::PARAM_INT);
-    $prep4->bindValue(2,$id_cal,PDO::PARAM_INT);
+    $prep4->bindValue(1,$id_cal,PDO::PARAM_INT);
     $prep4->execute();
     $prep4->setFetchMode(PDO::FETCH_OBJ);
     
@@ -217,10 +215,9 @@
     
     
     
-    $sql6 = "SELECT * FROM ski_alpin_prono WHERE id_jeu=? AND id_calendrier=? ORDER BY score_total DESC";
+    $sql6 = "SELECT * FROM ski_alpin_prono WHERE id_calendrier=? ORDER BY score_total DESC";
     $prep6 = $db->prepare($sql6);
-    $prep6->bindValue(1,$id_jeu,PDO::PARAM_INT);
-    $prep6->bindValue(2,$id_cal,PDO::PARAM_INT);
+    $prep6->bindValue(1,$id_cal,PDO::PARAM_INT);
     $prep6->execute();
     $prep6->setFetchMode(PDO::FETCH_OBJ);
     
@@ -259,11 +256,10 @@
     
     
     // ------------ MAJ CALENDRIER ----------//
-    $sql5 = "UPDATE ski_alpin_calendrier SET classement=?, traite=1, disponible=0 WHERE id_jeu=? AND id_cal=?";
+    $sql5 = "UPDATE ski_alpin_calendrier SET classement=?, traite=1, disponible=0 WHERE id_ski_alpin_calendrier=?";
     $prep5 = $db->prepare($sql5);
     $prep5->bindValue(1,$resultat,PDO::PARAM_STR);
-    $prep5->bindValue(2,$id_jeu,PDO::PARAM_INT);
-    $prep5->bindValue(3,$id_cal,PDO::PARAM_INT);
+    $prep5->bindValue(2,$id_cal,PDO::PARAM_INT);
     $prep5->execute();
     // ------------ MAJ CALENDRIER ----------//
     

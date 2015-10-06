@@ -2,11 +2,11 @@
     $ID_JEU = 4;
     $js = '/jeux/ski-alpin/saison-2015-2016/js/ski20152016.js';
     $css = '/jeux/ski-alpin/saison-2015-2016/css/ski20152016.css';
-    $titre = 'Parions Potes - Saison de ski alpin 2015/2016';
-    $competition = 'Saison de ski alpin 2015/2016';
+    $titre = 'Parions Potes - Saison de Ski alpin 2015-2016';
+    $competition = 'Saison de Ski alpin 2015-2016';
     $sous_titre = 'du 24 octobre 2015 au 20 mars 2016';
     $logo = '/img/logos/logo_share.jpg';
-    $description = 'Pronostics gratuits sur la Saison de ski alpin 2015/2016';
+    $description = 'Pronostics gratuits sur la Saison de Ski alpin 2015-2016';
     $keywords = 'pronostics paris gratuits sport ski alpin 2015 2016';
     
     //--------------------------------------FONCTIONS--------------------------------------//
@@ -16,6 +16,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/get_classements.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_inscriptions.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_pays.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
@@ -43,21 +44,27 @@
     $admin = $_SESSION['Admin'];
 
     if($loginjoueur != ""){
-        update_derniere_visite($joueur);
+        update_derniere_visite($loginjoueur);
         $bConnected = true;
+	$joueur_inscription = get_joueur_inscription($ID_JEU, $loginjoueur);
+	if($joueur_inscription != null){
+	    $filtre_epreuves = $joueur_inscription['filtre'];
+	}
+	else{
+	    $filtre_epreuves = 2047;
+	}
     }
     else{
         $bConnected = false;
+	$filtre_epreuves = 2047;
     }
     //------------------------------------------------------------------------------------------------//
     
     
     
     
-    
-    
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
-    $id_cal = get_id_calendrier_actuel($ID_JEU);
+    $id_cal = get_id_calendrier_actuel($ID_JEU,$filtre_epreuves);
     $jeu = get_jeu_id($ID_JEU);
         
     $arr_breves = get_breves_jeu($ID_JEU);
@@ -66,7 +73,7 @@
     $arr_articles = get_articles_jeu($ID_JEU);
     $nb_articles = sizeof($arr_articles);
     
-    $arr_calendrier = get_calendrier_jeu($ID_JEU);
+    $arr_calendrier = get_calendrier_jeu_filtre($ID_JEU,$filtre_epreuves);
     $nb_calendrier = sizeof($arr_calendrier);
     
     $classements = get_classements($jeu['url'] . '/classements');
@@ -442,7 +449,7 @@
 	
 	for($i=0;$i<$nb_calendrier;$i++){
 	    $calendrier = $arr_calendrier[$i];
-	    $id = $calendrier['id_cal'];
+	    $id = $calendrier['id_ski_alpin_calendrier'];
 	    
 	    if($id == $id_cal){
 		$tmp_class = 'active';
@@ -616,7 +623,7 @@
 		render_pres_panel(' . $id_cal . ');
 		    
 		Init_Forms();
-		Init_Forms_Cyclisme();
+		Init_Forms_Ski();
 		
 		$(window).resize(function() {
 			//pageSection();

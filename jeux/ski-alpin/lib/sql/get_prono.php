@@ -84,7 +84,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = "SELECT * FROM ski_alpin_prono WHERE id_calendrier=? ORDER BY classement ASC";
+	$sql = "SELECT * FROM ski_alpin_prono WHERE id_calendrier=? ORDER BY classement ASC, score_total ASC, joueur ASC";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_cal,PDO::PARAM_INT);
 	$prep->execute();

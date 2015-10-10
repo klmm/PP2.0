@@ -66,6 +66,12 @@
 		$tab_classements[$joueur]['phase_finale'] += $score*$coeff_match;
 	    }
 	    
+	    // FRANCE
+	    if($cal_trie[$id_cal]['id_equipe1'] == 13 || $cal_trie[$id_cal]['id_equipe2'] == 13){
+		$tab_classements[$joueur]['nb_pronos_france'] += 1;
+		$tab_classements[$joueur]['score_france'] += $score*$coeff_match;
+	    }
+	    
 	    // CLASSEMENT PAR POINTS
 	    if($pos <= $nb_classements_par_points){
 	       $tab_classements[$joueur]['par_points'] += $POINTS_CLASSEMENTS_PAR_POINTS[$pos];
@@ -97,6 +103,7 @@
 	calcule_classement_general($id_jeu,$tab_classements,$url);
 	calcule_classement_par_points($tab_classements,$url);
 	calcule_classement_phase_finale($tab_classements,$url);
+	calcule_classement_france($tab_classements,$url);
 	calcule_classement_reussite($tab_classements,$url);
 	calcule_classement_essais($tab_classements,$url);
 	calcule_classement_homme_match($tab_classements,$url);
@@ -366,7 +373,58 @@
 	}
     }
     
+    // 07 FRANCE
     
+    function compare_france($a, $b)
+    {
+      return strnatcmp($b['score_france'], $a['score_france']);
+    }
+    
+    function calcule_classement_france($tab,$url){
+	usort($tab, 'compare_france');
+	
+	$nom_fichier = '07-France.txt';
+	
+	$titre = 'Bleus';
+	$descr = 'Matches de l\'équipe de France';
+	$colonnes = ';;Score;Pronos';
+	$taille_colonnes = '2;5;2;3';
+	
+	$score_actuel = -1;
+	$pos_actuel = 1;
+	$pos_cpt = 1;
+	
+	if(sizeof($tab) > 0){	
+	    foreach($tab as $key => $joueur){
+		$score = $joueur['score_france'];
+		$login = $joueur['joueur'];
+		$nb_paris = $joueur['nb_pronos_france'];
+		if($score != $score_actuel){
+		    $pos_actuel = $pos_cpt;
+		    $pos = $pos_cpt;
+		}
+		else{
+		    $pos = $pos_actuel;
+		}
+		if($score == ''){
+		    break;
+		}
+		$line[] = $pos . ';' . $login . ';' . $score . ';' . $nb_paris;
+		$pos_cpt++;
+		$score_actuel = $score;
+	    }
+	}
+	if(sizeof($line) > 0){
+	    $contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
+	    foreach($line as $key => $ligne){
+		$contenu .= $ligne . PHP_EOL;
+	    }
+
+	    file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+	}
+    }
+    
+ 
     
     
     

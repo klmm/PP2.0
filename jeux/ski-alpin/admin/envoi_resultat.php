@@ -22,6 +22,7 @@
     $id_cal = $_POST['id_cal'];
     $arr_resultat = $_POST['prono'];
     $calendrier = get_calendrier($id_cal);
+    $date = $calendrier['date_debut'];
     // ------------ RECUPERATION DES PARAMETRES ----------//
     
     
@@ -271,7 +272,7 @@
     
     
     // ------------ MAJ CLASSEMENTS ----------//
-    calcule_classements($id_jeu);
+    calcule_classements($id_jeu,$date);
     // ------------ MAJ CLASSEMENTS ----------//
     
 

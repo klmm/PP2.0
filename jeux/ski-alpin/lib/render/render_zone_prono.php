@@ -22,7 +22,7 @@
 	//------------------------------------------------------------------------------------------------//
 
 
-	$all_athletes = get_athletes_activite_genre($calendrier['genre']);
+	$all_athletes = get_athletes_activite_genre($calendrier['genre'],$calendrier['date_debut']);
 
 	//--------------------------------------PRONO--------------------------------------//
 	if($loginjoueur != ""){

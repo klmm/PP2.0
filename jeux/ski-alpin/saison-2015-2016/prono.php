@@ -12,6 +12,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_commentaires.php'; 
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_pays.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_inscriptions.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/render/render_zone_prono.php';
@@ -33,8 +34,16 @@
 	if($loginjoueur != ""){
 	    update_derniere_visite($loginjoueur);
 	    $bConnected = true;
+	    $joueur_inscription = get_joueur_inscription($ID_JEU, $loginjoueur);
+	    if($joueur_inscription != null){
+		$filtre_epreuves = $joueur_inscription['filtre'];
+	    }
+	    else{
+		$filtre_epreuves = 2047;
+	    }
 	}
 	else{
+	    $filtre = 2047;
 	    $bConnected = false;
 	}
     //------------------------------------------------------------------------------------------------//

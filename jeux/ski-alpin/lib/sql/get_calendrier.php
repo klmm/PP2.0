@@ -127,6 +127,7 @@
     
     function get_calendrier_jeu_filtre($id_jeu,$filtre){
 	$epreuves = filtre_to_epreuves($filtre);
+	$sql_epreuve = '';
 	
 	for($i=0; $i<sizeof($epreuves); $i++){
 	    if($epreuves[$i]['inscrit']){
@@ -211,6 +212,7 @@
     function get_calendrier_jeu_avenir($id_jeu,$filtre){
 	$epreuves = filtre_to_epreuves($filtre);
 	
+	$sql_epreuve = '';
 	for($i=0; $i<sizeof($epreuves); $i++){
 	    if($epreuves[$i]['inscrit']){
 		$sql_epreuve .= '(genre="' . $epreuves[$i]['genre'] . '" AND specialite="' . $epreuves[$i]['discipline'] . '") OR ';
@@ -225,7 +227,7 @@
 	$db = $bdd->getDB();
 
 	//On fait la requete sur le login
-	$sql = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND date_debut>NOW() AND disponible=1 AND ' . $sql_epreuve . ' ORDER BY date_debut ASC LIMIT 20';
+	$sql = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND date_debut>NOW() AND disponible=1 AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 20';
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_jeu,PDO::PARAM_INT);
 	$prep->execute();
@@ -290,6 +292,7 @@
     function get_id_calendrier_actuel($ID_JEU,$filtre){
 	$epreuves = filtre_to_epreuves($filtre);
 	
+	$sql_epreuve = '';
 	for($i=0; $i<sizeof($epreuves); $i++){
 	    if($epreuves[$i]['inscrit']){
 		$sql_epreuve .= '(genre="' . $epreuves[$i]['genre'] . '" AND specialite="' . $epreuves[$i]['discipline'] . '") OR ';
@@ -310,7 +313,7 @@
 	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	//On fait la requete sur le login
-	$sql4 = "SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut>NOW() AND ' . $sql_epreuve . ' ORDER BY date_debut ASC LIMIT 1"; // ETAPE DU JOUR A VENIR
+	$sql4 = "SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut>NOW() AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 1"; // ETAPE DU JOUR A VENIR
 	$prep4 = $db->prepare($sql4);
 	$prep4->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 	$prep4->bindValue(2,$date_seule,PDO::PARAM_STR);
@@ -339,10 +342,9 @@
 		return $enregistrement->id_ski_alpin_calendrier; // DERNIERE ETAPE DU JOUR
 	    }
 	    else{
-		$sql2 = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND date_debut>? AND disponible=1 AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 1'; // PROCHAINE DISPO
+		$sql2 = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND date_debut>NOW() AND disponible=1 AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 1'; // PROCHAINE DISPO
 		$prep2 = $db->prepare($sql2);
 		$prep2->bindValue(1,$ID_JEU,PDO::PARAM_INT);
-		$prep2->bindValue(2,$date_heure,PDO::PARAM_STR);
 		$prep2->execute();
 		$prep2->setFetchMode(PDO::FETCH_OBJ);
 		$enregistrement2 = $prep2->fetch();
@@ -365,8 +367,22 @@
 			return $enregistrement3->id_ski_alpin_calendrier; // DERNIERE TRAITEE
 		    }
 		    else{
-			$db = null;
-			return 1;
+			$sql4 = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 1'; // PROCHAINE
+			$prep4 = $db->prepare($sql4);
+			$prep4->bindValue(1,$ID_JEU,PDO::PARAM_INT);
+			$prep4->execute();
+			$prep4->setFetchMode(PDO::FETCH_OBJ);
+
+			$enregistrement4 = $prep4->fetch();
+
+			if( $enregistrement4 ){
+			    $db = null;
+			    return $enregistrement4->id_ski_alpin_calendrier; // PROCHAINE
+			}
+			else{
+			    $db = null;
+			    return 1;
+			}
 		    }
 		}
 	    }

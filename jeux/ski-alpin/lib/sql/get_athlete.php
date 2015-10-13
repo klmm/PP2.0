@@ -83,17 +83,18 @@
 		return $arr;
 	}
 			
-	function get_athletes_activite_genre($genre){
+	function get_athletes_activite_genre($genre,$date){
 		// On �tablit la connexion avec la base de donn�es
 		require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 		$bdd = new Connexion();
 		$db = $bdd->getDB();
 
 		//On pr�pare la requ�te pour aller chercher les articles
-		$sql = "SELECT * FROM ski_alpin_athlete WHERE genre=? AND retraite=0 AND (date_blessure IS NULL OR date_blessure<NOW())";
+		$sql = "SELECT * FROM ski_alpin_athlete WHERE genre=? AND retraite=0 AND (date_blessure IS NULL OR date_blessure<?)";
 		$prep = $db->prepare($sql);
 		$prep->setFetchMode(PDO::FETCH_OBJ);
-		$prep->bindValue(1,$genre,PDO::PARAM_STR);		
+		$prep->bindValue(1,$genre,PDO::PARAM_STR);
+		$prep->bindValue(2,$date,PDO::PARAM_STR);
 		$prep->execute();
 		
 		while($enregistrement = $prep->fetch()){

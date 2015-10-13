@@ -11,7 +11,7 @@
 	$id_inscr = is_joueur_inscrit($id_jeu, $joueur);
 
 	if($id_inscr == 0){
-	    $sql = "INSERT INTO joueurs_inscriptions(joueur,id_jeu,classement) VALUES(?,?,?)";
+	    $sql = "INSERT INTO joueurs_inscriptions(joueur,id_jeu,classement,no_mail,filtre) VALUES(?,?,?,0,8191)";
 	    $prep = $db->prepare($sql);
 	    $prep->bindValue(1,$joueur,PDO::PARAM_STR);
 	    $prep->bindValue(2,$id_jeu,PDO::PARAM_INT);

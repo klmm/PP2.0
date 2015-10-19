@@ -36,14 +36,19 @@
 	    $bConnected = true;
 	    $joueur_inscription = get_joueur_inscription($ID_JEU, $loginjoueur);
 	    if($joueur_inscription != null){
-		$filtre_epreuves = $joueur_inscription['filtre'];
+		if($joueur_inscription['filtre'] == 0){
+		    $filtre_epreuves = 4095;
+		}
+		else{
+		    $filtre_epreuves = $joueur_inscription['filtre'];
+		}
 	    }
 	    else{
-		$filtre_epreuves = 2047;
+		$filtre_epreuves = 4095;
 	    }
 	}
 	else{
-	    $filtre = 2047;
+	    $filtre = 4095;
 	    $bConnected = false;
 	}
     //------------------------------------------------------------------------------------------------//
@@ -65,7 +70,7 @@
 
 	$jeu = get_jeu_id($ID_JEU);
 	$calendrier = get_calendrier($ID_CAL);
-	$liste_calendrier = get_calendrier_jeu_avenir($ID_JEU,2047);
+	$liste_calendrier = get_calendrier_jeu_avenir($ID_JEU,4095);
 	
 	if ($calendrier == null){
 	    header('Location: /redirect/erreur404.html');

@@ -48,15 +48,20 @@
         $bConnected = true;
 	$joueur_inscription = get_joueur_inscription($ID_JEU, $loginjoueur);
 	if($joueur_inscription != null){
-	    $filtre_epreuves = $joueur_inscription['filtre'];
+	    if($joueur_inscription['filtre'] == 0){
+		$filtre_epreuves = 4095;
+	    }
+	    else{
+		$filtre_epreuves = $joueur_inscription['filtre'];
+	    }    
 	}
 	else{
-	    $filtre_epreuves = 2047;
+	    $filtre_epreuves = 4095;
 	}
     }
     else{
         $bConnected = false;
-	$filtre_epreuves = 2047;
+	$filtre_epreuves = 4095;
     }
     //------------------------------------------------------------------------------------------------//
     

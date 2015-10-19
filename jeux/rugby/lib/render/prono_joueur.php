@@ -62,11 +62,11 @@
 	$prono_essais_equipe2 = $prono_joueur['prono_essais2'];
 	
 	if($calendrier['traite']){
-	    $score_points = $prono_joueur['score_points1'] + $prono_joueur['score_points2'] . ' pts';
-	    $score_essais = $prono_joueur['score_essais1'] + $prono_joueur['score_essais2'] . ' pts';
-	    $score_vainqueur = $prono_joueur['score_vainqueur'] . ' pts';
-	    $score_total = $prono_joueur['score_total'] . ' pts';
-	    $score_ecart = $prono_joueur['score_ecart'] . ' pts';
+	    $score_points = ($prono_joueur['score_points1'] + $prono_joueur['score_points2'])*$calendrier['coefficient'] . ' pts';
+	    $score_essais = ($prono_joueur['score_essais1'] + $prono_joueur['score_essais2'])*$calendrier['coefficient'] . ' pts';
+	    $score_vainqueur = $prono_joueur['score_vainqueur']*$calendrier['coefficient'] . ' pts';
+	    $score_total = $prono_joueur['score_total']*$calendrier['coefficient'] . ' pts';
+	    $score_ecart = $prono_joueur['score_ecart']*$calendrier['coefficient'] . ' pts';
 	}
 	else{
 	    $score_points = '-';

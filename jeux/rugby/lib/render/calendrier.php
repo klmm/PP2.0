@@ -167,11 +167,11 @@
 	$prono_essais_equipe2 = $prono_joueur['prono_essais2'];
 	
 	if($calendrier['traite']){
-	    $score_points = $prono_joueur['score_points1'] + $prono_joueur['score_points2'] . ' pts';
-	    $score_essais = $prono_joueur['score_essais1'] + $prono_joueur['score_essais2'] . ' pts';
-	    $score_vainqueur = $prono_joueur['score_vainqueur'] . ' pts';
-	    $score_total = $prono_joueur['score_total'] . ' pts';
-	    $score_ecart = $prono_joueur['score_ecart'] . ' pts';
+	    $score_points = ($prono_joueur['score_points1'] + $prono_joueur['score_points2'])*$calendrier['coefficient'] . ' pts';
+	    $score_essais = ($prono_joueur['score_essais1'] + $prono_joueur['score_essais2'])*$calendrier['coefficient'] . ' pts';
+	    $score_vainqueur = $prono_joueur['score_vainqueur']*$calendrier['coefficient'] . ' pts';
+	    $score_total = $prono_joueur['score_total']*$calendrier['coefficient'] . ' pts';
+	    $score_ecart = $prono_joueur['score_ecart']*$calendrier['coefficient'] . ' pts';
 	    $classement = ' - ' . $prono_joueur['classement'];
 
 	    if($prono_joueur['classement'] == 1){
@@ -355,7 +355,7 @@
 							<tr class="' . $class_surlign_joueur . '">
 							    <th class="table-place col-md-2">' . $pos .'</th>
 							    <td class="table-name col-md-6">' . $key . '</td>
-							    <td class="table-point col-md-4">' . $pts_joueur . '</td>
+							    <td class="table-point col-md-4">' . $pts_joueur*$calendrier['coefficient'] . '</td>
 							</tr>';
 	}
 								

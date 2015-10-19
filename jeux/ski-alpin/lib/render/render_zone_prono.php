@@ -38,6 +38,9 @@
 
 	//-----------------------------LISTE DE PRONO----------------------//
 	
+	$SEUIL_3 = 78;
+	$SEUIL_2 = 70;
+	$SEUIL_1 = 65;
 
       // CALCUL DES MOYENNES DES SKIEURS
 	$moy_max = 0;
@@ -47,16 +50,16 @@
 		    $moy = $athlete['note_slalom'];
 		    break;
 		case 'Slalom Géant':
-		    $moy = $athlete['note_slalom'];
+		    $moy = $athlete['note_geant'];
 		    break;
 		case 'Super G':
-		    $moy = $athlete['note_slalom'];
+		    $moy = $athlete['note_superg'];
 		    break;
 		case 'Descente':
-		    $moy = $athlete['note_slalom'];
+		    $moy = $athlete['note_descente'];
 		    break;
 		case 'Super Combiné':
-		    $moy = $athlete['note_slalom'];
+		    $moy = $athlete['note_combine'];
 		    break;
 		default:
 		    $moy = 0;
@@ -68,40 +71,28 @@
 	    
 	    $all_athletes[$id]['moyenne'] = $moy;
 	    $all_athletes[$id]['pos_prono'] = 0;
-	}
-	$_SESSION['ski_alpin_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 30;
-	
-      // CALCUL DES ETOILES ATHLETES
-	$SEUIL_3 = 10;
-	$SEUIL_2 = 20;
-	$SEUIL_1 = 30;
-	foreach($all_athletes as $id => $athlete){
-	    $moy = $athlete['moyenne'];
-
-	    $diff = intval($moy_max - $moy);
-	    switch($diff)
+	    
+	    switch($moy)
 	    {
-		case 0:
-		    $nb_etoiles = 3;
-		    break;
-		case $diff <= $SEUIL_3 :
-		    $nb_etoiles = 3;
-		    break;
-		case $diff > $SEUIL_3 && $diff <= $SEUIL_2 :
+		case $moy > $SEUIL_2 && $moy <= $SEUIL_3 :
 		    $nb_etoiles = 2;
 		    break;
-		case $diff > $SEUIL_2 && $diff <= $SEUIL_1 :
+		case $moy > $SEUIL_1 && $moy <= $SEUIL_2 :
 		    $nb_etoiles = 1;
 		    break;
+		case $moy <= $SEUIL_1 :
+		    $nb_etoiles = 0;
+		    break;
 		default :
-		     $nb_etoiles = 0;
+		     $nb_etoiles = 3;
 	    }
 	    
 	    $all_athletes[$id]['etoiles'] = $nb_etoiles;
 	     
 	    $_SESSION['ski_alpin_notes'][$ID_JEU][$ID_CAL][$id] = $nb_etoiles;
 	}
-
+	$_SESSION['ski_alpin_notes'][$ID_JEU][$ID_CAL]['etoiles_max'] = 30;
+		
 	$tab_id_athletes = explode(";", $prono['prono']);
 	$taille_prono = sizeof($tab_id_athletes);
 	if($taille_prono > 1){

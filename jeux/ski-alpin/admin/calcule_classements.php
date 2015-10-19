@@ -255,7 +255,7 @@
 	
 	$nom_fichier = '02-Par points.txt';
 	
-	$titre = 'Points';
+	$titre = 'FIS';
 	$descr = 'Récompense le pronostiqueur le plus régulier';
 	$colonnes = ';;Pronos;Points';
 	$taille_colonnes = '2;5;2;3';

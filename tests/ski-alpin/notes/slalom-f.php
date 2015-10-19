@@ -65,7 +65,7 @@ $sql = "SELECT * FROM ski_alpin_athlete WHERE genre='F' AND nom LIKE ? AND preno
 $prep = $db->prepare($sql);
 $prep->setFetchMode(PDO::FETCH_OBJ);
 
-$sql3 = "UPDATE ski_alpin_athlete SET note_superg=70 WHERE id=?";
+$sql3 = "UPDATE ski_alpin_athlete SET note_slalom=70 WHERE id=?";
 $prep3 = $db->prepare($sql3);
 foreach ($athletes as $athlete){
     $nom = explode(' ', $athlete);
@@ -76,9 +76,9 @@ foreach ($athletes as $athlete){
     
     if($ath){
 	if($ath->retraite == 0){
-	    echo $nom[0] . ' ' . $nom[sizeof($nom) - 1] . ' : ' . $ath->nom . ' ' . $ath->prenom . ' - ' . $ath->note_superg . '<br/>';
+	    echo $nom[0] . ' ' . $nom[sizeof($nom) - 1] . ' : ' . $ath->nom . ' ' . $ath->prenom . ' - ' . $ath->note_slalom . '<br/>';
 	
-	    if($ath->note_superg < 70){
+	    if($ath->note_slalom < 70){
 		$prep3->bindValue(1,$ath->id);
 		$prep3->execute();
 	    }
@@ -96,14 +96,14 @@ echo 'ATHLETES A PLUS DE 65 DANS LA BASE, NON RECENSES DANS CE CLASSEMENT<br/>';
 
 $ids = implode(',',$arr_id);
 
-$sql2 = "SELECT * FROM ski_alpin_athlete WHERE retraite=0 AND genre='F' AND note_superg >= 65 AND id NOT IN ($ids)";
+$sql2 = "SELECT * FROM ski_alpin_athlete WHERE retraite=0 AND genre='F' AND note_slalom >= 65 AND id NOT IN ($ids)";
 $prep2 = $db->prepare($sql2);
 $prep2->setFetchMode(PDO::FETCH_OBJ);
 $prep2->execute();
 
 
 while($ath = $prep2->fetch()){
-    echo $ath->nom . ' ' . $ath->prenom . ' - ' . $ath->note_superg . '<br/>';
+    echo $ath->nom . ' ' . $ath->prenom . ' - ' . $ath->note_slalom . '<br/>';
 }
 
     

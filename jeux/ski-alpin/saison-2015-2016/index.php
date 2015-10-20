@@ -491,8 +491,8 @@
 	    	    
 	    echo '		    <li class="' . $tmp_class . '">
 					<a class="clearfix" value="' . $id . '" data-action="goTo">
-					    <img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$calendrier['id_pays']]['drapeau_icone'] . '"/>
-					    <span class="title col-md-12">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</span>
+					    <div class="flex-center"><img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$calendrier['id_pays']]['drapeau_icone'] . '"/>
+					    <span class="title col-md-10 col-sm-10">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</span></div>
 					    <span class="date col-md-6">' . $tmp_date . '</span>
 					    <span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
 					</a>

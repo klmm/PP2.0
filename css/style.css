@@ -87,6 +87,9 @@ p {
 	text-shadow: 1px 1px black;
 	padding: 10px;
 }
+.table{
+	font-size:17px;
+}
 /* ______________________________ couleurs sports___________________________________*/
 .bcr-foot{
     background-color: #96ff00!important;
@@ -117,6 +120,59 @@ p {
 }
 .cr-biathlon{
     color: #ef3afb!important;
+}
+
+.player-name{
+    margin-right: 20px;
+}
+.player-badge{
+    margin-right: -10px;
+    width: 24px;
+    //height: 24px;
+    display: inline-block;
+    color: transparent;
+}
+.player-badge:hover{
+    -ms-transform: translate(-10px); /* IE 9 */
+   	-webkit-transform: translate(-10px); /* Safari */
+    transform: translateY(-10px);
+	transition: 0.5s ease
+}
+.b-football-gold{
+    background-image: url(../img/static/badges/b_football_gold_24.png);
+}
+.b-football-silver{
+    background-image: url(../img/static/badges/b_football_silver_24.png);
+}
+.b-football-bronze{
+    background-image: url(../img/static/badges/b_football_bronze_24.png);
+}
+.b-rugby-gold{
+    background-image: url(../img/static/badges/b_rugby_gold_24.png);
+}
+.b-rugby-silver{
+    background-image: url(../img/static/badges/b_rugby_silver_24.png);
+}
+.b-rugby-bronze{
+    background-image: url(../img/static/badges/b_rugby_bronze_24.png);
+}
+.b-ski-gold{
+    background-image: url(../img/static/badges/b_ski_gold_24.png);
+}
+.b-ski-silver{
+    background-image: url(../img/static/badges/b_ski_silver_24.png);
+}
+.b-ski-bronze{
+    background-image: url(../img/static/badges/b_ski_bronze_24.png);
+}
+.b-cyclisme-gold{
+    background-image: url(../img/static/badges/b_cyclisme_gold_24.png);
+}
+.b-cyclisme-silver{
+    background-image: url(../img/static/badges/b_cyclisme_silver_24.png);
+}
+.b-cyclisme-bronze{
+    background-image: url(../img/static/badges/b_cyclisme_bronze_24.png);
 }
 
 /* ______________________________ modal panel ___________________________________*/
@@ -541,7 +597,7 @@ footer  p {
 	padding-left: 30px;
 }
 
-#playerInfo-form{
+#bInfo-form{
 	text-align: center;
 }
 

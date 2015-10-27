@@ -131,12 +131,14 @@ p {
     //height: 24px;
     display: inline-block;
     color: transparent;
+	background-repeat: no-repeat;
 }
 .player-badge:hover{
     -ms-transform: translate(-10px); /* IE 9 */
    	-webkit-transform: translate(-10px); /* Safari */
     transform: translateY(-10px);
 	transition: 0.5s ease
+	
 }
 .b-football-gold{
     background-image: url(../img/static/badges/b_football_gold_24.png);

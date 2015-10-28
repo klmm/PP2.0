@@ -2,9 +2,14 @@
 
     require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_commentaires.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php');
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_badges.php';
 
     session_start();
     $login = $_SESSION['LoginJoueur'];
+    
+    //--------------------------------------BADGES--------------------------------------//
+    $badges = get_badges_tous();
+    //----------------------------------------------------------------------------------//
     
     if($login != ""){
         $bConnected = true;
@@ -45,7 +50,8 @@
 	'connecte' => $bConnected,
 	'b_article' => $barticle,
 	'commentaires' => $tab_commentaires,
-	'likes' => $tab_likes    // !!!! 1:dislike, 2:like
+	'likes' => $tab_likes, // !!!! 1:dislike, 2:like
+	'badges' => $badges
     );
 
     echo json_encode($res);

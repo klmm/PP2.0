@@ -367,6 +367,7 @@ function getAllComs(b_article, id_1, id_2, tri) {
 			var connecte = result.connecte;
 			var btn_disabled_class, status_class, status_text;
 			var no_like = false;
+			var badges = result.badges;
 			
 			if(connecte){
 			    $( ".post-form" ).empty();
@@ -401,17 +402,14 @@ function getAllComs(b_article, id_1, id_2, tri) {
 						    btn_disabled_class = "disabled";
 						    status_class = "dislike-status";
 						    status_text = "Vous n'avez pas aimé";
-						    //alert(object['id_commentaire'] + ' - ' + status_text);
 					    }
 					    else{
 						    btn_disabled_class = "disabled";
 						    status_class = "like-status";
 						    status_text = "Vous avez aimé";
-						    //alert(object['id_commentaire'] + ' - ' + status_text);
 					    }
 
 				    } else {
-					    //alert(object['id_commentaire']);
 					    btn_disabled_class = "";
 					    status_class = "like-status";
 					    status_text = "";
@@ -423,13 +421,23 @@ function getAllComs(b_article, id_1, id_2, tri) {
 				    status_text = "";
 				}
 				
+				var text_badges = '';
+				if(badges.hasOwnProperty(object['joueur'])){
+				    for( var j=0; j<badges[object['joueur']].length; j++){
+					var badge = badges[object['joueur']][j];
+					text_badges += '&nbsp;<span style="width: 24px; height: 24px;" title="' + badge.nom_badge + ' (' + badge.classement + ')" class="player-badge ' + badge.class_badge + '">' + badge.classement + '</span>';
+				    }
+				}
+				
+				//alert("text badges" + object['joueur'] + " : " + text_badges);
+				
 				$( ".com-container" ).append(  '<div class="like-form col-md-10 col-md-offset-1">' +		
 				   
 						'<p id="id-com" value="' + object['id_commentaire'] + '" class="hidden"></p>' +
 						'<p id="b-article" value="' + barticle + '" class="hidden"></p>' +
 						'<p id="id-art-jeu" value="' + id_1 + '" class="hidden"></p>' +
 						'<p id="id-cal" value="' + id_2 + '" class="hidden"></p>' +
-						'<div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4">' + object['joueur'] + '</p>' +
+						'<div class="comment-box clearfix"><p class="user col-md-4 col-sm-4 col-xs-4"><span>' + object['joueur'] + '</span>'+ text_badges + '</p>' +
 						    '<p class="time col-md-8 col-sm-8 col-xs-8">' + object['dateheurepub_conv'] + '</p>' +
 						    '<p class="time pull-right hidden">' + object['dateheurepub_court'] + '</p>' +
 						    '<p class="comment col-md-12 col-sm-12 col-xs-12">' + object['contenu'] + '</p>'+

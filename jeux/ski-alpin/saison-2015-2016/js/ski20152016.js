@@ -28,7 +28,7 @@ function Init_Forms_Ski()
 	
 	$(document).on('click', '.scores tr', function(e)
 	{
-		var joueur = $(this).find(".table-name").html().valueOf();
+		var joueur = $(this).find(".player-name").html().valueOf();
 		var id_cal = $(this).parent().parent().attr("id");
 
 		render_prono_autre(id_cal,joueur);

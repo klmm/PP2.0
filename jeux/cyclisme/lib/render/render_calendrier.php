@@ -16,6 +16,7 @@
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_equipe.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_cycliste.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_badges.php';
     //-------------------------------------------------------------------------------------//
   
    
@@ -48,7 +49,9 @@
     
     
     
-    
+    //--------------------------------------BADGES--------------------------------------//
+    $badges = get_badges_tous();
+    //------------------------------------------------------------------------------------------------//
     
     
     
@@ -304,7 +307,16 @@
 	    
 	    $res .= '		    <tr class="' . $class_surlign_joueur . '">
 					<th class="table-place col-md-2">' . $pos . '</th>
-					<td class="table-name col-md-6">' . $value['joueur'] . '</td>
+					<td class="table-name col-md-6">
+					    <span class="player-name">' . $value['joueur'] . '</span>';
+	    
+	    foreach($badges[$value['joueur']] as $key => $badge){
+		$res .= '<span title="' . $badge['nom_badge'] . ' (' . $badge['classement'] . ')" class="player-badge ' . $badge['class_badge'] . '">' . $badge['classement'] . '</span>';
+	    }
+	    
+	    
+	    $res .= '
+					</td>
 					<td class="table-point col-md-4">' . $pts_joueur . '</td>
 				    </tr>';
 	}

@@ -97,13 +97,15 @@
 	return $arr;
     }
     
-    function get_joueurs_oubli_paris($id_jeu, $id_cal){
+    function get_joueurs_oubli_paris($id_jeu, $id_cal, $id_discipline){
 	
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_inscriptions.php');
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
 	
+	$inscrits = get_joueurs_inscriptions_jeu($id_jeu);
 	$jeu = get_jeu_id($id_jeu);
 	$sport = $jeu['sport'];
 	
@@ -116,16 +118,22 @@
 		$table_prono = 'rugby_prono';
 	    break;
 	
+	    case 'Ski alpin':
+		$table_prono = 'ski_alpin_prono';
+	    break;
+	
 	    default:
 		return null;
 	}
 
 	//On fait la requete sur le login
 	$sql = "SELECT * FROM Joueurs WHERE NOT EXISTS (
-			    SELECT * FROM " . $table_prono . " WHERE Joueurs.Login = " . $table_prono . ".joueur AND id_calendrier=? AND id_jeu=?
-					    )
-					    AND EXISTS (SELECT * FROM joueurs_inscriptions WHERE (joueurs_inscriptions.joueur=Joueurs.Login AND id_jeu=? AND no_mail=0))
-					    AND no_mail=0";
+							    SELECT * FROM " . $table_prono . " WHERE Joueurs.Login = " . $table_prono . ".joueur AND id_calendrier=? AND id_jeu=?
+							)
+							AND EXISTS (
+							    SELECT * FROM joueurs_inscriptions WHERE (joueurs_inscriptions.joueur=Joueurs.Login AND id_jeu=? AND no_mail=0)
+							)
+							AND no_mail=0";
 
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_cal,PDO::PARAM_INT);
@@ -138,7 +146,17 @@
 	$i = 0;
 	while( $enregistrement = $prep->fetch() )
 	{
-	    $arr[$i]['login'] = $enregistrement->Login;
+	    $login = $enregistrement->Login;
+	    $filtre = $inscrits[$login]['filtre'];
+	    
+	    if($filtre != 0){
+		$binary = decbin($filtre);
+		if($binary[strlen($binary)-$id_discipline] == 0){
+		    continue;
+		}
+	    }
+	    
+	    $arr[$i]['login'] = $login;
 	    $arr[$i]['mail'] = $enregistrement->Mail;
 	    $arr[$i]['nom'] = $enregistrement->Nom;
 	    $arr[$i]['prenom'] = $enregistrement->Prenom;

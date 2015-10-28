@@ -344,7 +344,7 @@
 	    	    
 	    if($calendrier['traite']){
 		$pos = $value['classement'];
-		$pts_joueur = $value['score_total'];
+		$pts_joueur = $value['score_total']*$calendrier['coefficient'];
 	    }
 	    else{
 		$pos = '';
@@ -355,7 +355,7 @@
 							<tr class="' . $class_surlign_joueur . '">
 							    <th class="table-place col-md-2">' . $pos .'</th>
 							    <td class="table-name col-md-6">' . $key . '</td>
-							    <td class="table-point col-md-4">' . $pts_joueur*$calendrier['coefficient'] . '</td>
+							    <td class="table-point col-md-4">' . $pts_joueur . '</td>
 							</tr>';
 	}
 								

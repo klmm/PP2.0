@@ -16,6 +16,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/get_classements.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_badges.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_calendrier.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/cyclisme/lib/sql/get_prono.php';
@@ -70,6 +71,8 @@
     
     $classements = get_classements($jeu['url'] . '/classements');
     $nb_classements = sizeof($classements);
+    
+    $badges = get_badges_tous();
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
 
     
@@ -391,8 +394,16 @@
 		    $class_surlign_joueur = '';
 		}
 		echo '			    <tr class="' . $class_surlign_joueur . '">';
+		
 		for($k=0;$k<sizeof($classements[$i]['classement'][$j]);$k++){
-		    echo '			<td class="">' . $classements[$i]['classement'][$j][$k] . '</th>';
+		    $txt_badges = '';
+		    if($k == 1){
+			$joueur_badge = $classements[$i]['classement'][$j][$k];
+			foreach($badges[$joueur_badge] as $key => $badge){
+			    $txt_badges .= '&nbsp;<span title="' . $badge['nom_badge'] . ' (' . $badge['classement'] . ')" class="player-badge ' . $badge['class_badge'] . '">' . $badge['classement'] . '</span>';
+			}
+		    }
+		    echo '			<td class=""><span>' . $classements[$i]['classement'][$j][$k] . '</span>' . $txt_badges . '</td>';
 		}
 		echo '			    </tr>';
 	    }

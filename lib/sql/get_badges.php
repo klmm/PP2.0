@@ -60,15 +60,13 @@
 		    $classement = '3ème';
 		    break;
 	    }
-	    
-	    
-	    
+   
 	    $arr[$joueur][] = array(
-					'sport' => $sport,
-					'nom_badge' => $nom_badge,
-					'classement' => $classement,
-					'class_badge' => $class_badge
-				    );
+		'sport' => $sport,
+		'nom_badge' => $nom_badge,
+		'classement' => $classement,
+		'class_badge' => $class_badge
+	    );
 	}
 	$db = null;
 	return $arr;

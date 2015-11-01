@@ -53,6 +53,32 @@
 	}
     }
     
+    function get_joueurs_inscriptions_joueur($joueur){
+	// On �tablit la connexion avec la base de donn�es
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+	$bdd = new Connexion();
+	$db = $bdd->getDB();
+
+	//On fait la requete sur le login
+	$sql = "SELECT * FROM joueurs_inscriptions WHERE (joueur=?)";
+	$prep = $db->prepare($sql);
+	$prep->bindValue(1,$joueur,PDO::PARAM_STR);
+	$prep->setFetchMode(PDO::FETCH_OBJ);
+	$prep->execute();
+		
+	while ($enr = $prep->fetch()){
+	    $id_jeu = $enr->id_jeu;
+	    
+	    $arr[$id_jeu]['id_joueurs_inscriptions'] = $enr->id_joueurs_inscriptions;
+	    $arr[$id_jeu]['id_jeu'] = $id_jeu;
+	    $arr[$id_jeu]['joueur'] = $joueur;
+	    $arr[$id_jeu]['classement'] = $enr->classement;
+	    $arr[$id_jeu]['no_mail'] = $enr->no_mail;
+	    $arr[$id_jeu]['filtre'] = $enr->filtre;
+	}
+	return $arr;
+    }
+    
     function get_joueurs_inscriptions_jeu($id_jeu){
 	// On �tablit la connexion avec la base de donn�es
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');

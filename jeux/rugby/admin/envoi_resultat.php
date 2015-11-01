@@ -96,6 +96,7 @@
     $DELTA_ECART = 3;
     $POINTS_MAX_POINTS = 15;
     $DELTA_POINTS = 1;
+    $POINTS_BONUS_TOUT_PILE = 30;
     // ---------- POINTS ATTRIBUES -------------//
     
     
@@ -117,6 +118,7 @@
 	$score_vainqueur = 0;
 	$score_essais1 = 0;
 	$score_essais2 = 0;
+	$bonus_tout_pile = 0;
 	
 	// VAINQUEUR
 	if($prono['prono_vainqueur'] == $vainqueur){
@@ -133,7 +135,10 @@
 	    $score_essais2 = $POINTS_ESSAIS;
 	}
 	
-	
+	// BONUS TOUT-PILE
+	if($prono['prono_points1'] == $score1 && $prono['prono_points2'] == $score2){
+	    $bonus_tout_pile = $POINTS_BONUS_TOUT_PILE;
+	}
 	
 	// POINTS 1
 	$score_points1 = max($POINTS_MAX_POINTS - $DELTA_POINTS*(abs($prono['prono_points1'] - $score1)),0);
@@ -145,7 +150,7 @@
 	$score_ecart = max($POINTS_MAX_ECART - $DELTA_ECART*(abs(($prono['prono_points1'] - $prono['prono_points2']) - ($score1 - $score2))),0);
 	
 	// TOTAL
-	$score_total = $score_vainqueur + $score_essais1 + $score_essais2 + $score_points1 + $score_points2 + $score_ecart;
+	$score_total = $score_vainqueur + $score_essais1 + $score_essais2 + $score_points1 + $score_points2 + $score_ecart + $bonus_tout_pile;
 	
 	$prep2->bindValue(1,$score_vainqueur,PDO::PARAM_INT);
 	$prep2->bindValue(2,$score_essais1,PDO::PARAM_INT);

@@ -194,7 +194,7 @@
 		$arr[$id_cal]['temps_restant'] = dateheure_sql_to_temps_restant($arr[$id_cal]['date_debut']);
 	    }
 	    
-	    if($arr[$id_cal]['traite'] && dateheure_sql_to_jours_passes($arr[$id_cal]['date_debut']) > 7){
+	    if($arr[$id_cal]['traite'] && dateheure_sql_to_jours_passes($arr[$id_cal]['date_debut']) > 15){
 		$arr[$id_cal]['tri'] = 1000 - $j;
 	    }
 	    else{

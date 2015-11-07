@@ -70,7 +70,6 @@
     
     
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
-    $id_cal = get_id_calendrier_actuel($ID_JEU,$filtre_epreuves);
     $jeu = get_jeu_id($ID_JEU);
         
     $arr_breves = get_breves_jeu($ID_JEU);
@@ -78,10 +77,7 @@
     
     $arr_articles = get_articles_jeu($ID_JEU);
     $nb_articles = sizeof($arr_articles);
-    
-    $arr_calendrier = get_calendrier_jeu_filtre($ID_JEU,$filtre_epreuves);
-    $nb_calendrier = sizeof($arr_calendrier);
-    
+
     $classements = get_classements($jeu['url'] . '/classements');
     $nb_classements = sizeof($classements);
     
@@ -442,130 +438,11 @@
 
     
 //---------------------------------------------CALENDRIER------------------------------------------------------//	
-    if($nb_calendrier > 0){
-	echo '	<div class="section clearfix" id="resultats" style="min-height: 214px;">
-		    <div class="sectionSide" style="margin-bottom:50px;">
-			<h2 class="section-heading">Calendrier</h2>
-		    </div>
-		    <div class="left-content col-md-3 col-sm-3">
-			<nav id="calendar" class="navbar navbar-default" role="navigation">
-			    <div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
-				    <span class="sr-only">Toggle navigation</span>';
+    
+    echo '
+		<div class="section clearfix" id="resultats" style="min-height: 214px;">	    
 
-	for ($i=0;$i<4;$i++){
-	    echo '		    <span class="icon-bar"></span>';
-	}
-	
-	echo '			</button>
-			    </div>
-
-			    <div class="collapse navbar-collapse navbar-calendar">
-				<ul id="list-cal" class="nav navbar-nav">';
-	
-	for($i=0;$i<$nb_calendrier;$i++){
-	    $calendrier = $arr_calendrier[$i];
-	    $id = $calendrier['id_ski_alpin_calendrier'];
-	    
-	    if($id == $id_cal){
-		$tmp_class = 'active';
-	    }
-	    else{
-		$tmp_class = '';
-	    }
-	    
-	    if($calendrier['annule'] == "0"){
-		if($calendrier['commence'] == "0"){
-		    $tmp_date = $calendrier['date_debut_fr_tcourt'] . ', à ' . $calendrier['heure_debut_fr'];
-		    if($calendrier['disponible'] == "1"){
-			$tmp_ico = 'glyphicon-play';
-		    }
-		    else{
-			$tmp_ico = 'glyphicon-lock';
-		    }
-		}
-		else{
-		    if($calendrier['traite'] == "0"){
-			$tmp_ico = 'glyphicon-refresh';
-			$tmp_date = 'En cours';
-		    }
-		    else{
-			$tmp_ico = 'glyphicon-stats';
-			$tmp_date = 'Terminé';
-		    }
-		}
-	    }
-	    else{
-		$tmp_ico = 'glyphicon-stats';
-		$tmp_date = 'Annulé';
-	    }
-	    	    
-	    echo '		    <li class="' . $tmp_class . '">
-					<a class="clearfix" value="' . $id . '" data-action="goTo">
-					    <div class="flex-center"><img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$calendrier['id_pays']]['drapeau_icone'] . '"/>
-					    <span class="title col-md-10 col-sm-10">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</span></div>
-					    <span class="date col-md-6">' . $tmp_date . '</span>
-					    <span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
-					</a>
-				    </li>';
-	}
-					    
-	echo '
-				</ul>
-			    </div>
-			</nav>
-		    </div>
-		    
-
-
-
-
-
-	<!-- CONTENU -->
-     	<div class="right-content col-md-9 col-sm-9 col-xs-12">	
-		<div class="scroll-content">
-			<div id="cal-container">	
-			
-			</div>
-		    
-
-
-
-
-	<!-- COMMENTAIRES -->
-		    <div class="comment-panel">
-			<div class="" id="commentaires">';
-	
-	if ($bConnected){
-        echo '
-			    <div class="sectionSide">
-				<h2 class="section-heading">Commentaires</h2>
-				<p class="section-highlight">Venez donner votre point de vue !</p>			
-			    </div>
-
-			    <div class="row post-container">		
-				<form id="post-form" role="form" class="row post-form" action="/lib/form/post_commentaire.php" method="POST">
-
-
-				</form>
-			    </div>';
-    }
-    else{
-        echo '		    <div class="sectionSide">
-				<h2 class="section-heading">Commentaires</h2>
-				<p class="section-highlight">Connectez-vous pour participer au débat !</p>
-			    </div>';
-    }
-	
-    echo '		    <div class="row com-container">
-	
-			    </div>
-			</div>
-			</div>
-			</div>
-		    </div>
-		</div>'; 
-    }
+		</div>';
 //---------------------------------------------CALENDRIER------------------------------------------------------//
 
 
@@ -602,12 +479,14 @@
 	</footer>
 	
 	<script src="' . $js . '"></script>
+	
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
 	<script src="/js/classie.js"></script>
 	<script src="/js/jquery.scrollTo.min.js"></script>
 	<script src="/js/jqBootstrapValidation.js"></script>	
 	<script src="/js/script.js"></script>
+	<script>render_liste_calendrier(' . $filtre_epreuves . ');</script>
         <script src="/bower_components/velocity/velocity.js"></script>
         <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
         <script src="/bower_components/angular/angular.js"></script>
@@ -623,24 +502,20 @@
 		if(new Date().getTime() - time >= 600000)
 		    window.location.reload(true);
 		else
-		    setTimeout(refresh, 10000);
+		    setTimeout(refresh, 30000);
 	    }
 
-	    setTimeout(refresh, 10000);
+	    setTimeout(refresh, 30000);
 	</script>
 
 	
         <script>
-	    
             jQuery(document).ready(function ($) {
-		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
-				
-		getAllComs(0,' . $ID_JEU . ',' . $id_cal . ',0);
-		render_pres_panel(' . $id_cal . ');
-		    
+		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );			
+
 		Init_Forms();
-		Init_Forms_Ski();
-		
+		Init_Forms_Ski();		
+	
 		$(window).resize(function() {
 			//pageSection();
 			 $(\'body\').scrollspy("refresh");
@@ -693,6 +568,8 @@
             
                 
     });
+   
+
     var cbpAnimatedHeader = (function() {
  
                 var docElem = document.documentElement,

@@ -1,11 +1,11 @@
 // A CHANGER LORS DE LA CREATION D'UN JEU
 var id_jeu = 4;
 
+var test = 1;
 function Init_Forms_Ski()
 {
 	$(document).on('click', '#calendar a', function(e)
-	{    
-	    
+	{    	    
 	    $('#list-cal li').each(function() {
 		$(this).removeClass("active");
 	    });
@@ -14,24 +14,16 @@ function Init_Forms_Ski()
 	    
 	    var id = $(this).attr("value");
 	    render_pres_panel(id);
-	    getAllComs(0,id_jeu,id,0);
 	    
 	    document.location.href='#resultats';
 	});
 	
-	$(document).on('mouseover', '#calendar a', function(e)
-	{
-		var id = $(this).attr("value");
-		//alert(id);
-		//juste affichage de l'image...à voir
-	});
-	
 	$(document).on('click', '.scores tr', function(e)
 	{
-		var joueur = $(this).find(".player-name").html().valueOf();
-		var id_cal = $(this).parent().parent().attr("id");
+	    var joueur = $(this).find(".player-name").html().valueOf();
+	    var id_cal = $(this).parent().parent().attr("id");
 
-		render_prono_autre(id_cal,joueur);
+	    render_prono_autre(id_cal,joueur);
 	});
 }
 
@@ -190,11 +182,43 @@ function dialog(href, titre, message){
 	$('#dataConfirmModal').modal({show:true});
 }
 
-
+function render_liste_calendrier(filtre, joueur){
+	var formURL = "/jeux/ski-alpin/lib/render/render_liste_calendrier.php";
+	var postData = "id_jeu=" + id_jeu + "&filtre=" + filtre;
+	test = 1;
+	$( "#resultats" ).empty();
+	$( "#resultats" ).append("Chargement...");	
+	
+	$.ajax(
+	{
+		url : formURL,
+		type: "POST",
+		data : postData,
+		success:function(data, textStatus, jqXHR) 
+		{	    		    
+		    var result = $.parseJSON(data);
+		    var html = result.html;
+		    var id_cal = result.id_cal;
+		    		    
+		    $( "#resultats" ).empty();
+		    $( "#resultats" ).append(html);
+		    render_pres_panel(id_cal);
+		},
+		error: function(jqXHR, textStatus, errorThrown) 
+		{
+		    $( "#resultats" ).empty();
+		    $( "#resultats" ).append("Erreur...");
+		}
+	});
+}
 
 function render_pres_panel(id_cal){
     	var formURL = "/jeux/ski-alpin/lib/render/render_calendrier.php";
 	var postData = "id_jeu=" + id_jeu + "&id_cal=" + id_cal;
+	$( "#cal-container" ).empty();
+	$( "#cal-container" ).append("Chargement...");
+	
+	
 	$.ajax(
 	{
 		url : formURL,
@@ -205,18 +229,58 @@ function render_pres_panel(id_cal){
 		    var result = $.parseJSON(data);
 		    var html = result.html;
 		    var premier = result.premier;
+		    
 		    $( "#cal-container" ).empty();
 		    $( "#cal-container" ).append(html);
+		    
 		    if (premier != null){
 			render_prono_autre(id_cal,premier);
 		    }
-		    
+		    getAllComs(0,id_jeu,id_cal,0);
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
-			alert('error');//do nothing
+		    $( "#cal-container" ).empty();
+		    $( "#cal-container" ).append("Erreur...");
 		}
 	});
+	
+	if(test == 1){
+	    $("#post-form").submit(function(e)
+	    {
+		    $('.alert').alert('close');
+		    var postData = $(this).serializeArray();
+		    var formURL = $(this).attr("action");
+		    $.ajax(
+		    {
+			    url : formURL,
+			    type: "POST",
+			    data : postData,
+			    success:function(data, textStatus, jqXHR) 
+			    {
+				    var result = data.split(';');
+				    if (result[0] == 'success'){
+					    //chargement des coms
+					getAllComs(result[1],result[2],result[3],0);
+				    }else {
+					    $( "#post-container" ).append( '<div class="alert alert-info alert-dismissible" role="alert">'+
+					    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+					    '<strong>Attention!  </strong>'+result[0]+'</div>' );
+				    }
+				    $('#post-form')[0].reset();
+			    },
+			    error: function(jqXHR, textStatus, errorThrown) 
+			    {
+				    $( "#post-container" ).append( '<div class="alert alert-danger alert-dismissible" role="alert">'+
+					    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+					    '<strong>Attention!  </strong>'+errorThrown+'</div>' );
+			    }
+		    });
+		    e.preventDefault(); //STOP default action
+
+	    });
+	    test = 0;
+	}
 }
 
 function render_prono_autre(id_cal,joueur){

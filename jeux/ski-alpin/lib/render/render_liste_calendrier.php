@@ -1,5 +1,167 @@
 <?php
 
+    //--------------------------------------FONCTIONS--------------------------------------//
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_pays.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_prono.php';
+    //-------------------------------------------------------------------------------------//
+    
+    
+    
+    //--------------------------------------VARIABLES DE SESSION--------------------------------------//
+    $ID_JEU = $_POST['id_jeu'];
+    $FILTRE = $_POST['filtre'];
+    //------------------------------------------------------------------------------------------------//
 
+    
+    //--------------------------------------CONNECTE--------------------------------------//
+    session_start();
+    $JOUEUR = $_SESSION['LoginJoueur'];
 
+    if($JOUEUR != ""){
+        $bConnected = true;
+    }
+    else{
+        $bConnected = false;
+    }
+    //------------------------------------------------------------------------------------------------//
+    
+    
+    
+    //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
+    $id_cal = get_id_calendrier_actuel($ID_JEU,$FILTRE);
+    
+    $arr_calendrier = get_calendrier_jeu_filtre($ID_JEU,$FILTRE);
+    $nb_calendrier = sizeof($arr_calendrier);
+    
+    $pays = get_pays_tous();
+    //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
+    
+    $res = '';
+    //---------------------------------------------CALENDRIER------------------------------------------------------//	
+    if($nb_calendrier > 0){
+	$res .= '	
+<div class="sectionSide" style="margin-bottom:50px;">
+    <h2 class="section-heading">Calendrier</h2>
+</div>
+<div class="left-content col-md-3 col-sm-3">
+    <nav id="calendar" class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-calendar">
+		<span class="sr-only">Toggle navigation</span>';
+
+	for ($i=0;$i<4;$i++){
+	    $res .= '
+		<span class="icon-bar"></span>';
+	}
+	
+	$res .= '		
+	    </button>
+	</div>
+
+	<div class="collapse navbar-collapse navbar-calendar">
+	    <ul id="list-cal" class="nav navbar-nav">';
+	
+	for($i=0;$i<$nb_calendrier;$i++){
+	    $calendrier = $arr_calendrier[$i];
+	    $id = $calendrier['id_ski_alpin_calendrier'];
+	    
+	    if($id == $id_cal){
+		$tmp_class = 'active';
+	    }
+	    else{
+		$tmp_class = '';
+	    }
+	    
+	    if($calendrier['annule'] == "0"){
+		if($calendrier['commence'] == "0"){
+		    $tmp_date = $calendrier['date_debut_fr_tcourt'] . ', à ' . $calendrier['heure_debut_fr'];
+		    if($calendrier['disponible'] == "1"){
+			$tmp_ico = 'glyphicon-play';
+		    }
+		    else{
+			$tmp_ico = 'glyphicon-lock';
+		    }
+		}
+		else{
+		    if($calendrier['traite'] == "0"){
+			$tmp_ico = 'glyphicon-refresh';
+			$tmp_date = 'En cours';
+		    }
+		    else{
+			$tmp_ico = 'glyphicon-stats';
+			$tmp_date = 'Terminé';
+		    }
+		}
+	    }
+	    else{
+		$tmp_ico = 'glyphicon-stats';
+		$tmp_date = 'Annulé';
+	    }
+	    	    
+	    $res .= '
+		<li class="' . $tmp_class . '">
+		    <a class="clearfix" value="' . $id . '" data-action="goTo">
+			<div class="flex-center"><img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$calendrier['id_pays']]['drapeau_icone'] . '"/>
+			<span class="title col-md-10 col-sm-10">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</span></div>
+			<span class="date col-md-6">' . $tmp_date . '</span>
+			<span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
+		    </a>
+		</li>';
+	}
+					    
+	$res .= '
+	    </ul>
+	</div>
+    </nav>
+</div>
+
+<div class="right-content col-md-9 col-sm-9 col-xs-12">	
+    <div id="big-cal-container" class="scroll-content">
+	<div id="cal-container" class="scroll-content">
+
+	</div>';
+	
+	
+	$res .= '
+	<div class="comment-panel">
+	    <div class="" id="commentaires">';
+	
+	if ($bConnected){
+	    $res .= '
+		<div class="sectionSide">
+		    <h2 class="section-heading">Commentaires</h2>
+		    <p class="section-highlight">Venez donner votre point de vue !</p>			
+		</div>
+
+		<div class="row post-container">		
+		    <form id="post-form" role="form" class="row post-form" action="/lib/form/post_commentaire.php" method="POST">
+
+		    </form>
+		</div>';
+	}
+	else{
+	    $res .= '		    
+		<div class="sectionSide">
+		    <h2 class="section-heading">Commentaires</h2>
+		    <p class="section-highlight">Connectez-vous pour participer au débat !</p>
+		</div>';
+	}
+
+	$res .= '		    
+		<div class="row com-container">
+
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>';
+	
+	
+	$arr = array(	'html' => $res,
+			'id_cal' => $id_cal
+		    );
+	
+	echo json_encode($arr);
+    }
 ?>

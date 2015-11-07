@@ -9,7 +9,8 @@
     $db = $bdd->getDB();
     
     // RECUPERATION DES PARAMETRES
-    $classement = $_POST['classement'];
+    $update = $_POST['update'];
+    $type = $_POST['type'];
     $discipline = $_POST['discipline'];
     $genre = $_POST['genre'];
     $url = $_POST['url'];
@@ -17,10 +18,28 @@
     
     // RECUPERATION DU CLASSEMENT
     $html = file_get_contents($url);
-    $debut = "<th data-hide='phone'>FIS Points</th>";
-    $fin = "footer ";
-    $debut_ath = 'type=result">';
-    $fin_ath = "</a>";
+    
+    switch($type){
+	case "course":
+	    $debut = "<th data-hide='phone'>FIS Points</th>";
+	    $fin = "footer ";
+	    $debut_ath = 'type=result">';
+	    $fin_ath = "</a>";
+	    break;
+	
+	case "classement":
+	    $debut = '<div class="bloc-tab">';
+	    $fin = "footer ";
+	    $debut_ath = 'type=st-WC">';
+	    $fin_ath = "</a>";
+	    break;
+	
+	default:
+	    echo 'KO';
+	    return;
+	    break;
+    }
+    
     
     // MISE EN FORME DU CLASSEMENT
     $html = explode($debut, $html);
@@ -39,7 +58,7 @@
     $discipline = $tab_disciplines[$discipline];
     
     
-    /*echo $classement . '<br/>';
+    /*echo $update . '<br/>';
     echo $discipline . '<br/>';
     echo $genre . '<br/>';
     echo $url . '<br/>';
@@ -69,7 +88,7 @@
 	    if($ath->retraite == 0){
 		echo $nom[0] . ' ' . $nom[sizeof($nom) - 1] . ' : ' . $ath->nom . ' ' . $ath->prenom . ' - ' . $ath->$discipline . '<br/>';
 
-		if($ath->$discipline < 70 && $classement){
+		if($ath->$discipline < 70 && $update){
 		    $prep3->bindValue(1,$ath->id);
 		    $prep3->execute();
 		}

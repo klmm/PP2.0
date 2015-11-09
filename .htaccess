@@ -16,6 +16,8 @@ RewriteRule articles/([0-9a-z-]+)/([0-9a-z-]+)/([0-9]+)-([0-9a-z-]+)$ /article.p
 # PAGE PRONO
 RewriteRule jeux/([0-9a-z-]+)/([0-9]+)/([0-9a-z-]+)/pronostic/([0-9]+)-([0-9a-z-]+)$ jeux/$1/$2/$3/prono.php?id=$4
 RewriteRule jeux/([0-9a-z-]+)/([0-9a-z-]+)/pronostic/([0-9]+)-([0-9a-z-]+)$ jeux/$1/$2/prono.php?id=$3
+# PAGE CONFIGURATION
+RewriteRule configuration$ configuration.php
 
 # INTERDICTION DE LISTER LE CONTENU D'UN DOSSIER
 Options -Indexes

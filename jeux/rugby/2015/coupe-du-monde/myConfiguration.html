@@ -8,6 +8,7 @@
 	
 	<link href="../../../../css/bootstrap.min.css" rel="stylesheet">		
 	<link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../../css/bootstrap-toggle.min.css" rel="stylesheet">
 
 	<link href="../../../../css/carousel.css" rel="stylesheet">
 	<link href="../../../../css/style.css" rel="stylesheet">
@@ -21,9 +22,11 @@
 				<div id='contact-container' class='row'>
 					<div class='sectionSide'>
 						<h2 class='section-heading'>Paramètres du compte</h2>
-						<p class='section-highlight'>Gérez vos informations et vos inscriptions</p>
 					</div>
 					<div class='col-md-6 col-sm-12 col-xs-12'>
+						<div class='sectionSide'>
+							<p class='section-highlight'>Gérez vos informations et vos inscriptions</p>
+						</div>
 						<div class="panelIcon">
 							<div id="avatar"  class="avatar" >
 								
@@ -58,9 +61,98 @@
 								Enregistrer</span>
 							</button>
 						</form>
+						<div id="logo-pp" class='hidden-sm'>
+							<img src='../../../../img/logos/photo_couv.png'/>
+						</div>
 					</div>
 					<div class='col-md-6 col-sm-12 col-xs-12'>
-						
+						<div class='sectionSide'>
+							<p class='section-highlight'>Gérez votre niveau de dépendance aux jeux !</p>
+						</div>
+						<div id="mail-games" class='toggle-div'>
+							<div class="row">
+								<div class='col-md-6 col-sm-6 col-xs-6'>
+									<p class=''>Réception des mails de nouveautés ou de rappel</p>
+								</div>
+								<div class='col-md-6 col-sm-6 col-xs-6 text-right'>
+									<input id="toggle-games" type="checkbox" checked data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" data-on="Tout selectionner" data-off="Tout désélectionner">
+								</div>
+							</div>
+							<form id='mail-games-form' role='form' class='row contact-form' action='/lib/form/??????????.php' method='post'>
+								<ul class='toggle-list'>
+									<li class='toggle-box clearfix'>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item-name'>
+											<p>TDF 2015</p>
+										</div>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item'>
+											<input id="idjeu" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+										</div>
+									</li>
+									<li class='toggle-box clearfix'>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item-name'>
+											<p>Coupe du Monde de Rugby 2015</p>
+										</div>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item'>
+											<input id="5" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+										</div>
+									</li>
+									<li class='toggle-box clearfix'>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item-name'>
+											<p>Saison de Ski Alpin 2015-2016</p>
+										</div>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item'>
+											<input id="6" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+										</div>
+									</li>
+								</ul>
+								<button type='submit' class='btn btn-primary' style='padding:0;margin-top:20px;width:200px;'>
+									<span style='display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;'>
+									Enregistrer</span>
+								</button>
+							</form>	
+						</div>
+						<div id="race-inscriptions" class='toggle-div'>
+							<div class="row">
+								<div class='col-md-6 col-sm-6 col-xs-6'>
+									<p class=''>Epreuves visibles</p>
+								</div>
+								<div class='col-md-6 col-sm-6 col-xs-6 text-right'>
+									<input id="toggle-races" type="checkbox" checked data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" data-off="Ne rien jouer" data-on="Tout jouer">
+								</div>
+							</div>
+							<form id='race-inscriptions-form' role='form' class='row contact-form' action='/lib/form/??????????.php' method='post'>
+								<ul class='toggle-list'>
+									<li class='toggle-box clearfix'>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item-name'>
+											<p>SoeldenF</p>
+										</div>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item'>
+											<input id="idreconnaissable" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+										</div>
+									</li>
+									<li class='toggle-box clearfix'>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item-name'>
+											<p>Levi M</p>
+										</div>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item'>
+											<input id="id5" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+										</div>
+									</li>
+									<li class='toggle-box clearfix'>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item-name'>
+											<p>Kitzbuel H/F</p>
+										</div>
+										<div class='col-md-6 col-sm-6 col-xs-6 toggle-item'>
+											<input id="idjeu+cal?" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+										</div>
+									</li>
+								</ul>
+								<button type='submit' class='btn btn-primary' style='padding:0;margin-top:20px;width:200px;'>
+									<span style='display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;'>
+									Enregistrer</span>
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
 				<div class='row' style='margin-top:40px;'>
@@ -88,8 +180,11 @@
 		<script src="../../../../js/bootstrap.min.js"></script>
 		<script src="../../../../js/jqBootstrapValidation.js"></script>
 		<script src="../../../../js/social-buttons.js"></script>
+		<script src="../../../../js/bootstrap-toggle.min.js"></script>
         <script>
 	    
+		
+		
             jQuery(document).ready(function ($) {
 				$(document).on('click', '.overlay', function(e)
 				{
@@ -113,6 +208,82 @@
 						},
 						error: function(jqXHR, textStatus, errorThrown) 
 						{
+						}
+					});
+					e.preventDefault(); //STOP default action
+				});
+				
+	
+				$('#toggle-games').change(function() {
+					if($(this).prop('checked')){
+						 $('#mail-games .toggle-list input').bootstrapToggle('on');
+					} else {
+						 $('#mail-games .toggle-list input').bootstrapToggle('off');
+					}
+				});
+				
+				$('#toggle-races').change(function() {
+					if($(this).prop('checked')){
+						 $('#race-inscriptions .toggle-list input').bootstrapToggle('on');
+					} else {
+						 $('#race-inscriptions .toggle-list input').bootstrapToggle('off');
+					}
+				});
+				
+				
+				$(document).on('submit', '#mail-games-form', function(e) {
+					var postData = {
+						jeux: []	
+					}
+					$("#mail-games .toggle-list input").each(function(){
+						var id = $(this).attr('id').toString();
+						var bool = $(this).prop('checked');
+						var obj = {};
+						obj[id] = bool;
+						postData.jeux.push(obj);
+					});
+					var formURL = $(this).attr("action");
+					$.ajax(
+					{
+						url : formURL,
+						type: "POST",
+						data : postData,
+						success:function(data, textStatus, jqXHR) 
+						{
+							
+						},
+						error: function(jqXHR, textStatus, errorThrown) 
+						{
+							
+						}
+					});
+					e.preventDefault(); //STOP default action
+				});
+				
+				$(document).on('submit', '#race-inscriptions-form', function(e) {
+					var postData = {
+						races: []	
+					}
+					$("#race-inscriptions .toggle-list input").each(function(){
+						var id = $(this).attr('id').toString();
+						var bool = $(this).prop('checked');
+						var obj = {};
+						obj[id] = bool;
+						postData.races.push(obj);
+					});
+					var formURL = $(this).attr("action");
+					$.ajax(
+					{
+						url : formURL,
+						type: "POST",
+						data : postData,
+						success:function(data, textStatus, jqXHR) 
+						{
+						
+						},
+						error: function(jqXHR, textStatus, errorThrown) 
+						{
+							
 						}
 					});
 					e.preventDefault(); //STOP default action

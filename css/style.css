@@ -548,6 +548,7 @@ margin-bottom:20px;
 }
 .form-control {
 height:40px;
+resize : vertical;
 }
 
 .contact-address{
@@ -576,7 +577,7 @@ footer  p {
 /* ______________________________ my config ___________________________________*/
 
 .section-config {
-	background:#D2D2D2;
+	background:#F5F5F5;
 	padding:60px 0;
 	margin-bottom:0;
 	color: black;
@@ -599,14 +600,14 @@ footer  p {
 	padding-left: 30px;
 }
 
-#bInfo-form{
+#playerInfo-form, #mail-games-form, #race-inscriptions-form{
 	text-align: center;
 }
 
 .panelIcon {
    position: absolute;
    margin: 10px;
-   top:40px;
+   top: 100px;
    right: 0; 
 }
 
@@ -657,6 +658,71 @@ footer  p {
 	line-height: 100px;
 	border-radius:5px;
 	background-size: cover;
+}
+
+.toggle-list{
+	padding : 0;
+	max-height: 350px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.toggle-box{
+	list-style : none;
+	padding: 15px;
+    margin: 15px 2px;
+    //background-color: rgba(107, 129, 149, 0.8);
+	box-shadow: #656565 0px 0px 5px 0px;
+}
+
+#mail-games .toggle-box{
+   background-color: rgba(107, 129, 149, 0.8);
+}
+#race-inscriptions .toggle-box{
+   background-color: rgba(172, 84, 96, 0.8);
+}
+
+#mail-games .toggle-box:hover{
+   background-color: rgba(107, 129, 149, 0.4);
+}
+
+#race-inscriptions .toggle-box:hover{
+   background-color: rgba(172, 84, 96, 0.4);
+}
+
+#mail-games p, #race-inscriptions p{
+	text-align : left;
+}
+
+.toggle-item-name{
+	color : white;
+}
+
+.toggle-item{
+	text-align: center;
+}
+
+.toggle-item-name p{
+	line-height: 34px;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#race-inscriptions{
+	margin-top : 50px;
+}
+
+.toggle-div{
+	
+}
+
+#logo-pp{
+	margin-top: 50px;
+	padding : 5px;
+}
+#logo-pp img{
+	width: 100%;
+	box-shadow: #656565 0px 0px 10px 0px;
 }
 
 /* ______________________________ my dashboard ___________________________________*/

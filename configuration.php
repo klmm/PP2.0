@@ -1,13 +1,13 @@
 <?php
 
 //--------------------------------------FONCTIONS--------------------------------------//
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_articles.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_joueurs.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_jeux.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/auto_login.php';   
     require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/update_joueurs.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_commentaires.php'; 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_likes.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_inscriptions.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_calendrier.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_calendrier.php';
 //-------------------------------------------------------------------------------------//
 
 
@@ -30,9 +30,17 @@
 //------------------------------------------------------------------------------------------------//
 
 
-
-
-
+//--------------------------------------INFOS--------------------------------------//
+    $joueur = get_joueur($loginjoueur);
+    $no_mail_general = $joueur['no_mail'];
+    $tmp_gen = "checked";
+    if($no_mail_general){
+	$tmp_gen = "";
+    }
+    
+    $jeux = get_jeux_encours();
+    $inscriptions = get_joueurs_inscriptions_joueur($loginjoueur);
+//---------------------------------------------------------------------------------//
 
 
 
@@ -123,6 +131,12 @@
     // MENU
     echo '                          </ul>
                                 </div>
+				<div class="navbar-collapse collapse" id="navbar-main">
+                                    <ul class="nav navbar-nav pull-right" style="">
+                                        <li class="active"><a href="#config" data-action="scrollTo">Mes paramètres</a></li>
+					<li class="home"><a href="/" class="glyphicon glyphicon-home "  aria-label="home"><span> Retour au site</span></a></li>
+                                    </ul>  
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -141,21 +155,9 @@
 			</div>
 			<div class="col-md-6 col-sm-12 col-xs-12">
 			    <div class="sectionSide">
-				<p class="section-highlight">Gérez vos informations et vos inscriptions</p>
+				<p class="section-highlight">Gérez vos informations</p>
 			    </div>
-			    <div class="panelIcon">
-				<div id="avatar"  class="avatar" >
-				    <div class="overlay">
-					<span class="lblIcon">Icone</span>
-					<span class="glyphicon glyphicon-plus overlayImage" aria-hidden="true"></span>
-				    </div>
-				</div>
-
-				<form id="formAvatar" role="form" class="" action="/lib/form/??????????.php" method="post">
-				    <input id="panelUpload" type="file" class="file upload">
-				</form>
-			    </div>
-
+ 
 			    <p class="inter-section-highlight">Vos informations de connexion</p>
 			    <p class="private-info" style="display:block;">' . $loginjoueur . '</p>
 
@@ -164,13 +166,24 @@
 			    </button>
 
 			    <p class="inter-section-highlight">Vos informations personnelles</p>
-			    <form id="playerInfo-form" role="form" class="row contact-form" action="/lib/form/??????????.php" method="post">
+			    <form id="playerInfo-form" role="form" class="row contact-form" method="post" enctype="multipart/form-data">
+				<div class="panelIcon">
+				    <div id="avatar"  class="avatar" >
+					<div class="overlay">
+					    <span class="lblIcon">Icone</span>
+					    <span class="glyphicon glyphicon-plus overlayImage" aria-hidden="true"></span>
+					</div>
+				    </div>
 
-				<input type="text" placeholder="Nom" name="nom" class="form-control" required="" data-validation-required-message="Nom obligatoire" />
-				<input type="text" placeholder="Prénom" name="prenom" class="form-control" required="" data-validation-required-message="Prénom obligatoire" />
-				<input type="email" placeholder="Email (pour vous répondre)" name="mail" class="form-control" required="" data-validation-required-message="Mail obligatoire" />
-				<textarea class="form-control" rows="3" name="punchline" placeholder="Ecrivez votre slogan !"></textarea> 
-				<button type="submit" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;">
+				    <input id="panelUpload" name="panelUpload" type="file" class="file upload">
+				    <img id="avatar_img" src="' . $joueur["avatar"] . '" alt="avatar"/>
+				</div>
+			    
+				<input type="text" value="' . $joueur["nom"] . '" placeholder="Nom" name="nom" class="form-control" required="" data-validation-required-message="Nom obligatoire" />
+				<input type="text" value="' . $joueur["prenom"] . '" placeholder="Prénom" name="prenom" class="form-control" required="" data-validation-required-message="Prénom obligatoire" />
+				<input type="email" value="' . $joueur["mail"] . '" placeholder="Email (pour vous répondre)" name="mail" class="form-control" required="" data-validation-required-message="Mail obligatoire" />
+				<textarea class="form-control" rows="3" name="punchline" placeholder="Ecrivez votre slogan !">' . $joueur["slogan"] . '</textarea> 
+				<button type="submit" id="valid_conf" name"valid_conf" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;">
 				    <span style="display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;">
 					Enregistrer
 				    </span>
@@ -184,63 +197,109 @@
 
 			<div class="col-md-6 col-sm-12 col-xs-12">
 			    <div class="sectionSide">
-				<p class="section-highlight">Gérez votre niveau de dépendance aux jeux !</p>
+				<p class="section-highlight">Gérez votre niveau de dépendance aux jeux</p>
 			    </div>
 			    <div id="mail-games" class="toggle-div">
 				<div class="row">
 				    <div class="col-md-6 col-sm-6 col-xs-6">
-					<p class="">Réception des mails de nouveautés ou de rappel</p>
+					<p class="">Recevoir des mails de Parions Potes</p>
 				    </div>
 				    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-					<input id="toggle-games" type="checkbox" checked data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" data-on="Tout selectionner" data-off="Tout désélectionner">
+					<input id="toggle-games" type="checkbox" ' . $tmp_gen . ' data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" data-on="Oui" data-off="Non">
 				    </div>
 				</div>
 
-				<form id="mail-games-form" role="form" class="row contact-form" action="/lib/form/??????????.php" method="post">
-				    <ul class="toggle-list">
+				<form id="mail-games-form" role="form" class="row contact-form" method="post">
+				    <ul class="toggle-list">';
+    
+				foreach($jeux as $key => $jeu){
+				    $tmp = "checked";
+				    if($inscriptions[$jeu['id_jeu']]['no_mail'] || $no_mail_general == true){
+					$tmp = '';
+				    }
+				    
+				    echo '
 					<li class="toggle-box clearfix">
 					    <div class="col-md-6 col-sm-6 col-xs-6 toggle-item-name">
-						<p>TDF 2015</p>
+						<p>' . $jeu['sport'] . ' - ' . $jeu['competition'] . '</p>
 					    </div>
 					    <div class="col-md-6 col-sm-6 col-xs-6 toggle-item">
-						<input id="idjeu" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+						<input class="toggle-game" type="checkbox" ' . $tmp . ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-off="Non" data-on="Oui">
+						<input class="hidden id_jeu" value="' . $jeu['id_jeu'] . '"/>
 					    </div>
-					</li>
+					</li>';
+				}
+					
+					    
+	echo '
 				    </ul>
-				    <button type="submit" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;">
-					<span style="display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;">
-					    Enregistrer
-					</span>
-				    </button>
 				</form>	
 			    </div>
 
-			    <div id="race-inscriptions" class="toggle-div">
-				<div class="row">
-				    <div class="col-md-6 col-sm-6 col-xs-6">
-					<p class="">Epreuves visibles</p>
+			    <div id="race-inscriptions" class="toggle-div">';
+    
+			    foreach($jeux as $key => $jeu){
+				if($jeu['sport'] != 'Biathlon' && $jeu['sport'] != 'Ski alpin'){
+				    continue;
+				}
+				    
+				echo '
+				<div class="blah">
+				    <div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-6">
+					    <p class="">' . $jeu['sport'] . ' - ' . $jeu['competition'] . '</p>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+					    <input class="toggle-races" type="checkbox" checked data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" data-off="Aucune" data-on="Toutes">
+					</div>
 				    </div>
-				    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-					<input id="toggle-races" type="checkbox" checked data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" data-off="Ne rien jouer" data-on="Tout jouer">
-				    </div>
-				</div>
-				<form id="race-inscriptions-form" role="form" class="row contact-form" action="/lib/form/??????????.php" method="post">
-				    <ul class="toggle-list">
-					<li class="toggle-box clearfix">
-					    <div class="col-md-6 col-sm-6 col-xs-6 toggle-item-name">
-						<p>SoeldenF</p>
-					    </div>
-					    <div class="col-md-6 col-sm-6 col-xs-6 toggle-item">
-						<input id="idreconnaissable" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
-					    </div>
-					</li>
-				    </ul>
-				    <button type="submit" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;">
-					<span style="display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;">
-					    Enregistrer
-					</span>
-				    </button>
-				</form>
+				    <form id="race-inscriptions-form" role="form" class="row contact-form" method="post">
+					<input class="hidden id_jeu" value="' . $jeu['id_jeu'] . '">
+					<ul class="toggle-list">';
+				
+				switch($jeu['sport']){
+				    case 'Ski alpin':
+					$epreuves = filtre_to_epreuves($inscriptions[$jeu['id_jeu']]['filtre']);
+					break;
+
+				    case 'Biathlon':
+					$epreuves = filtre_to_epreuves_biathlon($inscriptions[$jeu['id_jeu']]['filtre']);
+					break;
+
+				    default:
+					continue;
+				}
+				
+				foreach($epreuves as $key2 => $epreuve){
+				    $tmp = "";
+				    if($epreuve['inscrit']){
+					 $tmp = "checked";
+				    }
+				    
+				    echo '
+					    <li class="toggle-box clearfix">
+						<div class="col-md-6 col-sm-6 col-xs-6 toggle-item-name">
+						    <p>' . $epreuve['discipline'] . ' ' . $epreuve['genre_long']  . '</p>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6 toggle-item">
+						    <input id="' . $key2 . '" type="checkbox" ' . $tmp . ' data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-off="Non" data-on="Oui">
+						</div>
+					    </li>';
+				}
+					    
+				echo '
+					</ul>
+					<button type="submit" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;">
+					    <span style="display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;">
+						Enregistrer
+					    </span>
+					</button>
+				    </form>
+				</div>';
+			    }
+				
+				    
+    echo '
 			    </div>
 			</div>
 		    </div>
@@ -265,95 +324,164 @@
 	    <script src="/js/bootstrap-toggle.min.js"></script>
 
 	    <script>
+		
+		    
 		jQuery(document).ready(function ($) {
 		    $(document).on("click", ".overlay", function(e)
 		    {
 			$("#panelUpload").click();
 		    });
-		    
-		    $("#panelUpload").change(function(click) {
-			//alert(this.files[0]);
-			var postData = "";
-
-			//côté back, checker si c"est un fichier de type jpg ou png puis l"enregistrer sur le serveur + path dans bdd
+		      
+		    $("#playerInfo-form").submit(function(e) {
+			var postData = $(this).serializeArray();
+			
 			$.ajax(
 			{
-			    url : "/lib/form/get_avatar.php",
+			    url : "/lib/form/post_infos.php",
 			    type: "POST",
 			    data : postData,
 			    success:function(data, textStatus, jqXHR) 
 			    {
-				if (data == "success"){
-				    //afficher l"image
+				var result = $.parseJSON(data);
+				if (result.success == true){
+				    // message OK
+				    alert(result.msg);				    
+				}
+				else{
+				     alert("ko");
+				    //message échec
 				}
 			    },
 			    error: function(jqXHR, textStatus, errorThrown) 
 			    {
-			    
+				 alert("error");
+				//error
 			    }
 			});
 			e.preventDefault(); //STOP default action
 		    });
+		    
+		    $("#panelUpload").change(function(click) {
+			var preview = document.querySelector("img[id=avatar_img]");; //selects the query named img
+			var file    = document.querySelector("input[type=file]").files[0]; //sames as here
+			var reader  = new FileReader();
 
+			reader.onloadend = function () {
+			    preview.src = reader.result;
+			}
+
+			if (file) {
+			    reader.readAsDataURL(file); //reads the data as a URL
+			} else {
+			    preview.src = "";
+			}
+		    });
 
 		    $("#toggle-games").change(function() {
+			var postData = "";
+
 			if($(this).prop("checked")){
-			    $("#mail-games .toggle-list input").bootstrapToggle("on");
+			    $(this).parent().parent().parent().parent().find("#mail-games-form .toggle-list .toggle-box .toggle-game").each(function(){
+				$(this).bootstrapToggle("on");
+				$(this).prop("disabled", false);
+			    });
+			    postData = "no_mail=0";
 			} else {
-			    $("#mail-games .toggle-list input").bootstrapToggle("off");
+			    $(this).parent().parent().parent().parent().find("#mail-games-form .toggle-list .toggle-box .toggle-game").each(function(){
+				$(this).bootstrapToggle("off");
+				$(this).prop("disabled", true);
+			    });
+			    postData = "no_mail=1";
 			}
-		    });
-
-		    $("#toggle-races").change(function() {
-			if($(this).prop("checked")){
-			    $("#race-inscriptions .toggle-list input").bootstrapToggle("on");
-			} else {
-			    $("#race-inscriptions .toggle-list input").bootstrapToggle("off");
-			}
-		    });
-
-
-		    $(document).on("submit", "#mail-games-form", function(e) {
-			var postData = {
-			    jeux: []	
-			}
-			$("#mail-games .toggle-list input").each(function(){
-			    var id = $(this).attr("id").toString();
-			    var bool = $(this).prop("checked");
-			    var obj = {};
-			    obj[id] = bool;
-			    postData.jeux.push(obj);
-			});
-			var formURL = $(this).attr("action");
+			
 			$.ajax(
 			{
-			    url : formURL,
+			    url : "/lib/form/update_no_mail.php",
 			    type: "POST",
 			    data : postData,
 			    success:function(data, textStatus, jqXHR) 
 			    {
-
+				var result = $.parseJSON(data);
+				if (result.success == true){
+				    // rien
+				}
+				else{
+				    window.location.reload();
+				}
 			    },
 			    error: function(jqXHR, textStatus, errorThrown) 
 			    {
-
+				//error
 			    }
 			});
 			e.preventDefault(); //STOP default action
+		    });
+		    
+		    $(".toggle-game").change(function() {
+			var id_jeu = $(this).parent().parent().find(".id_jeu").attr("value");
+			var postData = "id_jeu=" + id_jeu;
+			
+			if($(this).prop("checked")){
+			    postData += "&no_mail=0";
+			} else {
+			    postData += "&no_mail=1";
+			}
+			
+			$.ajax(
+			{
+			    url : "/lib/form/update_inscr_jeu.php",
+			    type: "POST",
+			    data : postData,
+			    success:function(data, textStatus, jqXHR) 
+			    {
+				var result = $.parseJSON(data);
+				if (result.success == true){
+				    //alert("ok");
+				}
+				else{
+				    window.location.reload();
+				}
+			    },
+			    error: function(jqXHR, textStatus, errorThrown) 
+			    {
+				//error
+			    }
+			});
+			e.preventDefault(); //STOP default action
+		    });
+
+		    $(".toggle-races").change(function() {
+			if($(this).prop("checked")){
+			    $(this).parent().parent().parent().parent().find("#race-inscriptions-form .toggle-list .toggle-box input").each(function(){
+				$(this).bootstrapToggle("on");
+			    });
+			    
+			} else {
+			    $(this).parent().parent().parent().parent().find("#race-inscriptions-form .toggle-list .toggle-box input").each(function(){
+				$(this).bootstrapToggle("off");
+			    });
+			}
 		    });
 
 		    $(document).on("submit", "#race-inscriptions-form", function(e) {
+			var id_jeu = $(this).find(".id_jeu").attr("value");
+			
 			var postData = {
-			    races: []	
+			    races: []
 			}
-			$("#race-inscriptions .toggle-list input").each(function(){
+			
+			postData.id_jeu = id_jeu;
+			
+			$(this).find(".toggle-list .toggle-box .toggle-item input").each(function(){
 			    var id = $(this).attr("id").toString();
 			    var bool = $(this).prop("checked");
 			    var obj = {};
-			    obj[id] = bool;
+			    obj["id"] = id;
+			    obj["inscr"] = bool;
 			    postData.races.push(obj);
 			});
-			var formURL = $(this).attr("action");
+			
+			var formURL = "/lib/form/inscr_epreuves.php";
 			$.ajax(
 			{
 			    url : formURL,
@@ -361,11 +489,17 @@
 			    data : postData,
 			    success:function(data, textStatus, jqXHR) 
 			    {
-
+				var result = $.parseJSON(data);
+				if (result.success == true){
+				    //alert(result.filtre);	    
+				}
+				else{
+				    alert(result.filtre);
+				}
 			    },
 			    error: function(jqXHR, textStatus, errorThrown) 
 			    {
-
+				alert("erreur");
 			    }
 			});
 			e.preventDefault(); //STOP default action

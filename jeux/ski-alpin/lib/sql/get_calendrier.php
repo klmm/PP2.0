@@ -400,6 +400,9 @@
 	// 128 : DESCENTE HOMMES
 	// 256 : SUPER COMBINE FEMMES
 	// 512 : SUPER COMBINE HOMMES
+	if($filtre == 0 || $filtre == null){
+	    $filtre = 8191;
+	}
 	
 	$epreuves[0]['discipline'] = 'Slalom';
 	$epreuves[0]['genre'] = 'F';
@@ -422,9 +425,21 @@
 	$epreuves[9]['discipline'] = 'Super Combiné';
 	$epreuves[9]['genre'] = 'H';
 	
+	foreach($epreuves as $key => $value){
+	    if($value['genre'] == 'H'){
+		$epreuves[$key]['genre_long'] = 'Hommes';
+	    }
+	    elseif($value['genre'] == 'F'){
+		$epreuves[$key]['genre_long'] = 'Femmes';
+	    }
+	    else{
+		$epreuves[$key]['genre_long'] = 'Mixte';
+	    }
+	}
+	
 	$binary = decbin($filtre);
 	
-	for($i=0; $i<strlen($binary); $i++){
+	for($i=0; $i<sizeof($epreuves); $i++){
 	    $epreuves[$i]['inscrit'] = $binary[strlen($binary) - ($i+1)];
 	}
 	return $epreuves;

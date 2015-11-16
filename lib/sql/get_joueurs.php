@@ -22,7 +22,40 @@
 		$arr[$i]['admin'] = $enregistrement->Admin;
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
 		$arr[$i]['no_mail'] = $enregistrement->no_mail;
+		$arr[$i]['slogan'] = $enregistrement->slogan;
+		$arr[$i]['avatar'] = $enregistrement->avatar;
 		$i++;
+	}
+	$db = null;
+	return $arr;
+    }
+    
+    function get_joueur($login){
+	// On �tablit la connexion avec la base de donn�es
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
+	$bdd = new Connexion();
+	$db = $bdd->getDB();
+
+	//On fait la requete sur le login
+	$sql = "SELECT * FROM Joueurs WHERE login = ?";
+	$prep = $db->prepare($sql);
+	$prep->bindValue(1,$login,PDO::PARAM_STR);
+	$prep->execute();
+	$prep->setFetchMode(PDO::FETCH_OBJ);
+
+	//On fait le test si un enrengistrement a �t� trouv�
+	$enregistrement = $prep->fetch();
+	if( $enregistrement )
+	{
+	    $arr['login'] = $enregistrement->Login;
+	    $arr['mail'] = $enregistrement->Mail;
+	    $arr['nom'] = $enregistrement->Nom;
+	    $arr['prenom'] = $enregistrement->Prenom;
+	    $arr['admin'] = $enregistrement->Admin;
+	    $arr['id_joueur'] = $enregistrement->IDJoueur;
+	    $arr['no_mail'] = $enregistrement->no_mail;
+	    $arr['slogan'] = $enregistrement->slogan;
+	    $arr['avatar'] = $enregistrement->avatar;
 	}
 	$db = null;
 	return $arr;
@@ -51,6 +84,8 @@
 		$arr[$i]['admin'] = $enregistrement->Admin;
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
 		$arr[$i]['no_mail'] = $enregistrement->no_mail;
+		$arr[$i]['slogan'] = $enregistrement->slogan;
+		$arr[$i]['avatar'] = $enregistrement->avatar;
 		$i++;
 	}
 	$db = null;
@@ -91,6 +126,8 @@
 		$arr[$i]['admin'] = $enregistrement->Admin;
 		$arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
 		$arr[$i]['no_mail'] = $enregistrement->no_mail;
+		$arr[$i]['slogan'] = $enregistrement->slogan;
+		$arr[$i]['avatar'] = $enregistrement->avatar;
 		$i++;
 	}
 	$db = null;
@@ -163,6 +200,8 @@
 	    $arr[$i]['admin'] = $enregistrement->Admin;
 	    $arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
 	    $arr[$i]['no_mail'] = $enregistrement->no_mail;
+	    $arr[$i]['slogan'] = $enregistrement->slogan;
+	    $arr[$i]['avatar'] = $enregistrement->avatar;
 	    $i++;
 	}
 	
@@ -215,6 +254,8 @@
 	    $arr[$i]['admin'] = $enregistrement->Admin;
 	    $arr[$i]['id_joueur'] = $enregistrement->IDJoueur;
 	    $arr[$i]['no_mail'] = $enregistrement->no_mail;
+	    $arr[$i]['slogan'] = $enregistrement->slogan;
+	    $arr[$i]['avatar'] = $enregistrement->avatar;
 	    $i++;
 	}
 	

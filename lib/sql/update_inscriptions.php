@@ -48,7 +48,7 @@
 	    $prep->bindValue(2,$id_jeu,PDO::PARAM_INT);
 	    $prep->bindValue(3,$filtre,PDO::PARAM_INT);
 	    $prep->setFetchMode(PDO::FETCH_OBJ);
-	    $prep->execute();
+	    $res = $prep->execute();
 	}
 	else{
 	    $sql = "UPDATE joueurs_inscriptions SET filtre=? WHERE id_joueurs_inscriptions=?";
@@ -56,10 +56,11 @@
 	    $prep->bindValue(1,$filtre,PDO::PARAM_INT);
 	    $prep->bindValue(2,$id_inscr,PDO::PARAM_INT);
 	    $prep->setFetchMode(PDO::FETCH_OBJ);
-	    $prep->execute();
+	    $res = $prep->execute();
 	}
 	
 	$db = null;
+	return $res;
     }
     
     function update_inscription_mail($id_jeu, $joueur, $no_mail){
@@ -79,7 +80,7 @@
 	    $prep->bindValue(2,$id_jeu,PDO::PARAM_INT);
 	    $prep->bindValue(3,$no_mail,PDO::PARAM_INT);
 	    $prep->setFetchMode(PDO::FETCH_OBJ);
-	    $prep->execute();
+	    $res = $prep->execute();
 	}
 	else{
 	    $sql = "UPDATE joueurs_inscriptions SET no_mail=? WHERE id_joueurs_inscriptions=?";
@@ -87,10 +88,11 @@
 	    $prep->bindValue(1,$no_mail,PDO::PARAM_INT);
 	    $prep->bindValue(2,$id_inscr,PDO::PARAM_INT);
 	    $prep->setFetchMode(PDO::FETCH_OBJ);
-	    $prep->execute();
+	    $res = $prep->execute();
 	}
 	
 	$db = null;
+	return $res;
     }
 
 ?>

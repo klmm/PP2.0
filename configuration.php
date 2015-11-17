@@ -162,15 +162,7 @@
 			    <div class="sectionSide">
 				<p class="section-highlight">Gérez vos informations</p>
 			    </div>
- 
-			    <p class="inter-section-highlight">Vos informations de connexion</p>
-			    <p class="private-info" style="display:block;">' . $loginjoueur . '</p>
 
-			    <button type="submit" class="btn btn-primary">
-				Modifier mon mot de passe
-			    </button>
-
-			    <p class="inter-section-highlight">Vos informations personnelles</p>
 			    <form id="playerInfo-form" role="form" class="row contact-form" method="post" action="/lib/form/post_infos.php" enctype="multipart/form-data">
 				<div class="panelIcon">
 				    <div id="avatar"  class="avatar" >
@@ -187,17 +179,13 @@
 				<input type="text" value="' . $joueur["nom"] . '" placeholder="Nom" name="nom" class="form-control" required="" data-validation-required-message="Nom obligatoire" />
 				<input type="text" value="' . $joueur["prenom"] . '" placeholder="Prénom" name="prenom" class="form-control" required="" data-validation-required-message="Prénom obligatoire" />
 				<input type="email" value="' . $joueur["mail"] . '" placeholder="Email (pour vous répondre)" name="mail" class="form-control" required="" data-validation-required-message="Mail obligatoire" />
-				<textarea class="form-control" rows="3" name="punchline" placeholder="Ecrivez votre slogan !">' . $joueur["slogan"] . '</textarea> 
+				<textarea class="form-control" rows="3" name="punchline" placeholder="Ecrivez votre slogan !" maxlength="100">' . $joueur["slogan"] . '</textarea> 
 				<button type="submit" id="valid_conf" name="valid_conf" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;">
 				    <span style="display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;">
 					Enregistrer
 				    </span>
 				</button>
 			    </form>
-
-			    <div id="logo-pp" class="hidden-sm">
-				<img src="/img/logos/photo_couv.png"/>
-			    </div>
 			</div>
 
 			<div class="col-md-6 col-sm-12 col-xs-12">

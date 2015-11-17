@@ -44,7 +44,13 @@
     }
     
     $success = update_inscription_filtre($id_jeu, $loginjoueur, $filtre);
+    if($success == true){
+	$msg = 'Informations enregistrées !';
+    }
+    else{
+	$msg = 'Une erreur est survenue...';
+    }
 	
-    echo json_encode(array('filtre' => $filtre, 'success' => $success));
+    echo json_encode(array('msg' => $msg, 'success' => $success));
     return;
 ?>

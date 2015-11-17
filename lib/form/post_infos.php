@@ -30,7 +30,6 @@
     $slogan = $_POST['punchline'];
     //------------------------------------------------------------------------------------------------//
     
-    
     $target = '/img/avatars/';
     $max_size = 100000;
     $max_width = 800;
@@ -49,13 +48,13 @@
 		$infosImg = getimagesize($_FILES['panelUpload']['tmp_name']);
 
 		if($infosImg[2] >= 1 && $infosImg[2] <= 14){
-		    if(($infosImg[0] <= $max_width) && ($infosImg[1] <= $max_height) && (filesize($_FILES['panelUpload']['tmp_name']) <= $max_size)){
+		    if(($infosImg[0] <= $max_width) && ($infosImg[1] <= $max_height) && (filesize($_FILES['panelUpload']['tmp_name']) <= $max_size) && strlen($_FILES['panelUpload']['name']) < 40){
 			if(isset($_FILES['panelUpload']['error']) && UPLOAD_ERR_OK === $_FILES['panelUpload']['error']){
-			    $nomImage = $loginjoueur;
+			    $nomImage = $_FILES['panelUpload']['name'];
 
-			    if(move_uploaded_file($_FILES['panelUpload']['tmp_name'], $target.$nomImage)){
+			    if(move_uploaded_file($_FILES['panelUpload']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $target . $loginjoueur . '-' . $nomImage)){
 				$success_avatar = true;
-				$final_avatar_path = $target . $nomImage;
+				$final_avatar_path = $target . $loginjoueur . '-' . $nomImage;
 			    }
 			    else{
 				$msg = 'Problème lors de l\'upload !';
@@ -83,17 +82,20 @@
 	
 	if($success_avatar == true){ 
 	    if(update_joueur_infos($loginjoueur,$nom,$prenom,$mail,$final_avatar_path,$slogan)){
+		//header("Location: /configuration");
 		$msg = 'Informations enregistrées !';
 		echo json_encode(array('msg' => $msg, 'success' => true));
 		return;
 	    }
 	    else{
+		//header("Location: /configuration");
 		$msg = 'Erreur lors de l\'enregistrement de vos informations !';
 		echo json_encode(array('msg' => $msg, 'success' => false));
 		return;
 	    }    
 	}
 	else{
+	    //header("Location: /configuration");
 	    echo json_encode(array('msg' => $msg, 'success' => false));
 	    return;
 	}
@@ -102,6 +104,8 @@
 	$msg = 'Veuillez renseigner une adresse mail valide !';
 	$success_avatar = false;
     }
+    
+    //header("Location: /configuration");
 
     echo json_encode(array('msg' => $msg, 'success' => $success_avatar));
     return;

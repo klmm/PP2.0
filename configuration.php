@@ -144,7 +144,12 @@
             </header>';
 //---------------------------------------------FIN HEADER------------------------------------------------------//
 		
-
+    if($joueur["avatar"] == ""){
+	$avatar_joueur = "";
+    }
+    else{
+	$avatar_joueur = $joueur["avatar"];
+    }
 
     echo '
 	    <div class="section-config section" id="config" style="min-height: 214px;">
@@ -166,7 +171,7 @@
 			    </button>
 
 			    <p class="inter-section-highlight">Vos informations personnelles</p>
-			    <form id="playerInfo-form" role="form" class="row contact-form" method="post" enctype="multipart/form-data">
+			    <form id="playerInfo-form" role="form" class="row contact-form" method="post" action="/lib/form/post_infos.php" enctype="multipart/form-data">
 				<div class="panelIcon">
 				    <div id="avatar"  class="avatar" >
 					<div class="overlay">
@@ -176,14 +181,14 @@
 				    </div>
 
 				    <input id="panelUpload" name="panelUpload" type="file" class="file upload">
-				    <img id="avatar_img" src="' . $joueur["avatar"] . '" alt="avatar"/>
+				    <img id="avatar_img" src="' . $joueur["avatar"] . '" alt="aperçu indisponible"/>
 				</div>
 			    
 				<input type="text" value="' . $joueur["nom"] . '" placeholder="Nom" name="nom" class="form-control" required="" data-validation-required-message="Nom obligatoire" />
 				<input type="text" value="' . $joueur["prenom"] . '" placeholder="Prénom" name="prenom" class="form-control" required="" data-validation-required-message="Prénom obligatoire" />
 				<input type="email" value="' . $joueur["mail"] . '" placeholder="Email (pour vous répondre)" name="mail" class="form-control" required="" data-validation-required-message="Mail obligatoire" />
 				<textarea class="form-control" rows="3" name="punchline" placeholder="Ecrivez votre slogan !">' . $joueur["slogan"] . '</textarea> 
-				<button type="submit" id="valid_conf" name"valid_conf" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;">
+				<button type="submit" id="valid_conf" name="valid_conf" class="btn btn-primary" style="padding:0;margin-top:20px;width:200px;">
 				    <span style="display:block;padding: 0 8px 0 8px;;height:38px;line-height:38px;margin-right: 60px;float: right;">
 					Enregistrer
 				    </span>
@@ -331,25 +336,30 @@
 		    {
 			$("#panelUpload").click();
 		    });
-		      
+		    
+		    // VALIDATION FORMULAIRE INFOS
 		    $("#playerInfo-form").submit(function(e) {
-			var postData = $(this).serializeArray();
+			$(\'.alert\').alert(\'close\');
 			
 			$.ajax(
 			{
 			    url : "/lib/form/post_infos.php",
 			    type: "POST",
-			    data : postData,
+			    data : new FormData(this),
+			    processData: false,
+			    contentType: false,
 			    success:function(data, textStatus, jqXHR) 
 			    {
 				var result = $.parseJSON(data);
 				if (result.success == true){
-				    // message OK
-				    alert(result.msg);				    
+				    $( "#playerInfo-form" ).append( \'<div class="alert alert-success alert-dismissible" role="alert">\'+
+					\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\'+
+					result.msg+\'</div>\' );		    
 				}
 				else{
-				     alert("ko");
-				    //message échec
+				     $( "#playerInfo-form" ).append( \'<div class="alert alert-info alert-dismissible" role="alert">\'+
+					\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\'+
+					\'<strong>Attention!  </strong>\'+result.msg+\'</div>\' );
 				}
 			    },
 			    error: function(jqXHR, textStatus, errorThrown) 
@@ -361,6 +371,7 @@
 			e.preventDefault(); //STOP default action
 		    });
 		    
+		    // PRE-VISUALISATION DE L IMAGE
 		    $("#panelUpload").change(function(click) {
 			var preview = document.querySelector("img[id=avatar_img]");; //selects the query named img
 			var file    = document.querySelector("input[type=file]").files[0]; //sames as here
@@ -377,6 +388,7 @@
 			}
 		    });
 
+		    // TOGGLE NO MAIL GENERAL
 		    $("#toggle-games").change(function() {
 			var postData = "";
 
@@ -417,6 +429,7 @@
 			e.preventDefault(); //STOP default action
 		    });
 		    
+		    // TOGGLE INSCRIPTION JEU
 		    $(".toggle-game").change(function() {
 			var id_jeu = $(this).parent().parent().find(".id_jeu").attr("value");
 			var postData = "id_jeu=" + id_jeu;
@@ -450,6 +463,7 @@
 			e.preventDefault(); //STOP default action
 		    });
 
+		    // TOGGLE TOUTES/AUCUNE EPREUVE(S)
 		    $(".toggle-races").change(function() {
 			if($(this).prop("checked")){
 			    $(this).parent().parent().parent().parent().find("#race-inscriptions-form .toggle-list .toggle-box input").each(function(){
@@ -463,8 +477,10 @@
 			}
 		    });
 
+		    // VALDIDATION EPREUVES
 		    $(document).on("submit", "#race-inscriptions-form", function(e) {
 			var id_jeu = $(this).find(".id_jeu").attr("value");
+			$(\'.alert\').alert(\'close\');
 			
 			var postData = {
 			    races: []
@@ -490,11 +506,16 @@
 			    success:function(data, textStatus, jqXHR) 
 			    {
 				var result = $.parseJSON(data);
+				alert($(this).html());
 				if (result.success == true){
-				    //alert(result.filtre);	    
+				    $(this).find("button").append( \'<div class="alert alert-success alert-dismissible" role="alert">\'+
+					\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\'+
+					result.msg+\'</div>\' );		    
 				}
 				else{
-				    alert(result.filtre);
+				     $(this).find("button").append( \'<div class="alert alert-info alert-dismissible" role="alert">\'+
+					\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\'+
+					\'<strong>Attention!  </strong>\'+result.msg+\'</div>\' );
 				}
 			    },
 			    error: function(jqXHR, textStatus, errorThrown) 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+	<title>Notes ski</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+	<h1>Vérification des athlètes suite à une course</h1>
+	<form method="post" action="affiche_notes.php">
+	    <label for="discipline">Discipline</label><br/>
+	    <input type="radio" name="discipline" value="1" checked>Slalom
+	    <input type="radio" name="discipline" value="2">Géant
+	    <input type="radio" name="discipline" value="3">Super G
+	    <input type="radio" name="discipline" value="4">Descente
+	    <input type="radio" name="discipline" value="5">Combiné
+	    <br/><br/>
+	    <label for="genre">Genre</label><br/>
+	    <input type="radio" name="genre" value="H" checked>Hommes
+	    <input type="radio" name="genre" value="F">Femmes
+	    <br/><br/>
+	    <label for="type">Classement / course</label><br/>
+	    <input type="radio" name="type" value="classement" checked>Classement
+	    <input type="radio" name="type" value="course">Course
+	    <br/><br/>
+	    <label for="update">Update</label><br/>
+	    <input type="radio" name="update" value="1" checked>Oui
+	    <input type="radio" name="update" value="0">Non
+	    <br/><br/>
+	    <label for="url">URL<br/>
+		<a target="_blank" href="http://data.fis-ski.com/alpine-skiing/cup-standings.html?suchen=true&suchcompetitorid=&suchseason=2016&suchgender=M&suchnation=&sector=AL&suchcup=WC&discipline=GS&search=Search">Exemple Classement</a><br/>
+		<a target="_blank" href="http://data.fis-ski.com/dynamic/results.html?sector=AL&raceid=82700">Exemple Course</a>
+	    </label><br/>
+	    <input type="text" name="url" size="100">
+	    <br/><br/>
+	    <button type='submit'>Envoyer</button>
+	</form>
+    </body>
+</html>

@@ -162,7 +162,7 @@
 	$date2 = strtotime($date);
 	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
 	
-	$titre = strftime('%B %Y', $unix);
+	$titre = ucfirst(strftime('%B %Y', $unix));
 	
 	$descr = 'Récompense le meilleur pronostiqueur du jeu';
 	$colonnes = ';;V;Pronos;Score';

@@ -21,7 +21,7 @@
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
     $arr_resultat = $_POST['prono'];
-    $calendrier = get_calendrier($id_cal);
+    $calendrier = biathlon_get_calendrier($id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//
     
     

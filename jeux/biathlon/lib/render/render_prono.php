@@ -15,6 +15,7 @@
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_calendrier.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_prono.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_athlete.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_equipe.php';
     //-------------------------------------------------------------------------------------//
     
     
@@ -26,7 +27,13 @@
     //------------------------------------------------------------------------------------------------//
     
     //--------------------------------------CALENDRIER--------------------------------------//
-    $calendrier = get_calendrier($ID_CAL);
+    $calendrier = biathlon_get_calendrier($ID_CAL);
+    if($calendrier['specialite'] == 'Relais'){
+	$b_relais = true;
+    }
+    else{
+	$b_relais = false;
+    }
     $b_commence = $calendrier['commence'];
     $b_traite = $calendrier['traite'];
     //------------------------------------------------------------------------------------------------//
@@ -36,14 +43,20 @@
 	$prono = get_prono($ID_CAL,$joueur);
 	//----------------------------------------------------------------------------//
 
-	//-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
+	//-------------------------------ATHLETES/EQUIPES UTILES------------------------------------//
 	$chaine_id_athletes = $prono['prono'];
-	$tab_athletes = get_athletes_tab_id($chaine_id_athletes);
-	//-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
+	if($b_relais == false){
+	    $tab_athletes = get_athletes_tab_id($chaine_id_athletes);
+	}
+	else{
+	    $tab_equipes = get_equipes_genre($calendrier['genre']);
+	}
+	//-------------------------------ATHLETES/EQUIPES UTILES------------------------------------//
     }
     else{
 	$prono = null;
 	$tab_athletes = null;
+	$tab_equipes = null;
     }
     
     $prono['prono'] = explode(";", $prono['prono']);
@@ -66,9 +79,18 @@
 	    $pts_prono = '';
 	}
 	
+	if($b_relais){
+	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
+			    <td class="table-name col-md-6">' .  $tab_equipes[$id_entite_prono]['nom'] .'</td>
+			    <td class="table-point col-md-4">' . $pts_prono . '</td>';
+	}
+	else{
 	    $res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
 			    <td class="table-name col-md-6">' .  $tab_athletes[$id_entite_prono]['prenom'] . ' ' . $tab_athletes[$id_entite_prono]['nom'] .'</td>
 			    <td class="table-point col-md-4">' . $pts_prono . '</td>';
+	}
+	
+	    
 	$res .= '	</tr>';
     }
     

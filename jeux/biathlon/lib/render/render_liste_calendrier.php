@@ -29,11 +29,11 @@
     
     
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
-    $id_cal = get_id_calendrier_actuel($ID_JEU,$FILTRE);
+    $id_cal = biathlon_get_id_calendrier_actuel($ID_JEU,$FILTRE);
 
-    $arr_calendrier = get_calendrier_jeu_filtre($ID_JEU,$FILTRE);
+    $arr_calendrier = biathlon_get_calendrier_jeu_filtre($ID_JEU,$FILTRE);
     $nb_calendrier = sizeof($arr_calendrier);
-    
+
     $pays = get_pays_tous();
     
     $weekends = get_weekend_jeu($ID_JEU);
@@ -43,7 +43,7 @@
     
     //---------------------------------------------CALENDRIER------------------------------------------------------//	
     if($nb_calendrier > 0){
-	$res .= '	
+	$res .= '
 <div class="sectionSide" style="margin-bottom:50px;">
     <h2 class="section-heading">Calendrier</h2>
 </div>

@@ -2,7 +2,7 @@
 
     require_once($_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/dates.php');
 
-    function get_calendrier($id_cal){
+    function biathlon_get_calendrier($id_cal){
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
 	$db = $bdd->getDB();
@@ -25,8 +25,11 @@
 	    if($arr['genre'] == 'H'){
 		$arr['genre_fr'] = 'Hommes';
 	    }
-	    else{
+	    elseif($arr['genre'] == 'F'){
 		$arr['genre_fr'] = 'Femmes';
+	    }
+	    else{
+		$arr['genre_fr'] = 'Mixte';
 	    }
 	    
 	    $arr['date_debut'] = $enregistrement->date_debut;
@@ -59,7 +62,7 @@
 	return $arr;
     }
     
-    function get_calendrier_jeu($id_jeu){
+    function biathlon_get_calendrier_jeu($id_jeu){
 	// On �tablit la connexion avec la base de donn�es
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
 	$bdd = new Connexion();
@@ -85,8 +88,11 @@
 	    if($arr[$id_cal]['genre'] == 'H'){
 		$arr[$id_cal]['genre_fr'] = 'Hommes';
 	    }
-	    else{
+	    elseif($arr[$id_cal]['genre'] == 'F'){
 		$arr[$id_cal]['genre_fr'] = 'Femmes';
+	    }
+	    else{
+		$arr[$id_cal]['genre_fr'] = 'Mixte';
 	    }
 	    
 	    $arr[$id_cal]['date_debut'] = $enregistrement->date_debut;
@@ -121,7 +127,7 @@
 	return $arr;
     }
     
-    function get_calendrier_jeu_filtre($id_jeu,$filtre){
+    function biathlon_get_calendrier_jeu_filtre($id_jeu,$filtre){
 	$epreuves = filtre_to_epreuves_biathlon($filtre);
 	$sql_epreuve = '';
 	
@@ -158,8 +164,11 @@
 	    if($arr[$id_cal]['genre'] == 'H'){
 		$arr[$id_cal]['genre_fr'] = 'Hommes';
 	    }
-	    else{
+	    elseif($arr[$id_cal]['genre'] == 'F'){
 		$arr[$id_cal]['genre_fr'] = 'Femmes';
+	    }
+	    else{
+		$arr[$id_cal]['genre_fr'] = 'Mixte';
 	    }
 	    
 	    $arr[$id_cal]['date_debut'] = $enregistrement->date_debut;
@@ -198,12 +207,12 @@
 	    $j++;
 	}
 	
-	usort($arr,'compare_tri');
+	usort($arr,'biathlon_compare_tri');
 	$db = null;
 	return $arr;
     }
     
-    function get_calendrier_jeu_avenir($id_jeu,$filtre){
+    function biathlon_get_calendrier_jeu_avenir($id_jeu,$filtre){
 	$epreuves = filtre_to_epreuves_biathlon($filtre);
 	
 	$sql_epreuve = '';
@@ -240,8 +249,11 @@
 	    if($arr[$id_cal]['genre'] == 'H'){
 		$arr[$id_cal]['genre_fr'] = 'Hommes';
 	    }
-	    else{
+	    elseif($arr[$id_cal]['genre'] == 'F'){
 		$arr[$id_cal]['genre_fr'] = 'Femmes';
+	    }
+	    else{
+		$arr[$id_cal]['genre_fr'] = 'Mixte';
 	    }
 	    
 	    $arr[$id_cal]['date_debut'] = $enregistrement->date_debut;
@@ -271,17 +283,17 @@
 	    }
 	}
 	
-	usort($arr, 'compare_date_debut');
+	usort($arr, 'biathlon_compare_date_debut');
 	$db = null;
 	return $arr;
     }
     
-    function compare_date_debut($a, $b)
+    function biathlon_compare_date_debut($a, $b)
     {
       return strnatcmp($a['date_debut'], $b['date_debut']);
     }
     
-    function get_id_calendrier_actuel($ID_JEU,$filtre){
+    function biathlon_get_id_calendrier_actuel($ID_JEU,$filtre){
 	$epreuves = filtre_to_epreuves_biathlon($filtre);
 	
 	$sql_epreuve = '';
@@ -380,7 +392,7 @@
 	    }
 	}
     }
-
+    
     function filtre_to_epreuves_biathlon($filtre){
 	// 1 : SPRINT FEMMES
 	// 2 : SPRINT HOMMES
@@ -441,7 +453,7 @@
 	return $epreuves;
     }
     
-    function compare_tri($a, $b)
+    function biathlon_compare_tri($a, $b)
     {
 	if (floatval($b['tri']) < floatval($a['tri'])){
 	    return 1;

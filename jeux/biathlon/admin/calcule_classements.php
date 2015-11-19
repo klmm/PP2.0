@@ -25,10 +25,11 @@
 	$url = $jeu['url'];
 	
 	// REUPERATION DU CALENDRIER
-	$calendrier_tous = get_calendrier_jeu($id_jeu);
+	$calendrier_tous = biathlon_get_calendrier_jeu($id_jeu);
 	$date = $calendrier_tous[$id_cal]['date_debut'];
 	$mois = substr($date, 0, 7);
 	$spec_genre = $calendrier_tous[$id_cal]['specialite'] . $calendrier_tous[$id_cal]['genre'];
+	$id_weekend = $calendrier_tous[$id_cal]['id_weekend'];
 	
 	// OUTILS POUR CALCUL DES POINTS
 	//$POINTS_CLASSEMENTS_PAR_POINTS = [0,25,20,16,12,10,7,5,3,2,1];
@@ -62,6 +63,7 @@
 	    $specialite = $calendrier_tous[$id_cal]['specialite'];
 	    $genre = $calendrier_tous[$id_cal]['genre'];
 	    $spec_genre_cal = $specialite . '' . $genre;
+	    $id_weekend_cal = $calendrier_tous[$id_cal]['id_weekend'];
 	    	    
 	    // CLASSEMENT GENERAL
 	    $tab_classements[$joueur]['général']['joueur'] = $joueur;
@@ -93,10 +95,21 @@
 		    $tab_classements[$joueur]['mensuel']['victoires'] += 1;
 		}
 	    }
+	    
+	    // WEEKEND
+	    if($id_weekend == $id_weekend_cal){
+		$tab_classements[$joueur]['weekend']['joueur'] = $joueur;
+		$tab_classements[$joueur]['weekend']['score_total'] += $score;
+		$tab_classements[$joueur]['weekend']['nb_pronos'] += 1;
+		if($pos == 1){
+		    $tab_classements[$joueur]['weekend']['victoires'] += 1;
+		}
+	    }
 	}
 			
 	calcule_classement_general($id_jeu,$tab_classements,$url);	
-	calcule_classement_mensuel($id_jeu,$date,$tab_classements,$url);
+	//calcule_classement_mensuel($id_jeu,$date,$tab_classements,$url);
+	calcule_classement_weekend($id_weekend,$tab_classements,$url);
 	calcule_classement_par_points($tab_classements,$url);
 	calcule_classement_specialite($id_jeu,$spec_genre,$tab_classements,$url);
 		
@@ -164,7 +177,7 @@
 	$date2 = strtotime($date);
 	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
 	
-	$titre = strftime('%B %Y', $unix);
+	$titre = ucfirst(strftime('%B %Y', $unix));
 	
 	$descr = 'Récompense le meilleur pronostiqueur du jeu';
 	$colonnes = ';;V;Pronos;Score';
@@ -178,6 +191,58 @@
 	    $login = $joueur['mensuel']['joueur'];
 	    $nb_paris = $joueur['mensuel']['nb_pronos'];
 	    $nb_victoires = $joueur['mensuel']['victoires'];
+	    if($score != $score_actuel){
+		$pos_actuel = $pos_cpt;
+		$pos = $pos_cpt;
+	    }
+	    else{
+		$pos = $pos_actuel;
+	    }
+	    $line[] = $pos . ';' . $login . ';' . $nb_victoires . ';' . $nb_paris . ';' . $score;
+	    $pos_cpt++;
+	    $score_actuel = $score;
+	}
+	
+	$contenu = $titre . PHP_EOL . $descr . PHP_EOL . $colonnes . PHP_EOL . $taille_colonnes . PHP_EOL;
+	foreach($line as $key => $ligne){
+	    $contenu .= $ligne . PHP_EOL;
+	}
+
+	file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $url . '/classements/' . $nom_fichier, $contenu);
+    }
+    
+    function compare_score_weekend($a, $b)
+    {
+      return strnatcmp($b['weekend']['score_total'], $a['weekend']['score_total']);
+    }
+    
+    function calcule_classement_weekend($id_weekend,$tab,$url){
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_weekend.php');
+	
+	$weekend = get_weekend($id_weekend);
+	
+	usort($tab, 'compare_score_weekend');
+	
+	$nom_fichier = '2' . $weekend['id'] . '-' . $weekend['lieu'];
+	
+	setlocale(LC_TIME, 'fr_FR');
+	$date2 = strtotime($date);
+	$unix = mktime(date('H',$date2),date('i',$date2),date('s',$date2),date('n',$date2),date('j',$date2),date('Y',$date2));
+	
+	$titre = $weekend['lieu'];
+	
+	$descr = $weekend['lieu'];
+	$colonnes = ';;V;Pronos;Score';
+	$taille_colonnes = '1;4;2;2;3';
+	
+	$score_actuel = -1;
+	$pos_actuel = 1;
+	$pos_cpt = 1;
+	foreach($tab as $key => $joueur){
+	    $score = $joueur['weekend']['score_total'];
+	    $login = $joueur['weekend']['joueur'];
+	    $nb_paris = $joueur['weekend']['nb_pronos'];
+	    $nb_victoires = $joueur['weekend']['victoires'];
 	    if($score != $score_actuel){
 		$pos_actuel = $pos_cpt;
 		$pos = $pos_cpt;

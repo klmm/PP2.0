@@ -26,9 +26,9 @@
 		    $arr[$id_athlete]['date_naissance'] = $enregistrement->date_naissance;
 		    $arr[$id_athlete]['date_naissance_fr'] = date_naissance_sql_to_fr($arr[$id_athlete]['date_naissance']);
 		    $arr[$id_athlete]['genre'] = $enregistrement->genre;
-		    $arr[$id_athlete]['note_couche'] = $enregistrement->note_slalom;
-		    $arr[$id_athlete]['note_debout'] = $enregistrement->note_geant;
-		    $arr[$id_athlete]['note_fond'] = $enregistrement->note_superg;
+		    $arr[$id_athlete]['note_couche'] = $enregistrement->note_couche;
+		    $arr[$id_athlete]['note_debout'] = $enregistrement->note_debout;
+		    $arr[$id_athlete]['note_fond'] = $enregistrement->note_fond;
 		    $arr[$id_athlete]['retraite'] = $enregistrement->retraite;
 		    $arr[$id_athlete]['date_blessure'] = $enregistrement->date_blessure;
 		    $arr[$id_athlete]['date_blessure_fr'] = date_naissance_sql_to_fr($arr[$id_athlete]['date_blessure']);
@@ -65,9 +65,9 @@
 		    $arr[$id_athlete]['date_naissance'] = $enregistrement->date_naissance;
 		    $arr[$id_athlete]['date_naissance_fr'] = date_naissance_sql_to_fr($arr[$id_athlete]['date_naissance']);
 		    $arr[$id_athlete]['genre'] = $enregistrement->genre;
-		    $arr[$id_athlete]['note_couche'] = $enregistrement->note_slalom;
-		    $arr[$id_athlete]['note_debout'] = $enregistrement->note_geant;
-		    $arr[$id_athlete]['note_fond'] = $enregistrement->note_superg;
+		    $arr[$id_athlete]['note_couche'] = $enregistrement->note_couche;
+		    $arr[$id_athlete]['note_debout'] = $enregistrement->note_debout;
+		    $arr[$id_athlete]['note_fond'] = $enregistrement->note_fond;
 		    $arr[$id_athlete]['retraite'] = $enregistrement->retraite;
 		    $arr[$id_athlete]['date_blessure'] = $enregistrement->date_blessure;
 		    $arr[$id_athlete]['date_blessure_fr'] = date_naissance_sql_to_fr($arr[$id_athlete]['date_blessure']);
@@ -94,15 +94,16 @@
 		$prep->execute();
 		
 		while($enregistrement = $prep->fetch()){
+		    $id_athlete = $enregistrement->id;
 		    $arr[$id_athlete]['id_biathlon_athlete'] = $id_athlete;
 		    $arr[$id_athlete]['nom'] = $enregistrement->nom;
 		    $arr[$id_athlete]['prenom'] = $enregistrement->prenom;
 		    $arr[$id_athlete]['date_naissance'] = $enregistrement->date_naissance;
 		    $arr[$id_athlete]['date_naissance_fr'] = date_naissance_sql_to_fr($arr[$id_athlete]['date_naissance']);
 		    $arr[$id_athlete]['genre'] = $enregistrement->genre;
-		    $arr[$id_athlete]['note_couche'] = $enregistrement->note_slalom;
-		    $arr[$id_athlete]['note_debout'] = $enregistrement->note_geant;
-		    $arr[$id_athlete]['note_fond'] = $enregistrement->note_superg;
+		    $arr[$id_athlete]['note_couche'] = $enregistrement->note_couche;
+		    $arr[$id_athlete]['note_debout'] = $enregistrement->note_debout;
+		    $arr[$id_athlete]['note_fond'] = $enregistrement->note_fond;
 		    $arr[$id_athlete]['retraite'] = $enregistrement->retraite;
 		    $arr[$id_athlete]['date_blessure'] = $enregistrement->date_blessure;
 		    $arr[$id_athlete]['date_blessure_fr'] = date_naissance_sql_to_fr($arr[$id_athlete]['date_blessure']);

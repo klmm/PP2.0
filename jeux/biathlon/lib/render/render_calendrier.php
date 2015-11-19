@@ -15,6 +15,7 @@
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_weekend.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_prono.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_athlete.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_equipe.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
     include $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_badges.php';
     //-------------------------------------------------------------------------------------//
@@ -57,10 +58,17 @@
     
     
     //--------------------------------------CALENDRIER--------------------------------------//
-    $calendrier = get_calendrier($ID_CAL);
+    $calendrier = biathlon_get_calendrier($ID_CAL);
     $b_commence = $calendrier['commence'];
     $b_traite = $calendrier['traite'];
     $id_weekend = $calendrier['id_weekend'];
+    $genre = $calendrier['genre'];
+    if($calendrier['specialite'] == 'Relais'){
+	$b_relais = true;
+    }
+    else{
+	$b_relais = false;
+    }
     //------------------------------------------------------------------------------------------------//
     
     
@@ -104,8 +112,14 @@
 	}
 	$chaine_id_athletes .= $calendrier['classement'];
     }
-
-    $tab_athletes = get_athletes_tab_id($chaine_id_athletes);
+    
+    if($b_relais){
+	$tab_equipes = get_equipes_genre($genre);
+    }
+    else{
+	$tab_athletes = get_athletes_tab_id($chaine_id_athletes);
+    }
+    
     //-------------------------------CYCLISTES/EQUIPES UTILES------------------------------------//
     
     $calendrier['url'] = clean_url('pronostic/' . $ID_CAL . '-' . $weekend['lieu'] . '-' . $calendrier['specialite'] . '-' . $calendrier['genre_fr']);
@@ -167,10 +181,20 @@
 	
 	for ($i=0;$i<10;$i++){
 	    $id_entite_res = $calendrier['classement'][$i];
-	    $res .= '		<tr class="">';
-	    $res .= '		 <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-place col-md-4">' . $tab_athletes[$id_entite_res]['prenom'] . ' ' . $tab_athletes[$id_entite_res]['nom'] .'</td>';
-	   $res .= '		</tr>';
+	    
+	    if($b_relais == false){
+		$res .= '	<tr class="">
+				    <th class="table-place col-md-2">' . ($i+1) .'</th>
+				    <td class="table-place col-md-4">' . $tab_athletes[$id_entite_res]['prenom'] . ' ' . $tab_athletes[$id_entite_res]['nom'] .'</td>
+				</tr>';
+	    }
+	    else{
+		$res .= '	<tr class="">
+				    <th class="table-place col-md-2">' . ($i+1) .'</th>
+				    <td class="table-place col-md-4">' . $tab_equipes[$id_entite_res]['nom'] . '</td>
+				</tr>';
+	    }
+	    
 	}
 	
 	$res .= '	    </table>
@@ -196,11 +220,20 @@
 	    else{
 		$pts_prono = '';
 	    }
-	    		
-	    $res .= '		<th class="table-place col-md-2">' . ($i+1) .'</th>
+	    
+	    if($b_relais){
+		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
+				    <td class="table-name col-md-6">' .  $tab_equipes[$id_entite_prono]['nom'] . '</td>
+				    <td class="table-point col-md-4">' . $pts_prono . '</td>
+				</tr>';
+	    }
+	    else{
+		$res .= '	    <th class="table-place col-md-2">' . ($i+1) .'</th>
 				    <td class="table-name col-md-6">' .  $tab_athletes[$id_entite_prono]['prenom'] . ' ' . $tab_athletes[$id_entite_prono]['nom'] .'</td>
-				    <td class="table-point col-md-4">' . $pts_prono . '</td>';
-	    $res .= '		</tr>';
+				    <td class="table-point col-md-4">' . $pts_prono . '</td>
+				</tr>';
+	    }
+	    
 	}
 	
 	if(sizeof($prono_joueur['prono']) == 1){
@@ -311,11 +344,21 @@
 	
 	for ($i=0;$i<10;$i++){
 	    $id_entite_prono = $prono_joueur['prono'][$i];
-	    $res .= '	     <tr class="">';
-	    $res .= '		    <th class="table-place col-md-2">' . ($i+1) .'</th>
-				    <td class="table-name col-md-6">' . $tab_athletes[$id_entite_prono]['prenom'] . ' ' . $tab_athletes[$id_entite_prono]['nom'] .'</td>
-				    <td class="table-point col-md-4">-</td>';
-	   $res .= '	     </tr>';
+	    if($b_relais){
+		$res .= '   <tr class="">
+				<th class="table-place col-md-2">' . ($i+1) .'</th>
+				<td class="table-name col-md-6">' . $tab_equipes[$id_entite_prono]['nom'] . '</td>
+				<td class="table-point col-md-4">-</td>
+			    </tr>';
+	    }
+	    else{
+		$res .= '   <tr class="">
+				<th class="table-place col-md-2">' . ($i+1) .'</th>
+				<td class="table-name col-md-6">' . $tab_athletes[$id_entite_prono]['prenom'] . ' ' . $tab_athletes[$id_entite_prono]['nom'] .'</td>
+				<td class="table-point col-md-4">-</td>
+			    </tr>';
+	    }
+	    
 	}
 	
 	if(sizeof($prono_joueur['prono']) > 1){

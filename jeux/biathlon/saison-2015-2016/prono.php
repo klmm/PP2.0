@@ -15,10 +15,12 @@
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/sql/get_inscriptions.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/lib/fonctions/clean_url.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_calendrier.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_weekend.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/render/render_zone_prono.php';
     //-------------------------------------------------------------------------------------//
 
-
+	
+	
     //--------------------------------------VARIABLES DE SESSION--------------------------------------//
 	session_start();
 	$loginjoueur = $_SESSION['LoginJoueur'];
@@ -54,7 +56,7 @@
     //------------------------------------------------------------------------------------------------//
 
 
-
+	
 
 
 
@@ -69,8 +71,10 @@
 	}
 
 	$jeu = get_jeu_id($ID_JEU);
-	$calendrier = get_calendrier($ID_CAL);
-	$liste_calendrier = get_calendrier_jeu_avenir($ID_JEU,4095);
+	$calendrier = biathlon_get_calendrier($ID_CAL);
+	$id_weekend = $calendrier['id_weekend'];
+	$weekends = get_weekend_jeu($ID_JEU);
+	$liste_calendrier = biathlon_get_calendrier_jeu_avenir($ID_JEU,4095);
 	
 	if ($calendrier == null){
 	    header('Location: /redirect/erreur404.html');
@@ -98,18 +102,27 @@
 	    return;
 	}
 	
-	$titre = $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'];
-		
+	$titre = $weekends[$id_weekend]['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'];
+	
+	
 	$res = get_zone_prono($ID_JEU, $ID_CAL);
-	$athletes = $res['athletes'];
 	$prono = $res['prono'];
 	
 	$pays = get_pays_tous();
+	
+	if($calendrier['specialite'] == 'Relais'){
+	    $equipes = $res['equipes'];
+	    $b_relais = true;
+	}
+	else{
+	    $b_relais = false;
+	    $athletes = $res['athletes'];
+	}
     //------------------------------------------------------------------------------------------------//
 
 
 
-
+	
 
 
 
@@ -269,11 +282,11 @@
             <div id="pari-panel" class="section" style="background-color: white;">
                 <div class="container" id="presentation-etape">
 		    <div class="sectionSide">
-			<h2 class="section-heading">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</h2>
+			<h2 class="section-heading">' . $weekends[$id_weekend]['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</h2>
 			<p class="section-highlight" style="margin-bottom:50px">' . $calendrier['date_debut_fr'] . ' - '. $calendrier['heure_debut_fr'] . '</p>
 			
 			<div class="btn-group calendar-combo">
-			    <button type="button" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</button>
+			    <button type="button" class="btn btn-lg btn-default" data-toggle="dropdown" aria-expanded="false">' . $weekends[$id_weekend]['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</button>
 			    <button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 				<span class="caret"></span>
 				<span class="sr-only">Toggle Dropdown</span>
@@ -281,8 +294,8 @@
 			    <ul id="calendar-list" class="dropdown-menu" role="menu">';
     
     foreach($liste_calendrier as $key => $value){
-	$url_cal = $value['id_biathlon_calendrier'] . '-' . $value['lieu'] . '-' . $value['specialite'] . '-' . $value['genre_fr'];
-	echo '			<li><a href="' . clean_url($url_cal) . '">' . $value['lieu'] . ' - ' . $value['specialite'] . ' ' . $value['genre_fr'] . ' (' . $value['date_debut_fr_court'] . ')' . '</a></li>';
+	$url_cal = $value['id_biathlon_calendrier'] . '-' . $weekends[$value['id_weekend']]['lieu'] . '-' . $value['specialite'] . '-' . $value['genre_fr'];
+	echo '			<li><a href="' . clean_url($url_cal) . '">' . $weekends[$value['id_weekend']]['lieu'] . ' - ' . $value['specialite'] . ' ' . $value['genre_fr'] . ' (' . $value['date_debut_fr_court'] . ')' . '</a></li>';
     }
     
     echo '
@@ -311,16 +324,31 @@
 		    <input id="item-search" type="text" placeholder="Recherche" name="nom" class="form-control" style="margin-bottom:25px;"/>
 		    <ul id="sortable1" class="connectedSortable ui-sortable">';
     
-    foreach($athletes as $id => $athlete){
-	if($athlete['pos_prono'] === 0 || $mise_resultat == true){
-	    echo '	    <li id="' . $athlete['id_biathlon_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $athlete['prenom'] . ' ' . $athlete['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$athlete['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+    if($b_relais){
+	foreach($equipes as $id => $equipe){
+	    if($equipe['pos_prono'] === 0 || $mise_resultat == true){
+		echo '	    <li id="' . $equipe['id_biathlon_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$equipe['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
 
-	    for($z=0; $z<$athlete['etoiles']; $z++){
-		echo '	<span class="glyphicon glyphicon-star"></span>';
+		for($z=0; $z<$equipe['etoiles']; $z++){
+		    echo '	<span class="glyphicon glyphicon-star"></span>';
+		}
+		echo '	    </div></li>';
 	    }
-	    echo '	    </div></li>';
 	}
     }
+    else{
+	foreach($athletes as $id => $athlete){
+	    if($athlete['pos_prono'] === 0 || $mise_resultat == true){
+		echo '	    <li id="' . $athlete['id_biathlon_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $athlete['prenom'] . ' ' . $athlete['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$athlete['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+
+		for($z=0; $z<$athlete['etoiles']; $z++){
+		    echo '	<span class="glyphicon glyphicon-star"></span>';
+		}
+		echo '	    </div></li>';
+	    }
+	}
+    }
+    
 			
     echo '
 			</ul>
@@ -344,15 +372,30 @@
 			    <ul id="sortable2" class="connectedSortable ui-sortable" data-text="jjj">';
     
     if($bConnected && $mise_resultat == false){
-	for($i=0;$i<10;$i++){
-	    $athlete = $prono['athletes_prono'][$i];
-	    if ($athlete['id_biathlon_athlete']){
-		echo '	    <li id="' . $athlete['id_biathlon_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $athlete['prenom'] . ' ' . $athlete['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$athlete['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+	if($b_relais){
+	    for($i=0;$i<10;$i++){
+		$equipe = $prono['equipes_prono'][$i];
+		if ($equipe['id_biathlon_equipe']){
+		    echo '	    <li id="' . $equipe['id_biathlon_equipe'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $equipe['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$equipe['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
 
-		for($z=0; $z<$athlete['etoiles']; $z++){
-		    echo '	<span class="glyphicon glyphicon-star"></span>';
+		    for($z=0; $z<$equipe['etoiles']; $z++){
+			echo '	<span class="glyphicon glyphicon-star"></span>';
+		    }
+		    echo '	    </div></li>';
 		}
-		echo '	    </div></li>';
+	    }
+	}
+	else{
+	    for($i=0;$i<10;$i++){
+		$athlete = $prono['athletes_prono'][$i];
+		if ($athlete['id_biathlon_athlete']){
+		    echo '	    <li id="' . $athlete['id_biathlon_athlete'] . '" name="prono" class="ui-state-default ui-sortable-handle"><span class="item-place"></span><span class="item-name">' . $athlete['prenom'] . ' ' . $athlete['nom'] . '</span><img class="item-flag hidden-xs" src="' . $pays[$athlete['id_pays']]['drapeau_icone'] . '" alt=""/><div class="item-rating">';
+
+		    for($z=0; $z<$athlete['etoiles']; $z++){
+			echo '	<span class="glyphicon glyphicon-star"></span>';
+		    }
+		    echo '	    </div></li>';
+		}
 	    }
 	}
     }

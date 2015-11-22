@@ -115,7 +115,7 @@ foreach ($athletes as $athlete){
     
     if($ath){
 	if($ath->retraite == 0){
-	    echo $nom[0] . ' ' . $nom[sizeof($nom) - 1] . ' : ' . $ath->nom . ' ' . $ath->prenom . '<br/>';
+	    echo round(($ath->note_couche+$ath->note_debout+$ath->note_fond)/3) . ' / ' . $nom[0] . ' ' . $nom[sizeof($nom) - 1] . ' : ' . $ath->nom . ' ' . $ath->prenom . '<br/>';
 
 	    $arr_id[] = $ath->id;
 	}

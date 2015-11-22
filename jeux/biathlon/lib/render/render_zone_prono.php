@@ -48,26 +48,23 @@
       // CALCUL DES MOYENNES DES SKIEURS
 	$moy_max = 0;
 	if($b_relais == false){
-	    $SEUIL_3 = 78;
-	    $SEUIL_2 = 70;
-	    $SEUIL_1 = 65;
+	    $SEUIL_3 = 83;
+	    $SEUIL_2 = 78;
+	    $SEUIL_1 = 73;
 	
 	    foreach($all_athletes as $id => $athlete){
 		switch($calendrier['specialite']){
 		    case 'Sprint':
-			$moy = ($athlete['note_couche'] + $athlete['note_debout'] + $athlete['note_fond'])/3;
+			$moy = ($athlete['note_couche'] + $athlete['note_debout'] + 2*$athlete['note_fond'])/4;
 			break;
 		    case 'Poursuite':
-			$moy = ($athlete['note_couche'] + $athlete['note_debout'] + $athlete['note_fond'])/3;
+			$moy = ($athlete['note_couche'] + $athlete['note_debout'] + 2*$athlete['note_fond'])/4;
 			break;
 		    case 'Individuelle':
 			$moy = ($athlete['note_couche'] + $athlete['note_debout'] + $athlete['note_fond'])/3;
 			break;
 		    case 'Mass start':
-			$moy = ($athlete['note_couche'] + $athlete['note_debout'] + $athlete['note_fond'])/3;
-			break;
-		    case 'Relais':
-			$moy = ($athlete['note_couche'] + $athlete['note_debout'] + $athlete['note_fond'])/3;
+			$moy = ($athlete['note_couche'] + 2*$athlete['note_debout'] + 3*$athlete['note_fond'])/6;
 			break;
 		    default:
 			$moy = 0;

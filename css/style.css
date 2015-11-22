@@ -605,10 +605,9 @@ footer  p {
 }
 
 .panelIcon {
-   position: absolute;
+   position: relative;
    margin: 10px;
-   top: 100px;
-   right: 0; 
+   float: right; 
 }
 
 .overlay {  
@@ -625,7 +624,7 @@ footer  p {
 	transition: all 0.3s ease-in-out;
 }
 .avatar:hover {
-	border:1px solid #555;
+	border:10px solid #555;
 	border-radius:5px;
 }
 .avatar:hover .overlay {
@@ -647,15 +646,16 @@ footer  p {
 	margin-left: 0px;
 	width: 50px;
 	visibility: hidden;
+	display:none!important;
 }
 .avatar {
-	border: 1px solid;
+	border: 10px solid #d0d0d0;
 	float: left;
 	height: 100px;
 	margin-left: 10px;
 	width: 100px;
 	text-align: center;
-	line-height: 100px;
+	line-height: 80px;
 	border-radius:5px;
 	background-size: cover;
 }

@@ -165,15 +165,15 @@
 
 			    <form id="playerInfo-form" role="form" class="row contact-form" method="post" action="/lib/form/post_infos.php" enctype="multipart/form-data">
 				<div class="panelIcon">
-				    <div id="avatar"  class="avatar" >
-					<div class="overlay">
-					    <span class="lblIcon">Icone</span>
-					    <span class="glyphicon glyphicon-plus overlayImage" aria-hidden="true"></span>
-					</div>
+				    <div id="avatar"  class="avatar" style="background-image : url('. $joueur["avatar"] .')">
+						<div class="overlay">
+							<span class="lblIcon">Icone</span>
+							<span class="glyphicon glyphicon-plus overlayImage" aria-hidden="true"></span>
+						</div>
 				    </div>
 
 				    <input id="panelUpload" name="panelUpload" type="file" class="file upload">
-				    <img id="avatar_img" src="' . $joueur["avatar"] . '" alt="aperçu indisponible"/>
+				    <!--<img id="avatar_img" src="' . $joueur["avatar"] . '" alt="aperçu indisponible"/>-->
 				</div>
 			    
 				<input type="text" value="' . $joueur["nom"] . '" placeholder="Nom" name="nom" class="form-control" required="" data-validation-required-message="Nom obligatoire" />
@@ -361,23 +361,27 @@
 		    
 		    // PRE-VISUALISATION DE L IMAGE
 		    $("#panelUpload").change(function(click) {
-			var preview = document.querySelector("img[id=avatar_img]");; //selects the query named img
+			//var preview = document.querySelector("img[id=avatar_img]");; //selects the query named img
 			var file    = document.querySelector("input[type=file]").files[0]; //sames as here
 			var reader  = new FileReader();
 
 			reader.onloadend = function () {
-			    preview.src = reader.result;
+			    //preview.src = reader.result;
+				$("#avatar").css("background-image", "url("+reader.result+")");
 			}
 
 			if (file) {
+				if (!file.name.match(/\.(jpg|jpeg|png|gif)$/) || file.size > 1050000)
+					return;
 			    reader.readAsDataURL(file); //reads the data as a URL
 			} else {
-			    preview.src = "";
+			    //preview.src = "";
+				$("#avatar").css("background-image", "");
 			}
 		    });
 
 		    // TOGGLE NO MAIL GENERAL
-		    $("#toggle-games").change(function() {
+		    $("#toggle-games").change(function(e) {
 			var postData = "";
 
 			if($(this).prop("checked")){
@@ -418,7 +422,7 @@
 		    });
 		    
 		    // TOGGLE INSCRIPTION JEU
-		    $(".toggle-game").change(function() {
+		    $(".toggle-game").change(function(e) {
 			var id_jeu = $(this).parent().parent().find(".id_jeu").attr("value");
 			var postData = "id_jeu=" + id_jeu;
 			
@@ -452,7 +456,7 @@
 		    });
 
 		    // TOGGLE TOUTES/AUCUNE EPREUVE(S)
-		    $(".toggle-races").change(function() {
+		    $(".toggle-races").change(function(e) {
 			if($(this).prop("checked")){
 			    $(this).parent().parent().parent().parent().find("#race-inscriptions-form .toggle-list .toggle-box input").each(function(){
 				$(this).bootstrapToggle("on");

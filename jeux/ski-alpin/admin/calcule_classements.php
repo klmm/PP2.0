@@ -207,8 +207,7 @@
 	
 	$spec_genre = strtr($specialites[$spe]['specialite'],'é','e') . $specialites[$spe]['genre'];
 		
-	$nom_fichier = '1' . $specialites[$spe]['id'] . '-' . $spec_genre . '.txt';
-	
+	$nom_fichier = str_replace(array('é', " "), array('e',""), '1' . $specialites[$spe]['id'] . '-' . $spec_genre . '.txt');
 	$titre = $specialites[$spe]['specialite'] . ' (' . $specialites[$spe]['genre'] . ')';
 	$descr = '';
 	$colonnes = ';;V;Pronos;Score';
@@ -253,7 +252,7 @@
     function calcule_classement_par_points($tab,$url){
 	usort($tab, 'compare_par_points');
 	
-	$nom_fichier = '02-Par points.txt';
+	$nom_fichier = '02-Points.txt';
 	
 	$titre = 'FIS';
 	$descr = 'Récompense le pronostiqueur le plus régulier';

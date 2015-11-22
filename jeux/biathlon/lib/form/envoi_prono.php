@@ -1,7 +1,7 @@
 <?php
 
     // ------------ INCLUDES ----------//
-    include $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_calendrier.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_calendrier.php';
     // ------------ INCLUDES ----------//
     
     
@@ -13,14 +13,13 @@
     // ------------ CONNEXION BDD ----------//
     
     
-    
     // ------------ RECUPERATION DES PARAMETRES ----------//
     session_start();
     $login = $_SESSION['LoginJoueur'];
     $id_jeu = $_POST['id_jeu'];
     $id_cal = $_POST['id_cal'];
     $arr_prono = $_POST['prono'];
-    $calendrier = get_calendrier($id_cal);
+    $calendrier = biathlon_get_calendrier($id_cal);
     // ------------ RECUPERATION DES PARAMETRES ----------//    
     
     // ------------ VERIFICATION DES PARAMETRES ----------//

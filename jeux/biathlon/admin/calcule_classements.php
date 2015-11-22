@@ -223,7 +223,8 @@
 	
 	usort($tab, 'compare_score_weekend');
 	
-	$nom_fichier = '2' . $weekend['id'] . '-' . $weekend['lieu'];
+	$nom_fichier = str_replace(array('é'), array('e'), '01' . $weekend['id'] . '-' . $weekend['lieu'] . '.txt');
+	$nom_fichier = ltrim($nom_fichier, "' ");
 	
 	setlocale(LC_TIME, 'fr_FR');
 	$date2 = strtotime($date);
@@ -274,7 +275,7 @@
 	
 	$spec_genre = strtr($specialites[$spe]['specialite'],'é','e') . $specialites[$spe]['genre'];
 		
-	$nom_fichier = '1' . $specialites[$spe]['id'] . '-' . $spec_genre . '.txt';
+	$nom_fichier = str_replace(array('é', " "), array('e',""), '1' . $specialites[$spe]['id'] . '-' . $spec_genre . '.txt');
 	
 	$titre = $specialites[$spe]['specialite'] . ' (' . $specialites[$spe]['genre'] . ')';
 	$descr = '';
@@ -320,9 +321,9 @@
     function calcule_classement_par_points($tab,$url){
 	usort($tab, 'compare_par_points');
 	
-	$nom_fichier = '02-Par points.txt';
+	$nom_fichier = '02-Points.txt';
 	
-	$titre = 'FIS';
+	$titre = 'IBU';
 	$descr = 'Récompense le pronostiqueur le plus régulier';
 	$colonnes = ';;Pronos;Points';
 	$taille_colonnes = '2;5;2;3';

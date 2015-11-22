@@ -1,7 +1,7 @@
 // A CHANGER LORS DE LA CREATION D'UN JEU
 var id_jeu = 5;
 
-var test = 1;
+var test5 = 1;
 function Init_Forms_Biathlon()
 {
 	$(document).on('click', '#calendar a', function(e)
@@ -185,7 +185,7 @@ function dialog(href, titre, message){
 function render_liste_calendrier(filtre, joueur){
 	var formURL = "/jeux/biathlon/lib/render/render_liste_calendrier.php";
 	var postData = "id_jeu=" + id_jeu + "&filtre=" + filtre;
-	test = 1;
+	test5 = 1;
 	$( "#resultats" ).empty();
 	$( "#resultats" ).append("Chargement...");	
 
@@ -245,7 +245,7 @@ function render_pres_panel(id_cal){
 		}
 	});
 	
-	if(test == 1){
+	if(test5 == 1){
 	    $("#post-form").submit(function(e)
 	    {
 		    $('.alert').alert('close');
@@ -279,7 +279,7 @@ function render_pres_panel(id_cal){
 		    e.preventDefault(); //STOP default action
 
 	    });
-	    test = 0;
+	    test5 = 0;
 	}
 }
 

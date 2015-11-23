@@ -153,7 +153,7 @@
     
     // AFFICHAGE PARTIE CALENDRIER
         
-    if($calendrier['commence']){
+    if($calendrier['commence'] && $calendrier['annule'] == false){
 	
 	// RESULTAT
 	$res .= '   <div class="row player-result">

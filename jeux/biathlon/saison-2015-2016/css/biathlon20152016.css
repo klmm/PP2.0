@@ -425,6 +425,20 @@ float:left;
 	;float: right;
 }
 
+
+/* calendar filter */
+.calendar-filter{
+	padding:6px;
+}
+.calendar-filter ul{
+	position:relative!important;
+	width:100%!important;
+	margin:0!important;
+}
+.calendar-filter li{
+	white-space: nowrap;
+}
+
 /* graph */
 .arc path {
   stroke: #fff;
@@ -589,4 +603,8 @@ float:left;
 	#sortable1 li, #sortable2 li{
 		font-size: 0.5em;
 	}
+}
+
+.calendar-filter{
+	background-color:rgb(67,67,67);
 }

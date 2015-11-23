@@ -244,7 +244,7 @@
 				}
 				    
 				echo '
-				<div class="blah">
+				<div class="intern-game">
 				    <div class="row">
 					<div class="col-md-6 col-sm-6 col-xs-6">
 					    <p class="">' . $jeu['sport'] . ' - ' . $jeu['competition'] . '</p>
@@ -394,13 +394,13 @@
 			if($(this).prop("checked")){
 			    $(this).parent().parent().parent().parent().find("#mail-games-form .toggle-list .toggle-box .toggle-game").each(function(){
 				$(this).bootstrapToggle("on");
-				$(this).prop("disabled", false);
+				$(this).parent().removeAttr("disabled");
 			    });
 			    postData = "no_mail=0";
 			} else {
 			    $(this).parent().parent().parent().parent().find("#mail-games-form .toggle-list .toggle-box .toggle-game").each(function(){
 				$(this).bootstrapToggle("off");
-				$(this).prop("disabled", true);
+				$(this).parent().attr("disabled", "disabled");
 			    });
 			    postData = "no_mail=1";
 			}
@@ -495,7 +495,7 @@
 			    obj["inscr"] = bool;
 			    postData.races.push(obj);
 			});
-			
+			$this = $(this);
 			var formURL = "/lib/form/inscr_epreuves.php";
 			$.ajax(
 			{
@@ -505,14 +505,14 @@
 			    success:function(data, textStatus, jqXHR) 
 			    {
 				var result = $.parseJSON(data);
-				alert($(this).html());
+				//alert($this.html());
 				if (result.success == true){
-				    $(this).find("button").append( \'<div class="alert alert-success alert-dismissible" role="alert">\'+
+				    $this.append( \'<div class="alert alert-success alert-dismissible" role="alert">\'+
 					\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\'+
 					result.msg+\'</div>\' );		    
 				}
 				else{
-				     $(this).find("button").append( \'<div class="alert alert-info alert-dismissible" role="alert">\'+
+				     $this.append( \'<div class="alert alert-info alert-dismissible" role="alert">\'+
 					\'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\'+
 					\'<strong>Attention!  </strong>\'+result.msg+\'</div>\' );
 				}

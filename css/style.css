@@ -623,6 +623,7 @@ footer  p {
 	-o-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
+	cursor: pointer;
 }
 .avatar:hover {
 	border:10px solid #555;
@@ -635,7 +636,7 @@ footer  p {
 .lblIcon {
 	width: 50px;
 	margin : 0;
-	cursor : default;
+	cursor: pointer;
 }
 .overlayImage {  
 	height: 24px;
@@ -725,6 +726,11 @@ footer  p {
 	width: 100%;
 	box-shadow: #656565 0px 0px 10px 0px;
 }
+
+.intern-game{
+	margin-bottom: 20px;
+}
+
 
 /* ______________________________ my dashboard ___________________________________*/
 

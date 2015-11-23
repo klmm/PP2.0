@@ -67,8 +67,8 @@
 	<div class="collapse navbar-collapse navbar-calendar">
 	    <div class="calendar-filter">
 		<ul class="nav nav-pills nav-justified">
-		    <li role="presentation" class="active filtre_courses"><a id="' . $FILTRE . '" data-toggle="tab">Mes courses</a></li>
-		    <li role="presentation" class="filtre_courses"><a id="0" data-toggle="tab">Toutes</a></li>
+		    <li role="presentation" class="active filtre_courses"><a onclick="javascript:render_liste_calendrier(' . $FILTRE . ');" id="' . $FILTRE . '">Mes courses</a></li>
+		    <li role="presentation" class="filtre_courses"><a id="0" onclick="javascript:render_liste_calendrier(0);">Toutes</a></li>
 		</ul>
 	    </div>
 	    <ul id="list-cal" class="nav navbar-nav">';

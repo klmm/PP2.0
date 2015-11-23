@@ -65,15 +65,15 @@
 			}
 		    }
 		    else{
-			$msg = 'Erreur dans les dimensions de l\'image (max : 800x800, 100ko) !';
+			$msg = 'Image trop grande (max : 800x800, 100ko) !';
 		    }
 		}
 		else{
-		    $msg = 'Le fichier à uploader n\'est pas une image !';
+		    $msg = 'L\'avatar n\'est pas une image !';
 		}
 	    }
 	    else{
-		$msg = 'L\'extension du fichier est incorrecte !';
+		$msg = 'L\'extension de l\'avatar est incorrecte (autorisées : jpg, gif, png, jpeg) !';
 	    }
 	}
 	else{

@@ -37,6 +37,8 @@
     $pays = get_pays_tous();
     
     $weekends = get_weekend_jeu($ID_JEU);
+    
+    $pronos_joueur = get_pronos_joueurs_jeu($ID_JEU,$JOUEUR);
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
     
     $res = '';
@@ -63,6 +65,12 @@
 	</div>
 
 	<div class="collapse navbar-collapse navbar-calendar">
+	    <div class="calendar-filter">
+		<ul class="nav nav-pills nav-justified">
+		    <li role="presentation" class="active filtre_courses"><a id="' . $FILTRE . '" data-toggle="tab">Mes courses</a></li>
+		    <li role="presentation" class="filtre_courses"><a id="0" data-toggle="tab">Toutes</a></li>
+		</ul>
+	    </div>
 	    <ul id="list-cal" class="nav navbar-nav">';
 	
 	for($i=0;$i<$nb_calendrier;$i++){
@@ -76,12 +84,18 @@
 	    else{
 		$tmp_class = '';
 	    }
-	    
+	    $tmp_prono = '';
 	    if($calendrier['annule'] == "0"){
 		if($calendrier['commence'] == "0"){
 		    $tmp_date = $calendrier['date_debut_fr_tcourt'] . ', à ' . $calendrier['heure_debut_fr'];
 		    if($calendrier['disponible'] == "1"){
 			$tmp_ico = 'glyphicon-play';
+			if($pronos_joueur[$id] != null){
+			    $tmp_prono = '<font color="green"><b>Prono validé</b></font>';
+			}
+			else{
+			    $tmp_prono = '<font color="red"><b>Pas de prono</b></font>';
+			}
 		    }
 		    else{
 			$tmp_ico = 'glyphicon-lock';
@@ -108,7 +122,7 @@
 		    <a class="clearfix" value="' . $id . '" data-action="goTo">
 			<div class="flex-center"><img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$weekends[$id_we]['id_pays']]['drapeau_icone'] . '"/>
 			<span class="title col-md-10 col-sm-10">' . $weekends[$id_we]['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</span></div>
-			<span class="date col-md-6">' . $tmp_date . '</span>
+			<span class="date col-md-6">' . $tmp_date . '<br/>' . $tmp_prono . '</span>
 			<span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
 		    </a>
 		</li>';

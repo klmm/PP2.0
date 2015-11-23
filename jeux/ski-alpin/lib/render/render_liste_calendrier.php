@@ -35,6 +35,8 @@
     $nb_calendrier = sizeof($arr_calendrier);
     
     $pays = get_pays_tous();
+    
+    $pronos_joueur = get_pronos_joueurs_jeu($ID_JEU, $JOUEUR);
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
     
     $res = '';
@@ -73,11 +75,18 @@
 		$tmp_class = '';
 	    }
 	    
+	    $tmp_prono = '';
 	    if($calendrier['annule'] == "0"){
 		if($calendrier['commence'] == "0"){
 		    $tmp_date = $calendrier['date_debut_fr_tcourt'] . ', à ' . $calendrier['heure_debut_fr'];
 		    if($calendrier['disponible'] == "1"){
 			$tmp_ico = 'glyphicon-play';
+			if($pronos_joueur[$id] != null){
+			    $tmp_prono = '<font color="green"><b>Prono validé</b></font>';
+			}
+			else{
+			    $tmp_prono = '<font color="red"><b>Pas de prono</b></font>';
+			}
 		    }
 		    else{
 			$tmp_ico = 'glyphicon-lock';
@@ -104,7 +113,7 @@
 		    <a class="clearfix" value="' . $id . '" data-action="goTo">
 			<div class="flex-center"><img class="item-flag col-md-2 col-sm-2 hidden-xs" src="' . $pays[$calendrier['id_pays']]['drapeau_icone'] . '"/>
 			<span class="title col-md-10 col-sm-10">' . $calendrier['lieu'] . ' - ' . $calendrier['specialite'] . ' ' . $calendrier['genre_fr'] . '</span></div>
-			<span class="date col-md-6">' . $tmp_date . '</span>
+			<span class="date col-md-6">' . $tmp_date . '<br/>' . $tmp_prono . '</span>
 			<span class="glyphicon ' . $tmp_ico . ' col-md-6"></span>
 		    </a>
 		</li>';

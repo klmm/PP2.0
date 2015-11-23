@@ -132,6 +132,7 @@ p {
     display: inline-block;
     color: transparent;
 	background-repeat: no-repeat;
+	cursor: default;
 }
 .player-badge:hover{
     -ms-transform: translate(-10px); /* IE 9 */

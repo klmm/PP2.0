@@ -25,6 +25,18 @@ function Init_Forms_Biathlon()
 
 	    render_prono_autre(id_cal,joueur);
 	});
+	
+	$(document).on('click', '.filtre_courses a', function(e)
+	{
+	    $('.filtre_courses a').each(function() {
+		$(this).removeClass("active");
+	    });
+	    
+	    $(this).addClass("active");
+	    
+	    var filtre = $(this).attr("id");
+	    render_liste_calendrier(filtre);
+	});
 }
 
 function Init_Zone_Paris()
@@ -182,7 +194,7 @@ function dialog(href, titre, message){
 	$('#dataConfirmModal').modal({show:true});
 }
 
-function render_liste_calendrier(filtre, joueur){
+function render_liste_calendrier(filtre){
 	var formURL = "/jeux/biathlon/lib/render/render_liste_calendrier.php";
 	var postData = "id_jeu=" + id_jeu + "&filtre=" + filtre;
 	test5 = 1;

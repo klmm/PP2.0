@@ -49,8 +49,11 @@
 	$prep->setFetchMode(PDO::FETCH_OBJ);
 
 	while($enregistrement = $prep->fetch()){
-	    $id_prono = $enregistrement->id_ski_alpin_prono;
 	    $id_cal = $enregistrement->id_calendrier;
+	    if($id_cal == 1 || $id_cal == 2){
+		continue;
+	    }
+	    $id_prono = $enregistrement->id_ski_alpin_prono; 
 	    $pos = $enregistrement->classement;
 	    $score = $enregistrement->score_total;
 	    $nb_trouves = $enregistrement->nb_trouves;

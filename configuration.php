@@ -145,7 +145,7 @@
 //---------------------------------------------FIN HEADER------------------------------------------------------//
 		
     if($joueur["avatar"] == ""){
-	$avatar_joueur = "";
+	$avatar_joueur = "/img/avatars/no_photo.png";
     }
     else{
 	$avatar_joueur = $joueur["avatar"];
@@ -165,14 +165,14 @@
 
 			    <form id="playerInfo-form" role="form" class="row contact-form" method="post" action="/lib/form/post_infos.php" enctype="multipart/form-data">
 				<div class="panelIcon">
-				    <div id="avatar"  class="avatar" style="background-image : url('. $joueur["avatar"] .')">
-						<div class="overlay">
-							<span class="lblIcon">Icone</span>
-							<span class="glyphicon glyphicon-plus overlayImage" aria-hidden="true"></span>
-						</div>
+				    <div id="avatar"  class="avatar" style="background-image : url('. $avatar_joueur .')">
+					<div class="overlay">
+					    <span class="lblIcon">Icone</span>
+					    <span class="glyphicon glyphicon-plus overlayImage" aria-hidden="true"></span>
+					</div>
 				    </div>
 
-				    <input id="panelUpload" name="panelUpload" type="file" class="file upload">
+				    <input id="panelUpload" name="panelUpload" type="file" class="file upload" accept="image/*">
 				    <!--<img id="avatar_img" src="' . $joueur["avatar"] . '" alt="aperçu indisponible"/>-->
 				</div>
 			    
@@ -206,10 +206,17 @@
 				    <ul class="toggle-list">';
     
 				foreach($jeux as $key => $jeu){
-				    $tmp = "checked";
-				    if($inscriptions[$jeu['id_jeu']]['no_mail'] || $no_mail_general == true){
-					$tmp = '';
+				    if($no_mail_general){
+					$tmp = "disabled";
 				    }
+				    else{
+					if($inscriptions[$jeu['id_jeu']]['no_mail'] || $no_mail_general == true){
+					    $tmp = '';
+					}
+					else{
+					    $tmp = "checked";
+					}
+				    }    
 				    
 				    echo '
 					<li class="toggle-box clearfix">

@@ -248,6 +248,7 @@
 						
     echo '
 					<li class=""><a href="#resultats" data-action="scrollTo">Pronostics</a></li>
+					<li class=""><a href="/jeux/biathlon/saison-2015-2016">Jeu biathlon</a></li>
 					<li class="home"><a href="/" class="glyphicon glyphicon-home" aria-label="home"><span> Retour au site</span></a></li>
                                     </ul>  
                                 </div>

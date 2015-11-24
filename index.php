@@ -186,6 +186,8 @@ $cr = array(
 					    <span class="glyphicon glyphicon-user"></span><span id="bUsername">  ' . $loginjoueur . ' </span>
 					</a>
 					<ul class="dropdown-menu" style="min-width:202px;">
+					    <li class="divider"> </li>
+					    
 					    <form style="text-align: center; padding: 5px; cursor:pointer;">
 						<a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
 					    </form>
@@ -196,6 +198,14 @@ $cr = array(
 						<input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
 						<button type="submit" id="btnRegister" class="btn btn-success">Valider</button>
 					    </form>
+					    
+					    <li class="divider"> </li>
+
+					    <li>
+						<form style="text-align: center; padding: 5px; cursor:pointer;">
+						    <a target="_blank" href="/configuration">Ma configuration</a>
+						</form>
+					    </li>
 
 					    <li class="divider"> </li>
 

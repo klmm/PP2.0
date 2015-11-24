@@ -213,6 +213,8 @@
                                                 <span class="glyphicon glyphicon-user"></span><span id="bUsername">  ' . $loginjoueur . ' </span>
                                             </a>
                                             <ul class="dropdown-menu" style="min-width:202px;">
+						<li class="divider"> </li>
+						
                                                 <form style="text-align: center; padding: 5px; cursor:pointer;">
                                                     <a data-toggle="collapse" data-target="#changePassword">Changer de mot de passe</a>
                                                 </form>
@@ -223,6 +225,14 @@
                                                     <input name="newpassword2" id="newpassword2" type="password" placeholder="Confirmer nouveau" required=""><br>                                  
                                                     <button type="submit" id="btnRegister" class="btn btn-success">Valider</button>
                                                 </form>
+						
+						<li class="divider"> </li>
+
+                                                <li>
+						    <form style="text-align: center; padding: 5px; cursor:pointer;">
+							<a target="_blank" href="/configuration">Ma configuration</a>
+						    </form>
+                                                </li>
 
                                                 <li class="divider"> </li>
 
@@ -492,22 +502,6 @@
         <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
         <script src="/bower_components/angular/angular.js"></script>
 	<script src="/js/social-buttons.js"></script>
-	
-	<script>
-	    var time = new Date().getTime();
-	    $(document.body).bind("mousemove keypress", function(e) {
-		time = new Date().getTime();
-	    });
-
-	    function refresh() {
-		if(new Date().getTime() - time >= 600000)
-		    window.location.reload(true);
-		else
-		    setTimeout(refresh, 30000);
-	    }
-
-	    setTimeout(refresh, 30000);
-	</script>
 
 	
         <script>

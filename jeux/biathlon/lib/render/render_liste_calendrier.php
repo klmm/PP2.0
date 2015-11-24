@@ -26,7 +26,14 @@
     }
     //------------------------------------------------------------------------------------------------//
     
-    
+    /*
+     	    <div class="calendar-filter">
+		<ul class="nav nav-pills nav-justified">
+		    <li role="presentation" class="active filtre_courses"><a onclick="javascript:render_liste_calendrier(' . $FILTRE . ');" id="' . $FILTRE . '">Mes courses</a></li>
+		    <li role="presentation" class="filtre_courses"><a id="0" onclick="javascript:render_liste_calendrier(0);">Toutes</a></li>
+		</ul>
+	    </div>
+     */
     
     //--------------------------------------RECUPERATIONS DES INFOS--------------------------------------//
     $id_cal = biathlon_get_id_calendrier_actuel($ID_JEU,$FILTRE);
@@ -48,6 +55,7 @@
 	$res .= '
 <div class="sectionSide" style="margin-bottom:50px;">
     <h2 class="section-heading">Calendrier</h2>
+    <p class="section-highlight"><a target="_blank" href="/configuration">Choisir mes courses</a></p>
 </div>
 <div class="left-content col-md-3 col-sm-3">
     <nav id="calendar" class="navbar navbar-default" role="navigation">
@@ -65,12 +73,6 @@
 	</div>
 
 	<div class="collapse navbar-collapse navbar-calendar">
-	    <div class="calendar-filter">
-		<ul class="nav nav-pills nav-justified">
-		    <li role="presentation" class="active filtre_courses"><a onclick="javascript:render_liste_calendrier(' . $FILTRE . ');" id="' . $FILTRE . '">Mes courses</a></li>
-		    <li role="presentation" class="filtre_courses"><a id="0" onclick="javascript:render_liste_calendrier(0);">Toutes</a></li>
-		</ul>
-	    </div>
 	    <ul id="list-cal" class="nav navbar-nav">';
 	
 	for($i=0;$i<$nb_calendrier;$i++){

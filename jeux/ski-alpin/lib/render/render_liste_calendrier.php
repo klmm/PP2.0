@@ -45,6 +45,7 @@
 	$res .= '	
 <div class="sectionSide" style="margin-bottom:50px;">
     <h2 class="section-heading">Calendrier</h2>
+    <p class="section-highlight"><a target="_blank" href="/configuration">Choisir mes courses</a></p>
 </div>
 <div class="left-content col-md-3 col-sm-3">
     <nav id="calendar" class="navbar navbar-default" role="navigation">

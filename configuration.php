@@ -195,7 +195,7 @@
 			    <div id="mail-games" class="toggle-div">
 				<div class="row">
 				    <div class="col-md-6 col-sm-6 col-xs-6">
-					<p class="">Recevoir des mails de Parions Potes</p>
+					<p class="sub-title">Recevoir des mails de Parions Potes</p>
 				    </div>
 				    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
 					<input id="toggle-games" type="checkbox" ' . $tmp_gen . ' data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" data-on="Oui" data-off="Non">
@@ -247,7 +247,7 @@
 				<div class="intern-game">
 				    <div class="row">
 					<div class="col-md-6 col-sm-6 col-xs-6">
-					    <p class="">' . $jeu['sport'] . ' - ' . $jeu['competition'] . '</p>
+					    <p class="sub-title">' . $jeu['sport'] . ' - ' . $jeu['competition'] . '</p>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6 text-right">
 					    <input class="toggle-races" type="checkbox" checked data-toggle="toggle" data-size="small" data-onstyle="success" data-offstyle="danger" data-off="Aucune" data-on="Toutes">

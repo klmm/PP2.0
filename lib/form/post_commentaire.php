@@ -16,17 +16,38 @@
 	    
     if ($login == ''){
 	echo 'Joueur non connecté';
+	$db = null;
 	return;
     }
     
     if ($contenu == ''){
 	echo 'Commentaire vide';
+	$db = null;
 	return;
     }
-
+    
     if($b_article){
 	$b_article = 1;
 	$id_cal = 0;
+    }
+    else{
+	$id_cal = $_POST['id_cal'];
+	$b_article = 0;
+    }
+    
+    $sql2 = "SELECT * FROM commentaire WHERE joueur=? AND DateHeurePub=NOW()";
+    $prep2 = $db->prepare($sql2);
+    $prep2->bindValue(1,$login,PDO::PARAM_STR);
+    $prep2->setFetchMode(PDO::FETCH_OBJ);
+    $prep2->execute();
+    $enregistrement = $prep2->fetch();
+    if($enregistrement){
+	echo 'success;' . $b_article . ';' . $id_art_jeu . ';' . $id_cal . ';';
+	$db = null;
+	return;
+    }
+    
+    if($b_article){
 	$sql = "INSERT INTO commentaire(IDArticle,Joueur,Contenu,DateHeurePub,NombreLikes,NombreDislikes,id_jeu,id_cal) VALUES(?,?,?,NOW(),0,0,0,0)";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$id_art_jeu,PDO::PARAM_INT);
@@ -35,8 +56,7 @@
 	$res_req = $prep->execute();
     }
     else{
-	$id_cal = $_POST['id_cal'];
-	$b_article = 0;
+	
 	$sql = "INSERT INTO commentaire(IDArticle,Joueur,Contenu,DateHeurePub,NombreLikes,NombreDislikes,id_jeu,id_cal) VALUES(0,?,?,NOW(),0,0,?,?)";
 	$prep = $db->prepare($sql);
 	$prep->bindValue(1,$login,PDO::PARAM_STR);

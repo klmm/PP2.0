@@ -246,6 +246,7 @@ function render_pres_panel(id_cal){
 	});
 	
 	if(test == 1){
+	    $("#post-form").off('submit');
 	    $("#post-form").submit(function(e)
 	    {
 		    $('.alert').alert('close');

@@ -2,29 +2,36 @@
 
     $delimiter = ' ';
 	
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/jeux/ski-alpin/lib/sql/get_athlete.php');    
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/jeux/biathlon/lib/sql/get_athlete.php');    
     require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/titi.php');
     
     $bdd = new Connexion();
     $db = $bdd->getDB();
     
     // RECUPERATION DES PARAMETRES
-    $update = $_POST['update'];
     $type = $_POST['type'];
-    $discipline = $_POST['discipline'];
     $genre = $_POST['genre'];
     $url = $_POST['url'];
-     
     
     // RECUPERATION DU CLASSEMENT
     $html = file_get_contents($url);
+    $html = str_replace('<', '', $html);
+    echo 'XX';
+    echo $html;
     
     switch($type){
-	case "course":
+	case "startlist":
 	    $debut = "<th data-hide='phone'>FIS Points</th>";
 	    $fin = "footer ";
 	    $debut_ath = 'type=result">';
 	    $fin_ath = "</a>";
+	    break;
+	
+	case "course":
+	    $debut = '<tbody data-bind="foreach: itemsOnCurrentPage"><tr';
+	    $fin = "schedule_race_reports";
+	    $debut_ath = 'data-bind="text: Name">';
+	    $fin_ath = "</td>";
 	    break;
 	
 	case "classement":
@@ -53,29 +60,14 @@
 	    $athletes[] = $tmp[0];
 	}
     }
-    
-    $tab_disciplines = ['','note_slalom','note_geant','note_superg','note_descente','note_combine'];
-    $discipline = $tab_disciplines[$discipline];
-    
-    
-    /*echo $update . '<br/>';
-    echo $discipline . '<br/>';
-    echo $genre . '<br/>';
-    echo $url . '<br/>';
-    print_r($athletes);
-    
-    return;*/
-    
-    
+
     
     echo 'ATHLETES DU CLASSEMENT ET LEUR NOTE DANS LA SPECIALITE<br/>';
 
-    $sql = "SELECT * FROM ski_alpin_athlete WHERE genre=? AND nom LIKE ? AND prenom LIKE ? LIMIT 1";
+    $sql = "SELECT * FROM biathlon_athlete WHERE genre=? AND nom LIKE ? AND prenom LIKE ? LIMIT 1";
     $prep = $db->prepare($sql);   
     $prep->setFetchMode(PDO::FETCH_OBJ);
 
-    $sql3 = "UPDATE ski_alpin_athlete SET " . $discipline . "=70 WHERE id=?";
-    $prep3 = $db->prepare($sql3);
     foreach ($athletes as $athlete){
 	$nom = explode(' ', $athlete);
 	$prep->bindValue(1,$genre);
@@ -86,13 +78,7 @@
 
 	if($ath){
 	    if($ath->retraite == 0){
-		echo $nom[0] . ' ' . $nom[sizeof($nom) - 1] . ' : ' . $ath->nom . ' ' . $ath->prenom . ' - ' . $ath->$discipline . '<br/>';
-
-		if($ath->$discipline < 70 && $update){
-		    $prep3->bindValue(1,$ath->id);
-		    $prep3->execute();
-		}
-
+		echo $nom[0] . ' ' . $nom[sizeof($nom) - 1] . ' : ' . $ath->nom . ' ' . $ath->prenom . ' - ' . ($ath->note_couche+$ath->note_debout+$ath->note_fond)/3 . '<br/>';
 		$arr_id[] = $ath->id;
 	    }
 	}
@@ -106,7 +92,7 @@
 
     $ids = implode(',',$arr_id);
 
-    $sql2 = "SELECT * FROM ski_alpin_athlete WHERE retraite=0 AND genre=? AND " . $discipline . " >= 65 AND id NOT IN ($ids)";
+    $sql2 = "SELECT * FROM biathlon_athlete WHERE retraite=0 AND genre=? AND (note_couche+note_debout+note_fond)/3>= 65 AND id NOT IN ($ids)";
     $prep2 = $db->prepare($sql2);
     $prep2->bindValue(1,$genre);
     $prep2->setFetchMode(PDO::FETCH_OBJ);
@@ -114,7 +100,7 @@
 
 
     while($ath = $prep2->fetch()){
-	echo $ath->nom . ' ' . $ath->prenom . ' - ' . $ath->$discipline . '<br/>';
+	echo $ath->nom . ' ' . $ath->prenom . '<br/>';
     }
     
 ?>

@@ -161,7 +161,7 @@ $cr = array(
 					<ul class="dropdown-menu" style="padding:13px;margin: 2px -10px 0;">
 					    <form role="form" id="formLogin" class="form" action="/lib/form/connect_joueur.php" method="POST">
 						<label>Se connecter</label>
-						<input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
+						<input name="username" id="username" type="text" placeholder="Pseudo" title="Pseudo" required="">
 						<input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
 						<button type="submit" id="btnLogin" class="btn btn-block btn-primary">Se connecter</button>
 					    </form>
@@ -225,7 +225,7 @@ $cr = array(
                             <div class="navbar-collapse collapse" id="navbar-main">
                                 <ul class="nav navbar-nav pull-right" style="">
                                     <li class="active"> <a href="#myCarousel" data-action="scrollTo">Actualités</a></li>
-                                    <li class="">       <a href="#games" data-action="scrollTo">Jeux</a></li>';
+                                    <li class="">       <a href="#games" data-action="scrollTo">Pronostics</a></li>';
 							
 	if ($bConnected == false){
 		echo '              <li class=""><a href="#inscription" data-action="scrollTo">Inscription</a></li>';
@@ -592,7 +592,7 @@ $cr = array(
                         <input type='text' placeholder='Prénom' name='prenom' class='form-control'>
                     </div>
                     <div class='col-md-6'>
-                        <input type='text' placeholder='Login (entre 3 et 12 chiffres et lettres)' name='login' class='form-control' required='' data-validation-required-message='Veuillez choisir un login'>
+                        <input type='text' placeholder='Pseudo (entre 3 et 12 chiffres et lettres)' name='login' class='form-control' required='' data-validation-required-message='Veuillez choisir un pseudo'>
                         <input type='email' placeholder='email (votre mot de passe vous y sera envoyé)' name='email' class='form-control' required='' data-validation-required-message='Veuillez indiquer une adresse mail valide'>	
                     </div>
                     <div class='col-md-4'></div>

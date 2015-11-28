@@ -192,7 +192,7 @@
                                             <ul class="dropdown-menu" style="padding:13px;margin: 2px -10px 0;">
                                                 <form role="form" id="formLogin" class="form" action="/lib/form/connect_joueur.php" method="POST">
                                                     <label>Se connecter</label>
-                                                    <input name="username" id="username" type="text" placeholder="Login" title="Login" required="">
+                                                    <input name="username" id="username" type="text" placeholder="Pseudo" title="Pseudo" required="">
                                                     <input name="password" id="password" type="password" placeholder="Mot de passe" title="Mot de passe" required=""><br>
                                                     <button type="submit" id="btnLogin" class="btn btn-block btn-primary">Se connecter</button>
                                                 </form>

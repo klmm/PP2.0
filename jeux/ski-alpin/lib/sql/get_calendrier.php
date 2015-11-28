@@ -313,13 +313,12 @@
 	$date_seule = strftime('%Y-%m-%d', $unix);
 	
 	//On fait la requete sur le login
-	$sql4 = "SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut>NOW() AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 1"; // ETAPE DU JOUR A VENIR
+	$sql4 = 'SELECT * FROM ski_alpin_calendrier WHERE id_jeu=? AND CAST(date_debut AS DATE)=? AND date_debut>NOW() AND (' . $sql_epreuve . ') ORDER BY date_debut ASC LIMIT 1'; // ETAPE DU JOUR A VENIR
 	$prep4 = $db->prepare($sql4);
 	$prep4->bindValue(1,$ID_JEU,PDO::PARAM_INT);
 	$prep4->bindValue(2,$date_seule,PDO::PARAM_STR);
-	$prep4->bindValue(3,$date_seule,PDO::PARAM_STR);
-	$prep4->execute();
 	$prep4->setFetchMode(PDO::FETCH_OBJ);
+	$prep4->execute();
 
 	$enregistrement4 = $prep4->fetch();
 	

@@ -111,6 +111,19 @@
 		    else{
 			$tmp_ico = 'glyphicon-stats';
 			$tmp_date = 'Terminé';
+			if($pronos_joueur[$id] != null){
+			    $class_prono = $pronos_joueur[$id]['classement'];
+			    if($class_prono == 1){
+				$class_prono = '1er';
+			    }
+			    else{
+				$class_prono .= 'ème';
+			    }
+			    $tmp_date .= ' (' . $class_prono . ')';
+			}
+			else{
+			    $tmp_date .= ' (NC)';
+			}
 		    }
 		}
 	    }

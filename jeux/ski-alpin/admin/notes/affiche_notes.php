@@ -20,16 +20,30 @@
     $html = file_get_contents($url);
     
     switch($type){
+	 case "entrainement":
+        $debut = '>Total Time<';
+        $fin = "<footer";
+        $debut_ath = 'type=result">';
+        $fin_ath = "</a>";
+        break;
+
+    case "startlist":
+	    $debut = '>Skis<';
+	    $fin = "<footer";
+	    $debut_ath = 'type=result">';
+	    $fin_ath = "</a>";
+	    break;
+
 	case "course":
 	    $debut = "<th data-hide='phone'>FIS Points</th>";
-	    $fin = "footer ";
+	    $fin = "<footer ";
 	    $debut_ath = 'type=result">';
 	    $fin_ath = "</a>";
 	    break;
 	
 	case "classement":
 	    $debut = '<div class="bloc-tab">';
-	    $fin = "footer ";
+	    $fin = "<footer ";
 	    $debut_ath = 'type=st-WC">';
 	    $fin_ath = "</a>";
 	    break;
@@ -106,7 +120,7 @@
 
     $ids = implode(',',$arr_id);
 
-    $sql2 = "SELECT * FROM ski_alpin_athlete WHERE retraite=0 AND genre=? AND " . $discipline . " >= 65 AND id NOT IN ($ids)";
+    $sql2 = "SELECT * FROM ski_alpin_athlete WHERE (date_blessure<NOW() OR date_blessure IS NULL) AND retraite=0 AND genre=? AND " . $discipline . " >= 65 AND id NOT IN ($ids)";
     $prep2 = $db->prepare($sql2);
     $prep2->bindValue(1,$genre);
     $prep2->setFetchMode(PDO::FETCH_OBJ);
